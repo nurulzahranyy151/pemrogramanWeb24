@@ -1,6 +1,6 @@
 body {
     background: linear-gradient(to right, #1B3C73, #40679E, #FFCAD4);
-    font-family: "Poppins", sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
   
   #form {
@@ -30,6 +30,21 @@ body {
     cursor:pointer;
     border-radius: 3rem;
   }
+
+  button{
+    display: flex;
+    justify-content: center;
+    font-family: "Poppins", sans-serif;
+    padding: 0.6rem;
+    margin-top: 0.6rem;
+    width: 100%;
+    color: white;
+    background-color: #0C359E;
+    border: none;
+    cursor:pointer;
+    border-radius: 3rem;
+  }
+  
   a {
     color: black; 
     text-decoration: none; 
@@ -58,20 +73,12 @@ body {
     outline: 2;
   }
   
-  .input-control .success {
+  .input-control.success input {
     border-color: green;
   }
   
-  .input-control .error {
+  .input-control.error input {
     border-color: red;
-  }
-  
-  .input-control .success,
-  .input-control .error {
-    display: block; /* Mengubah tipe display agar muncul dengan benar */
-    font-size: 0.75rem;
-    padding: 0.1rem;
-    color: inherit; /* Menggunakan warna teks yang sama dengan elemen lainnya */
   }
   
   .input-control .success {
@@ -80,6 +87,8 @@ body {
   
   .input-control .error {
     color: red;
+    font-size: 9px;
+    height: 13px;
   }
   
   .input-control .success,
