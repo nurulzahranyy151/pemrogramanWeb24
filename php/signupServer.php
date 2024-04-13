@@ -1,5 +1,4 @@
 <?php
-
     if(isset($_GET['Input'])){
         $email = $_GET['email'];
         echo "Email Anda : <b>$email</b>";
@@ -17,6 +16,4 @@
         $password = $_GET['password'];
         echo "Password Anda : <b>$password</b><br>";
     }
- 
-
 ?>
