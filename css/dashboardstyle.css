@@ -2,6 +2,7 @@
 
 *{
     font-family: 'Poppins', sans-serif;
+    font-weight: bold;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -10,11 +11,10 @@
 :root{
     --body-color: #E4E9F7;
     --sidebar-color: #fff;
-    --primary-color: #695CFE;
+    --primary-color: #1814F3;
     --primary-color-light: #F6F5FF;
     --toggle-color: #DDD;
     --text-color: #707070;
-
     --tran-03: all 0.2s ease;
     --tran-03: all 0.3s ease;
     --tran-04: all 0.4s ease;
@@ -74,7 +74,7 @@ body{
     width: 40px;
     border-radius: 6px;
 }
-
+/*====HEADER STYLE====*/
 header .image-text .header-text{
     display: flex;
     flex-direction: column;
