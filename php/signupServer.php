@@ -1,15 +1,25 @@
-<html>
-    <body>
-    <?php
-        $conn=mysqli_connect("localhost" , "root", "", "malapor");
-        $nik=$_POST["nik"];
-        $nama=$_POST["nama"];
-        $email=$_POST["email"];
-        $password=$_POST["password"];
-        $query= "INSERT INTO user
-        VALUES('$nik', '$nama', '$email', '$password')";
-        mysqli_query($conn,$query);
-    ?>
-
-</body>
-</html>
+<?php
+require 'functions.php';
+if(sign($_POST) > 0){
+    echo "
+        <script>
+            alert('data berhasil ditambahkan!');
+            window.location.href = '../login.html'
+        </script>
+    ";
+} else if(sign($_POST) == 0){
+    echo "
+        <script>
+            alert('NIK sudah digunakan!');
+            window.location.href = '../sign-up.html'
+        </script>
+    ";
+} else{
+    echo "
+    <script>
+        alert('Sistem error!');
+        window.location.href = '../sign-up.html'
+    </script>
+";
+}
+?>

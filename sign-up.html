@@ -1,20 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,600;0,700;0,800;1,200;1,300;1,600;1,700;1,800&display=swap"
-      rel="stylesheet" />
-    <link rel="stylesheet" href="style.css" />
+    <title>SIGN</title>
+    <link rel="stylesheet" href="css/signupStyle.css" />
   </head>
   <body>
     
     <div class="container">
-      <form action="signupServer.php" id="form" method="POST" name="input">
+      <form action="php/signupServer.php" id="form" method="POST" name="input">
         <h1>Sign Up</h1>
         <div class="input-control">
           <label for="nik">NIK : </label>
@@ -46,9 +39,8 @@
           <div class="error"></div>
           <div class="success"></div>
         </div>
-        <input type="submit" name="Input" value="Input">
+        <button type="submit" name="submit">Submit</button>
       </form>
     </div>
-   <script src="./js/form.js"></script>
   </body>
 </html>
