@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect("localhost" , "root", "", "recity");
+$conn = mysqli_connect("localhost" , "root", "", "db_malapor");
 $users = mysqli_query($conn, "SELECT * FROM user");
 function query($query){
     global $conn;
@@ -28,7 +28,7 @@ function sign($data){
     return mysqli_affected_rows($conn);
 }
 
-function login($user){
+function loginMasyarakat($user){
     global $conn;
     $email = $user["email"];
     $pass = $user["password"];
@@ -41,6 +41,25 @@ function login($user){
         }
     }
     return $cek;
+}
+
+function loginAdminandGov($user){
+    global $conn;
+    $email = $user["email"];
+    $pass = $user["password"];
+    $admin = mysqli_query($conn, "SELECT * FROM admin");
+    while($rowAdmin = mysqli_fetch_assoc($admin)){
+        if($rowAdmin["email_admin"] == $email && $rowAdmin["password_admin"] == $pass){
+            return 1;
+        }
+    }
+    $gov = mysqli_query($conn, "SELECT * FROM supervisor");
+    while($rowGov = mysqli_fetch_assoc($gov)){
+        if($rowGov["email_supervisor"] == $email && $rowGov["password_supervisor"] == $pass){
+            return 0;
+        }
+    }
+    return -1;
 }
 function hapus($nik){
     global $conn;

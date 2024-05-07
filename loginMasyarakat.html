@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login</title>
+    <link rel="stylesheet" href="css/signupStyle.css" />
+  </head>
+  <body>
+    
+    <div class="container">
+      <form action="php/loginMasyarakat.php" id="form" method="POST" name="input">
+        <h1>Login</h1>
+        <div class="input-control">
+          <label for="email">Email : </label>
+          <input id="email" name="email" type="email"/>
+          <div class="error"></div>
+          <div class="success"></div>
+        </div>
+        <div class="input-control">
+          <label for="password">Password : </label>
+          <input id="password" name="password" type="password" />
+          <div class="error"></div>
+          <div class="success"></div>
+        </div>
+        <button type="submit" name="submit">Submit</button>
+      </form>
+    </div>
+  </body>
+</html>
