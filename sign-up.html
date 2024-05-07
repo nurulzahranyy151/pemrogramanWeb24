@@ -9,39 +9,46 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,600;0,700;0,800;1,200;1,300;1,600;1,700;1,800&display=swap"
       rel="stylesheet" />
-    <link rel="stylesheet" href="./css/signupStyle.css" />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    
     <div class="container">
-      <form id="form" action="./php/signupServer.php" method="post" name="GET">
+      <form action="signupServer.php" id="form" method="POST" name="input">
         <h1>Sign Up</h1>
         <div class="input-control">
-          <label for="username">Username</label>
-          <input id="username" name="username" type="text" required/>
+          <label for="nik">NIK : </label>
+          <input id="nik" name="nik" type="text" required autocomplete="nik" />
           <div class="error"></div>
           <div class="success"></div>
         </div>
         <div class="input-control">
-          <label for="email">Email</label>
-          <input id="email" name="email" type="text" required />
+          <label for="nama">Username : </label>
+          <input id="nama" name="nama" type="text" required autocomplete="nama" />
           <div class="error"></div>
           <div class="success"></div>
         </div>
         <div class="input-control">
-          <label for="password">Password</label>
+          <label for="email">Email : </label>
+          <input id="email" name="email" type="email"/>
+          <div class="error"></div>
+          <div class="success"></div>
+        </div>
+        <div class="input-control">
+          <label for="password">Password : </label>
           <input id="password" name="password" type="password" />
           <div class="error"></div>
           <div class="success"></div>
         </div>
         <div class="input-control">
-          <label for="password2">Password Validation</label>
-          <input id="password2" name="password2" type="password" />
+          <label for="password2">Password Validation : </label>
+          <input id="password2" name="password2" type="password2" />
           <div class="error"></div>
           <div class="success"></div>
         </div>
-        <button type="submit">Create Account</button>
+        <input type="submit" name="Input" value="Input">
       </form>
     </div>
-    <script src="./js/signupScript.js"></script>
+   <script src="./js/form.js"></script>
   </body>
 </html>

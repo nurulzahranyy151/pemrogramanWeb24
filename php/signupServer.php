@@ -1,19 +1,15 @@
-<?php
-    if(isset($_GET['Input'])){
-        $email = $_GET['email'];
-        echo "Email Anda : <b>$email</b>";
-    }
-   
-    if(isset($_GET['username'])) {
-        $username = $_GET['username'];
-        echo "Nama Anda : <b>$username</b><br>";
-    }
-    if(isset($_GET['email'])) {
-        $email = $_GET['email'];
-        echo "Email Anda : <b>$email</b><br>";
-    }
-    if(isset($_GET['password'])) {
-        $password = $_GET['password'];
-        echo "Password Anda : <b>$password</b><br>";
-    }
-?>
+<html>
+    <body>
+    <?php
+        $conn=mysqli_connect("localhost" , "root", "", "malapor");
+        $nik=$_POST["nik"];
+        $nama=$_POST["nama"];
+        $email=$_POST["email"];
+        $password=$_POST["password"];
+        $query= "INSERT INTO user
+        VALUES('$nik', '$nama', '$email', '$password')";
+        mysqli_query($conn,$query);
+    ?>
+
+</body>
+</html>

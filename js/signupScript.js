@@ -6,11 +6,6 @@ document.addEventListener("DOMContentLoaded", function(){
   const password = document.getElementById("password");
   const password2 = document.getElementById("password2");
 
-    form.addEventListener('submit', e => {
-      e.preventDefault();
-      validateInput();
-    })
-
   const setError = (element, message) => {
     const inputcontrol = element.parentElement;
     const displayerror = inputcontrol.querySelector(".error");
@@ -21,15 +16,9 @@ document.addEventListener("DOMContentLoaded", function(){
 
   const setSuccess = (element) => {
     const inputcontrol = element.parentElement;
-    const displayerror = inputcontrol.querySelector('.error')
     inputcontrol.classList.remove("error");
     inputcontrol.classList.add("success");
   };
-
-  const isValidEmail = email => {
-    const re =/^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-    return re.test(String(email).toLowerCase());
-  }
 
   const validateInput = () => {
     const usernamevalue = username.value.trim();
@@ -65,4 +54,9 @@ document.addEventListener("DOMContentLoaded", function(){
       setSuccess(password2);
     }
   };
+
+  /*form.addEventListener("button", (e) => {
+    e.preventDefault();
+    validateInput();
+  }); */
 });
