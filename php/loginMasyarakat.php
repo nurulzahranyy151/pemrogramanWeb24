@@ -1,17 +1,17 @@
 <?php
 require 'functions.php';
-if(login($_POST)) {
+if(loginMasyarakat($_POST)) {
     echo "
         <script>
             alert('Selamat Datang Kembali!');
-            window.location.href = '../dashboard.html';
+            window.location.href = 'dashboardMasyarakat.php';
         </script>
     ";
 } else {
     echo "
         <script>
             alert('Akun yang Anda masukkan belum terdaftar!');
-            window.location.href = '../login.html';
+            window.location.href = '../loginMasyarakat.html';
         </script>
     ";
 }
