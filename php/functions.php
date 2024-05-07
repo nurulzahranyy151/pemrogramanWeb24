@@ -1,5 +1,5 @@
 <?php
-$conn = mysqli_connect("localhost" , "root", "", "db_malapor");
+$conn = mysqli_connect("localhost" , "root", "", "recity");
 $users = mysqli_query($conn, "SELECT * FROM user");
 function query($query){
     global $conn;
