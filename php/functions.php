@@ -1,6 +1,20 @@
 <?php
+<<<<<<< HEAD
 session_start();
 $conn = mysqli_connect("localhost" , "root", "", "recity");
+=======
+$conn = mysqli_connect("localhost" , "root", "", "db_malapor");
+$users = mysqli_query($conn, "SELECT * FROM user");
+function query($query){
+    global $conn;
+    $result = mysqli_query($conn, $query);
+    $rows = [];
+    while( $row = mysqli_fetch_assoc($result)){
+        $rows[] = $row;
+    }
+    return $rows;
+}
+>>>>>>> 90e1f0a72ac6f43762ae7147b54e5785ec18327a
 function sign($data){
     global $conn;
     $nama = htmlspecialchars($data["nama"]);
