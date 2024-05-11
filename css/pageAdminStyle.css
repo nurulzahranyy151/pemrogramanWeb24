@@ -1,0 +1,121 @@
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: white;
+    margin: 0;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #30bad3;
+    padding: 10px 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.aplikasi {
+    display: flex;
+    align-items: center;
+}
+
+.aplikasi h1 {
+    margin-left: 10px;
+}
+
+.search-bar {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 500px;
+}
+
+.user p {
+    margin-right: 20px;
+}
+
+.isi {
+    margin-top: 60px; 
+    display: flex;
+}
+
+.sidebar {
+    width: 25%;
+    background-color: #d8d8d8;
+}
+
+.sidebar ul {
+    list-style-type: none;
+}
+
+.sidebar ul li {
+    padding: 10px 20px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #333;
+    display: block;
+}
+
+.sidebar ul .access-menu{
+    background: aqua;
+}
+
+.sidebar ul :hover{
+    background: aqua;
+}
+
+.sidebar ul li:last-child {
+    border-bottom: none;
+}
+
+.konten {
+    margin-left: 10px;
+    width: 75%;
+    padding: 20px;
+}
+
+.konten table{
+    border-color: #ccc;
+    width: 100%;
+}
+
+.konten table .head-table, 
+.konten table tr .aksi{
+    text-align: center;
+}
+
+.konten table tr td{
+    padding: 5px;
+}
+
+.footer {
+    background-color: #000;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+}
+
+.footer .copyright,
+.footer .contact {
+    margin-bottom: 10px;
+}

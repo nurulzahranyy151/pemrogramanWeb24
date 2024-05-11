@@ -1,0 +1,204 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+}
+
+.container {
+    width: 100%;
+    margin: 0 auto;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: #30bad3;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.aplikasi {
+    display: flex;
+    align-items: center;
+}
+
+.aplikasi h1 {
+    margin-left: 10px;
+}
+
+.search-bar {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 500px;
+}
+
+.user p {
+    margin-right: 20px;
+}
+
+.isi {
+    margin-top: 60px; 
+    display: flex;
+}
+
+.sidebar {
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 25%;
+    border-right: #646464 1px solid;
+}
+
+.sidebar ul {
+    list-style-type: none;
+}
+
+.sidebar ul li {
+    font-size: 15px;
+    border-radius: 10px;
+    padding: 10px 20px;
+}
+
+.sidebar ul li a {
+    text-decoration: none;
+    color: #2b2b2b;
+    display: block;
+}
+
+.sidebar ul .access-menu{
+    background: aqua;
+}
+
+.sidebar ul :hover{
+    background: aqua;
+}
+
+.sidebar ul li:last-child {
+    border-bottom: none;
+}
+
+.konten {
+    margin-left: 10px;
+    width: 75%;
+    padding: 20px;
+    display: flex;
+}
+
+.konten table{
+    border-color: #ccc;
+    width: 100%;
+}
+
+.konten table .head-table, 
+.konten table tr .aksi{
+    text-align: center;
+}
+
+.konten table tr td{
+    padding: 5px;
+}
+
+.fyp{
+    width: 70%;
+}
+
+.trend{
+    width: 30%;
+    padding-left: 10px;
+}
+
+img{
+    width: 100%;
+}
+
+.fyp {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.post {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    padding: 20px;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.post-header img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.post-header .post-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.post-info h3 {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.post-info p {
+    margin: 0;
+    font-size: 14px;
+    color: #666;
+}
+
+.post-content {
+    margin-top: 10px;
+}
+
+.post-content p {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+}
+
+.post-actions {
+    margin-top: 10px;
+}
+
+.post-actions button {
+    background-color: transparent;
+    border: none;
+    font-size: 14px;
+    color: #666;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.post-actions button:hover {
+    color: #333;
+}
+
+form{
+    display: flex;
+}
+
+#comment{
+    width: 80%;
+    flex: 1;
+    border: none;
+}
+#button-submit-comment{
+    width: 20%;
+}

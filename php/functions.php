@@ -1,14 +1,6 @@
 <?php
+session_start();
 $conn = mysqli_connect("localhost" , "root", "", "recity");
-function query($query){
-    global $conn;
-    $result = mysqli_query($conn, $query);
-    $rows = [];
-    while( $row = mysqli_fetch_assoc($result)){
-        $rows[] = $row;
-    }
-    return $rows;
-}
 function sign($data){
     global $conn;
     $nama = htmlspecialchars($data["nama"]);
@@ -27,6 +19,7 @@ function sign($data){
     return mysqli_affected_rows($conn);
 }
 
+
 function loginMasyarakat($user){
     global $conn;
     $email = $user["email"];
@@ -36,6 +29,7 @@ function loginMasyarakat($user){
     while($row = mysqli_fetch_assoc($data)){
         if($row["email_user"] == $email && $row["password_user"] == $pass){
             $cek = 1;
+            $_SESSION["nama_user"] = $row["nama_user"];
             break;
         }
     }
@@ -49,17 +43,30 @@ function loginAdminandGov($user){
     $admin = mysqli_query($conn, "SELECT * FROM admin");
     while($rowAdmin = mysqli_fetch_assoc($admin)){
         if($rowAdmin["email_admin"] == $email && $rowAdmin["password_admin"] == $pass){
+            $_SESSION["nama_admin"] = $rowAdmin["nama_admin"];
             return 1;
         }
     }
     $gov = mysqli_query($conn, "SELECT * FROM supervisor");
     while($rowGov = mysqli_fetch_assoc($gov)){
         if($rowGov["email_supervisor"] == $email && $rowGov["password_supervisor"] == $pass){
+            $_SESSION["nama_supervisor"] = $rowGov["nama_supervisor"];
             return 0;
         }
     }
     return -1;
 }
+
+function findMasyarakat(){
+    global $conn;
+    return mysqli_query($conn, "SELECT * FROM user");
+}
+
+function findGov(){
+    global $conn;
+    return mysqli_query($conn, "SELECT * FROM supervisor");
+}
+
 function hapus($nik){
     global $conn;
     mysqli_query($conn, "DELETE FROM user WHERE NIK = '$nik'");

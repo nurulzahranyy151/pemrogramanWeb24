@@ -1,3 +1,22 @@
+<?php
+if(isset($_POST["submit"])){
+  require 'php/functions.php';
+  if(sign($_POST) == 1){
+      echo "
+          <script>
+              alert('Akun berhasil dibuat, silahkan login');
+              window.location.href = '../loginMasyarakat.html';
+          </script>
+      ";
+  } else if(sign($_POST) == 0){
+      $error = true;
+      $errorMessage = "NIK sudah digunakan!";
+  } else{
+      $error = true;
+      $errorMessage = "Sistem error!";
+  }
+}
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -5,19 +24,22 @@
     <link rel="stylesheet" href="css/signupStyle.css" />
   </head>
   <body>
-    
     <div class="container">
-      <form action="php/sign-upMasyarakat.php" id="form" method="POST" name="input">
+      <form action="" id="form" method="POST" name="input">
         <h1>Sign Up</h1>
         <div class="input-control">
           <label for="nik">NIK : </label>
-          <input id="nik" name="nik" type="text" required autocomplete="nik" />
-          <div class="error"></div>
+          <input id="nik" name="nik" type="text"/>
+          <div class="error">
+            <?php if(isset($error)) :?>
+                <p><?php echo $errorMessage?></p>
+            <?php endif ?>
+          </div>
           <div class="success"></div>
         </div>
         <div class="input-control">
           <label for="nama">Username : </label>
-          <input id="nama" name="nama" type="text" required autocomplete="nama" />
+          <input id="nama" name="nama" type="text"/>
           <div class="error"></div>
           <div class="success"></div>
         </div>
@@ -42,5 +64,6 @@
         <button type="submit" name="submit">Submit</button>
       </form>
     </div>
+    <script src="js/signupScript.js"></script>
   </body>
 </html>
