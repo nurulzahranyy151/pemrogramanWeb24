@@ -101,8 +101,29 @@
 
     </nav>
 
-      <div class="konten">
+    <div class="konten">
         <div class="fyp">
+            <div class="make-report">
+                <div class="header-report">
+                    <div class="reporter">
+                        <img src="../img/coba.jpeg" alt="Profil Picture">
+                        <h5>Nama </h5>
+                    </div>
+                    <div class="input-caption">
+                        <input type="text" class="input-caption" placeholder="Laporkan keluhan anda di sini...">
+                    </div>
+                </div>
+                <div class="footer-report">
+                    <div class="atribut">
+                        <li>Media</li>
+                        <li>Emoji</li>
+                        <li>Location</li>
+                    </div>
+                    <div class="submit-report">
+                        <button type="submit" id="submit-report">Post</button>
+                    </div>
+                </div>
+            </div>
             <?php for ($i = 0; $i < 4; $i++) :;?>
             <div class="post">
                 <div class="post-header">
@@ -113,6 +134,7 @@
                     </div>
                 </div>
                 <div class="post-content">
+                    <p class="caption">Ini caption</p>
                     <img src="../img/coba.jpeg" alt="ini gambar">
                 </div>
                 <div class="post-actions">
@@ -124,16 +146,16 @@
                     <input type="text" name="comment" id="comment" placeholder="Tambahkan komentar...">
                     <button type="submit" id="submit-comment" style="display: none;">Kirim</button>
                 </form>
-                </div>
-   <?php endfor?>
-</div>
-<div class="trend">
-  <h1>Accepted Post</h1>
-  <div class="trend-content">
-    <i class='bx bxs-star icon'></i>
-  </div>
-</div>
-</div>
+            </div>
+            <?php endfor?>
+        </div>
+        <div class="trend">
+            <h1>Accepted Post</h1>
+            <div class="trend-content">
+                <i class='bx bxs-star icon'></i>
+            </div>
+        </div>
+    </div>
 </div>
 <script src="../js/masyarakatValidation.js"></script>
     <script src="../js/sidebar.js">
