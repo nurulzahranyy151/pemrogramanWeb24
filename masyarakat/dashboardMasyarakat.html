@@ -2,8 +2,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Website Title</title>
+    <title>RECITY</title>
     <link rel="stylesheet" href="../css/pageMasyarakat.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,600;0,700;0,800;1,200;1,300;1,600;1,700;1,800&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="./css/pageMasyarakat.css"/>
+    <script src="https://unpkg.com/feather-icons"></script>
 </head>
 <body>
     <div class="container">
@@ -12,9 +19,6 @@
                 <img src="" alt="logo">
                 <h1>ReCity</h1>
             </div>
-            <div class="search">
-                <input type="text" name="search-bar" class="search-bar" placeholder="Cari Laporan">
-            </div>
             <div class="user">
                 <p><?php echo $_SESSION["nama_user"];?></p>
             </div>
@@ -22,13 +26,18 @@
         <div class="isi">
             <div class="sidebar">
                 <ul>
-                    <li class="access-menu"><a href="#">Dashboard</a></li>
-                    <li><a href="#">Saved</a></li>
-                    <li><a href="#">History</a></li>
-                    <li><a href="#">Profile</a></li>
-                    <li><a href="#">Statistic</a></li>
-                    <li><a href="#">Setting</a></li>
-                    <li><a href="../loginMasyarakat.php">Logout</a></li>
+                    <li><a href="#"><i class="sidebar-icon" data-feather="home"></i>
+                <span class="text nav-text"></span>Dashboard</a></li>
+                    <li><a href="saved.php"><i class="sidebar-icon" data-feather="bookmark"></i>
+                <span class="text nav-text"></span>Saved</a></li>
+                    <li><a href="history.php"><i class="sidebar-icon" data-feather="clock"></i>
+                <span class="text nav-text"></span>History</a></li>
+                    <li><a href="statistic.php"><i class="sidebar-icon" data-feather="pie-chart"></i>
+                <span class="text nav-text">Statistic</span></a></li>
+                    <li><a href="settings.php"><i class="sidebar-icon" data-feather="settings"></i>
+                <span class="text nav-text">Settings</span></a></li>
+                    <li><a href="../loginMasyarakat.php"><i class="sidebar-icon" data-feather="log-out"></i>
+                <span class="text nav-text">Logout</span></a></li>
                     <li><a href="#">Ubah Mode</a></li>
                 </ul>
             </div>
@@ -65,5 +74,8 @@
         </div>
     </div>
     <script src="../js/masyarakatValidation.js"></script>
+     <script>
+      feather.replace();
+    </script>
 </body>
 </html>
