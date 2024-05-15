@@ -1,94 +1,105 @@
-<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
     <link rel="stylesheet" href="../css/pageMasyarakat.css">
-    
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-
-    <title>Dashboard</title>
+    <title>Saved</title>
 </head>
 <body>
+    <!--NAVBAR EXTRA (PROFILE) START-->
+    <div class="navbar-extra">
+        <a href="#" id="formulir" class="user-pic"><i class='bx bx-user-circle'></i>
+            <div class="sub-menu-wrap" id="subMenu">
+                <div class="sub-menu">
+                    <div class="user-info">
+                        <img src="img/user.jpg">
+                        <h3>Jeon Wonwoo</h3>
+                    </div>
+                    <hr>
+                    <a href="login.php" class="sub-menu-link">
+                        <img src="img/login.png">
+                        <p>Login</p>
+                        <span></span>
+                    </a>
+                    <a href="tabel.html" class="sub-menu-link">
+                        <img src="img/profile.png">
+                        <p>Profile</p>
+                        <span></span>
+                    </a>
+                    <a href="#" class="sub-menu-link">
+                        <img src="img/logout.png">
+                        <p>Logout</p>
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+          <!--NAVBAR EXTRA (PROFILE) END-->
     <nav class="sidebar close">
         <header>
             <div class="image-text">
-
                 <span class="image">
                     <img src="../img/recity.png" alt="logo recity">
                 </span>
-
                 <div class="text logo-text">
                     <span class="name">Recity</span>
                     <span class="profession">Resolver City</span>
                 </div>
-
                 <div class="user">
-                  <p><?php echo $_SESSION["nama_user"];?></p>
-              </div>
-              
+                    <p><?php echo $_SESSION["nama_user"];?></p>
+                </div>
             </div>
             <i class='bx bx-chevron-right toggle'></i>
         </header>
-
         <div class="menu-bar">
             <div class="menu">
                 <li class="search-box">
                     <i class='bx bx-search icon'></i>
                     <input type="text" placeholder="Search...">
                 </li>
-
                 <ul class="menu-links">
-
                     <li class="nav-link">
                         <a href="#">
                             <i class='bx bx-home-alt icon' ></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
                     </li>
-
                     <li class="nav-link">
                         <a href="#">
                             <i class='bx bx-bookmark icon'></i>
                             <span class="text nav-text">Saved</span>
                         </a>
                     </li>
-
                     <li class="nav-link">
                         <a href="#">
                             <i class='bx bx-history icon'></i>
                             <span class="text nav-text">History</span>
                         </a>
                     </li>
-
                     <li class="nav-link">
                         <a href="#">
                             <i class='bx bx-pie-chart-alt icon' ></i>
                             <span class="text nav-text">Statistic</span>
                         </a>
                     </li>
-
                     <li class="nav-link">
                         <a href="#">
                             <i class='bx bx-cog icon'></i>
                             <span class="text nav-text">Settings</span>
                         </a>
                     </li>
-
                 </ul>
             </div>
-
             <div class="bottom-content">
-                <li class="">
+                <li>
                     <a href="#">
                         <i class='bx bx-log-out icon' ></i>
                         <span class="text nav-text">Logout</span>
                     </a>
                 </li>
-
                 <li class="mode">
                     <div class="sun-moon">
                         <i class='bx bx-moon icon moon'></i>
@@ -99,70 +110,52 @@
                         <span class="switch"></span>
                     </div>
                 </li>
-                
             </div>
         </div>
-
     </nav>
 
-    <div class="konten">
-        <div class="fyp">
-            <div class="make-report">
-                <div class="header-report">
-                    <div class="reporter">
-                        <img src="../img/coba.jpeg" alt="Profil Picture">
-                        <h5>Nama </h5>
-                    </div>
-                    <div class="input-caption">
-                        <input type="text" class="input-caption" placeholder="Laporkan keluhan anda di sini...">
-                    </div>
-                </div>
-                <div class="footer-report">
-                    <div class="atribut">
-                        <li><i class='bx bx-image-add icon'></i></i></li>
-                        <li><i class='bx bx-smile icon'></i></li>
-                        <li><i class='bx bx-map icon'></i></li>
-                    </div>
-                    <div class="submit-report">
-                        <button type="submit" id="submit-report">Post</button>
-                    </div>
+   <!--CONTENT START-->
+<div class="konten">
+    <div class="fyp">
+        <?php for ($i = 0; $i < 4; $i++) :;?>
+        <div class="post">
+            <div class="saved-post">
+                <img src="../img/coba.jpeg" alt="Postingan yang Disimpan">
+                <p>susahnya jadi anak daerah ya gini, akses jalan ke kota tuh sulit untuk dilewati karena jalan yang masih rusak, berbelok-belok, banyak jalan berbatu hufft</p>
+                <div class="savedpost-info">
+                    <img src="../img/coba.jpeg" alt="Profil Picture">
+                    <p>Posted by Wonwoo</p>
                 </div>
             </div>
-            <?php for ($i = 0; $i < 4; $i++) :;?>
-            <div class="post">
-                <div class="post-header">
-                    <img src="gambar_pengguna.jpg" alt="Profil Picture">
-                    <div class="post-info">
-                        <h3>Nama Pengguna</h3>
-                        <p>Waktu Posting</p>
-                    </div>
-                </div>
-                <div class="post-content">
-                    <p class="caption">Ini caption</p>
-                    <img src="../img/coba.jpeg" alt="ini gambar">
-                </div>
-                <div class="post-actions">
-                    <button>Like</button>
-                    <button>Comment</button>
-                    <button>Share</button>
-                </div>
-                <form action="#" method="post" class="add-comment-form">
-                    <input type="text" name="comment" id="comment" placeholder="Tambahkan komentar...">
-                    <button type="submit" id="submit-comment" style="display: none;">Kirim</button>
-                </form>
-            </div>
-            <?php endfor?>
-        </div>
-        <div class="trend">
-            <div class="trend-content">
-                <h4>Accepted Post</h4>
-                <i class='bx bxs-star icon'></i>
+            <div class="batal-simpan">
+                <button type="submit" id="batal-simpan">Delete from Saved</button>
             </div>
         </div>
+
+        <div class="post">
+            <div class="saved-post">
+                <img src="../img/coba.jpeg" alt="Postingan yang Disimpan">
+                <p>susahnya jadi anak daerah ya gini, akses jalan ke kota tuh sulit untuk dilewati karena jalan yang masih rusak, berbelok-belok, banyak jalan berbatu hufft</p>
+                <div class="savedpost-info">
+                    <img src="../img/coba.jpeg" alt="Profil Picture">
+                    <p>Posted by Wonwoo</p>
+                </div>
+            </div>
+            <div class="batal-simpan">
+                <button type="submit" id="batal-simpan">Delete from Saved</button>
+            </div>
+        </div>
+        <?php endfor;?>
     </div>
 </div>
-<script src="../js/masyarakatValidation.js"></script>
-    <script src="../js/sidebar.js">
-       </script>
+<!--CONTENT END-->
+
+    <script src="../js/masyarakatValidation.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <script>
+        document.querySelector('.user-info img').addEventListener('click', function() {
+            document.getElementById('subMenu').classList.toggle('open-menu');
+        });
+    </script>
 </body>
 </html>

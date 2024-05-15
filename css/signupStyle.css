@@ -75,6 +75,7 @@ button:hover {
 }
 
 .input-control {
+  
   display: flex;
   flex-direction: column;
   color: white;
