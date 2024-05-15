@@ -28,6 +28,7 @@ if(isset($_POST["submit"])){
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,600;0,700;0,800;1,200;1,300;1,600;1,700;1,800&display=swap"
       rel="stylesheet" />
     <script src="https://unpkg.com/feather-icons"></script>
+    <link a href="css/signupStyle.css">
   </head>
   <body>
     <div class="container">
@@ -37,6 +38,7 @@ if(isset($_POST["submit"])){
       <div class="signup-form">
       <form action="" id="form" method="POST" name="input">
         <h1>SIGN UP</h1>
+        <h4>Create Your Free Account</h4>
         <div class="input-control">
           <label for="nik">NIK</label>
           <input id="nik" name="nik" type="text"/>
@@ -72,7 +74,7 @@ if(isset($_POST["submit"])){
           <div class="success"></div>
         </div>
         <button type="submit" name="submit">Create Account</button>
-       <p>Already have an account? <a href="loginMasyarakat.html">Log in</a></p>
+       <h4>Already have an account? <a href="loginMasyarakat.html">Log in</a></h4>
       </form>
     <script src="js/signupScript.js"></script>
   </body>
