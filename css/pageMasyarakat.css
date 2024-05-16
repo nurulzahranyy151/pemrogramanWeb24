@@ -44,10 +44,6 @@ body.dark {
     --text-color: #ccc;
 }
 
-.user p {
-    margin-right: 20px;
-}
-
 .isi {
     margin-top: 60px; 
     display: flex;
@@ -164,10 +160,9 @@ body.dark {
     list-style: none;
     display: flex;
     align-items: center;
-    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.sidebar header .image,
 .sidebar .icon {
     min-width: 60px;
     border-radius: 6px;
@@ -225,16 +220,16 @@ header .image-text .profession {
     display: block;
 }
 
-.sidebar header .image {
+.sidebar header .image{
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.sidebar header .image img {
-    width: 40px;
-    border-radius: 6px;
+.image img{
+    width: 65px;
 }
+
 
 .sidebar header .toggle {
     position: absolute;
@@ -425,11 +420,38 @@ body.dark .home .text {
 
 /*===CONTENT DASHBOARD START CSS===*/
 .konten {
-    display: flex;
     justify-content: space-between;
     margin-left: 250px;
     width: calc(100% - 250px);
-    padding: 20px;
+}
+
+.header-konten{
+    position: fixed;
+    margin-left: -250px;
+    width: 100%;
+    display: flex;
+    background: white;
+    padding: 15px;
+    margin-bottom: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    align-items: center;
+}
+
+.page-name{
+    padding-left: 270px;
+    padding-right: 650px;;
+}
+
+.user-login{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.isi-konten{
+    padding-top: 100px;
+    padding-left: 25px;
+    display: flex;
 }
 
 .konten table {
@@ -455,11 +477,12 @@ body.dark .home .text {
 
 .trend {
     width: 30%;
-    padding-left: 10px;
+    padding-left: 25px;
 }
 
 img {
     width: 100%;
+    object-fit: cover;
 }
 
 .post, .make-report {
@@ -475,9 +498,9 @@ img {
     gap: 10px;
 }
 
-.post-header img, .reporter img {
-    width: 40px;
-    height: 40px;
+.post-header img, .reporter img, .user-login img {
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
 }
 
@@ -500,6 +523,10 @@ img {
 
 .post-content {
     margin-top: 10px;
+}
+
+.post-content img{
+    border-radius: 5px;
 }
 
 .post-content p {
@@ -544,6 +571,7 @@ form {
   width: 250px;
   height: 500px;
   border-radius: 4%;
+  padding: 10px;
 }
 
 .header-report, .footer-report {
@@ -577,46 +605,66 @@ form {
     cursor: pointer;
 }
 
+
 /*===CONTENT DASHBOARD END CSS===*/
 
 /*===CONTENT SAVED START CSS===*/
 
-.batal-simpan button {
+.saved-post{
+    width: 90%;
     display: flex;
-    justify-content: flex-end;
-    padding: 5px 20px;
-    background-color: blue;
+    gap: 20px;
+    background: white;
+    padding: 20px;
     border-radius: 20px;
-    border: none;
-    color: white;
-    cursor: pointer;
-}
-.saved-post {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 10px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
 }
 
-
-.saved-post img{
-    width: 100px;
-    height: 100px;
-    border-radius: 20%; 
+.saved-media img{
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+    box-shadow: 3px 5px 3px rgba(0, 0, 0, 0.2);
 }
 
-.savedpost-info {
+.uploader{
+    margin-top: 20px;
     display: flex;
-    width: 100px;
-    
-}
-
-.savedpost-info img {
-    display: flex;
+    gap: 20px;
     align-items: center;
-    width: 40px;
-    height: 40px;
+}
+
+.uploader img{
+    width: 50px;
+    height: 50px;
     border-radius: 50%;
 }
 
+.unsave{
+    margin-left: 85%;
+    margin-top: 20px;
+    bottom: 10px;
+    right: 10px;
+}
+.unsave-button{
+    background: blue;
+    border-radius: 20px;
+    border: none;
+    padding: 10px 20px;
+    color: white;
+    cursor: pointer;
+}
 
+.saved-on{
+    color: #666;
+    font-size: 12px;
+}
 
+.posted-by{
+    color: #666;
+    font-size: 15px;
+}
+
+/*===CONTENT SAVED END CSS===*/
+
+/*===CONTENT HISTORY START CSS===*/
