@@ -104,27 +104,35 @@
         </div>
         <div class="isi-konten">
             <div class="fyp">
-                <div class="make-report">
-                    <div class="header-report">
-                        <div class="reporter">
-                            <img src="../img/coba.jpeg" alt="Profil Picture">
-                            <h5>Nama </h5>
+                <form action="../php/functions.php" method="post" enctype="multipart/form-data"></form>
+                    <div class="make-report">
+                        <div class="header-report">
+                            <div class="reporter">
+                                <img src="../img/coba.jpeg" alt="Profil Picture">
+                                <h5>Nama </h5>
+                            </div>
+                            <div class="caption-media">
+                                <div class="caption">
+                                    <textarea class="input-caption" name="caption" placeholder="Laporkan keluhan anda di sini..."></textarea>
+                                </div>
+                                <div class="media-preview">
+                                </div>
+                            </div>
                         </div>
-                        <div class="input-caption">
-                            <input type="text" class="input-caption" placeholder="Laporkan keluhan anda di sini...">
+                        
+                        <div class="footer-report">
+                            <div class="atribut">
+                                <li><i class='bx bx-image-add icon'></i></i></li>
+                                <li><i class='bx bx-smile icon'></i></li>
+                                <li><i class='bx bx-map icon'></i></li>
+                            </div>
+                            <div class="submit-report">
+                                <button type="submit" id="submit-report">Post</button>
+                            </div>
                         </div>
+                        <input type="file" id="imageUpload"  name="media" style="display: none;" accept="image/*">
                     </div>
-                    <div class="footer-report">
-                        <div class="atribut">
-                            <li><i class='bx bx-image-add icon'></i></i></li>
-                            <li><i class='bx bx-smile icon'></i></li>
-                            <li><i class='bx bx-map icon'></i></li>
-                        </div>
-                        <div class="submit-report">
-                            <button type="submit" id="submit-report">Post</button>
-                        </div>
-                    </div>
-                </div>
+                </form>
                 <?php for ($i = 0; $i < 4; $i++) :;?>
                 <div class="post">
                     <div class="post-header">
@@ -160,7 +168,7 @@
     </div>
 </div>
 <script src="../js/masyarakatValidation.js"></script>
-    <script src="../js/sidebar.js">
-       </script>
+<script src="../js/sidebar.js"></script>
+<script src="../js/postAtribut.js"></script>
 </body>
 </html>
