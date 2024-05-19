@@ -74,7 +74,7 @@ if(isset($_POST["submit"])){
           <div class="success"></div>
         </div>
         <button type="submit" name="submit">Create Account</button>
-       <h4>Already have an account? <a href="loginMasyarakat.html">Log in</a></h4>
+       <h4>Already have an account? <a href="loginMasyarakat.php">Log in</a></h4>
       </form>
     <script src="js/signupScript.js"></script>
   </body>

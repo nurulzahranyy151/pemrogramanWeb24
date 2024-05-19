@@ -34,7 +34,7 @@
         ?>
         <button type="submit" name="submit">Login</button>
         <p>OR</p>
-        <h4><a href="login AdminandGov.php">Login</a> as Admin/Staff </h4>
+        <h4><a href="loginAdminandGov.php">Login</a> as Admin/Staff </h4>
       </form>
     </div>
     <script src="js/loginValidation.js"></script> 
