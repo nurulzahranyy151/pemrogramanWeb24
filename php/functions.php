@@ -72,4 +72,7 @@ function hapus($nik){
     mysqli_query($conn, "DELETE FROM user WHERE NIK = '$nik'");
     return mysqli_affected_rows($conn);
 }
+
+
+
 ?>

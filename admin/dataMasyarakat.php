@@ -1,68 +1,152 @@
-<?php require '../php/functions.php'; ?>
+<?php 
+require '../php/functions.php';?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Website Title</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
     <link rel="stylesheet" href="../css/pageAdminStyle.css">
+    
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <title>Dashboard</title>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="aplikasi">
-                <img src="" alt="logo">
-                <h1>ReCity</h1>
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="../img/recity.png" alt="logo recity">
+                </span>
+                <div class="text logo-text">
+                    <span class="name">Recity</span>
+                    <span class="profession">Resolver City</span>
+                </div>
             </div>
-            <div class="user">
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-bar-chart-alt-2 icon'></i>
+                            <span class="text nav-text">Statistik Laporan</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="dataMasyarakat.php">
+                            <i class='bx bx-user icon'></i>
+                            <span class="text nav-text">Kelola Masyarakat</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="dataGovernment.php">
+                            <i class='bx bx-user-circle icon'></i>
+                            <span class="text nav-text">Kelola Supervisor</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-image icon'></i>
+                            <span class="text nav-text">Kelola Laporan</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-error icon'></i>
+                            <span class="text nav-text">Kelola Report</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <li class="">
+                    <a href="../loginAdminandGov.php">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+
+                <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark mode</span>
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+            </div>
+        </div>
+    </nav>
+
+    <div class="konten">
+        <div class="header-konten">
+            <div class="page-name">
+                <h2>Kelola Masyarakat</h2>
+            </div>
+            <div class="user-login">
+                <img src="../img/coba.jpeg" alt="Profil Picture">
                 <p><?php echo $_SESSION["nama_admin"];?></p>
             </div>
         </div>
-        <div class="isi">
-            <div class="sidebar">
-                <ul>
-                    <li><a href="dashboardAdmin.php">Menu Statistik</a></li>
-                    <li class="access-menu"><a href="#">Kelola Masyarakat</a></li>
-                    <li><a href="dataGovernment.php">Kelola Supervisor</a></li>
-                    <li><a href="#">Kelola Laporan</a></li>
-                    <li><a href="#">Kelola Report</a></li>
-                    <li><a href="../loginAdminandGov.php">Logout</a></li>
-                    <li><a href="#">Ubah Mode</a></li>
-                </ul>
+        <div class="isi-konten">
+            <div class="header-data">
+                <h3>Data Masyarakat</h3>
             </div>
-            <div class="konten">
-                <h1>INI KONTEN</h1>
-                <div class="search">
-                    <input type="text" name="search-bar" class="search-bar" placeholder="Cari Masyarakat">
+            <div class="isi-table">
+                <div class="search-add">
+                    <div class="search">
+                        <input type="text" name="search-bar" class="search-bar" placeholder="Cari Masyarakat">
+                        <button type="submit"><i class='bx bx-search icon'></i></button>
+                    </div>
+                    <button class="add-data" type="submit">
+                        <span>Tambah Staf</span>
+                        <i class='bx bx-plus-circle'></i>
+                    </button>
                 </div>
-                <h1>Data Masyarakat</h1>
-                <table border ="1" cellpadding="10" cellspacing="0">
+                <table>
                     <tr class="head-table">
-                        <th>Action</th>
+                        <th>No</th>
                         <th>NIK</th>
                         <th>Nama</th>
                         <th>Email</th>
                         <th>Password</th>
+                        <th>Action</th>
                     </tr>
                     <?php 
+                    $count = 1;
                     $result = findMasyarakat();
                     while( $row = mysqli_fetch_assoc($result)):?>
-                    <tr>
-                        <td class="aksi">
-                            <a href="">ubah</a> |
-                            <a href="">hapus</>
-                        </td>
+                    <tr class="isi-data">
+                        <td><?=$count?></td>
                         <td><?= $row["NIK"];?></td>
                         <td><?= $row["nama_user"];?></td>
                         <td><?= $row["email_user"];?></td>
                         <td><?= $row["password_user"];?></td>
+                        <td class="aksi">
+                            <a href="">ubah<i class='bx bx-pencil icon'></i></a>
+                            <a href="">hapus<i class='bx bx-trash icon'></i></a>
+                        </td>
                     </tr>
-                    <?php endwhile;?>
+                    <?php 
+                        $count++;
+                        endwhile;
+                    ?>
                 </table>
             </div>
         </div>
-        <div class="footer">
-            <div class="copyright">Copyright &copy; 2024</div>
-            <div class="contact">Contact: contact@example.com</div>
-        </div>
     </div>
+
+    <script src="../js/masyarakatValidation.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/statistik.js"></script>
 </body>
 </html>

@@ -1,45 +1,123 @@
 <?php session_start() ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Website Title</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" 
+    
+    ontent="width=device-width, initial-scale=1.0">
+  
     <link rel="stylesheet" href="../css/pageAdminStyle.css">
+    
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <title>Dashboard</title>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <div class="aplikasi">
-                <img src="" alt="logo">
-                <h1>ReCity</h1>
+    <nav class="sidebar close">
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="../img/recity.png" alt="logo recity">
+                </span>
+                <div class="text logo-text">
+                    <span class="name">Recity</span>
+                    <span class="profession">Resolver City</span>
+                </div>
             </div>
-            <div class="search">
-                <input type="text" name="search-bar" class="search-bar" placeholder="Cari Laporan">
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
+
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-bar-chart-alt-2 icon'></i>
+                            <span class="text nav-text">Statistik Laporan</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="dataMasyarakat.php">
+                            <i class='bx bx-user icon'></i>
+                            <span class="text nav-text">Kelola Masyarakat</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="dataGovernment.php">
+                            <i class='bx bx-user-circle icon'></i>
+                            <span class="text nav-text">Kelola Supervisor</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-image icon'></i>
+                            <span class="text nav-text">Kelola Laporan</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="#">
+                            <i class='bx bx-error icon'></i>
+                            <span class="text nav-text">Kelola Report</span>
+                        </a>
+                    </li>
+                </ul>
             </div>
-            <div class="user">
+
+            <div class="bottom-content">
+                <li class="">
+                    <a href="#">
+                        <i class='bx bx-log-out icon'></i>
+                        <span class="text nav-text">Logout</span>
+                    </a>
+                </li>
+
+                <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark mode</span>
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
+                </li>
+            </div>
+        </div>
+    </nav>
+
+    <div class="konten">
+        <div class="header-konten">
+            <div class="page-name">
+                <h2>Dashboard</h2>
+            </div>
+            <div class="user-login">
+                <img src="../img/coba.jpeg" alt="Profil Picture">
                 <p><?php echo $_SESSION["nama_admin"];?></p>
             </div>
         </div>
-        <div class="isi">
-            <div class="sidebar">
-                <ul>
-                    <li class="access-menu"><a href="#">Statistik Laporan</a></li>
-                    <li><a href="dataMasyarakat.php">Kelola Masyarakat</a></li>
-                    <li><a href="dataGovernment.php">Kelola Supervisor</a></li>
-                    <li><a href="#">Kelola Laporan</a></li>
-                    <li><a href="#">Kelola Report</a></li>
-                    <li><a href="../loginAdminandGov.php">Logout</a></li>
-                    <li><a href="#">Ubah Mode</a></li>
-                </ul>
-            </div>
-            <div class="konten">
-                <h1>INI KONTEN</h1>
-                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Rem tempora eius quasi impedit quam corrupti quos vel ipsa cum laborum repellendus, nemo quod sed iure, libero, consequuntur facilis veritatis sit! Lorem ipsum dolor sit amet consectetur adipisicing elit. Sint veniam ipsam fuga molestias! Recusandae sit quam voluptates voluptatibus ullam, eos accusantium placeat modi quisquam minus nesciunt, iste blanditiis libero excepturi! Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae magni nulla sed molestias hic, asperiores minus dicta praesentium repellat suscipit nobis corrupti itaque possimus aspernatur veritatis aut. Quasi, fuga accusamus? Lorem ipsum dolor, sit amet consectetur adipisicing elit. Dolorum explicabo id eum illo! Officia odio, velit quaerat nulla ipsum dignissimos eligendi commodi minima voluptatem, est numquam porro explicabo quam ab. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corrupti non rerum illo odit cumque nobis repudiandae adipisci maiores! Consequatur doloribus quas numquam facere obcaecati quasi ipsum, voluptates soluta consequuntur aperiam. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolore vel unde laboriosam voluptates quasi adipisci excepturi doloremque suscipit, voluptatibus dolorem inventore sequi optio consequuntur vero, illo explicabo quos enim possimus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione incidunt sit laboriosam sunt, qui illo dolorem mollitia dicta laudantium eveniet, saepe velit aliquam unde voluptas porro odit, quibusdam natus dolor. Lorem Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque necessitatibus harum dignissimos corporis natus tenetur quae veniam dolor soluta, provident corrupti deserunt voluptatem voluptate expedita eum quos, cupiditate iste perferendis? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eos, ex quam. Ex nihil dolores quam non placeat sapiente impedit quo recusandae, tempora, culpa doloremque aut quae ut explicabo est possimus. Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, pariatur! Beatae unde assumenda repellat a quod at vitae? Aperiam nihil nesciunt et reiciendis dolorem, cumque commodi ut libero nisi quos? Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae ipsam odio, libero deleniti accusamus culpa cumque totam blanditiis quam ducimus voluptatem debitis maiores consectetur repudiandae id fugiat enim? Laudantium, saepe. Lorem ipsum dolor sit amet consectetur, adipisicing elit. Odio repellendus dolorem quam cupiditate exercitationem blanditiis, nam consequatur ex officia. Corporis facere eligendi placeat atque temporibus sit aspernatur dicta perferendis voluptate. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ducimus fugiat sequi consectetur, facilis, quasi reiciendis voluptate consequuntur, libero illum iste esse! Voluptatum nihil molestias eligendi fuga pariatur quibusdam autem dolorum. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magni incidunt consectetur error consequatur, placeat eveniet? Et esse modi a autem, eos quibusdam iure ipsam, accusamus aliquam quae voluptatibus. Dolore, quos.</p>
-            </div>
-        </div>
-        <div class="footer">
-            <div class="copyright">Copyright &copy; 2024</div>
-            <div class="contact">Contact: contact@example.com</div>
+        <div class="isi-konten">
+            <!-- Form untuk memilih tahun -->
+            <form method="GET" action="">
+                <label for="tahun">Pilih Tahun:</label>
+                <select name="tahun" id="tahun">
+                    <?php
+                    $currentYear = date("Y");
+                    for ($year = 2020; $year <= $currentYear; $year++) {
+                        echo "<option value='$year'" . ($tahunDipilih == $year ? ' selected' : '') . ">$year</option>";
+                    }
+                    ?>
+                </select>
+                <button type="submit">Tampilkan</button>
+            </form>
+            <canvas id="myBarChart"></canvas>
         </div>
     </div>
+
+    <script src="../js/masyarakatValidation.js"></script>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/statistik.js"></script>
 </body>
 </html>

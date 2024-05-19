@@ -434,17 +434,18 @@ body.dark .home .text {
     padding: 15px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
     align-items: center;
+    justify-content: space-between;
 }
 
 .page-name{
     padding-left: 270px;
-    padding-right: 650px;;
 }
 
 .user-login{
     display: flex;
     align-items: center;
     gap: 10px;
+    padding-right: 50px;
 }
 
 .isi-konten{
