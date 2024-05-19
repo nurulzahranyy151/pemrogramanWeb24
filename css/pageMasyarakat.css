@@ -442,12 +442,12 @@ body.dark .add-comment-form button {
     border: 1px solid #555;
 }
 
-.comment {
+.input-caption {
         background-color: white;
         color: black;
 }
 
-.dark .comment{
+.dark .input-caption{
     background-color:  #242526;
     color: white;
 }
