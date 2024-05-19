@@ -2,13 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/pageMasyarakat.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <title>History</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,600;0,700;0,800;1,200;1,300;1,600;1,700;1,800&display=swap"
+      rel="stylesheet" />
+    <title>Profile anda</title>
 </head>
 <body>
+    <!--SIDEBAR MENU START-->
     <nav class="sidebar close">
         <header>
             <div class="image-text">
@@ -22,6 +25,7 @@
             </div>
             <i class='bx bx-chevron-right toggle'></i>
         </header>
+
         <div class="menu-bar">
             <div class="menu">
                 <li class="search-box">
@@ -30,7 +34,7 @@
                 </li>
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="dashboard.html">
+                        <a href="#">
                             <i class='bx bx-home-alt icon' ></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
@@ -42,14 +46,14 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="history.html">
                             <i class='bx bx-history icon'></i>
                             <span class="text nav-text">History</span>
                         </a>
                     </li>
                     <li class="nav-link">
                         <a href="#">
-                            <i class='bx bx-pie-chart-alt icon' ></i>
+                            <i class='bx bx-bar-chart-alt-2 icon'></i>
                             <span class="text nav-text">Statistic</span>
                         </a>
                     </li>
@@ -59,15 +63,18 @@
                             <span class="text nav-text">Settings</span>
                         </a>
                     </li>
+
                 </ul>
             </div>
+
             <div class="bottom-content">
-                <li>
+                <li class="">
                     <a href="#">
                         <i class='bx bx-log-out icon' ></i>
                         <span class="text nav-text">Logout</span>
                     </a>
                 </li>
+
                 <li class="mode">
                     <div class="sun-moon">
                         <i class='bx bx-moon icon moon'></i>
@@ -78,15 +85,17 @@
                         <span class="switch"></span>
                     </div>
                 </li>
+                
             </div>
         </div>
     </nav>
+    <!--SIDEBAR MENU END-->
 
-   <!--CONTENT START-->
-    <div class="konten">
+    <!--HEADER (PROFILE) START-->
+    <div class="konten" id="headerprofile">
         <div class="header-konten">
             <div class="page-name">
-                <h2>History</h2>
+                <h2>Profil</h2>
             </div>
             <div class="user-login">
                 <a href="profileUser.html">
@@ -95,39 +104,10 @@
                 <p>Nama User</p>
             </div>
         </div>
-        <div class="isi-konten">
-            <?php for ($i = 0; $i < 4; $i++) :;?>
-            <div class="post-history">
-                <div class="history-information">
-                    <div class="tanggal-upload">
-                        <p>May 11 2004 12.00</p>
-                    </div>
-                    <div class="action-history">
-                        <div class="status-post">
-                            <p>Check</p>
-                            <i class='bx bx-check icon' ></i>
-                        </div>
-                        <div class="delete-post">
-                            <p>Delete</p>
-                            <button class="delete-button">&#x1F5D1; </button>
-                        </div>
-                    </div>
-                </div>
-                <div class="history-media">
-                    <img src="../img/coba.jpeg" alt="">
-                </div>
-            </div>
-            <?php endfor;?>
-        </div>
     </div>
-<!--CONTENT END-->
-
+    <!--HEADER (PROFILE) END-->
     <script src="../js/masyarakatValidation.js"></script>
     <script src="../js/sidebar.js"></script>
-    <script>
-        document.querySelector('.user-info img').addEventListener('click', function() {
-            document.getElementById('subMenu').classList.toggle('open-menu');
-        });
-    </script>
+    <script src="../js/postAtribut.js"></script>
 </body>
 </html>

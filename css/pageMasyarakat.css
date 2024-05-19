@@ -154,6 +154,19 @@ body.dark {
     width: 88px;
 }
 
+.sub-menu-wrap{
+    position: absolute;
+    top: 100%;
+    right: 10%;
+    width: 320px;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.5s;
+}
+
+.sub-menu-wrap.open-menu{
+    max-height: 400px;
+}
 /* ===== Reusable code ===== */
 .sidebar li {
     height: 50px;
@@ -218,6 +231,14 @@ header .image-text .profession {
     font-size: 16px;
     margin-top: -2px;
     display: block;
+}
+.konten .dark {
+    --body-color: #18191a;
+    --sidebar-color: #242526;
+    --primary-color: #3a3b3c;
+    --primary-color-light: #3a3b3c;
+    --toggle-color: #fff;
+    --text-color: #ccc;
 }
 
 .sidebar header .image{
@@ -386,6 +407,51 @@ body.dark .mode .sun-moon i.moon {
 body.dark .switch::before {
     left: 20px;
 }
+/*ADVANCE DARKMODE FOR DASHBOARD CONTENT START*/
+.header-konten {
+    background-color: white;
+    color: black;
+}
+
+.dark .header-konten {
+    background-color:  #242526;
+    color: white;
+}
+
+.post, .make-report, .trend-content, .caption, .footer-report {
+    background-color: white;
+    color: black;
+}
+
+.dark .post, .dark .make-report, .dark .trend-content, .dark .caption, .dark .footer-report {
+    background-color:  #242526;
+    color: white;
+}
+
+
+body.dark .add-comment-form {
+    background-color: black;
+    color: white;
+    border: 1px solid #555;
+}
+
+body.dark .add-comment-form input,
+body.dark .add-comment-form button {
+    background-color: black;
+    color: white;
+    border: 1px solid #555;
+}
+
+.comment {
+        background-color: white;
+        color: black;
+}
+
+.dark .comment{
+    background-color:  #242526;
+    color: white;
+}
+/*ADVANCE DARKMODE FOR DASHBOARD CONTENT END*/
 
 /* ===== Sidebar-Menu END===== */
 .atribut{
