@@ -465,41 +465,83 @@ img {
     padding-right: 25px;
 }
 
-.header-data{
+.header-data {
     color: white;
     background-color: #3a61cc;
 }
 
-.header-data, table{
+.header-data,
+table {
     border-radius: 8px;
-    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-bottom: 10px;
     width: 100%;
 }
 
-table{
+table {
     background-color: white;
-    border-spacing: 20px;
+    border-spacing: 0;
+    width: 100%; 
 }
 
-table, th, td{
-    border: none;
-    outline: none;
+table th,
+table td {
+    padding: 10px;
     text-align: center;
 }
 
-.head-table{
+.head-table {
     color: #60a7ee;
 }
 
-.aksi a{
-    text-decoration: none;
-    padding: 2px;
-    background: blue;
-    color: white;
+.button-container {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.btn {
+    display: flex;
+    align-items: center; 
+    border: none;
+    cursor: pointer;
     border-radius: 5px;
 }
+
+.btn span,
+.btn i {
+    padding: 8px;
+    color: white;
+}
+
+.btn i{
+    border-radius: 5px 0 0 5px;
+    font-size: 25px;
+}
+
+.btn span{
+    border-radius: 0 5px 5px 0;
+    font-size: 16px;
+}
+
+.edit-btn i {
+    background-color: #27a6af;
+}
+
+.edit-btn span {
+    background-color: #2ac8d3;
+}
+
+.del-btn i {
+    background-color: #af2727;
+}
+
+.del-btn span {
+    background-color: #ce3f3f;;
+}
+
+
 
 .search, .add-data{
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);

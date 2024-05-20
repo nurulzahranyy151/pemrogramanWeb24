@@ -423,7 +423,7 @@ body.dark .switch::before {
     color: black;
 }
 
-.dark .post, .dark .make-report, .dark .trend-content, .dark .caption, .dark .footer-report {
+.dark .post, .dark .make-report, .dark .trend-content, .dark .caption, .dark .footer-report, .dark .saved-post, .dark .history-post, .dark .profile {
     background-color:  #242526;
     color: white;
 }
@@ -570,7 +570,7 @@ img {
     object-fit: cover;
 }
 
-.post, .make-report {
+.post, .make-report, .history-post, .profile {
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
@@ -612,6 +612,8 @@ img {
 
 .post-content img{
     border-radius: 5px;
+    height: 350px;
+    object-fit: fill;
 }
 
 .post-content p {
@@ -786,21 +788,8 @@ form {
 
 /*===CONTENT HISTORY START CSS===*/
 
-.post-history{
-    background-color: white;
-    border-radius: 5px;
-    padding: 10px;
-    width: 450px;
-    height: 350px;
-}
-.isi-history{
-    padding-top: 100px;
-    padding-left: 25px;
-}
-
-.history-post {
+.history-post, .profile {
     width: 80%;
-    padding: 20px;
 }
 
 .post-actions {
@@ -821,20 +810,9 @@ form {
 /*===CONTENT HISTORY END CSS===*/
 
 /*===PROFILE USER START===*/
-
-
-.user-login {
-    display: flex;
-    align-items: center;
+.profile {
+    width: 90%;
 }
-
-.user-login img {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    margin-right: 10px;
-}
-
 .profile-form {
     display: flex;
     flex-direction: column;
@@ -842,21 +820,32 @@ form {
 
 .profile-container {
     display: flex;
-    align-items: flex-start;
 }
+
 
 .profile-pic-container {
     display: flex;
-    flex-direction: column;
-    align-items: center;
     margin-right: 20px;
+}
+
+.profile-pic-container button{
+    margin-left: -5px;
+    margin-top: 75%;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    background-color: #2f2ce0;
+}
+
+.profile-pic-container i{
+    font-size: 18px;
+    color: white;
 }
 
 .profile-pic {
     width: 100px;
     height: 100px;
     border-radius: 50%;
-    margin-bottom: 10px;
 }
 
 .edit-button {
@@ -889,8 +878,9 @@ form {
     margin-top: 20px;
 }
 
-.cancel-button, .save-button {
+.form-actions button {
     padding: 10px 20px;
+    border-radius: 10px;
     border: none;
     cursor: pointer;
 }
@@ -904,5 +894,12 @@ form {
     color: white;
 }
 
+
+.form-group input, .select-gender{
+    outline: none;
+    border: gray 0.1px solid;
+    padding: 5px;
+    border-radius: 10px;
+}
 /*===PROFILE USER END===*/
 

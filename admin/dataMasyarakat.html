@@ -102,15 +102,9 @@ require '../php/functions.php';?>
                 <h3>Data Masyarakat</h3>
             </div>
             <div class="isi-table">
-                <div class="search-add">
-                    <div class="search">
-                        <input type="text" name="search-bar" class="search-bar" placeholder="Cari Masyarakat">
-                        <button type="submit"><i class='bx bx-search icon'></i></button>
-                    </div>
-                    <button class="add-data" type="submit">
-                        <span>Tambah Staf</span>
-                        <i class='bx bx-plus-circle'></i>
-                    </button>
+                <div class="search">
+                    <input type="text" name="search-bar" class="search-bar" placeholder="Cari Masyarakat">
+                    <button type="submit"><i class='bx bx-search icon'></i></button>
                 </div>
                 <table>
                     <tr class="head-table">
@@ -131,9 +125,17 @@ require '../php/functions.php';?>
                         <td><?= $row["nama_user"];?></td>
                         <td><?= $row["email_user"];?></td>
                         <td><?= $row["password_user"];?></td>
-                        <td class="aksi">
-                            <a href="">ubah<i class='bx bx-pencil icon'></i></a>
-                            <a href="">hapus<i class='bx bx-trash icon'></i></a>
+                        <td>
+                            <div class="button-container">
+                                <button class="btn edit-btn">
+                                    <i class='bx bx-edit icon'></i>
+                                    <span>Ubah</span>
+                                </button>
+                                <button class="btn del-btn">
+                                    <i class='bx bx-trash icon'></i>
+                                    <span>Hapus</span>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                     <?php 

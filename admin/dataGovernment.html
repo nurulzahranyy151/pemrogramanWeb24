@@ -98,12 +98,18 @@
         </div>
         <div class="isi-konten">
             <div class="header-data">
-                <h3>Data Supervisor</h3>
+                <h3>Data Staf</h3>
             </div>
             <div class="isi-table">
-                <div class="search">
-                    <input type="text" name="search-bar" class="search-bar" placeholder="Cari Masyarakat">
-                    <button type="submit"><i class='bx bx-search icon'></i></button>
+                <div class="search-add">
+                    <div class="search">
+                        <input type="text" name="search-bar" class="search-bar" placeholder="Cari Staf">
+                        <button type="submit"><i class='bx bx-search icon'></i></button>
+                    </div>
+                    <button class="add-data" type="submit">
+                        <span>Tambah Staf</span>
+                        <i class='bx bx-plus-circle'></i>
+                    </button>
                 </div>
                 <table>
                     <tr class="head-table">
@@ -117,16 +123,24 @@
                     <?php 
                     $count = 1;
                     $result = findGov();
-                    while( $row = mysqli_fetch_assoc($result)):?> -->
+                    while( $row = mysqli_fetch_assoc($result)):?>
                     <tr class="isi-data">
                         <td>1</td>
                         <td><?= $row["id_supervisor"];?></td>
                         <td><?= $row["nama_supervisor"];?></td>
                         <td><?= $row["email_supervisor"];?></td>
                         <td><?= $row["password_supervisor"];?></td>
-                        <td class="aksi">
-                            <a href="">ubah</a>
-                            <a href="">hapus</a>
+                        <td>
+                            <div class="button-container">
+                                <button class="btn edit-btn">
+                                    <i class='bx bx-edit icon'></i>
+                                    <span>Ubah</span>
+                                </button>
+                                <button class="btn del-btn">
+                                    <i class='bx bx-trash icon'></i>
+                                    <span>Hapus</span>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -135,9 +149,17 @@
                         <td><?= $row["nama_supervisor"];?></td>
                         <td><?= $row["email_supervisor"];?></td>
                         <td><?= $row["password_supervisor"];?></td>
-                        <td class="aksi">
-                            <a href="">ubah</a>
-                            <a href="">hapus</a>
+                        <td>
+                            <div class="button-container">
+                                <button class="btn edit-btn">
+                                    <i class='bx bx-edit icon'></i>
+                                    <span>Ubah</span>
+                                </button>
+                                <button class="btn del-btn">
+                                    <i class='bx bx-trash icon'></i>
+                                    <span>Hapus</span>
+                                </button>
+                            </div>
                         </td>
                     </tr>
                     <?php 
