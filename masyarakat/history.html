@@ -1,12 +1,16 @@
+<?php session_start() ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
     <link rel="stylesheet" href="../css/pageMasyarakat.css">
+    
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <title>History</title>
+
+    <title>Dashboard</title>
 </head>
 <body>
     <nav class="sidebar close">
@@ -22,6 +26,7 @@
             </div>
             <i class='bx bx-chevron-right toggle'></i>
         </header>
+
         <div class="menu-bar">
             <div class="menu">
                 <li class="search-box">
@@ -30,7 +35,7 @@
                 </li>
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="dashboard.html">
+                        <a href="#">
                             <i class='bx bx-home-alt icon' ></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
@@ -42,7 +47,7 @@
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="history.html">
                             <i class='bx bx-history icon'></i>
                             <span class="text nav-text">History</span>
                         </a>
@@ -59,15 +64,18 @@
                             <span class="text nav-text">Settings</span>
                         </a>
                     </li>
+
                 </ul>
             </div>
+
             <div class="bottom-content">
-                <li>
+                <li class="">
                     <a href="#">
                         <i class='bx bx-log-out icon' ></i>
                         <span class="text nav-text">Logout</span>
                     </a>
                 </li>
+
                 <li class="mode">
                     <div class="sun-moon">
                         <i class='bx bx-moon icon moon'></i>
@@ -78,51 +86,59 @@
                         <span class="switch"></span>
                     </div>
                 </li>
+                
             </div>
         </div>
+
     </nav>
 
-   <!--CONTENT START-->
     <div class="konten">
         <div class="header-konten">
             <div class="page-name">
-                <h2>History</h2>
+                <h2>Riwayat</h2>
             </div>
             <div class="user-login">
-                <a href="profileUser.html">
-                    <img src="../img/coba.jpeg" alt="Profil Picture">
-                </a>
+                <img src="../img/coba.jpeg" alt="Profil Picture">
                 <p>Nama User</p>
             </div>
         </div>
-        <div class="isi-konten">
+        <div class="isi-history">
             <?php for ($i = 0; $i < 4; $i++) :;?>
-            <div class="post-history">
-                <div class="history-information">
-                    <div class="tanggal-upload">
-                        <p>May 11 2004 12.00</p>
-                    </div>
-                    <div class="action-history">
-                        <div class="status-post">
-                            <p>Check</p>
-                            <i class='bx bx-check icon' ></i>
-                        </div>
-                        <div class="delete-post">
-                            <p>Delete</p>
-                            <button class="delete-button">&#x1F5D1; </button>
-                        </div>
+            <div class="history-post">
+                <div class="post-header">
+                    <img src="gambar_pengguna.jpg" alt="Profil Picture">
+                    <div class="post-info">
+                        <h3>Nama Pengguna</h3>
+                        <p>Waktu Posting</p>
                     </div>
                 </div>
-                <div class="history-media">
-                    <img src="../img/coba.jpeg" alt="">
+                <div class="post-content">
+                    <p class="caption">Ini caption</p>
+                    <img src="../img/coba.jpeg" alt="ini gambar">
                 </div>
+                <div class="post-actions">
+                    <div class="left-actions">
+                        <button><i class='bx bxs-star icon'></i></button>
+                        <button><i class='bx bxs-comment icon'></i></button>
+                        <button><i class='bx bxs-share icon'></i></button>
+                    </div>
+                    <div class="center-action">
+                        <p><i class='bx bx-check-square icon'></i>Diterima</p>
+                    </div>
+                    <div class="right-action">
+                        <button>Hapus <i class='bx bx-trash icon'></i></button>
+                    </div>
+                </div>
+                <form action="#" method="post" class="add-comment-form">
+                    <input type="text" name="comment" id="comment" placeholder="Tambahkan komentar...">
+                    <button type="submit" id="submit-comment" style="display: none;">Kirim</button>
+                </form>
             </div>
-            <?php endfor;?>
+            <?php endfor?>
         </div>
     </div>
-<!--CONTENT END-->
-
-    <script src="../js/masyarakatValidation.js"></script>
-    <script src="../js/sidebar.js"></script>
+</div>
+<script src="../js/masyarakatValidation.js"></script>
+<script src="../js/sidebar.js"></script>
 </body>
 </html>

@@ -452,6 +452,23 @@ body.dark .add-comment-form button {
     color: white;
 }
 /*ADVANCE DARKMODE FOR DASHBOARD CONTENT END*/
+/*ACCEPTED POST START*/
+.header-trend, .accepted-post{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+}
+.header-trend, .accepted-post, hr{
+    margin-bottom: 5px;
+}
+
+.accepted-post a{
+    width: 40%;
+}
+
+
+/*ACCEPTED POST END*/
 
 /* ===== Sidebar-Menu END===== */
 .atribut{
@@ -566,10 +583,10 @@ img {
     gap: 10px;
 }
 
-.post-header img, .reporter img, .user-login img {
+.post-header img, .reporter img, .user-login img, .header-trend img {
     width: 50px;
     height: 50px;
-    border-radius: 50%;
+    border-radius:50%;
 }
 
 .post-header .post-info {
@@ -776,3 +793,116 @@ form {
     width: 450px;
     height: 350px;
 }
+.isi-history{
+    padding-top: 100px;
+    padding-left: 25px;
+}
+
+.history-post {
+    width: 80%;
+    padding: 20px;
+}
+
+.post-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.left-actions, .center-action, .right-action {
+    display: flex;
+}
+
+.left-actions{
+    gap: 20px;
+}
+
+/*===CONTENT HISTORY END CSS===*/
+
+/*===PROFILE USER START===*/
+
+
+.user-login {
+    display: flex;
+    align-items: center;
+}
+
+.user-login img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.profile-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-container {
+    display: flex;
+    align-items: flex-start;
+}
+
+.profile-pic-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.profile-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.edit-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.form-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    flex-grow: 1;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+}
+
+.form-actions {
+    grid-column: 1 / 3;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.cancel-button, .save-button {
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+
+.cancel-button {
+    background-color: #ccc;
+}
+
+.save-button {
+    background-color: #007bff;
+    color: white;
+}
+
+/*===PROFILE USER END===*/
+

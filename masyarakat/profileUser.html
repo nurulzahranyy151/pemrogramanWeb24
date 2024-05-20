@@ -5,94 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/pageMasyarakat.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,600;0,700;0,800;1,200;1,300;1,600;1,700;1,800&display=swap"
-      rel="stylesheet" />
-    <title>Profile anda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,600;0,700;0,800;1,200;1,300;1,600;1,700;1,800&display=swap" rel="stylesheet" />
+    <title>Profile Anda</title>
 </head>
 <body>
-    <!--SIDEBAR MENU START-->
     <nav class="sidebar close">
-        <header>
-            <div class="image-text">
-                <span class="image">
-                    <img src="../img/recity.png" alt="logo recity">
-                </span>
-                <div class="text logo-text">
-                    <span class="name">Recity</span>
-                    <span class="profession">Resolver City</span>
-                </div>
-            </div>
-            <i class='bx bx-chevron-right toggle'></i>
-        </header>
-
-        <div class="menu-bar">
-            <div class="menu">
-                <li class="search-box">
-                    <i class='bx bx-search icon'></i>
-                    <input type="text" placeholder="Search...">
-                </li>
-                <ul class="menu-links">
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-home-alt icon' ></i>
-                            <span class="text nav-text">Dashboard</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="saved.html">
-                            <i class='bx bx-bookmark icon'></i>
-                            <span class="text nav-text">Saved</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="history.html">
-                            <i class='bx bx-history icon'></i>
-                            <span class="text nav-text">History</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-bar-chart-alt-2 icon'></i>
-                            <span class="text nav-text">Statistic</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-cog icon'></i>
-                            <span class="text nav-text">Settings</span>
-                        </a>
-                    </li>
-
-                </ul>
-            </div>
-
-            <div class="bottom-content">
-                <li class="">
-                    <a href="#">
-                        <i class='bx bx-log-out icon' ></i>
-                        <span class="text nav-text">Logout</span>
-                    </a>
-                </li>
-
-                <li class="mode">
-                    <div class="sun-moon">
-                        <i class='bx bx-moon icon moon'></i>
-                        <i class='bx bx-sun icon sun'></i>
-                    </div>
-                    <span class="mode-text text">Dark mode</span>
-                    <div class="toggle-switch">
-                        <span class="switch"></span>
-                    </div>
-                </li>
-                
-            </div>
-        </div>
+        <!-- Sidebar content -->
     </nav>
-    <!--SIDEBAR MENU END-->
 
-    <!--HEADER (PROFILE) START-->
-    <div class="konten" id="headerprofile">
+    <div class="konten">
         <div class="header-konten">
             <div class="page-name">
                 <h2>Profil</h2>
@@ -104,8 +25,61 @@
                 <p>Nama User</p>
             </div>
         </div>
+
+        <div class="isi-konten">
+            <div class="profile">
+                <form action="../php/functions.php" method="post" enctype="multipart/form-data" class="profile-form">
+                    <div class="profile-container">
+                        <div class="profile-pic-container">
+                            <img src="profile-pic.jpg" alt="Profile Picture" class="profile-pic">
+                            <button type="button" class="edit-button">✏️</button>
+                        </div>
+                        <div class="form-container">
+                            <div class="form-group">
+                                <label for="nik">NIK (Wajib)</label>
+                                <input type="text" id="nik" name="nik" value="***************" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Nama Anda</label>
+                                <input type="text" id="name" name="name" placeholder="Masukkan Nama Anda">
+                            </div>
+                            <div class="form-group">
+                                <label for="dob">Tanggal Lahir</label>
+                                <input type="date" id="dob" name="dob">
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Jenis Kelamin</label>
+                                <select id="gender" name="gender">
+                                    <option value="Perempuan">Perempuan</option>
+                                    <option value="Laki-Laki">Laki-Laki</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Alamat</label>
+                                <input type="text" id="address" name="address" placeholder="Masukkan Alamat Anda">
+                            </div>
+                            <div class="form-group">
+                                <label for="current-address">Alamat Sekarang</label>
+                                <input type="text" id="current-address" name="current-address" placeholder="Masukkan Alamat Sekarang Anda">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="Masukkan Email Anda">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Kata Sandi</label>
+                                <input type="password" id="password" name="password" placeholder="Masukkan Kata Sandi Anda">
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="cancel-button">Batalkan</button>
+                                <button type="submit" class="save-button">Simpan</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
-    <!--HEADER (PROFILE) END-->
     <script src="../js/masyarakatValidation.js"></script>
     <script src="../js/sidebar.js"></script>
     <script src="../js/postAtribut.js"></script>
