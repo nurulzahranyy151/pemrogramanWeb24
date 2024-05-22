@@ -1,4 +1,12 @@
-<?php session_start() ?>
+<?php 
+require '../php/functions.php';
+$conn = mysqli_connect("localhost" , "root", "", "recity");
+$nik = $_SESSION["NIK"];
+$query = mysqli_query($conn, "SELECT * FROM user WHERE NIK = $nik");
+$user = mysqli_fetch_assoc($query);
+$_SESSION["nama_user"] = $user["nama_user"];
+$_SESSION["foto_profil"] = $user["foto_profil"];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -89,19 +97,18 @@
                 
             </div>
         </div>
-
     </nav>
-
     <div class="konten">
         <div class="header-konten">
             <div class="page-name">
                 <h2>Dashboard</h2>
             </div>
             <div class="user-login">
-                <a href="profileUser.html">
-                    <img src="../img/coba.jpeg" alt="Profil Picture">
+                <a href="profileUser.php">
+                    <img src="
+                    <?= $_SESSION["foto_profil"];?>" alt="Profil Picture">
                 </a>
-                <p>Nama User</p>
+                <p><?= $_SESSION["nama_user"];?></p>
             </div>
         </div>
         <div class="isi-konten">
@@ -110,8 +117,8 @@
                     <div class="make-report">
                         <div class="header-report">
                             <div class="reporter">
-                                <img src="../img/coba.jpeg" alt="Profil Picture">
-                                <h5>Nama </h5>
+                                <img src="<?= $_SESSION["foto_profil"];?>" alt="Profil Picture">
+                                <h5><?= $_SESSION["nama_user"];?></h5>
                             </div>
                             <div class="caption-media">
                                 <div class="caption">
@@ -135,58 +142,63 @@
                         <input type="file" id="imageUpload"  name="media" style="display: none;" accept="image/*">
                     </div>
                 </form>
-                <?php for ($i = 0; $i < 4; $i++) :;?>
-                <div class="post">
-                    <div class="post-header">
-                        <img src="../img/coba.jpeg" alt="Profil Picture">
-                        <div class="post-info">
-                            <h3>Nama Pengguna</h3>
-                            <p>Waktu Posting</p>
+                <?php 
+                $postingan = showAllpostingan();
+                if (!$postingan || mysqli_num_rows($postingan) == 0) {
+                    echo "Tidak ada postingan";
+                } else {
+                    while ($row = mysqli_fetch_assoc($postingan)) {
+                        ?>
+                        <div class="post">
+                            <div class="post-header">
+                                <img src="<?= $row['foto_profil'];?>" alt="Profil Picture">
+                                <div class="post-info">
+                                    <h3><?= $row['nama_user']; // Misalnya kolom nama pengguna ?></h3>
+                                    <p><?= $row['tgl_laporan'];?></p>
+                                </div>
+                            </div>
+                            <div class="post-content">
+                                <p class="caption"><?= $row['isi_laporan'];?></p>
+                                <img src="<?= $row['media'];?>" alt="Gambar postingan">
+                            </div>
+                            <div class="post-actions">
+                                <button>Like</button>
+                                <button>Comment</button>
+                                <button>Share</button>
+                            </div>
+                            <form action="#" method="post" class="add-comment-form">
+                                <input type="text" name="comment" id="comment" placeholder="Tambahkan komentar...">
+                                <button type="submit" id="submit-comment" style="display: none;">Kirim</button>
+                            </form>
                         </div>
-                    </div>
-                    <div class="post-content">
-                        <p class="caption">Ini caption</p>
-                        <img src="../img/coba.jpeg" alt="ini gambar">
-                    </div>
-                    <div class="post-actions">
-                        <button>Like</button>
-                        <button>Comment</button>
-                        <button>Share</button>
-                    </div>
-                    <form action="#" method="post" class="add-comment-form">
-                        <input type="text" name="comment" id="comment" placeholder="Tambahkan komentar...">
-                        <button type="submit" id="submit-comment" style="display: none;">Kirim</button>
-                    </form>
-                </div>
-                <?php endfor?>
+                        <?php
+                    }
+                }
+                ?>
             </div>
             <div class="trend">
                 <div class="trend-content">
                     <div class="header-trend">
-                        <img src="../img/coba.jpeg" alt="">
+                        <img src="<?= $_SESSION["foto_profil"];?>" alt="">
                         <h4>Accepted Post</h4>
                     </div>
                     <hr>
-                    <div class="accepted-post">
-                        <a href="">
-                            <img src="../img/coba.jpeg" alt="">
-                        </a>
-                        <div>
-                            <h5>Tanggal</h5>
-                            <p>Alamat</p>
+                    <?php 
+                    $trending = trendingpost();
+                    while ($trend = mysqli_fetch_assoc($trending)) {
+                        ?>
+                        <div class="accepted-post">
+                            <a href="#">
+                                <img src="<?= $trend['media'];?>" alt="">
+                            </a>
+                            <div>
+                                <h5><?= $trend['tgl_laporan'];?></h5>
+                                <p><?= $trend['alamat_laporan'];?></p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="accepted-post">
-                        <a href="">
-                            <img src="../img/coba.jpeg" alt="">
-                        </a>
-                        <div>
-                            <h5>Tanggal</h5>
-                            <p>Alamat</p>
-                        </div>
-                    </div>
+                        <?php
+                    }?>
                 </div>
-                
             </div>
         </div>
         </div>

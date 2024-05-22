@@ -98,8 +98,11 @@
                 <h2>Riwayat</h2>
             </div>
             <div class="user-login">
-                <img src="../img/coba.jpeg" alt="Profil Picture">
-                <p>Nama User</p>
+                <a href="profileUser.php">
+                    <img src="
+                    <?= $_SESSION["foto_profil"];?>" alt="Profil Picture">
+                </a>
+                <p><?= $_SESSION["nama_user"];?></p>
             </div>
         </div>
         <div class="isi-konten">

@@ -14,47 +14,40 @@ function sign($data){
         }
     }
     $query= "INSERT INTO user
-    VALUES('$nik', '$nama', '$email', '$password')";
+    VALUES('$nik', '$nama', '$email', '$password','','','','','../img/default.jpeg')";
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn);
 }
-
 
 function loginMasyarakat($user){
     global $conn;
     $email = $user["email"];
     $pass = $user["password"];
-    $data = mysqli_query($conn, "SELECT * FROM user");
-    $cek = 0;
-    while($row = mysqli_fetch_assoc($data)){
-        if($row["email_user"] == $email && $row["password_user"] == $pass){
-            $cek = 1;
-            $_SESSION["nama_user"] = $row["nama_user"];
-            break;
-        }
+    $query = "SELECT * FROM user WHERE email_user = '$email' AND password_user = '$pass'";
+    $result = mysqli_query($conn, "SELECT * FROM user WHERE email_user = '$email' AND password_user = '$pass'");
+    if ($row = mysqli_fetch_assoc($result)) {
+        $_SESSION["NIK"] = $row["NIK"];
+        return 1;
+    } else {
+        return 0;
     }
-    return $cek;
 }
 
 function loginAdminandGov($user){
     global $conn;
     $email = $user["email"];
     $pass = $user["password"];
-    $admin = mysqli_query($conn, "SELECT * FROM admin");
-    while($rowAdmin = mysqli_fetch_assoc($admin)){
-        if($rowAdmin["email_admin"] == $email && $rowAdmin["password_admin"] == $pass){
-            $_SESSION["nama_admin"] = $rowAdmin["nama_admin"];
-            return 1;
-        }
+    $admin = mysqli_query($conn, "SELECT * FROM admin WHERE email_admin = '$email' AND password_admin = '$pass'");
+    $gov = mysqli_query($conn, "SELECT * FROM supervisor WHERE email_admin = '$email' AND password_admin = '$pass'");
+    if ($rowadmin = mysqli_fetch_assoc($admin)) {
+        $_SESSION["id_admin"] = $rowadmin["id_admin"];
+        return 1;
+    } else if($rowgov = mysqli_fetch_assoc($gov)){
+        $_SESSION["id_supervisor"] = $rowgov["id_supervisor"];
+        return 0;
+    }else {
+        return -1;
     }
-    $gov = mysqli_query($conn, "SELECT * FROM supervisor");
-    while($rowGov = mysqli_fetch_assoc($gov)){
-        if($rowGov["email_supervisor"] == $email && $rowGov["password_supervisor"] == $pass){
-            $_SESSION["nama_supervisor"] = $rowGov["nama_supervisor"];
-            return 0;
-        }
-    }
-    return -1;
 }
 
 function findMasyarakat(){
@@ -67,12 +60,34 @@ function findGov(){
     return mysqli_query($conn, "SELECT * FROM supervisor");
 }
 
-function hapus($nik){
+function hapusUser($nik){
     global $conn;
     mysqli_query($conn, "DELETE FROM user WHERE NIK = '$nik'");
     return mysqli_affected_rows($conn);
 }
 
+function hapusStaf($id){
+    global $conn;
+    mysqli_query($conn, "DELETE FROM supervisor WHERE id_supervisor = '$id'");
+    return mysqli_affected_rows($conn);
+}
 
+function hapusLaporan($id){
+    global $conn;
+    mysqli_query($conn, "DELETE FROM laporan WHERE id_laporan = '$id'");
+    return mysqli_affected_rows($conn);
+}
+
+function showAllpostingan(){
+    global $conn;
+    return mysqli_query($conn, "SELECT laporan.*, user.nama_user, user.foto_profil FROM laporan JOIN user ON laporan.NIK = user.NIK;");
+}
+
+function trendingpost(){
+    global $conn;
+    $currMonth = date("m");
+    $currYear = date("Y");
+    return mysqli_query($conn, "SELECT laporan.media, laporan.tgl_laporan, laporan.alamat_laporan, user.nama_user FROM laporan JOIN user ON laporan.NIK = user.NIK WHERE MONTH(laporan.tgl_laporan) = $currMonth AND YEAR(laporan.tgl_laporan) = $currYear AND laporan.status = 'Accepted' ORDER BY laporan.jumlah_like DESC LIMIT 5");
+}
 
 ?>

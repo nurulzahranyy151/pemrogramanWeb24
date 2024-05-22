@@ -1,3 +1,10 @@
+<?php 
+require '../php/functions.php';
+$conn = mysqli_connect("localhost" , "root", "", "recity");
+$nik = $_SESSION["NIK"];
+$query = mysqli_query($conn, "SELECT * FROM user WHERE NIK = $nik");
+$user = mysqli_fetch_assoc($query);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -82,10 +89,8 @@
                         <span class="switch"></span>
                     </div>
                 </li>
-                
             </div>
         </div>
-
     </nav>
 
     <div class="konten">
@@ -95,9 +100,10 @@
             </div>
             <div class="user-login">
                 <a href="profileUser.html">
-                    <img src="../img/coba.jpeg" alt="Profil Picture">
+                    <img src="
+                    <?= $_SESSION["foto_profil"];?>" alt="Profil Picture">
                 </a>
-                <p>Nama User</p>
+                <p><?= $_SESSION["nama_user"];?></p>
             </div>
         </div>
 
@@ -106,17 +112,17 @@
                 <form action="../php/functions.php" method="post" enctype="multipart/form-data" class="profile-form">
                     <div class="profile-container">
                         <div class="profile-pic-container">
-                            <img src="../img/coba.jpeg" alt="Profile Picture" class="profile-pic">
+                            <img src="<?= $user["foto_profil"];?>" class="profile-pic">
                             <button type="button" class="edit-button"><i class='bx bx-pencil icon'></i></button>
                         </div>
                         <div class="form-container">
                             <div class="form-group">
                                 <label for="nik">NIK (Wajib)</label>
-                                <input type="text" id="nik" name="nik" value="***************" readonly>
+                                <input type="text" id="nik" name="nik" value="<?= $user["NIK"];?>" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="name">Nama Anda</label>
-                                <input type="text" id="name" name="name" placeholder="Masukkan Nama Anda">
+                                <input type="text" id="name" name="name" placeholder="<?= $user["nama_user"];?>">
                             </div>
                             <div class="form-group">
                                 <label for="dob">Tanggal Lahir</label>
@@ -131,19 +137,19 @@
                             </div>
                             <div class="form-group">
                                 <label for="address">Alamat</label>
-                                <input type="text" id="address" name="address" placeholder="Masukkan Alamat Anda">
+                                <input type="text" id="address" name="address" placeholder="<?= $user["alamat_asal"];?>">
                             </div>
                             <div class="form-group">
                                 <label for="current-address">Alamat Sekarang</label>
-                                <input type="text" id="current-address" name="current-address" placeholder="Masukkan Alamat Sekarang Anda">
+                                <input type="text" id="current-address" name="current-address" placeholder="<?= $user["alamat_sekarang"];?>">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" id="email" name="email" placeholder="Masukkan Email Anda">
+                                <input type="email" id="email" name="email" placeholder="<?= $user["email_user"];?>">
                             </div>
                             <div class="form-group">
                                 <label for="password">Kata Sandi</label>
-                                <input type="password" id="password" name="password" placeholder="Masukkan Kata Sandi Anda">
+                                <input type="password" id="password" name="password" placeholder="<?= $user["password_user"];?>">
                             </div>
                             <div class="form-actions">
                                 <button type="button" class="cancel-button">Batalkan</button>

@@ -5,7 +5,7 @@ if(isset($_POST["submit"])){
       echo "
           <script>
               alert('Akun berhasil dibuat, silahkan login');
-              window.location.href = '../loginMasyarakat.php';
+              window.location.href = 'loginMasyarakat.php';
           </script>
       ";
   } else if(sign($_POST) == 0){
