@@ -90,4 +90,22 @@ function trendingpost(){
     return mysqli_query($conn, "SELECT laporan.media, laporan.tgl_laporan, laporan.alamat_laporan, user.nama_user FROM laporan JOIN user ON laporan.NIK = user.NIK WHERE MONTH(laporan.tgl_laporan) = $currMonth AND YEAR(laporan.tgl_laporan) = $currYear AND laporan.status = 'Accepted' ORDER BY laporan.jumlah_like DESC LIMIT 5");
 }
 
+function uploadPostingan($data, $file) {
+    global $conn;
+    $nik = $_SESSION["NIK"];
+    $caption = htmlspecialchars($data["caption"]);
+    $address = htmlspecialchars($data["address"]);
+
+    if (isset($file["media"]) && $file["media"]["error"] == 0) {
+        $targetDir = "../laporan/";
+        $targetFile = $targetDir . basename($file["media"]["name"]);
+        if (move_uploaded_file($file["media"]["tmp_name"], $targetFile)) {
+            $query = "INSERT INTO laporan VALUES('', NOW(), '$address', 0, '$targetFile', '$caption', 'Wait', '$nik')";
+            mysqli_query($conn, $query);
+            return true;
+        }
+    }
+    return false;
+}
+
 ?>

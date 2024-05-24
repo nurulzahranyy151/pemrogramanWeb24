@@ -462,21 +462,15 @@ body.dark .add-comment-form button {
 .header-trend, .accepted-post, hr{
     margin-bottom: 5px;
 }
-
-.accepted-post a{
-    width: 80px;
-    height: 55px;
-}
-
 .accepted-post img{
-    width: 75px;
-    height: 50px;
-    border-radius: 50%;
+    width: 100px;
+    height: 75px;
 }
 
 .accepted-post p{
     font-size: 12px;
 }
+
 
 
 /*ACCEPTED POST END*/
@@ -567,7 +561,6 @@ body.dark .home .text {
     display: flex;
     flex-direction: column;
     gap: 20px;
-    margin-top: -20px;
     margin-bottom: 20px;
 }
 

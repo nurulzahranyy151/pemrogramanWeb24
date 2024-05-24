@@ -1,11 +1,20 @@
 <?php 
 require '../php/functions.php';
+if (!isset($_SESSION["NIK"])) {
+    header("Location: ../loginMasyarakat.php");
+    exit();
+}
 $conn = mysqli_connect("localhost" , "root", "", "recity");
 $nik = $_SESSION["NIK"];
 $query = mysqli_query($conn, "SELECT * FROM user WHERE NIK = $nik");
 $user = mysqli_fetch_assoc($query);
 $_SESSION["nama_user"] = $user["nama_user"];
 $_SESSION["foto_profil"] = $user["foto_profil"];
+
+if (isset($_SESSION['message'])) {
+    echo '<script>alert("'.$_SESSION['message'].'");</script>';
+    unset($_SESSION['message']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -78,7 +87,7 @@ $_SESSION["foto_profil"] = $user["foto_profil"];
 
             <div class="bottom-content">
                 <li class="">
-                    <a href="#">
+                    <a href="../php/logout-proses.php">
                         <i class='bx bx-log-out icon' ></i>
                         <span class="text nav-text">Logout</span>
                     </a>
@@ -113,7 +122,7 @@ $_SESSION["foto_profil"] = $user["foto_profil"];
         </div>
         <div class="isi-konten">
             <div class="fyp">
-                <form action="../php/functions.php" method="post" enctype="multipart/form-data"></form>
+                <form action="../php/handlePostingan.php" method="post" enctype="multipart/form-data">
                     <div class="make-report">
                         <div class="header-report">
                             <div class="reporter">
@@ -123,6 +132,9 @@ $_SESSION["foto_profil"] = $user["foto_profil"];
                             <div class="caption-media">
                                 <div class="caption">
                                     <textarea class="input-caption" name="caption" placeholder="Laporkan keluhan anda di sini..."></textarea>
+                                </div>
+                                <div class="address-post">
+                                <textarea class="input-address" name="address" placeholder="Masukkan alamat laporan..."></textarea>
                                 </div>
                                 <div class="media-preview">
                                 </div>
@@ -191,9 +203,9 @@ $_SESSION["foto_profil"] = $user["foto_profil"];
                             <a href="#">
                                 <img src="<?= $trend['media'];?>" alt="">
                             </a>
-                            <div>
-                                <h5><?= $trend['tgl_laporan'];?></h5>
-                                <p><?= $trend['alamat_laporan'];?></p>
+                            <div class="accepted-post-atr">
+                                <h5><?= $trend['tgl_laporan'];?>03-11-2024</h5>
+                                <p><?= $trend['alamat_laporan'];?>Jalan Prabu rangksari karang parwa abiantubuh baru</p>
                             </div>
                         </div>
                         <?php
