@@ -472,6 +472,126 @@ body.dark .add-comment-form button {
 }
 
 
+/* POPUP COMMENT */
+/* Popup Container */
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    align-items: center;
+    justify-content: center;
+}
+
+/* Popup Content */
+.popup-content {
+    background-color: #fefefe;
+    width: 90%;
+    height: 90%;
+    max-width: 1200px;
+    display: flex;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Close Button */
+.close {
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Left Section */
+.popup-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.popup-left img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+/* Right Section */
+.popup-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #fff;
+    overflow-y: auto;
+}
+
+/* Post Header */
+.post-header , .previous-comments {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.profile-info h3 {
+    font-size: 16px;
+}
+
+.profile-info p {
+    font-size: 14px;
+    color: #888;
+}
+
+/* Previous Comments */
+.previous-comments {
+    align-items: flex-start;
+    display: inline;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.comments{
+    display: flex;
+    gap: 10px;
+}
+
+.comments-user{
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.comments-user h4, .comments-user p{
+    font-size: 12px;
+}
+
+
+/* Post Actions */
+
+
+/* Comment Form */
+.add-comment-form {
+    display: flex;
+    padding: 20px;
+}
+
 
 /*ACCEPTED POST END*/
 
@@ -564,6 +684,27 @@ body.dark .home .text {
     margin-bottom: 20px;
 }
 
+i {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.5em;
+}
+
+.save-button i{
+    transition: color 0.3s; 
+}
+.saved i{
+    color: rgb(0, 38, 255);
+}
+
+.like-button i{
+    transition: color 0.3s; 
+}
+.liked i{
+    color: rgb(255, 0, 0);
+}
+
 .trend {
     width: 30%;
     padding-left: 25px;
@@ -587,7 +728,7 @@ img {
     gap: 10px;
 }
 
-.post-header img, .reporter img, .user-login img, .header-trend img {
+.post-header img, .reporter img, .user-login img, .header-trend img , .image-user-comment img, .profile-picture-pop-up{
     width: 50px;
     height: 50px;
     border-radius:50%;
@@ -627,7 +768,14 @@ img {
 }
 
 .post-actions {
+    display: flex;
     margin-top: 10px;
+    padding: 10px;
+    justify-content: space-between;
+    border-bottom: 1px solid #ddd;
+}
+.left-post-action{
+    flex-grow: 1;
 }
 
 .post-actions button {
@@ -647,7 +795,7 @@ form {
     display: flex;
 }
 
-#comment {
+#comment, #comment-pop {
     width: 80%;
     flex: 1;
     border: none;
@@ -796,12 +944,6 @@ form {
     width: 80%;
 }
 
-.post-actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-}
 
 .left-actions, .center-action, .right-action {
     display: flex;

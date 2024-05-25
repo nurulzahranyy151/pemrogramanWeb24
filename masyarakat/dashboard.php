@@ -165,7 +165,7 @@ if (isset($_SESSION['message'])) {
                             <div class="post-header">
                                 <img src="<?= $row['foto_profil'];?>" alt="Profil Picture">
                                 <div class="post-info">
-                                    <h3><?= $row['nama_user']; // Misalnya kolom nama pengguna ?></h3>
+                                    <h3><?= $row['nama_user'];?></h3>
                                     <p><?= $row['tgl_laporan'];?></p>
                                 </div>
                             </div>
@@ -174,12 +174,19 @@ if (isset($_SESSION['message'])) {
                                 <img src="<?= $row['media'];?>" alt="Gambar postingan">
                             </div>
                             <div class="post-actions">
-                                <button>Like</button>
-                                <button>Comment</button>
-                                <button>Share</button>
+                                <div class="left-post-action">
+                                    <button class="like-button" onclick="toggleLike(this)">
+                                        <i class='bx bx-heart'></i>
+                                    </button>
+                                    <button class="comment-button" onclick="toggleComment()"></button>
+                                </div>
+                                <div class="right-post-action">
+                                    <button class="save-button" onclick="toggleSave(this)">
+                                        <i class='bx bx-bookmark'></i>
+                                </div>
                             </div>
                             <form action="#" method="post" class="add-comment-form">
-                                <input type="text" name="comment" id="comment" placeholder="Tambahkan komentar...">
+                                <input type="text" name="comment" id="comment" placeholder="Tambahkan komentar..." onchange="validateComment()">
                                 <button type="submit" id="submit-comment" style="display: none;">Kirim</button>
                             </form>
                         </div>
@@ -213,6 +220,60 @@ if (isset($_SESSION['message'])) {
                 </div>
             </div>
         </div>
+        </div>
+    </div>
+</div>
+<div id="commentPopup" class="popup">
+    <div class="popup-content">
+        <span class="close">&times;</span>
+        <div class="popup-left">
+            <img src="../img/default.jpeg" alt="Post Image">
+        </div>
+        <div class="popup-right">
+            <div class="post-header">
+                <img src="../img/coba.jpeg" alt="Profile Picture" class="profile-picture-pop-up">
+                <div class="profile-info">
+                    <h3>Username</h3>
+                    <p>Posted on date</p>
+                </div>
+            </div>
+            <div class="previous-comments">
+                <div class="comments">
+                    <div class="image-user-comment">
+                        <img src="../img/coba.jpeg" alt="">
+                    </div>
+                    <div class="comments-user">
+                        <h4>Lulu</h4>
+                        <p>keren bang</p>
+                    </div>
+                </div>
+                <div class="comments">
+                    <div class="image-user-comment">
+                        <img src="../img/coba.jpeg" alt="">
+                    </div>
+                    <div class="comments-user">
+                        <h4>Lulu</h4>
+                        <p>keren bang</p>
+                    </div>
+                </div>
+            </div>
+            <div class="post-actions">
+                <div class="left-post-action">
+                    <button class="like-button" onclick="toggleLike(this)">
+                        <i class='bx bx-heart'></i>
+                    </button>
+                    <button class="comment-button" onclick="toggleComment()"><i class='bx bx-comment'></i></button>
+                </div>
+                <div class="right-post-action">
+                    <button class="save-button" onclick="toggleSave(this)">
+                        <i class='bx bx-bookmark'></i>
+                    </button>
+                </div>
+            </div>
+            <form action="#" method="post" class="add-comment-form">
+                <input type="text" name="comment" id="comment-pop" placeholder="Tambahkan komentar...">
+                <button type="submit" id="submit-comment">Kirim</button>
+            </form>
         </div>
     </div>
 </div>
