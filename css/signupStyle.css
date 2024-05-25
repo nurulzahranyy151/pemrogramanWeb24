@@ -1,35 +1,95 @@
 body {
   background-color: #E5EFF8;
   font-family: "Poppins", sans-serif;
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
   display: flex;
-  justify-content: space-between;
-}
-
-.logo,
-.signup-form {
-  width: 50%;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  
 }
 
 .logo {
-  margin-right: 1rem; /* Add margin between logo and form */
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #E5EFF8;
+  position: relative;
+}
+
+.blobs-vector {
+  position: relative;
+  width: 150px;
+  height: 172px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  left: -20%;
+}
+
+.blobs-vector img {
+  position: absolute;
+  width: 200%;
+  height: 200%;
+  
+}
+
+.blobs-vector .layer1 {
+  top: 0;
+  left: 0;
+}
+
+.blobs-vector .layer2 {
+  top: 0;
+  left: 0;
+}
+
+.blobs-vector .layer3 {
+  top: 0;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+}
+
+.blobs-vector img.layer3-img {
+  position: relative; 
+  top: 20px;
+}
+
+.blobs-vector .recity {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
 }
 
 .signup-form {
-  margin-left: 1rem; /* Add margin between form and logo */
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 form {
-  background: linear-gradient(to right, #1814F3, #FCFEFF);
-  width: 25rem;
-  margin: 20vh auto 0 auto;
-  padding: 1.25rem;
-  background-color: whitesmoke;
+  background: linear-gradient(to left, #1814F3, #FCFEFF);
+  width: 100%;
+  margin: auto;
+  padding: 3rem;
   border-radius: 10px;
   font-size: 13px;
   font-weight: 500;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  height: 82%;
 }
 
 form h1 {
@@ -37,57 +97,47 @@ form h1 {
   text-align: center;
 }
 
-h4{
+form h4 {
   text-align: center;
   color: white;
   font-size: 13px;
   font-weight: 500;
 }
 
-form p{
+form p {
   text-align: center;
 }
 
 button {
   display: flex;
   justify-content: center;
-  font-family: "Poppins", sans-serif;
   padding: 0.5rem;
   margin-top: 0.6rem;
   width: 100%;
-  color: grey;
   background-color: #0C359E;
   border: none;
-  cursor:pointer;
+  cursor: pointer;
   border-radius: 3rem;
+  color: white;
+  text-decoration: none;
 }
 
-button {
-  color: white; /* Warna teks */
-  text-decoration: none; /* Hilangkan garis bawah */
-  cursor: pointer; /* Ubah kursor saat diarahkan ke tautan */
-}
-
-/* Gaya khusus saat tautan dihover */
 button:hover {
-  background-color: orange;/* Ubah warna teks saat dihover */
-  
+  background-color: orange;
 }
 
 .input-control {
-  
   display: flex;
   flex-direction: column;
   color: white;
-  
+  margin-top: 1rem;
 }
 
 .input-control input {
-  border: 4rem;
+  border: none;
   border-radius: 4rem;
-  display: 0.25rem;
-  font-size: 0.75rem;
   padding: 0.6rem;
+  font-size: 0.75rem;
   width: 100%;
 }
 
@@ -106,10 +156,10 @@ button:hover {
 
 .input-control .success,
 .input-control .error {
-  display: block; /* Mengubah tipe display agar muncul dengan benar */
+  display: block;
   font-size: 0.75rem;
   padding: 0.1rem;
-  color: inherit; /* Menggunakan warna teks yang sama dengan elemen lainnya */
+  color: inherit;
 }
 
 .input-control .success {
@@ -122,6 +172,12 @@ button:hover {
 
 .input-control .success,
 .input-control .error {
-  position: relative; /* Menambahkan posisi relatif agar pesan sukses/kesalahan muncul dengan benar */
+  position: relative;
   margin-top: 0.5rem;
+}
+
+.error-message {
+  color: red;
+  margin-top: 0.5rem;
+  text-align: center;
 }
