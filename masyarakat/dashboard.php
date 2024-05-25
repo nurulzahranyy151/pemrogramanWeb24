@@ -140,7 +140,6 @@ if (isset($_SESSION['message'])) {
                                 </div>
                             </div>
                         </div>
-                        
                         <div class="footer-report">
                             <div class="atribut">
                                 <li><i class='bx bx-image-add icon'></i></i></li>
@@ -156,44 +155,37 @@ if (isset($_SESSION['message'])) {
                 </form>
                 <?php 
                 $postingan = showAllpostingan();
-                if (!$postingan || mysqli_num_rows($postingan) == 0) {
-                    echo "Tidak ada postingan";
-                } else {
-                    while ($row = mysqli_fetch_assoc($postingan)) {
-                        ?>
-                        <div class="post">
-                            <div class="post-header">
-                                <img src="<?= $row['foto_profil'];?>" alt="Profil Picture">
-                                <div class="post-info">
-                                    <h3><?= $row['nama_user'];?></h3>
-                                    <p><?= $row['tgl_laporan'];?></p>
-                                </div>
+                while ($row = mysqli_fetch_assoc($postingan)):?>
+                    <div class="post">
+                        <div class="post-header">
+                            <img src="<?= $row['foto_profil'];?>" alt="Profil Picture">
+                            <div class="post-info">
+                                <h3><?= $row['nama_user'];?></h3>
+                                <p><?= $row['tgl_laporan'];?></p>
                             </div>
-                            <div class="post-content">
-                                <p class="caption"><?= $row['isi_laporan'];?></p>
-                                <img src="<?= $row['media'];?>" alt="Gambar postingan">
-                            </div>
-                            <div class="post-actions">
-                                <div class="left-post-action">
-                                    <button class="like-button" onclick="toggleLike(this)">
-                                        <i class='bx bx-heart'></i>
-                                    </button>
-                                    <button class="comment-button" onclick="toggleComment()"></button>
-                                </div>
-                                <div class="right-post-action">
-                                    <button class="save-button" onclick="toggleSave(this)">
-                                        <i class='bx bx-bookmark'></i>
-                                </div>
-                            </div>
-                            <form action="#" method="post" class="add-comment-form">
-                                <input type="text" name="comment" id="comment" placeholder="Tambahkan komentar..." onchange="validateComment()">
-                                <button type="submit" id="submit-comment" style="display: none;">Kirim</button>
-                            </form>
                         </div>
-                        <?php
-                    }
-                }
-                ?>
+                        <div class="post-content">
+                            <p class="caption"><?= $row['isi_laporan'];?></p>
+                            <img src="<?= $row['media'];?>" alt="Gambar postingan">
+                        </div>
+                        <div class="post-actions">
+                            <div class="left-post-action">
+                                <button class="like-button" onclick="toggleLike(this)">
+                                    <i class='bx bx-heart'></i>
+                                </button>
+                                <button class="comment-button" onclick="toggleComment(this)"><i class='bx bx-comment'></i></button>
+                            </div>
+                            <div class="right-post-action">
+                                <button class="save-button" onclick="toggleSave(this)">
+                                    <i class='bx bx-bookmark'></i>
+                            </div>
+                        </div>
+                        <form action="#" method="post" class="add-comment-form">
+                            <input type="text" name="comment" id="comment" placeholder="Tambahkan komentar..." onchange="validateComment()">
+                            <button type="submit" id="submit-comment" style="display: none;">Kirim</button>
+                        </form>
+                    </div>
+                    <?php endwhile;?>
             </div>
             <div class="trend">
                 <div class="trend-content">
@@ -262,7 +254,9 @@ if (isset($_SESSION['message'])) {
                     <button class="like-button" onclick="toggleLike(this)">
                         <i class='bx bx-heart'></i>
                     </button>
-                    <button class="comment-button" onclick="toggleComment()"><i class='bx bx-comment'></i></button>
+                    <button class="comment-button" ><label for="comment-pop">
+                    <i class='bx bx-comment'></i>
+                    </label></button>
                 </div>
                 <div class="right-post-action">
                     <button class="save-button" onclick="toggleSave(this)">

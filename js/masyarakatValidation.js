@@ -68,32 +68,9 @@ function toggleLike(button) {
     }
 }
 
-function toggleComment() {
-    var postInfo = posts[postIndex];
-
-        // Isi popup komentar dengan informasi postingan
-        var popup = document.getElementById('commentPopup');
-        var popupLeft = popup.querySelector('.popup-left');
-        var popupRight = popup.querySelector('.popup-right');
-
-        // Isi gambar postingan pada popup-left
-        var image = document.createElement('img');
-        image.src = postInfo.imageSrc;
-        popupLeft.innerHTML = '';
-        popupLeft.appendChild(image);
-
-        // Isi informasi postingan pada popup-right
-        var profilePicture = popupRight.querySelector('.profile-picture-pop-up');
-        profilePicture.src = postInfo.profilePictureSrc;
-
-        var username = popupRight.querySelector('h3');
-        username.textContent = postInfo.username;
-
-        var postDate = popupRight.querySelector('p');
-        postDate.textContent = postInfo.postDate;
-
-        // Tampilkan popup komentar
-        popup.style.display = 'flex';
+function toggleComment(button) {
+    var popup = document.getElementById("commentPopup");
+    popup.style.display = 'flex';
 }
 
 var closeBtn = document.querySelector(".popup .close");

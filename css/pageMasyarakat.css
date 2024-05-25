@@ -505,7 +505,7 @@ body.dark .add-comment-form button {
     color: #aaa;
     font-size: 28px;
     font-weight: bold;
-    position: absolute;
+    position: fixed;
     right: 20px;
     top: 10px;
     cursor: pointer;
