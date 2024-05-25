@@ -848,7 +848,7 @@ form {
     padding-right: 50px;
 }
 
-.input-caption {
+.input-caption, .input-address {
     width: 500px;
     height: 75px;
     padding: 10px;
@@ -857,7 +857,7 @@ form {
     resize: none;
 }
 
-.input-caption :focus{
+.input-caption :focus,.input-address :focus{
     border: none;
     outline: none;
     

@@ -15,6 +15,12 @@ if (isset($_SESSION['message'])) {
     echo '<script>alert("'.$_SESSION['message'].'");</script>';
     unset($_SESSION['message']);
 }
+
+if(isset($_POST["submit-report"])){
+    uploadPostingan($_POST, $_FILES);
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -122,7 +128,7 @@ if (isset($_SESSION['message'])) {
         </div>
         <div class="isi-konten">
             <div class="fyp">
-                <form action="../php/handlePostingan.php" method="post" enctype="multipart/form-data">
+                <form action="" method="post" enctype="multipart/form-data">
                     <div class="make-report">
                         <div class="header-report">
                             <div class="reporter">
@@ -147,7 +153,7 @@ if (isset($_SESSION['message'])) {
                                 <li><i class='bx bx-map icon'></i></li>
                             </div>
                             <div class="submit-report">
-                                <button type="submit" id="submit-report">Post</button>
+                                <button type="submit" id="submit-report" name="submit-report">Post</button>
                             </div>
                         </div>
                         <input type="file" id="imageUpload"  name="media" style="display: none;" accept="image/*">
