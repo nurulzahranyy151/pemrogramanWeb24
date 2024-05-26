@@ -467,7 +467,7 @@ img {
 
 .header-data {
     color: white;
-    background-color: #3a61cc;
+    background-color: #1814F3;
 }
 
 .header-data,
@@ -492,7 +492,7 @@ table td {
 }
 
 .head-table {
-    color: #60a7ee;
+    color: #1814F3;
 }
 
 .button-container {
@@ -530,11 +530,11 @@ table td {
 }
 
 .edit-btn i {
-    background-color: #27a6af;
+    background-color: #1814F3;
 }
 
 .edit-btn span {
-    background-color: #2ac8d3;
+    background-color: #1814F3;
 }
 
 .del-btn i {
@@ -544,8 +544,6 @@ table td {
 .del-btn span {
     background-color: #ce3f3f;;
 }
-
-
 
 .search, .add-data{
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
@@ -609,6 +607,7 @@ table td {
 .search, .search input{
     background-color:rgb(233, 233, 233);
 }
+<<<<<<< HEAD
 
 
 /*===MODAL STAF===*/
@@ -784,3 +783,55 @@ table td {
     padding: 5px;
     border-radius: 10px;
 }
+=======
+/*DATA STATISTIK START*/
+h5{
+    color: #242526;
+    text-align: left;
+}
+
+.box-container {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between; /* Center the boxes horizontally */
+    align-items: ce;
+    padding: 20px;
+}
+
+.box {
+    background-color: #f8f9fa;
+    padding: 0px;
+    border-radius: 10px;
+    text-align: center;
+    width: 200px;
+    flex-direction: column; /* Ensure vertical stacking */
+    transition: transform 0.3s ease, 0.3s ease;
+}
+
+.box:hover {
+    transform: translateY(-10px);
+}
+
+.box p {
+    margin: 5px 0;
+}
+
+.box-diterima {
+    color: blue;
+}
+
+.box-ditolak {
+    color: red;
+}
+
+.box-menunggu {
+    color: teal;
+}
+
+.box-total {
+    color: green;
+}
+
+/*DATA STATISTIK START*/
+
+>>>>>>> 5dbd5c2b6d8302a5bd0642e43393bb73e3668bcd

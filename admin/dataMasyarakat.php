@@ -184,6 +184,7 @@ $adminData = mysqli_fetch_assoc($admin);
                         <td><?= $row["password_user"];?></td>
                         <td>
                             <div class="button-container">
+<<<<<<< HEAD:admin/dataMasyarakat.php
                                 <form method="post" style="display:inline;">
                                     <input type="hidden" name="editNIK" value="<?php echo $row['NIK']; ?>">
                                     <button type="submit" class="btn edit-btn">
@@ -192,6 +193,15 @@ $adminData = mysqli_fetch_assoc($admin);
                                     </button>
                                 </form>
                                 <button type="button" class="btn del-btn" onclick="showDeleteModal(<?php echo $row['NIK']; ?>)">
+=======
+                                <button class="btn edit-btn">
+                                    <a href="editDataMasyarakat.html">
+                                    <i class='bx bx-edit icon'></i>
+                                </a>
+                                    <span>Ubah</span>
+                                </button>
+                                <button class="btn del-btn">
+>>>>>>> 5dbd5c2b6d8302a5bd0642e43393bb73e3668bcd:admin/dataMasyarakat.html
                                     <i class='bx bx-trash icon'></i>
                                     <span>Hapus</span>
                                 </button>
