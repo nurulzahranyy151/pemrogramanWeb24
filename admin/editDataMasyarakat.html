@@ -115,34 +115,15 @@ $user = mysqli_fetch_assoc($query);
                                 <input type="text" id="nik" name="nik" value="<?= $user["NIK"];?>" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="name">Nama Anda</label>
+                                <label for="name">Nama Pengguna</label>
                                 <input type="text" id="name" name="name" placeholder="<?= $user["nama_user"];?>">
                             </div>
                             <div class="form-group">
-                                <label for="dob">Tanggal Lahir</label>
-                                <input type="date" id="dob" name="dob">
-                            </div>
-                            <div class="form-group">
-                                <label for="gender">Jenis Kelamin</label>
-                                <select id="gender" name="gender" class="select-gender">
-                                    <option value="Perempuan">Perempuan</option>
-                                    <option value="Laki-Laki">Laki-Laki</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="address">Alamat</label>
-                                <input type="text" id="address" name="address" placeholder="<?= $user["alamat_asal"];?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="current-address">Alamat Sekarang</label>
-                                <input type="text" id="current-address" name="current-address" placeholder="<?= $user["alamat_sekarang"];?>">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
+                                <label for="email">Email Pengguna</label>
                                 <input type="email" id="email" name="email" placeholder="<?= $user["email_user"];?>">
                             </div>
                             <div class="form-group">
-                                <label for="password">Kata Sandi</label>
+                                <label for="password">Kata Sandi Pengguna</label>
                                 <input type="password" id="password" name="password" placeholder="<?= $user["password_user"];?>">
                             </div>
                         </div>

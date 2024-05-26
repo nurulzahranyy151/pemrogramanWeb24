@@ -602,4 +602,49 @@ table td {
 .search, .search input{
     background-color:rgb(233, 233, 233);
 }
+/*DATA STATISTIK START*/
+.box-container {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between; /* Center the boxes horizontally */
+    align-items: ce;
+    padding: 20px;
+}
+
+.box {
+    background-color: #f8f9fa;
+    padding: 0px;
+    border-radius: 10px;
+    text-align: center;
+    width: 200px;
+    flex-direction: column; /* Ensure vertical stacking */
+    transition: transform 0.3s ease, 0.3s ease;
+}
+
+.box:hover {
+    transform: translateY(-10px);
+}
+
+.box p {
+    margin: 5px 0;
+}
+
+.box-diterima {
+    color: blue;
+}
+
+.box-ditolak {
+    color: red;
+}
+
+.box-menunggu {
+    color: teal;
+}
+
+.box-total {
+    color: green;
+}
+
+/*DATA STATISTIK START*/
+
 
