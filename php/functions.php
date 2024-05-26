@@ -108,4 +108,45 @@ function uploadPostingan($data, $file) {
     return false;
 }
 
+function editMasyarakat($data) {
+    global $conn;
+    $nik = $_SESSION["NIK"];
+    $name = htmlspecialchars($data["nama"]);
+    $dob = htmlspecialchars($data["dob"]);
+    $gender = htmlspecialchars($data["gender"]);
+    $address = htmlspecialchars($data["address"]);
+    $currentAddress = htmlspecialchars($data["current-address"]);
+    $email = htmlspecialchars($data["email"]);
+    $query = "UPDATE user SET nama_user = '$name', tanggal_lahir = '$dob', jenis_kelamin = '$gender', alamat_asal = '$address', alamat_sekarang = '$currentAddress', email_user = '$email' WHERE NIK = $nik";
+    mysqli_query($conn, $query);
+    return mysqli_affected_rows($conn);
+}
+
+function addStaf($data) {
+    global $conn;
+    $name = htmlspecialchars($data["addName"]);
+    $email = htmlspecialchars($data["addEmail"]);
+    $pass = htmlspecialchars($data["addPassword"]);
+    $query = "INSERT INTO supervisor VALUES('', '$name', '$email', '$pass')";
+    mysqli_query($conn, $query);
+    return mysqli_affected_rows($conn);
+}
+
+function editStaf($data) {
+    global $conn;
+    $id = htmlspecialchars($data["editId"]);
+    $name = htmlspecialchars($data["editNama"]);
+    $email = htmlspecialchars($data["editEmail"]);
+    $query = "UPDATE supervisor SET nama_supervisor = '$name', email_supervisor = '$email' WHERE id_supervisor = $id";
+    mysqli_query($conn, $query);
+    return mysqli_affected_rows($conn);
+}
+
+function deleteStaf($id) {
+    global $conn;
+    $query = "DELETE FROM supervisor WHERE id_supervisor = $id";
+    mysqli_query($conn, $query);
+    return mysqli_affected_rows($conn);
+}
+
 ?>

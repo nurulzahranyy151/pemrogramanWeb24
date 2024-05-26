@@ -3,9 +3,9 @@ require '../php/functions.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (uploadPostingan($_POST, $_FILES)) {
-        $_SESSION['message'] = "Upload successful!";
+        echo "<script>alert('Post berhasil dibuat');</script>";
     } else {
-        $_SESSION['message'] = "Failed to upload report.";
+        echo "<script>alert('Postingan gagal dibuat.');</script>";
     }
     header("Location: ../masyarakat/dashboard.php");
     exit();

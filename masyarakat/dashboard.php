@@ -11,10 +11,6 @@ $user = mysqli_fetch_assoc($query);
 $_SESSION["nama_user"] = $user["nama_user"];
 $_SESSION["foto_profil"] = $user["foto_profil"];
 
-if (isset($_SESSION['message'])) {
-    echo '<script>alert("'.$_SESSION['message'].'");</script>';
-    unset($_SESSION['message']);
-}
 
 if(isset($_POST["submit-report"])){
     uploadPostingan($_POST, $_FILES);
@@ -128,7 +124,7 @@ if(isset($_POST["submit-report"])){
         </div>
         <div class="isi-konten">
             <div class="fyp">
-                <form action="" method="post" enctype="multipart/form-data">
+                <form action="../php/handlePostingan" method="post" enctype="multipart/form-data">
                     <div class="make-report">
                         <div class="header-report">
                             <div class="reporter">

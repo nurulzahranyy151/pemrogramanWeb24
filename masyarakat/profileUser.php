@@ -106,13 +106,13 @@ $user = mysqli_fetch_assoc($query);
                 <p><?= $_SESSION["nama_user"];?></p>
             </div>
         </div>
-
         <div class="isi-konten">
             <div class="profile">
-                <form action="../php/functions.php" method="post" enctype="multipart/form-data" class="profile-form">
+                <form action="../php/handleUpdateMasyarakat.php" method="post" enctype="multipart/form-data" class="profile-form">
                     <div class="profile-container">
                         <div class="profile-pic-container">
-                            <img src="<?= $user["foto_profil"];?>" class="profile-pic">
+                            <img id="profile-pic" src="<?= $user['foto_profil']; ?>" class="profile-pic">
+                            <input type="file" id="profile-pic-input" name="profile-pic" accept="image/*" style="display: none;">
                             <button type="button" class="edit-button"><i class='bx bx-pencil icon'></i></button>
                         </div>
                         <div class="form-container">
@@ -122,37 +122,37 @@ $user = mysqli_fetch_assoc($query);
                             </div>
                             <div class="form-group">
                                 <label for="name">Nama Anda</label>
-                                <input type="text" id="name" name="name" placeholder="<?= $user["nama_user"];?>">
+                                <input type="text" id="nama" name="nama" value="<?= $user["nama_user"];?>">
                             </div>
                             <div class="form-group">
                                 <label for="dob">Tanggal Lahir</label>
-                                <input type="date" id="dob" name="dob">
+                                <input type="date" id="dob" name="dob" value="<?= $user["tanggal_lahir"];?>">
                             </div>
                             <div class="form-group">
                                 <label for="gender">Jenis Kelamin</label>
                                 <select id="gender" name="gender" class="select-gender">
-                                    <option value="Perempuan">Perempuan</option>
-                                    <option value="Laki-Laki">Laki-Laki</option>
+                                    <option value="Perempuan" <?= $user["jenis_kelamin"] == 'Perempuan' ? 'selected' : ''; ?>>Perempuan</option>
+                                    <option value="Laki-laki" <?= $user["jenis_kelamin"] == 'Laki-laki' ? 'selected' : ''; ?>>Laki-laki</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label for="address">Alamat</label>
-                                <input type="text" id="address" name="address" placeholder="<?= $user["alamat_asal"];?>">
+                                <input type="text" id="address" name="address" value="<?= $user["alamat_asal"];?>">
                             </div>
                             <div class="form-group">
                                 <label for="current-address">Alamat Sekarang</label>
-                                <input type="text" id="current-address" name="current-address" placeholder="<?= $user["alamat_sekarang"];?>">
+                                <input type="text" id="current-address" name="current-address" value="<?= $user["alamat_sekarang"];?>">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" id="email" name="email" placeholder="<?= $user["email_user"];?>">
+                                <input type="email" id="email" name="email" value="<?= $user["email_user"];?>">
                             </div>
                             <div class="form-group">
                                 <label for="password">Kata Sandi</label>
-                                <input type="password" id="password" name="password" placeholder="<?= $user["password_user"];?>">
+                                <input type="password" id="password" name="password" value="<?= $user["password_user"];?>">
                             </div>
                             <div class="form-actions">
-                                <button type="button" class="cancel-button">Batalkan</button>
+                                <button type="button" class="cancel-button" onclick="cancelEdit()">Batalkan</button>
                                 <button type="submit" class="save-button">Simpan</button>
                             </div>
                         </div>

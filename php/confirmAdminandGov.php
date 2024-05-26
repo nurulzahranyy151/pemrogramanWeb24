@@ -2,7 +2,7 @@
 require 'functions.php';
 $loginResult = loginAdminandGov($_POST);
 if ($loginResult == 1) {
-    header("Location: ../admin/dashboardAdmin.php");
+    header("Location: ../admin/dataGovernment.php");
     exit();
 } else if ($loginResult == 0) {
     header("Location: ../government/dashboardGovernment.php");
