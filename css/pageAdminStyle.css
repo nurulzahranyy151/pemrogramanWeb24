@@ -607,6 +607,11 @@ table td {
 .search, .search input{
     background-color:rgb(233, 233, 233);
 }
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 9c2634f1b85684d097a3acf3bcb3e5653f418998
 /*===MODAL STAF===*/
 .addModal, .deleteModal {
     display: none;
@@ -654,7 +659,45 @@ table td {
     box-sizing: border-box;
 }
 
-.form-add-staf button{
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.add-staf-btn{
+    display: flex;
+    justify-content: flex-end;
+    gap: 20px;
+}
+
+.foto-staf-preview {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.foto-staf-preview img {
+    max-width: 50%;
+    max-height: 50%; 
+    object-fit: contain;
+}
+
+.foto-staf-preview button{
+    background-color: #ff0000;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    align-items: center;
+}
+
+.add-staf-btn button{
     background-color: #4CAF50;
     color: white;
     padding: 10px 20px;
@@ -780,7 +823,10 @@ table td {
     padding: 5px;
     border-radius: 10px;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9c2634f1b85684d097a3acf3bcb3e5653f418998
 /*DATA STATISTIK START*/
 h5{
     color: #242526;
@@ -829,4 +875,9 @@ h5{
     color: green;
 }
 
+<<<<<<< HEAD
 /*TAMBAH DATA STAFF START*/
+=======
+/*DATA STATISTIK START*/
+
+>>>>>>> 9c2634f1b85684d097a3acf3bcb3e5653f418998
