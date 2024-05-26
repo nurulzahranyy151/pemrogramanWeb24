@@ -76,6 +76,7 @@ top: -150px;
   
 }
 
+
 .signup-form {
   width: 50%;
   display: flex;
@@ -133,7 +134,7 @@ button:hover {
 .input-control {
   display: flex;
   flex-direction: column;
-  color: white;
+  color: #7C838A;
   margin-top: 1rem;
 }
 

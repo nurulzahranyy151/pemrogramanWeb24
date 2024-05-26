@@ -467,7 +467,7 @@ img {
 
 .header-data {
     color: white;
-    background-color: #3a61cc;
+    background-color: #1814F3;
 }
 
 .header-data,
@@ -492,7 +492,7 @@ table td {
 }
 
 .head-table {
-    color: #60a7ee;
+    color: #1814F3;
 }
 
 .button-container {
@@ -526,11 +526,11 @@ table td {
 }
 
 .edit-btn i {
-    background-color: #27a6af;
+    background-color: #1814F3;
 }
 
 .edit-btn span {
-    background-color: #2ac8d3;
+    background-color: #1814F3;
 }
 
 .del-btn i {
@@ -540,8 +540,6 @@ table td {
 .del-btn span {
     background-color: #ce3f3f;;
 }
-
-
 
 .search, .add-data{
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
@@ -604,3 +602,4 @@ table td {
 .search, .search input{
     background-color:rgb(233, 233, 233);
 }
+
