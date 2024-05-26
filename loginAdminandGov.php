@@ -14,10 +14,10 @@
     <div class="container">
       <div class="logo">
         <div class="blobs-vector">
-          <img class="blobs-vector-layer1" src="../img/layer1.png">
-          <img class="blobs-vector-layer3" src="../img/layer3.png">
-          <img class="blobs-vector-layer2" src="../img/layer2.png">
-          <img class="blobs-vector-recity" src="../img/recity.png">
+          <img class="blobs-vector-layer1" src="img/layer1.png">
+          <img class="blobs-vector-layer3" src="img/layer3.png">
+          <img class="blobs-vector-layer2" src="img/layer2.png">
+          <img class="blobs-vector-recity" src="img/recity.png">
         </div>
       </div>
     <div class="signup-form">

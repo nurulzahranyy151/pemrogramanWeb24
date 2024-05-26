@@ -126,7 +126,7 @@ $adminData = mysqli_fetch_assoc($admin);
                 <form action="../php/updateStafHandler.php" method="post" enctype="multipart/form-data" class="edit-staf-form">
                     <div class="edit-staf-container">
                         <div class="profile-staf-container">
-                            <img id="profile-staf" src="../img/coba.jpeg" class="profile-staf">
+                            <img id="profile-staf" src="<?= $edited["foto_profil_staff"];?>" class="profile-staf">
                             <input type="file" id="profile-staf-input" name="profile-staf" style="display: none;">
                             <button type="button" class="edit-profil" onclick="changeProfil()"><i class='bx bx-pencil icon'></i></button>
                         </div>                        
@@ -149,7 +149,7 @@ $adminData = mysqli_fetch_assoc($admin);
                             </div>
                             <div class="form-actions-edit">
                                 <button type="button" id="closeEdit" class="cancel-button" name="cancel-button">Batalkan</button>
-                                <button type="submit" class="save-button" ">Simpan</button>
+                                <button type="submit" class="save-button">Simpan</button>
                             </div>
                         </div>
                     </div>
@@ -216,24 +216,35 @@ $adminData = mysqli_fetch_assoc($admin);
         <div class="addModal-content">
             <span class="close" id="closeAdd">&times;</span>
             <h2>Tambah Supervisor</h2>
-    
-            <form action="../php/addStafHandler.php" id="addForm" method="post">
+            <form action="../php/addStafHandler.php" id="addForm" method="post" enctype="multipart/form-data">
                 <div class="form-add-staf">
                     <div class="form-group">
                         <label for="addName">Nama:</label>
                         <input type="text" id="addName" name="addName">
+                        <p id="msg-error-name"  class="error-message"></p>
                     </div>
                     <div class="form-group">
                         <label for="addEmail">Email:</label>
                         <input type="text" id="addEmail" name="addEmail">
+                        <p id="msg-error-email"  class="error-message"></p>
                     </div>
                     <div class="form-group">
                         <label for="addPassword">Password:</label>
                         <input type="password" id="addPassword" name="addPassword">
+                        <p id="msg-error-pass"  class="error-message"></p>
+                    </div>
+                    <div class="foto-staf-preview">
+                        <img src="" alt="" id="media-preview">
+                        <button type="button" id="btn-hapus-preview" onclick="hapusPreview()" style="display: none">Hapus</button>
                     </div>
                     <div class="add-staf-btn">
-                        <button>Tambah Foto</button>
-                        <button type="submit" id="btn-add-staf">Add Supervisor</button>
+                        <div>
+                            <input type="file" id="addFoto" name="addFoto" style="display: none;" accept="image/*">
+                            <button type="button" id="btn-add-foto-staf" onclick="addProfilStaf()">Tambah Foto</button>
+                        </div>
+                        <div>
+                            <button type="submit" id="btn-add-staf" onclick="addStaf()">Add Supervisor</button>
+                        </div>
                     </div>
                 </div>
             </form>

@@ -121,24 +121,39 @@ function editMasyarakat($data) {
     return mysqli_affected_rows($conn);
 }
 
-function addStaf($data) {
+function addStaf($data, $file) {
     global $conn;
     $name = htmlspecialchars($data["addName"]);
     $email = htmlspecialchars($data["addEmail"]);
     $pass = htmlspecialchars($data["addPassword"]);
+    if(isset($file["addFoto"]) && $file["addFoto"]["error"] == 0){
+        $targetDir = "../img/";
+        $targetFile = $targetDir . basename($file["addFoto"]["name"]);
+        if(move_uploaded_file($file["addFoto"]["tmp_name"], $targetFile)){
+            $query = "INSERT INTO supervisor VALUES('', '$name', '$email', '$pass', '$targetFile')";
+            mysqli_query($conn, $query);
+            return mysqli_affected_rows($conn);
+        }
+    }
     $query = "INSERT INTO supervisor VALUES('', '$name', '$email', '$pass', '../img/default.jpeg')";
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn);
 }
 
-function editStaf($data) {
+function editStaf($data, $file) {
     global $conn;
     $id = htmlspecialchars($data["editId"]);
     $name = htmlspecialchars($data["editNama"]);
     $email = htmlspecialchars($data["editEmail"]);
-    $query = "UPDATE supervisor SET nama_supervisor = '$name', email_supervisor = '$email' WHERE id_supervisor = $id";
-    mysqli_query($conn, $query);
-    return mysqli_affected_rows($conn);
+    if(isset($file["profile-staf"]) && $file["profile-staf"]["error"] == 0){
+        $targetDir = "../img/";
+        $targetFile = $targetDir . basename($file["profile-staf"]["name"]);
+        if(move_uploaded_file($file["profile-staf"]["tmp_name"], $targetFile)){
+            $query = "UPDATE supervisor SET nama_supervisor = '$name', email_supervisor = '$email', foto_profil_staff = '$targetFile' WHERE id_supervisor = $id";
+            mysqli_query($conn, $query);
+            return mysqli_affected_rows($conn);
+        }
+    }
 }
 
 function deleteStaf($id) {

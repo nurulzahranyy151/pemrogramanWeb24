@@ -1,15 +1,12 @@
 <?php
 require '../php/functions.php';
-
-$update = editStaf($_POST);
-if($update > 0){
-    echo "<script>
-    alert('Data berhasil diubah');
-    </script>";
-} else {
-    echo "<script>
-    alert('Data gagal diubah');
-    </script>";
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (editStaf($_POST, $_FILES)) {
+        echo "<script>alert('Data berhasil diubah');</script>";
+    } else {
+        echo "<script>alert('Data gagal diubah.');</script>";
+    }
+    header("Location: ../admin/dataGovernment.php");
+    exit();
 }
-header("Location: ../admin/dataGovernment.php");
 ?>

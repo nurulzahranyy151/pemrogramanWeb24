@@ -27,22 +27,7 @@ imageUpload.addEventListener('change', event => {
     if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
-            const img = document.createElement('img');
-            img.src = e.target.result;
-            img.alt = 'User Uploaded Image';
-
-            const deleteIcon = document.createElement('i');
-            deleteIcon.classList.add('bx', 'bx-x', 'delete-icon');
-            deleteIcon.addEventListener('click', () => {
-                mediaPreview.removeChild(img);
-                mediaPreview.removeChild(deleteIcon);
-                footerReport.style.marginTop = 0;
-            });
-
-            mediaPreview.innerHTML = ''; 
-            mediaPreview.appendChild(img);
-            mediaPreview.appendChild(deleteIcon);
-            footerReport.style.marginTop = '10px';
+            document.getElementById('mediaPreview').src = e.target.result;
         };
         reader.readAsDataURL(file);
     }
