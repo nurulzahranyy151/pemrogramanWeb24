@@ -10,7 +10,7 @@
     
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 
-    <title>Dashboard</title>
+    <title>Riwayat</title>
 </head>
 <body>
     <nav class="sidebar close">
@@ -37,7 +37,7 @@
                     <li class="nav-link">
                         <a href="#">
                             <i class='bx bx-home-alt icon' ></i>
-                            <span class="text nav-text">Dashboard</span>
+                            <span class="text nav-text">Beranda</span>
                         </a>
                     </li>
                     <li class="nav-link">
@@ -100,7 +100,7 @@
             <div class="user-login">
                 <a href="profileUser.php">
                     <img src="
-                    <?= $_SESSION["foto_profil"];?>" alt="Profil Picture">
+                    <?= $_SESSION["foto_profile_user"];?>" alt="Profil Picture">
                 </a>
                 <p><?= $_SESSION["nama_user"];?></p>
             </div>

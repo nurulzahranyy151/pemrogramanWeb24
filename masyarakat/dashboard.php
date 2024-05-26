@@ -9,7 +9,7 @@ $nik = $_SESSION["NIK"];
 $query = mysqli_query($conn, "SELECT * FROM user WHERE NIK = $nik");
 $user = mysqli_fetch_assoc($query);
 $_SESSION["nama_user"] = $user["nama_user"];
-$_SESSION["foto_profil"] = $user["foto_profil"];
+$_SESSION["foto_profil_user"] = $user["foto_profil_user"];
 
 
 if(isset($_POST["submit-report"])){
@@ -117,7 +117,7 @@ if(isset($_POST["submit-report"])){
             <div class="user-login">
                 <a href="profileUser.php">
                     <img src="
-                    <?= $_SESSION["foto_profil"];?>" alt="Profil Picture">
+                    <?= $_SESSION["foto_profil_user"];?>" alt="Profil Picture">
                 </a>
                 <p><?= $_SESSION["nama_user"];?></p>
             </div>
@@ -128,7 +128,7 @@ if(isset($_POST["submit-report"])){
                     <div class="make-report">
                         <div class="header-report">
                             <div class="reporter">
-                                <img src="<?= $_SESSION["foto_profil"];?>" alt="Profil Picture">
+                                <img src="<?= $_SESSION["foto_profil_user"];?>" alt="Profil Picture">
                                 <h5><?= $_SESSION["nama_user"];?></h5>
                             </div>
                             <div class="caption-media">
@@ -136,7 +136,7 @@ if(isset($_POST["submit-report"])){
                                     <textarea class="input-caption" name="caption" placeholder="Laporkan keluhan anda di sini..."></textarea>
                                 </div>
                                 <div class="address-post">
-                                <textarea class="input-address" name="address" placeholder="Masukkan alamat laporan..."></textarea>
+                                <textarea class="input-address" name="address" placeholder="Masukkan alamat postingan..."></textarea>
                                 </div>
                                 <div class="media-preview">
                                 </div>
@@ -160,14 +160,14 @@ if(isset($_POST["submit-report"])){
                 while ($row = mysqli_fetch_assoc($postingan)):?>
                     <div class="post">
                         <div class="post-header">
-                            <img src="<?= $row['foto_profil'];?>" alt="Profil Picture">
+                            <img src="<?= $row['foto_profil_user'];?>" alt="Profil Picture">
                             <div class="post-info">
                                 <h3><?= $row['nama_user'];?></h3>
-                                <p><?= $row['tgl_laporan'];?></p>
+                                <p><?= $row['tgl_postingan'];?></p>
                             </div>
                         </div>
                         <div class="post-content">
-                            <p class="caption"><?= $row['isi_laporan'];?></p>
+                            <p class="caption"><?= $row['caption'];?></p>
                             <img src="<?= $row['media'];?>" alt="Gambar postingan">
                         </div>
                         <div class="post-actions">
@@ -192,7 +192,7 @@ if(isset($_POST["submit-report"])){
             <div class="trend">
                 <div class="trend-content">
                     <div class="header-trend">
-                        <img src="<?= $_SESSION["foto_profil"];?>" alt="">
+                        <img src="<?= $_SESSION["foto_profil_user"];?>" alt="">
                         <h4>Accepted Post</h4>
                     </div>
                     <hr>
@@ -205,8 +205,8 @@ if(isset($_POST["submit-report"])){
                                 <img src="<?= $trend['media'];?>" alt="">
                             </a>
                             <div class="accepted-post-atr">
-                                <h5><?= $trend['tgl_laporan'];?>03-11-2024</h5>
-                                <p><?= $trend['alamat_laporan'];?>Jalan Prabu rangksari karang parwa abiantubuh baru</p>
+                                <h5><?= $trend['tgl_postingan'];?>03-11-2024</h5>
+                                <p><?= $trend['alamat_postingan'];?>Jalan Prabu rangksari karang parwa abiantubuh baru</p>
                             </div>
                         </div>
                         <?php

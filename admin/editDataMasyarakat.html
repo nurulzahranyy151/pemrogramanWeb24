@@ -5,6 +5,7 @@ $nik = $_SESSION["NIK"];
 $query = mysqli_query($conn, "SELECT * FROM user WHERE NIK = $nik");
 $user = mysqli_fetch_assoc($query);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -61,7 +62,6 @@ $user = mysqli_fetch_assoc($query);
                             <span class="text nav-text">Kelola Staff</span>
                         </a>
                     </li>
-
                 </ul>
             </div>
 

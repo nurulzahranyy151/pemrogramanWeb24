@@ -1,6 +1,6 @@
 <?php
 session_start();
-$conn = mysqli_connect("localhost" , "root", "", "recity");
+$conn = mysqli_connect("localhost" , "root", "", "dbrecity");
 function sign($data){
     global $conn;
     $nama = htmlspecialchars($data["nama"]);
@@ -14,7 +14,7 @@ function sign($data){
         }
     }
     $query= "INSERT INTO user
-    VALUES('$nik', '$nama', '$email', '$password','','','','','../img/default.jpeg')";
+    VALUES('$nik', '$nama', '$email', '$password','','','','','','../img/default.jpeg')";
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn);
 }
@@ -72,22 +72,22 @@ function hapusStaf($id){
     return mysqli_affected_rows($conn);
 }
 
-function hapusLaporan($id){
+function hapuspostingan($id){
     global $conn;
-    mysqli_query($conn, "DELETE FROM laporan WHERE id_laporan = '$id'");
+    mysqli_query($conn, "DELETE FROM postingan WHERE id_postingan = '$id'");
     return mysqli_affected_rows($conn);
 }
 
 function showAllpostingan(){
     global $conn;
-    return mysqli_query($conn, "SELECT laporan.*, user.nama_user, user.foto_profil FROM laporan JOIN user ON laporan.NIK = user.NIK;");
+    return mysqli_query($conn, "SELECT postingan.*, user.nama_user, user.foto_profil FROM postingan JOIN user ON postingan.NIK = user.NIK;");
 }
 
 function trendingpost(){
     global $conn;
     $currMonth = date("m");
     $currYear = date("Y");
-    return mysqli_query($conn, "SELECT laporan.media, laporan.tgl_laporan, laporan.alamat_laporan, user.nama_user FROM laporan JOIN user ON laporan.NIK = user.NIK WHERE MONTH(laporan.tgl_laporan) = $currMonth AND YEAR(laporan.tgl_laporan) = $currYear AND laporan.status = 'Accepted' ORDER BY laporan.jumlah_like DESC LIMIT 5");
+    return mysqli_query($conn, "SELECT postingan.media, postingan.tgl_postingan, postingan.alamat_postingan, user.nama_user FROM postingan JOIN user ON postingan.NIK = user.NIK WHERE MONTH(postingan.tgl_postingan) = $currMonth AND YEAR(postingan.tgl_postingan) = $currYear AND postingan.status = 'Accepted' ORDER BY postingan.jumlah_like DESC LIMIT 5");
 }
 
 function uploadPostingan($data, $file) {
@@ -97,10 +97,10 @@ function uploadPostingan($data, $file) {
     $address = htmlspecialchars($data["address"]);
 
     if (isset($file["media"]) && $file["media"]["error"] == 0) {
-        $targetDir = "../laporan/";
+        $targetDir = "../postingan/";
         $targetFile = $targetDir . basename($file["media"]["name"]);
         if (move_uploaded_file($file["media"]["tmp_name"], $targetFile)) {
-            $query = "INSERT INTO laporan VALUES('', NOW(), '$address', 0, '$targetFile', '$caption', 'Wait', '$nik')";
+            $query = "INSERT INTO postingan VALUES('', NOW(), '$address', 0, '$targetFile', '$caption', 'Wait', '$nik')";
             mysqli_query($conn, $query);
             return true;
         }
@@ -127,7 +127,8 @@ function addStaf($data) {
     $name = htmlspecialchars($data["addName"]);
     $email = htmlspecialchars($data["addEmail"]);
     $pass = htmlspecialchars($data["addPassword"]);
-    $query = "INSERT INTO supervisor VALUES('', '$name', '$email', '$pass')";
+
+    $query = "INSERT INTO supervisor VALUES('', '$name', '$email', '$pass', '../img/default.jpeg')";
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn);
 }
