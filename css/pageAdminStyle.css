@@ -603,6 +603,11 @@ table td {
     background-color:rgb(233, 233, 233);
 }
 /*DATA STATISTIK START*/
+h5{
+    color: #242526;
+    text-align: left;
+}
+
 .box-container {
     display: flex;
     gap: 20px;
@@ -646,5 +651,4 @@ table td {
 }
 
 /*DATA STATISTIK START*/
-
 
