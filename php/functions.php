@@ -23,7 +23,6 @@ function loginMasyarakat($user){
     global $conn;
     $email = $user["email"];
     $pass = $user["password"];
-    $query = "SELECT * FROM user WHERE email_user = '$email' AND password_user = '$pass'";
     $result = mysqli_query($conn, "SELECT * FROM user WHERE email_user = '$email' AND password_user = '$pass'");
     if ($row = mysqli_fetch_assoc($result)) {
         $_SESSION["NIK"] = $row["NIK"];
@@ -38,7 +37,7 @@ function loginAdminandGov($user){
     $email = $user["email"];
     $pass = $user["password"];
     $admin = mysqli_query($conn, "SELECT * FROM admin WHERE email_admin = '$email' AND password_admin = '$pass'");
-    $gov = mysqli_query($conn, "SELECT * FROM supervisor WHERE email_admin = '$email' AND password_admin = '$pass'");
+    $gov = mysqli_query($conn, "SELECT * FROM supervisor WHERE email_supervisor = '$email' AND password_supervisor= '$pass'");
     if ($rowadmin = mysqli_fetch_assoc($admin)) {
         $_SESSION["id_admin"] = $rowadmin["id_admin"];
         return 1;
@@ -127,7 +126,6 @@ function addStaf($data) {
     $name = htmlspecialchars($data["addName"]);
     $email = htmlspecialchars($data["addEmail"]);
     $pass = htmlspecialchars($data["addPassword"]);
-
     $query = "INSERT INTO supervisor VALUES('', '$name', '$email', '$pass', '../img/default.jpeg')";
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn);

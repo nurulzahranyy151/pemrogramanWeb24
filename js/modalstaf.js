@@ -38,6 +38,9 @@ document.getElementById('openAddModal').addEventListener('click', function() {
 
 document.getElementById('closeAdd').addEventListener('click', function() {
     document.getElementById('addModal').style.display = "none";
+    document.getElementById('addName').value = "";
+    document.getElementById('addEmail').value = "";
+    document.getElementById('addPassword').value = "";
 });
 
 document.getElementById('btn.add-staf').addEventListener('click', function() {

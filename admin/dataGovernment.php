@@ -1,6 +1,6 @@
 <?php 
 require '../php/functions.php';
-$conn = mysqli_connect("localhost" , "root", "", "recity");
+$conn = mysqli_connect("localhost" , "root", "", "dbrecity");
 
 $showEditModal = false;
 
@@ -182,7 +182,7 @@ $adminData = mysqli_fetch_assoc($admin);
                     while($row = mysqli_fetch_assoc($result)): ?>
                     <tr class="isi-data">
                         <td><?php echo $count; ?></td>
-                        <td><img src="../img/coba.jpeg" alt="Profil Picture" class="staf-foto"></td>
+                        <td><img src="<?= $row["foto_profil_staff"];?>" alt="Profil Picture" class="staf-foto"></td>
                         <td><?php echo $row["id_supervisor"]; ?></td>
                         <td><?php echo $row["nama_supervisor"]; ?></td>
                         <td><?php echo $row["email_supervisor"]; ?></td>
@@ -216,6 +216,7 @@ $adminData = mysqli_fetch_assoc($admin);
         <div class="addModal-content">
             <span class="close" id="closeAdd">&times;</span>
             <h2>Tambah Supervisor</h2>
+    
             <form action="../php/addStafHandler.php" id="addForm" method="post">
                 <div class="form-add-staf">
                     <div class="form-group">
@@ -230,7 +231,10 @@ $adminData = mysqli_fetch_assoc($admin);
                         <label for="addPassword">Password:</label>
                         <input type="password" id="addPassword" name="addPassword">
                     </div>
-                    <button type="submit" id="btn-add-staf">Add Supervisor</button>
+                    <div class="add-staf-btn">
+                        <button>Tambah Foto</button>
+                        <button type="submit" id="btn-add-staf">Add Supervisor</button>
+                    </div>
                 </div>
             </form>
         </div>
