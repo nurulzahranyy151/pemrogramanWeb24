@@ -34,16 +34,16 @@ if(isset($_POST["submit"])){
     <div class="container">
       <div class="logo">
         <div class="blobs-vector">
-          <img class="blobs-vector-layer1" src="../img/layer1.png">
-          <img class="blobs-vector-layer3" src="../img/layer3.png">
-          <img class="blobs-vector-layer2" src="../img/layer2.png">
-          <img class="blobs-vector-recity" src="../img/recity.png">
+          <img class="blobs-vector-layer1" src="img/layer1.png">
+          <img class="blobs-vector-layer3" src="img/layer3.png">
+          <img class="blobs-vector-layer2" src="img/layer2.png">
+          <img class="blobs-vector-recity" src="img/recity.png">
         </div>
       </div>
       <div class="signup-form">
       <form action="" id="form" method="POST" name="input">
-        <h1>SIGN UP</h1>
-        <h4>Create Your Free Account</h4>
+        <h1>Buat Akun</h1>
+        <h4>Selamat Datang!</h4>
         <div class="input-control">
           <label for="nik">NIK</label>
           <input id="nik" name="nik" type="text"/>
@@ -78,8 +78,10 @@ if(isset($_POST["submit"])){
           <div class="error"></div>
           <div class="success"></div>
         </div>
-        <button type="submit" name="submit">Create Account</button>
-       <h4>Already have an account? <a href="loginMasyarakat.php">Log in</a></h4>
+        <button type="submit" name="submit">Buat Akun</button>
+        <div class="additional-text">
+       <h4>Sudah memiliki Akun? <a href="loginMasyarakat.php">Masuk Disini</a></h4>
+       </div>
       </form>
     <script src="js/signupScript.js"></script>
   </body>

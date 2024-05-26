@@ -607,9 +607,6 @@ table td {
 .search, .search input{
     background-color:rgb(233, 233, 233);
 }
-<<<<<<< HEAD
-
-
 /*===MODAL STAF===*/
 .addModal, .deleteModal {
     display: none;
@@ -783,7 +780,7 @@ table td {
     padding: 5px;
     border-radius: 10px;
 }
-=======
+
 /*DATA STATISTIK START*/
 h5{
     color: #242526;
@@ -832,6 +829,4 @@ h5{
     color: green;
 }
 
-/*DATA STATISTIK START*/
-
->>>>>>> 5dbd5c2b6d8302a5bd0642e43393bb73e3668bcd
+/*TAMBAH DATA STAFF START*/

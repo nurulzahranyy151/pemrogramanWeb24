@@ -38,7 +38,7 @@ function loginAdminandGov($user){
     $email = $user["email"];
     $pass = $user["password"];
     $admin = mysqli_query($conn, "SELECT * FROM admin WHERE email_admin = '$email' AND password_admin = '$pass'");
-    $gov = mysqli_query($conn, "SELECT * FROM supervisor WHERE email_admin = '$email' AND password_admin = '$pass'");
+    $gov = mysqli_query($conn, "SELECT * FROM supervisor WHERE email_supervisor= '$email' AND password_supervisor = '$pass'");
     if ($rowadmin = mysqli_fetch_assoc($admin)) {
         $_SESSION["id_admin"] = $rowadmin["id_admin"];
         return 1;
@@ -80,14 +80,14 @@ function hapuspostingan($id){
 
 function showAllpostingan(){
     global $conn;
-    return mysqli_query($conn, "SELECT postingan.*, user.nama_user, user.foto_profil FROM postingan JOIN user ON postingan.NIK = user.NIK;");
+    return mysqli_query($conn, "SELECT postingan.*, user.nama_user, user.foto_profil_user FROM postingan JOIN user ON postingan.NIK = user.NIK;");
 }
 
 function trendingpost(){
     global $conn;
     $currMonth = date("m");
     $currYear = date("Y");
-    return mysqli_query($conn, "SELECT postingan.media, postingan.tgl_postingan, postingan.alamat_postingan, user.nama_user FROM postingan JOIN user ON postingan.NIK = user.NIK WHERE MONTH(postingan.tgl_postingan) = $currMonth AND YEAR(postingan.tgl_postingan) = $currYear AND postingan.status = 'Accepted' ORDER BY postingan.jumlah_like DESC LIMIT 5");
+    return mysqli_query($conn, "SELECT postingan.media, postingan.tgl_postingan, postingan.alamat_postingan, user.nama_user FROM postingan JOIN user ON postingan.NIK = user.NIK WHERE MONTH(postingan.tgl_postingan) = $currMonth AND YEAR(postingan.tgl_postingan) = $currYear AND postingan.status_postingan = 'Accepted' ORDER BY postingan.jumlah_saved DESC LIMIT 5");
 }
 
 function uploadPostingan($data, $file) {

@@ -14,10 +14,10 @@
     <div class="container">
       <div class="logo">
         <div class="blobs-vector">
-          <img class="blobs-vector-layer1" src="../img/layer1.png">
-          <img class="blobs-vector-layer3" src="../img/layer3.png">
-          <img class="blobs-vector-layer2" src="../img/layer2.png">
-          <img class="blobs-vector-recity" src="../img/recity.png">
+          <img class="blobs-vector-layer1" src="img/layer1.png">
+          <img class="blobs-vector-layer3" src="img/layer3.png">
+          <img class="blobs-vector-layer2" src="img/layer2.png">
+          <img class="blobs-vector-recity" src="img/recity.png">
         </div>
       </div>
       <form action="php/confirmMasyarakat.php" id="form" method="POST" name="input">
@@ -42,6 +42,7 @@
         <button type="submit" name="submit">Login</button>
         <p>OR</p>
         <h4><a href="loginAdminandGov.php">Login</a> as Admin/Staff </h4>
+        <h4>Belum memiliki Akun? <a href="sign-upMasyarakat.php">Buat Disini</a></h4>
       </form>
     </div>
     <script src="js/loginValidation.js"></script> 

@@ -1,11 +1,10 @@
 <?php 
 require '../php/functions.php';
-$conn = mysqli_connect("localhost" , "root", "", "recity");
-$nik = $_SESSION["NIK"];
-$query = mysqli_query($conn, "SELECT * FROM user WHERE NIK = $nik");
+$conn = mysqli_connect("localhost" , "root", "", "dbrecity");
+$idsup = $_SESSION["id_supervisor"];
+$query = mysqli_query($conn, "SELECT * FROM supervisor WHERE id_supervisor = $idsup");
 $user = mysqli_fetch_assoc($query);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +13,7 @@ $user = mysqli_fetch_assoc($query);
     <link rel="stylesheet" href="../css/pageMasyarakat.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,600;0,700;0,800;1,200;1,300;1,600;1,700;1,800&display=swap" rel="stylesheet" />
-    <title>Profile Pengguna</title>
+    <title>Profile Anda</title>
 </head>
 <body>
     <nav class="sidebar close">
@@ -33,33 +32,17 @@ $user = mysqli_fetch_assoc($query);
 
         <div class="menu-bar">
             <div class="menu">
-                <li class="search-box">
-                    <i class='bx bx-search icon'></i>
-                    <input type="text" placeholder="Search...">
-                </li>
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="dashboardGovernment.php">
                             <i class='bx bx-home-alt icon' ></i>
-                            <span class="text nav-text">Statistik</span>
+                            <span class="text nav-text">Beranda</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="saved.html">
-                            <i class='bx bx-bookmark icon'></i>
-                            <span class="text nav-text">Kelola Laporan</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="history.html">
-                            <i class='bx bx-history icon'></i>
-                            <span class="text nav-text">Kelola User</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="#">
+                        <a href="statistik.php">
                             <i class='bx bx-pie-chart-alt icon' ></i>
-                            <span class="text nav-text">Kelola Staff</span>
+                            <span class="text nav-text">Statistik Laporan</span>
                         </a>
                     </li>
                 </ul>
@@ -67,8 +50,8 @@ $user = mysqli_fetch_assoc($query);
 
             <div class="bottom-content">
                 <li class="">
-                    <a href="#">
-                        <i class='bx bx-log-out icon' ></i>
+                    <a href="../php/logout-proses-adminStaff.php">
+                        <i class='bx bx-log-out icon'></i>
                         <span class="text nav-text">Logout</span>
                     </a>
                 </li>
@@ -90,53 +73,49 @@ $user = mysqli_fetch_assoc($query);
     <div class="konten">
         <div class="header-konten">
             <div class="page-name">
-                <h2>Kelola User</h2>
+                <h2>Profil</h2>
             </div>
             <div class="user-login">
-                <a href="profileUser.html">
+                <a href="profilStaff.php">
                     <img src="
-                    <?= $_SESSION["foto_profil"];?>" alt="Profil Picture">
+                    <?= $_SESSION["foto_profil_staff"];?>" alt="Profil Picture">
                 </a>
-                <p><?= $_SESSION["nama_user"];?></p>
+                <p><?= $_SESSION["nama_supervisor"];?></p>
             </div>
         </div>
-            
+
         <div class="isi-konten">
             <div class="profile">
                 <form action="../php/functions.php" method="post" enctype="multipart/form-data" class="profile-form">
                     <div class="profile-container">
                         <div class="profile-pic-container">
-                            <img src="<?= $user["foto_profil"];?>" class="profile-pic">
+                            <img src="<?= $user["foto_profil_staff"];?>" class="profile-pic">
                             <button type="button" class="edit-button"><i class='bx bx-pencil icon'></i></button>
                         </div>
                         <div class="form-container">
                             <div class="form-group">
-                                <label for="nik">User ID</label>
-                                <input type="text" id="nik" name="nik" value="<?= $user["NIK"];?>" readonly>
+                                <label for="nik">Staff ID</label>
+                                <input type="text" id="nik" name="nik" value="<?= $user["id_supervisor"];?>" readonly>
                             </div>
                             <div class="form-group">
-                                <label for="name">Nama Pengguna</label>
-                                <input type="text" id="name" name="name" placeholder="<?= $user["nama_user"];?>">
+                                <label for="name">Nama Anda</label>
+                                <input type="text" id="name" name="name" placeholder="<?= $user["nama_supervisor"];?>"readonly>
                             </div>
                             <div class="form-group">
-                                <label for="email">Email Pengguna</label>
-                                <input type="email" id="email" name="email" placeholder="<?= $user["email_user"];?>">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="<?= $user["email_supervisor"];?>"readonly>
                             </div>
                             <div class="form-group">
-                                <label for="password">Kata Sandi Pengguna</label>
-                                <input type="password" id="password" name="password" placeholder="<?= $user["password_user"];?>">
+                                <label for="password">Kata Sandi</label>
+                                <input type="password" id="password" name="password" placeholder="<?= $user["password_supervisor"];?>"readonly>
                             </div>
                         </div>
-                        
-                    </div>
-                    <div class="form-actions">
-                        <button type="submit" class="save-button">Simpan</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-    <script src="../js/masyarakatValidation.js"></script>
+    <script src="../js/loginValidation.js"></script>
     <script src="../js/sidebar.js"></script>
     <script src="../js/postAtribut.js"></script>
 </body>

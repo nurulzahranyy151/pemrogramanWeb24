@@ -33,7 +33,7 @@ require '../php/functions.php';?>
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="StatisticAdmin.php">
                             <i class='bx bx-bar-chart-alt-2 icon'></i>
                             <span class="text nav-text">Statistik Laporan</span>
                         </a>
@@ -51,15 +51,9 @@ require '../php/functions.php';?>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="kelolaLaporan.php">
                             <i class='bx bx-image icon'></i>
                             <span class="text nav-text">Kelola Laporan</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-error icon'></i>
-                            <span class="text nav-text">Kelola Report</span>
                         </a>
                     </li>
                 </ul>
@@ -99,7 +93,7 @@ require '../php/functions.php';?>
         </div>
         <div class="isi-konten">
             <div class="header-data">
-                <h3>Data Masyarakat</h3>
+                <h3>Data Laporan</h3>
             </div>
             <div class="isi-table">
                 <div class="search">

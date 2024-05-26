@@ -177,7 +177,7 @@ $adminData = mysqli_fetch_assoc($admin);
                     while( $row = mysqli_fetch_assoc($result)):?>
                     <tr class="isi-data">
                         <td><?= $count;?></td>
-                        <td><img src="<?= $row["foto_profil"];?>" alt="Profil Picture" class="foto-masyarakat"></td>
+                        <td><img src="<?= $row["foto_profil_user"];?>" alt="Profil Picture" class="foto-masyarakat"></td>
                         <td><?= $row["NIK"];?></td>
                         <td><?= $row["nama_user"];?></td>
                         <td><?= $row["email_user"];?></td>
