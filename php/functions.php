@@ -32,6 +32,13 @@ function loginMasyarakat($user){
     }
 }
 
+function userLogin($nik){
+    global $conn;
+    $result = mysqli_query($conn, "SELECT * FROM user WHERE NIK = $nik");
+    return mysqli_fetch_assoc($result);
+
+}
+
 function loginAdminandGov($user){
     global $conn;
     $email = $user["email"];
@@ -100,9 +107,9 @@ function uploadPostingan($data, $file) {
         $targetDir = "../postingan/";
         $targetFile = $targetDir . basename($file["media"]["name"]);
         if (move_uploaded_file($file["media"]["tmp_name"], $targetFile)) {
-            $query = "INSERT INTO postingan VALUES('', NOW(), '$address', 0, '$targetFile', '$caption', 'Wait', '$nik')";
+            $query = "INSERT INTO postingan VALUES('', NOW(), '$address', 0, '$targetFile', '$caption', '$nik', 'ditunggu')";
             mysqli_query($conn, $query);
-            return true;
+            return mysqli_affected_rows($conn);
         }
     }
     return false;
@@ -180,6 +187,40 @@ function deleteMasyarakat($nik) {
     $query = "DELETE FROM user WHERE NIK = $nik";
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn);
+}
+
+function savePostingan($post){
+    global $conn;
+    $id = $post["idpost"];
+    $nik = $post["nik"];
+    $tanggal = date("Y-m-d");
+    $query = "INSERT INTO saved VALUES('$id', '$nik', NOW())";
+    mysqli_query($conn, $query);
+    return mysqli_affected_rows($conn);
+}
+
+function unsavePostingan($post){
+    global $conn;
+    $id = $post["idpost"];
+    $nik = $post["nik"];
+    $query = "DELETE FROM saved WHERE id_postingan = '$id' AND NIK = '$nik'";
+    mysqli_query($conn, $query);
+    return mysqli_affected_rows($conn);
+}
+
+function cekSave($idpost, $nik){
+    global $conn;
+    $query = mysqli_query($conn, "SELECT * FROM saved WHERE NIK = $nik AND id_postingan = $idpost");
+    if(mysqli_num_rows($query) > 0){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+function userSaved($nik){
+    global $conn;
+    return mysqli_query($conn, "SELECT postingan.*, user.nama_user, user.foto_profil_user, saved.waktu_disimpan FROM postingan JOIN saved ON postingan.id_postingan = saved.id_postingan JOIN user ON postingan.NIK = user.NIK WHERE saved.NIK = $nik");
 }
 
 ?>

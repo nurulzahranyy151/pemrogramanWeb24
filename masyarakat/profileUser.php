@@ -1,6 +1,6 @@
 <?php 
 require '../php/functions.php';
-$conn = mysqli_connect("localhost" , "root", "", "recity");
+$conn = mysqli_connect("localhost" , "root", "", "dbrecity");
 $nik = $_SESSION["NIK"];
 $query = mysqli_query($conn, "SELECT * FROM user WHERE NIK = $nik");
 $user = mysqli_fetch_assoc($query);
@@ -111,9 +111,9 @@ $user = mysqli_fetch_assoc($query);
                 <form action="../php/handleUpdateMasyarakat.php" method="post" enctype="multipart/form-data" class="profile-form">
                     <div class="profile-container">
                         <div class="profile-pic-container">
-                            <img id="profile-pic" src="<?= $user['foto_profil']; ?>" class="profile-pic">
-                            <input type="file" id="profile-pic-input" name="profile-pic" accept="image/*" style="display: none;">
-                            <button type="button" class="edit-button"><i class='bx bx-pencil icon'></i></button>
+                            <img id="profile-pic" src="<?= $user['foto_profil_user'];?>" class="profile-pic">
+                            <input type="file" id="profile-pic-input" name="profile-pic"  style="display: none;">
+                            <button type="button"  class="edit-button" onclick="changeProfilUser()"><i class='bx bx-pencil icon'></i></button>
                         </div>
                         <div class="form-container">
                             <div class="form-group">

@@ -4,12 +4,20 @@ if (!isset($_SESSION["NIK"])) {
     header("Location: ../loginMasyarakat.php");
     exit();
 }
-$conn = mysqli_connect("localhost" , "root", "", "dbrecity");
+
+$showPopupcomment = false;
+
+if(isset($_POST["comment-button"])){
+    $showPopupcomment = true;
+    $idcomment = $_POST["idpost-comment"];
+    $query = mysqli_query($conn, "SELECT postingan.media, postingan.caption, postingan.tgl_postingan, postingan.alamat_postingan, user.nama_user, user.foto_profil_user FROM postingan JOIN user ON postingan.NIK = user.NIK WHERE postingan.id_postingan = $idcomment");
+    $commented = mysqli_fetch_assoc($query);
+    unset($_POST["comment-button"]);
+}else{
+    $showPopupcomment = false;
+}
 $nik = $_SESSION["NIK"];
-$query = mysqli_query($conn, "SELECT * FROM user WHERE NIK = $nik");
-$user = mysqli_fetch_assoc($query);
-$_SESSION["nama_user"] = $user["nama_user"];
-$_SESSION["foto_profil_user"] = $user["foto_profil_user"];
+$user = userLogin($nik);
 
 
 if(isset($_POST["submit-report"])){
@@ -60,7 +68,7 @@ if(isset($_POST["submit-report"])){
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="saved.html">
+                        <a href="saved.php">
                             <i class='bx bx-bookmark icon'></i>
                             <span class="text nav-text">Saved</span>
                         </a>
@@ -117,19 +125,19 @@ if(isset($_POST["submit-report"])){
             <div class="user-login">
                 <a href="profileUser.php">
                     <img src="
-                    <?= $_SESSION["foto_profil_user"];?>" alt="Profil Picture">
+                    <?= $user["foto_profil_user"];?>" alt="Profil Picture">
                 </a>
-                <p><?= $_SESSION["nama_user"];?></p>
+                <p><?= $user["nama_user"];?></p>
             </div>
         </div>
         <div class="isi-konten">
             <div class="fyp">
-                <form action="../php/handlePostingan" method="post" enctype="multipart/form-data">
+                <form action="../php/handlePostingan.php" method="post" enctype="multipart/form-data">
                     <div class="make-report">
                         <div class="header-report">
                             <div class="reporter">
-                                <img src="<?= $_SESSION["foto_profil_user"];?>" alt="Profil Picture">
-                                <h5><?= $_SESSION["nama_user"];?></h5>
+                                <img src="<?= $user["foto_profil_user"];?>" alt="Profil Picture">
+                                <h5><?= $user["nama_user"];?></h5>
                             </div>
                             <div class="caption-media">
                                 <div class="caption">
@@ -158,6 +166,7 @@ if(isset($_POST["submit-report"])){
                 <?php 
                 $postingan = showAllpostingan();
                 while ($row = mysqli_fetch_assoc($postingan)):?>
+                <?php $saveornot = cekSave($row["id_postingan"], $nik) ? True : False;?>
                     <div class="post">
                         <div class="post-header">
                             <img src="<?= $row['foto_profil_user'];?>" alt="Profil Picture">
@@ -172,14 +181,20 @@ if(isset($_POST["submit-report"])){
                         </div>
                         <div class="post-actions">
                             <div class="left-post-action">
-                                <button class="like-button" onclick="toggleLike(this)">
-                                    <i class='bx bx-heart'></i>
-                                </button>
-                                <button class="comment-button" onclick="toggleComment(this)"><i class='bx bx-comment'></i></button>
+                                <form action="" method="post">
+                                    <input type="hidden" name="idpost-comment" value="<?= $row["id_postingan"];?>">
+                                    <button type="submit" class="comment-button" name="comment-button"><i class='bx bx-comment'></i></button>
+                                </form>
                             </div>
                             <div class="right-post-action">
-                                <button class="save-button" onclick="toggleSave(this)">
-                                    <i class='bx bx-bookmark'></i>
+                                <form action="../php/savePostinganHandler.php" method="post">
+                                    <input type="hidden" name="ceksave" value="<?php echo $saveornot ? 'saved' : 'not';?>">
+                                    <input type="hidden" name="idpost" value="<?= $row["id_postingan"];?>">
+                                    <input type="hidden" name="nik" value="<?= $nik;?>">
+                                    <button class="<?php echo $saveornot ? 'saved' : 'save-button';?>" onclick="toggleSave(this)">
+                                    <i class='<?php echo $saveornot ? 'bx bxs-bookmark' : 'bx bx-bookmark';?>' style=""></i>
+                                    </button>
+                                </form>
                             </div>
                         </div>
                         <form action="#" method="post" class="add-comment-form">
@@ -192,7 +207,7 @@ if(isset($_POST["submit-report"])){
             <div class="trend">
                 <div class="trend-content">
                     <div class="header-trend">
-                        <img src="<?= $_SESSION["foto_profil_user"];?>" alt="">
+                        <img src="<?= $user["foto_profil_user"];?>" alt="">
                         <h4>Accepted Post</h4>
                     </div>
                     <hr>
@@ -217,29 +232,32 @@ if(isset($_POST["submit-report"])){
         </div>
     </div>
 </div>
-<div id="commentPopup" class="popup">
+<div id="commentPopup" class="popup" style="display: <?php echo $showPopupcomment ? 'flex' : 'none'; ?>">
+    <?php $saveornotpopup = cekSave($idcomment, $nik) ? True : False;?>
     <div class="popup-content">
         <span class="close">&times;</span>
         <div class="popup-left">
-            <img src="../img/default.jpeg" alt="Post Image">
+            <img src="<?= $commented["media"];?>" alt="Post Image">
         </div>
         <div class="popup-right">
             <div class="post-header">
-                <img src="../img/coba.jpeg" alt="Profile Picture" class="profile-picture-pop-up">
+                <img src="<?= $commented["foto_profil_user"];?>" alt="Profile Picture" class="profile-picture-pop-up">
                 <div class="profile-info">
-                    <h3>Username</h3>
-                    <p>Posted on date</p>
+                    <h3><?= $commented["nama_user"];?></h3>
+                    <p><?= $commented["tgl_postingan"];?></p>
                 </div>
             </div>
             <div class="previous-comments">
                 <div class="comments">
+                    <?php if($commented["caption"] != ""):?>
                     <div class="image-user-comment">
-                        <img src="../img/coba.jpeg" alt="">
+                        <img src="<?= $commented["foto_profil_user"];?>" alt="">
                     </div>
                     <div class="comments-user">
-                        <h4>Lulu</h4>
-                        <p>keren bang</p>
+                        <h4><?= $commented["nama_user"];?></h4>
+                        <p><?= $commented["caption"];?></p>
                     </div>
+                    <?php endif;?>
                 </div>
                 <div class="comments">
                     <div class="image-user-comment">
@@ -253,17 +271,19 @@ if(isset($_POST["submit-report"])){
             </div>
             <div class="post-actions">
                 <div class="left-post-action">
-                    <button class="like-button" onclick="toggleLike(this)">
-                        <i class='bx bx-heart'></i>
-                    </button>
                     <button class="comment-button" ><label for="comment-pop">
                     <i class='bx bx-comment'></i>
                     </label></button>
                 </div>
                 <div class="right-post-action">
-                    <button class="save-button" onclick="toggleSave(this)">
-                        <i class='bx bx-bookmark'></i>
-                    </button>
+                    <form action="../php/savePostinganHandler.php" method="post">
+                        <input type="hidden" name="ceksave" value="<?php echo $saveornotpopup ? 'saved' : 'not';?>">
+                        <input type="hidden" name="idpost" value="<?= $idcomment;?>">
+                        <input type="hidden" name="nik" value="<?= $nik;?>">
+                        <button class="<?php echo $saveornotpopup ? 'saved' : 'save-button';?>" onclick="toggleSave(this)">
+                            <i class='<?php echo $saveornotpopup ? 'bx bxs-bookmark' : 'bx bx-bookmark';?>' style=""></i>
+                        </button>
+                    </form>
                 </div>
             </div>
             <form action="#" method="post" class="add-comment-form">
@@ -273,6 +293,7 @@ if(isset($_POST["submit-report"])){
         </div>
     </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../js/masyarakatValidation.js"></script>
 <script src="../js/sidebar.js"></script>
 </body>

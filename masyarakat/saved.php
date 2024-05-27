@@ -1,3 +1,12 @@
+<?php
+require '../php/functions.php';
+if (!isset($_SESSION["NIK"])) {
+    header("Location: ../loginMasyarakat.php");
+    exit();
+}
+$nik = $_SESSION["NIK"];
+$user = userLogin($nik);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +39,7 @@
                 </li>
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="dashboard.html">
+                        <a href="dashboard.php">
                             <i class='bx bx-home-alt icon' ></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
@@ -90,32 +99,34 @@
             </div>
             <div class="user-login">
                 <a href="profileUser.html">
-                    <img src="../img/coba.jpeg" alt="Profil Picture">
+                    <img src="<?= $user["foto_profil_user"];?>" alt="Profil Picture">
                 </a>
-                <p>Nama User</p>
+                <p><?= $user["nama_user"];?></p>
             </div>
         </div>
-        <div class="isi-konten">
-            <?php for ($i = 0; $i < 4; $i++) :;?>
+        <div class="isi-save">
+            <?php
+            $savedPost = userSaved($nik);
+            while ($post = mysqli_fetch_assoc($savedPost)):?>
             <div class="saved-post">
                 <div class="saved-media">
-                    <img src="../img/coba.jpeg" alt="">
+                    <img src="<?= $post["media"];?>" alt="">
                 </div>
                 <div class="saved-infomation">
                     <div class="caption">
-                        <p>susahnya jadi anak daerah ya gini, akses jalan ke kota tuh sulit untuk dilewati karena jalan yang masih rusak, berbelok-belok, banyak jalan berbatu hufft</p>
-                        <p class="saved-on">Image . saved on May 11 2004 12.00</p>
+                        <p><?= $post["caption"];?></p>
+                        <p class="saved-on">Image . saved on <?= $post["waktu_disimpan"];?></p>
                     </div>
                     <div class="uploader">
-                        <img src="../img/coba.jpeg" alt="">
-                        <p class="posted-by">Posted by <b>Lulu</b></p>
+                        <img src="<?= $post["foto_profil_user"];?>" alt="">
+                        <p class="posted-by">Posted by <b><?= $post["nama_user"];?></b></p>
                     </div>
                     <div class="unsave">
                         <button type="submit" class="unsave-button">Unsave</button>
                     </div>
                 </div>
             </div>
-            <?php endfor;?>
+            <?php endwhile;?>
         </div>
     </div>
 <!--CONTENT END-->

@@ -661,6 +661,12 @@ body.dark .home .text {
     padding-left: 25px;
     display: flex;
 }
+.isi-save{
+    margin-top: 100px;
+    padding-left: 25px;
+    display: inline;
+
+}
 
 .konten table {
     border-color: #ccc;
@@ -888,6 +894,7 @@ form {
     background: white;
     padding: 20px;
     border-radius: 20px;
+    margin-bottom: 20px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
 }
 

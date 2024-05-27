@@ -55,21 +55,6 @@ function toggleSave(button) {
     }
 }
 
-function toggleLike(button) {
-    const icon = button.querySelector('i');
-    button.classList.toggle('liked');
-    if (button.classList.contains('liked')) {
-        icon.classList.replace('bx-heart', 'bxs-heart');
-    } else {
-        icon.classList.replace('bxs-heart', 'bx-heart'); 
-    }
-}
-
-function toggleComment(button) {
-    var popup = document.getElementById("commentPopup");
-    popup.style.display = 'flex';
-}
-
 var closeBtn = document.querySelector(".popup .close");
 closeBtn.onclick = function() {
     var popup = document.getElementById("commentPopup");
@@ -83,4 +68,18 @@ window.onclick = function(event) {
     }
 }
 
+function changeProfilUser(){
+    document.getElementById('profile-pict-input').click();
+}
+
+document.getElementById('profile-pict-input').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('profile-pict').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+});
 
