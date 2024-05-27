@@ -45,13 +45,13 @@ $user = userLogin($nik);
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="saved.php">
                             <i class='bx bx-bookmark icon'></i>
                             <span class="text nav-text">Saved</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="history.html">
+                        <a href="history.php">
                             <i class='bx bx-history icon'></i>
                             <span class="text nav-text">History</span>
                         </a>

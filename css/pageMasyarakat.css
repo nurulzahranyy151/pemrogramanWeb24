@@ -661,7 +661,7 @@ body.dark .home .text {
     padding-left: 25px;
     display: flex;
 }
-.isi-save{
+.isi-save, .isi-history{
     margin-top: 100px;
     padding-left: 25px;
     display: inline;

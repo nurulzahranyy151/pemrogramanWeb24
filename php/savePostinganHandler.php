@@ -13,6 +13,6 @@ if($_POST["ceksave"] == "not"){
         echo "<script>alert('Post gagal dihapus');</script>";
     }
 }
-header("Location: ../masyarakat/dashboard.php");
+header("Location: " . $_SERVER['HTTP_REFERER']);
 exit();
 ?>

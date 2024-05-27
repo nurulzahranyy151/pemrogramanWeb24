@@ -5,13 +5,16 @@ if (!isset($_SESSION["NIK"])) {
     exit();
 }
 
+$conn = mysqli_connect("localhost" , "root", "", "dbrecity");
 $showPopupcomment = false;
 
 if(isset($_POST["comment-button"])){
+    global $conn;
     $showPopupcomment = true;
     $idcomment = $_POST["idpost-comment"];
     $query = mysqli_query($conn, "SELECT postingan.media, postingan.caption, postingan.tgl_postingan, postingan.alamat_postingan, user.nama_user, user.foto_profil_user FROM postingan JOIN user ON postingan.NIK = user.NIK WHERE postingan.id_postingan = $idcomment");
     $commented = mysqli_fetch_assoc($query);
+    unset($_POST["idpost-comment"]);
     unset($_POST["comment-button"]);
 }else{
     $showPopupcomment = false;
@@ -74,7 +77,7 @@ if(isset($_POST["submit-report"])){
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="history.html">
+                        <a href="history.php">
                             <i class='bx bx-history icon'></i>
                             <span class="text nav-text">History</span>
                         </a>

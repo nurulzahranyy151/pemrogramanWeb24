@@ -223,4 +223,9 @@ function userSaved($nik){
     return mysqli_query($conn, "SELECT postingan.*, user.nama_user, user.foto_profil_user, saved.waktu_disimpan FROM postingan JOIN saved ON postingan.id_postingan = saved.id_postingan JOIN user ON postingan.NIK = user.NIK WHERE saved.NIK = $nik");
 }
 
+function findHistPost($nik){
+    global $conn;
+    return mysqli_query($conn, "SELECT postingan.*, user.nama_user, user.foto_profil_user FROM postingan JOIN user ON postingan.NIK = user.NIK WHERE postingan.NIK = $nik");
+}
+
 ?>

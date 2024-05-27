@@ -1,4 +1,25 @@
-<?php session_start() ?>
+<?php 
+require '../php/functions.php';
+if (!isset($_SESSION["NIK"])) {
+    header("Location: ../loginMasyarakat.php");
+    exit();
+}
+$conn = mysqli_connect("localhost" , "root", "", "dbrecity");
+$showPopupcomment = false;
+if(isset($_POST["comment-button"])){
+    global $conn;
+    $showPopupcomment = true;
+    $idcomment = $_POST["idpost-comment"];
+    $query = mysqli_query($conn, "SELECT postingan.media, postingan.caption, postingan.tgl_postingan, postingan.alamat_postingan, user.nama_user, user.foto_profil_user FROM postingan JOIN user ON postingan.NIK = user.NIK WHERE postingan.id_postingan = $idcomment");
+    $commented = mysqli_fetch_assoc($query);
+    unset($_POST["idpost-comment"]);
+    unset($_POST["comment-button"]);
+}else{
+    $showPopupcomment = false;
+}
+$nik = $_SESSION["NIK"];
+$user = userLogin($nik);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,31 +56,31 @@
                 </li>
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="dashboard.php">
                             <i class='bx bx-home-alt icon' ></i>
-                            <span class="text nav-text">Beranda</span>
+                            <span class="text nav-text">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="saved.html">
+                        <a href="saved.php">
                             <i class='bx bx-bookmark icon'></i>
                             <span class="text nav-text">Saved</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="history.html">
+                        <a href="history.php">
                             <i class='bx bx-history icon'></i>
                             <span class="text nav-text">History</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="">
                             <i class='bx bx-pie-chart-alt icon' ></i>
                             <span class="text nav-text">Statistic</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="">
                             <i class='bx bx-cog icon'></i>
                             <span class="text nav-text">Settings</span>
                         </a>
@@ -89,7 +110,6 @@
                 
             </div>
         </div>
-
     </nav>
 
     <div class="konten">
@@ -100,36 +120,48 @@
             <div class="user-login">
                 <a href="profileUser.php">
                     <img src="
-                    <?= $_SESSION["foto_profile_user"];?>" alt="Profil Picture">
+                    <?= $user["foto_profil_user"];?>" alt="Profil Picture">
                 </a>
-                <p><?= $_SESSION["nama_user"];?></p>
+                <p><?= $user["nama_user"];?></p>
             </div>
         </div>
-        <div class="isi-konten">
-            <?php for ($i = 0; $i < 4; $i++) :;?>
+        <div class="isi-history">
+            <?php
+            $histPost = findHistpost($nik);
+            while ($post = mysqli_fetch_assoc($histPost)):?>
+            <?php $saveornot = cekSave($post["id_postingan"], $nik) ? True : False;?>
             <div class="history-post">
                 <div class="post-header">
-                    <img src="gambar_pengguna.jpg" alt="Profil Picture">
+                    <img src="<?= $user["foto_profil_user"];?>" alt="Profil Picture">
                     <div class="post-info">
-                        <h3>Nama Pengguna</h3>
-                        <p>Waktu Posting</p>
+                        <h3><?= $user["nama_user"];?></h3>
+                        <p><?= $post["tgl_postingan"];?></p>
                     </div>
                 </div>
                 <div class="post-content">
-                    <p class="caption">Ini caption</p>
-                    <img src="../img/coba.jpeg" alt="ini gambar">
+                    <p class="<?= $post["caption"];?>">Ini caption</p>
+                    <img src="<?= $post["media"];?>" alt="ini gambar">
                 </div>
                 <div class="post-actions">
                     <div class="left-actions">
-                        <button><i class='bx bxs-star icon'></i></button>
-                        <button><i class='bx bxs-comment icon'></i></button>
-                        <button><i class='bx bxs-share icon'></i></button>
+                        <form action="" method="post">
+                            <input type="hidden" name="idpost-comment" value="<?= $post["id_postingan"];?>">
+                            <button type="submit" class="comment-button" name="comment-button"><i class='bx bx-comment'></i></button>
+                        </form>
+                        <form action="../php/savePostinganHandler.php" method="post">
+                            <input type="hidden" name="ceksave" value="<?php echo $saveornot ? 'saved' : 'not';?>">
+                            <input type="hidden" name="idpost" value="<?= $post["id_postingan"];?>">
+                            <input type="hidden" name="nik" value="<?= $nik;?>">
+                            <button class="<?php echo $saveornot ? 'saved' : 'save-button';?>" onclick="toggleSave(this)">
+                            <i class='<?php echo $saveornot ? 'bx bxs-bookmark' : 'bx bx-bookmark';?>' style=""></i>
+                            </button>
+                        </form>
                     </div>
                     <div class="center-action">
-                        <p><i class='bx bx-check-square icon'></i>Diterima</p>
+                        <button><i class='bx bx-check-square icon'></i></button>
                     </div>
                     <div class="right-action">
-                        <button>Hapus <i class='bx bx-trash icon'></i></button>
+                        <button><i class='bx bx-trash icon'></i></button>
                     </div>
                 </div>
                 <form action="#" method="post" class="add-comment-form">
@@ -137,7 +169,68 @@
                     <button type="submit" id="submit-comment" style="display: none;">Kirim</button>
                 </form>
             </div>
-            <?php endfor?>
+            <?php endwhile?>
+        </div>
+    </div>
+</div>
+<div id="commentPopup" class="popup" style="display: <?php echo $showPopupcomment ? 'flex' : 'none'; ?>">
+    <?php $saveornotpopup = cekSave($idcomment, $nik) ? True : False;?>
+    <div class="popup-content">
+        <span class="close">&times;</span>
+        <div class="popup-left">
+            <img src="<?= $commented["media"];?>" alt="Post Image">
+        </div>
+        <div class="popup-right">
+            <div class="post-header">
+                <img src="<?= $commented["foto_profil_user"];?>" alt="Profile Picture" class="profile-picture-pop-up">
+                <div class="profile-info">
+                    <h3><?= $commented["nama_user"];?></h3>
+                    <p><?= $commented["tgl_postingan"];?></p>
+                </div>
+            </div>
+            <div class="previous-comments">
+                <div class="comments">
+                    <?php if($commented["caption"] != ""):?>
+                    <div class="image-user-comment">
+                        <img src="<?= $commented["foto_profil_user"];?>" alt="">
+                    </div>
+                    <div class="comments-user">
+                        <h4><?= $commented["nama_user"];?></h4>
+                        <p><?= $commented["caption"];?></p>
+                    </div>
+                    <?php endif;?>
+                </div>
+                <div class="comments">
+                    <div class="image-user-comment">
+                        <img src="../img/coba.jpeg" alt="">
+                    </div>
+                    <div class="comments-user">
+                        <h4>Lulu</h4>
+                        <p>keren bang</p>
+                    </div>
+                </div>
+            </div>
+            <div class="post-actions">
+                <div class="left-post-action">
+                    <button class="comment-button" ><label for="comment-pop">
+                    <i class='bx bx-comment'></i>
+                    </label></button>
+                </div>
+                <div class="right-post-action">
+                    <form action="../php/savePostinganHandler.php" method="post">
+                        <input type="hidden" name="ceksave" value="<?php echo $saveornotpopup ? 'saved' : 'not';?>">
+                        <input type="hidden" name="idpost" value="<?= $idcomment;?>">
+                        <input type="hidden" name="nik" value="<?= $nik;?>">
+                        <button class="<?php echo $saveornotpopup ? 'saved' : 'save-button';?>" onclick="toggleSave(this)">
+                            <i class='<?php echo $saveornotpopup ? 'bx bxs-bookmark' : 'bx bx-bookmark';?>' style=""></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+            <form action="#" method="post" class="add-comment-form">
+                <input type="text" name="comment" id="comment-pop" placeholder="Tambahkan komentar...">
+                <button type="submit" id="submit-comment">Kirim</button>
+            </form>
         </div>
     </div>
 </div>

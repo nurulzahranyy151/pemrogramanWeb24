@@ -1,3 +1,18 @@
+document.addEventListener("DOMContentLoaded", function() {
+    // Kembalikan posisi scroll setelah halaman dimuat
+    if (sessionStorage.scrollTop !== undefined) {
+        window.scrollTo(0, sessionStorage.scrollTop);
+        sessionStorage.removeItem('scrollTop');
+    }
+    
+    // Simpan posisi scroll sebelum form dikirim
+    document.querySelectorAll("form").forEach(form => {
+        form.addEventListener("submit", function() {
+            sessionStorage.scrollTop = window.pageYOffset;
+        });
+    });
+});
+
 function validateComment() {
     var commentInput = document.getElementById('comment');
     var submitBtn = document.getElementById('submit-comment');
