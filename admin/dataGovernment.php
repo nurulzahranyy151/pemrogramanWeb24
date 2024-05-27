@@ -30,7 +30,7 @@ $adminData = mysqli_fetch_assoc($admin);
     <link rel="stylesheet" href="../css/pageAdminStyle.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <title>Dashboard</title>
+    <title>Kelola Staff</title>
 </head>
 <body>
 
@@ -52,7 +52,7 @@ $adminData = mysqli_fetch_assoc($admin);
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="statisticAdmin.php">
                             <i class='bx bx-bar-chart-alt-2 icon'></i>
                             <span class="text nav-text">Statistik Laporan</span>
                         </a>
@@ -70,15 +70,9 @@ $adminData = mysqli_fetch_assoc($admin);
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="kelolaLaporan.php">
                             <i class='bx bx-image icon'></i>
                             <span class="text nav-text">Kelola Laporan</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-error icon'></i>
-                            <span class="text nav-text">Kelola Report</span>
                         </a>
                     </li>
                 </ul>

@@ -1,3 +1,24 @@
+<?php 
+require '../php/functions.php';
+if (!isset($_SESSION["id_supervisor"])) {
+    header("Location: ../loginMasyarakat.php");
+    exit();
+}
+$conn = mysqli_connect("localhost" , "root", "", "dbrecity");
+$idsup = $_SESSION["id_supervisor"];
+$query = mysqli_query($conn, "SELECT * FROM supervisor WHERE id_supervisor = $idsup");
+$user = mysqli_fetch_assoc($query);
+$_SESSION["nama_supervisor"] = $user["nama_supervisor"];
+$_SESSION["foto_profil_staff"] = $user["foto_profil_staff"];
+
+
+if(isset($_POST["submit-report"])){
+    uploadPostingan($_POST, $_FILES);
+}
+
+
+?>
+<!
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,10 +29,10 @@
     
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 
-    <title>Dashboard</title>
+    <title>Beranda</title>
 </head>
 <body>
-    <nav class="sidebar close">
+<nav class="sidebar close">
         <header>
             <div class="image-text">
                 <span class="image">
@@ -27,29 +48,26 @@
 
         <div class="menu-bar">
             <div class="menu">
-                <li class="search-box">
-                    <i class='bx bx-search icon'></i>
-                    <input type="text" placeholder="Search...">
-                </li>
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="dashboardGovernment.php">
                             <i class='bx bx-home-alt icon' ></i>
                             <span class="text nav-text">Beranda</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="statistik.php">
                             <i class='bx bx-bar-chart-alt-2 icon'></i>
-                            <span class="text nav-text">Statistic</span>
+                            <span class="text nav-text">Statistik Laporan</span>
                         </a>
                     </li>
+
                 </ul>
             </div>
 
             <div class="bottom-content">
                 <li class="">
-                    <a href="../php/logout-proses.php">
+                    <a href="../php/logout-proses-adminStaff.php">
                         <i class='bx bx-log-out icon' ></i>
                         <span class="text nav-text">Logout</span>
                     </a>
@@ -65,21 +83,20 @@
                         <span class="switch"></span>
                     </div>
                 </li>
-                
             </div>
         </div>
     </nav>
     <div class="konten">
         <div class="header-konten">
             <div class="page-name">
-                <h2>Dashboard</h2>
+                <h2>Beranda</h2>
             </div>
             <div class="user-login">
-                <a href="profileUser.php">
+                <a href="profilStaff.php">
                     <img src="
-                    <?= $_SESSION["foto_profil"];?>" alt="Profil Picture">
+                    <?= $_SESSION["foto_profil_staff"];?>" alt="Profil Picture">
                 </a>
-                <p><?= $_SESSION["nama_user"];?></p>
+                <p><?= $_SESSION["nama_supervisor"];?></p>
             </div>
         </div>
         <div class="isi-konten">
@@ -88,12 +105,12 @@
                     <div class="make-report">
                         <div class="header-report">
                             <div class="reporter">
-                                <img src="<?= $_SESSION["foto_profil"];?>" alt="Profil Picture">
-                                <h5><?= $_SESSION["nama_user"];?></h5>
+                                <img src="<?= $_SESSION["foto_profil_staff"];?>" alt="Profil Picture">
+                                <h5><?= $_SESSION["nama_supervisor"];?></h5>
                             </div>
                             <div class="caption-media">
                                 <div class="caption">
-                                    <textarea class="input-caption" name="caption" placeholder="Laporkan keluhan anda di sini..."></textarea>
+                                    <textarea class="input-caption" name="caption" placeholder="Buat Postingan "></textarea>
                                 </div>
                                 <div class="address-post">
                                 <textarea class="input-address" name="address" placeholder="Masukkan alamat laporan..."></textarea>
@@ -120,14 +137,14 @@
                 while ($row = mysqli_fetch_assoc($postingan)):?>
                     <div class="post">
                         <div class="post-header">
-                            <img src="<?= $row['foto_profil'];?>" alt="Profil Picture">
+                            <img src="<?= $row['foto_profil_staff'];?>" alt="Profil Picture">
                             <div class="post-info">
-                                <h3><?= $row['nama_user'];?></h3>
+                                <h3><?= $row['nama_supervisor'];?></h3>
                                 <p><?= $row['tgl_laporan'];?></p>
                             </div>
                         </div>
                         <div class="post-content">
-                            <p class="caption"><?= $row['isi_laporan'];?></p>
+                            <p class="caption"><?= $row['caption'];?></p>
                             <img src="<?= $row['media'];?>" alt="Gambar postingan">
                         </div>
                         <div class="post-actions">
@@ -136,7 +153,7 @@
                                     <i class='bx bx-heart'></i>Beri Tanggapan
                                 </button>
                             </div>
-                            <div class="left2-post-action">
+                            <div class="left-post-action">
                                 <button class="save-button" onclick="toggleSave(this)">
                                     <i class='bx bx-bookmark'></i>Terima
                             </div>
@@ -144,7 +161,7 @@
                                 <button class="save-button" onclick="toggleSave(this)">
                                     <i class='bx bx-bookmark'></i>Tolak
                             </div>
-                            <div class="right2-post-action">
+                            <div class="right-post-action">
                                 <button class="save-button" onclick="toggleSave(this)">
                                     <i class='bx bx-bookmark'></i>Cetak
                             </div>
@@ -159,7 +176,7 @@
             <div class="trend">
                 <div class="trend-content">
                     <div class="header-trend">
-                        <img src="<?= $_SESSION["foto_profil"];?>" alt="">
+                        <img src="<?= $_SESSION["foto_profil_staff"];?>" alt="">
                         <h4>Accepted Post</h4>
                     </div>
                     <hr>
@@ -240,7 +257,7 @@
         </div>
     </div>
 </div>
-<script src="../js/masyarakatValidation.js"></script>
+<script src="../js/loginValidation.js"></script>
 <script src="../js/sidebar.js"></script>
 </body>
 </html>

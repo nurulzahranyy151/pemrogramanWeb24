@@ -4,27 +4,22 @@
     padding: 0;
     box-sizing: border-box;
 }
-
-body {
+.chart {
     background: #E4E9F7;
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-}
-
-.container {
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 200px;
+    width: 800px; /* Set a fixed width */
+    height: 400px; /* Set a fixed height */
+    margin: 0 auto;
 }
 
-.chart{
-    padding: 2rem;
-    border: 1px solid blue;
-    border-radius: 1rem;
-    background: white;
-    box-shadow: 0 0 16px white(0,0, 0, 0.8);
+#barchart {
+    width: 800px !important; /* Set a fixed width */
+    height: 400px !important; /* Set a fixed height */
 }
-
