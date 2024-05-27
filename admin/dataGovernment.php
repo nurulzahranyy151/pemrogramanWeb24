@@ -7,13 +7,11 @@ $showEditModal = false;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST['editId'])) {
         $editId = $_POST['editId'];
-        unset($_POST['editId']);
         $query = mysqli_query($conn, "SELECT * FROM supervisor WHERE id_supervisor = $editId");
         $edited = mysqli_fetch_assoc($query);
         $showEditModal = true;
         unset($_POST['editId']);
-    }
-    if (isset($_POST['cancel-button'])){
+    }else{
         $showEditModal = false;
     }
 }
@@ -148,7 +146,7 @@ $adminData = mysqli_fetch_assoc($admin);
                                 <input type="password" id="editPassword" name="editPassword" value="<?= $edited["password_supervisor"];?>">
                             </div>
                             <div class="form-actions-edit">
-                                <button type="button" id="closeEdit" class="cancel-button" name="cancel-button">Batalkan</button>
+                                <button type="button" id="cancelButton" class="cancel-button">Batalkan</button>
                                 <button type="submit" class="save-button">Simpan</button>
                             </div>
                         </div>

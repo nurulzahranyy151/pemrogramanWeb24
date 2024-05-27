@@ -1,8 +1,7 @@
 <?php
 require '../php/functions.php';
 
-$update = editMasyarakat($_POST);
-if($update > 0){
+if(editMasyarakat($_POST)){
     echo "<script>
     alert('Data berhasil diubah');
     </script>";

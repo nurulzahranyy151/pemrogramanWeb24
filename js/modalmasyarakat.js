@@ -11,9 +11,10 @@ document.getElementById('cancelDelete').addEventListener('click', function() {
     deleteModal.style.display = "none";
 });
 
-document.getElementById('closeEdit').addEventListener('click', function() {
+
+document.getElementById('cancelButton').addEventListener('click', function() { 
     document.getElementById('editModal').style.display = "none";
-    document.getElementById('data-masyarakat').style.display = "block";
+    document.getElementById('data-masarakat').style.display = "block";
 });
 
 

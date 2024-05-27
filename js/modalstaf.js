@@ -11,7 +11,7 @@ document.getElementById('cancelDelete').addEventListener('click', function() {
     deleteModal.style.display = "none";
 });
 
-document.getElementById('closeEdit').addEventListener('click', function() {
+document.getElementById('cancelButton').addEventListener('click', function() {
     document.getElementById('editModal').style.display = "none";
     document.getElementById('data-staf').style.display = "block";
 });
@@ -70,35 +70,24 @@ function hapusPreview() {
 }
 
 document.getElementById('addForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Mencegah form untuk submit secara default
-
-    // Mengambil nilai dari input
+    event.preventDefault(); 
     const name = document.getElementById('addName').value.trim();
     const email = document.getElementById('addEmail').value.trim();
     const password = document.getElementById('addPassword').value.trim();
-
-    // Mengambil elemen pesan error
     const nameError = document.getElementById('msg-error-name');
     const emailError = document.getElementById('msg-error-email');
     const passwordError = document.getElementById('msg-error-pass');
-
-    // Reset pesan error
     nameError.textContent = '';
     emailError.textContent = '';
     passwordError.textContent = '';
-
-    // Regex untuk validasi password
     const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
 
     let isValid = true;
-
-    // Validasi nama
     if (name === '') {
         nameError.textContent = 'Nama harus diisi';
         isValid = false;
     }
 
-    // Validasi email
     if (email === '') {
         emailError.textContent = 'Email harus diisi';
         isValid = false;
@@ -107,7 +96,6 @@ document.getElementById('addForm').addEventListener('submit', function(event) {
         isValid = false;
     }
 
-    // Validasi password
     if (password === '') {
         passwordError.textContent = 'Password harus diisi';
         isValid = false;
@@ -116,7 +104,6 @@ document.getElementById('addForm').addEventListener('submit', function(event) {
         isValid = false;
     }
 
-    // Jika valid, submit form
     if (isValid) {
         document.getElementById('addForm').submit();
     }

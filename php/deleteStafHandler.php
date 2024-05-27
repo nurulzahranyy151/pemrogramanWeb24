@@ -1,8 +1,6 @@
 <?php
 require '../php/functions.php';
-$id = $_POST["deleteId"];
-$delete = deleteStaf($id);
-if($delete > 0){
+if(deleteStaf($_POST["deleteId"])){
     echo "<script>
     alert('Data berhasil dihapus');
     </script>";

@@ -1,4 +1,4 @@
-<?php
+<!-- <?php
 if(isset($_POST["submit"])){
   require 'php/functions.php';
   if(sign($_POST) == 1){
@@ -15,7 +15,7 @@ if(isset($_POST["submit"])){
       $error = true;
       $errorMessage = "Sistem error!";
   }
-}
+} -->
 ?>
 <!DOCTYPE html>
 <html>
@@ -40,7 +40,6 @@ if(isset($_POST["submit"])){
           <img class="blobs-vector-recity" src="../img/recity.png">
         </div>
       </div>
-      <div class="signup-form">
       <form action="" id="form" method="POST" name="input">
         <h1>SIGN UP</h1>
         <h4>Create Your Free Account</h4>
@@ -81,6 +80,7 @@ if(isset($_POST["submit"])){
         <button type="submit" name="submit">Create Account</button>
        <h4>Already have an account? <a href="loginMasyarakat.php">Log in</a></h4>
       </form>
+    </div>
     <script src="js/signupScript.js"></script>
   </body>
 </html>

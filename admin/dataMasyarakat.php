@@ -1,5 +1,7 @@
 <?php 
 require '../php/functions.php';
+$conn = mysqli_connect("localhost" , "root", "", "dbrecity");
+
 $showEditModal = false;
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -9,8 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $edited = mysqli_fetch_assoc($query);
         $showEditModal = true;
         unset($_POST['editNIK']);
-    }
-    if (isset($_POST['cancel-button'])){
+    }else{
         $showEditModal = false;
     }
 }
@@ -122,12 +123,10 @@ $adminData = mysqli_fetch_assoc($admin);
                 <h3>Data Masyarakat</h3>
             </div>
             <div id="editModal" class="editModal" style="display: <?php echo $showEditModal ? 'block' : 'none'; ?>;">
-                <form action="../php/updateUserHandler.php" method="post" enctype="multipart/form-data" class="edit-masyarakat-form">
+                <form action="../php/updateUserHandler.php" method="post" class="edit-masyarakat-form">
                     <div class="edit-masyarakat-container">
                         <div class="profile-masyarakat-container">
-                            <img id="profile-masyarakat" src="../img/coba.jpeg" class="profile-masyarakat">
-                            <input type="file" id="profile-masyarakat-input" name="profile-masyarakat" style="display: none;">
-                            <button type="button" class="edit-profil" onclick="changeProfil()"><i class='bx bx-pencil icon'></i></button>
+                            <img id="profile-masyarakat" src="<?= $edited["foto_profil_user"];?>" class="profile-masyarakat">
                         </div>                        
                         <div class="form-container-edit">
                             <div class="form-group-edit">
@@ -147,7 +146,7 @@ $adminData = mysqli_fetch_assoc($admin);
                                 <input type="password" id="editPassword" name="editPassword" value="<?= $edited["password_user"];?>">
                             </div>
                             <div class="form-actions-edit">
-                                <button type="button" id="closeEdit" class="cancel-button">Batalkan</button>
+                                <button type="button" id="cancelButton" class="cancel-button">Batalkan</button>
                                 <button type="submit" class="save-button">Simpan</button>
                             </div>
                         </div>
@@ -177,14 +176,13 @@ $adminData = mysqli_fetch_assoc($admin);
                     while( $row = mysqli_fetch_assoc($result)):?>
                     <tr class="isi-data">
                         <td><?= $count;?></td>
-                        <td><img src="<?= $row["foto_profil"];?>" alt="Profil Picture" class="foto-masyarakat"></td>
+                        <td><img src="<?= $row["foto_profil_user"];?>" alt="Profil Picture" class="foto-masyarakat"></td>
                         <td><?= $row["NIK"];?></td>
                         <td><?= $row["nama_user"];?></td>
                         <td><?= $row["email_user"];?></td>
                         <td><?= $row["password_user"];?></td>
                         <td>
                             <div class="button-container">
-<<<<<<< HEAD:admin/dataMasyarakat.php
                                 <form method="post" style="display:inline;">
                                     <input type="hidden" name="editNIK" value="<?php echo $row['NIK']; ?>">
                                     <button type="submit" class="btn edit-btn">
@@ -192,16 +190,7 @@ $adminData = mysqli_fetch_assoc($admin);
                                         <span>Ubah</span>
                                     </button>
                                 </form>
-                                <button type="button" class="btn del-btn" onclick="showDeleteModal(<?php echo $row['NIK']; ?>)">
-=======
-                                <button class="btn edit-btn">
-                                    <a href="editDataMasyarakat.html">
-                                    <i class='bx bx-edit icon'></i>
-                                </a>
-                                    <span>Ubah</span>
-                                </button>
-                                <button class="btn del-btn">
->>>>>>> 5dbd5c2b6d8302a5bd0642e43393bb73e3668bcd:admin/dataMasyarakat.html
+                                <button type="button" class="btn del-btn" onclick="showDeleteModal(<?php echo $row['NIK'];?>)">
                                     <i class='bx bx-trash icon'></i>
                                     <span>Hapus</span>
                                 </button>
@@ -222,8 +211,8 @@ $adminData = mysqli_fetch_assoc($admin);
             <span class="close" id="closeDelete">&times;</span>
             <h2>Delete Masyarakat</h2>
             <p>Are you sure you want to delete this Masyarakat?</p>
-            <form id="deleteForm">
-                <input type="hidden" id="deleteNIK">
+            <form action="../php/deleteUserHandler.php" id="deleteForm" method="post">
+                <input type="hidden" id="deleteNIK" name="deleteNik">
                 <button type="submit">Yes, Delete</button>
                 <button type="button" id="cancelDelete">Cancel</button>
             </form>

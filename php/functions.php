@@ -163,4 +163,22 @@ function deleteStaf($id) {
     return mysqli_affected_rows($conn);
 }
 
+function kelolaMasyarakat($data) {
+    global $conn;
+    $nik = htmlspecialchars($data["editNik"]);
+    $username = htmlspecialchars($data["editNama"]);
+    $email = htmlspecialchars($data["editEmail"]);
+    $password = htmlspecialchars($data["editPassword"]);
+    $query = "UPDATE user SET email_user = '$email', password_user = '$password', nama_user = '$username' WHERE NIK = $nik";
+    mysqli_query($conn, $query);
+    return mysqli_affected_rows($conn);
+}
+
+function deleteMasyarakat($nik) {
+    global $conn;
+    $query = "DELETE FROM user WHERE NIK = $nik";
+    mysqli_query($conn, $query);
+    return mysqli_affected_rows($conn);
+}
+
 ?>
