@@ -1,4 +1,4 @@
-<!-- <?php
+<?php
 if(isset($_POST["submit"])){
   require 'php/functions.php';
   if(sign($_POST) == 1){
@@ -15,7 +15,7 @@ if(isset($_POST["submit"])){
       $error = true;
       $errorMessage = "Sistem error!";
   }
-} -->
+}
 ?>
 <!DOCTYPE html>
 <html>

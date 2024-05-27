@@ -4,7 +4,7 @@ if (!isset($_SESSION["NIK"])) {
     header("Location: ../loginMasyarakat.php");
     exit();
 }
-$conn = mysqli_connect("localhost" , "root", "", "recity");
+$conn = mysqli_connect("localhost" , "root", "", "dbrecity");
 $nik = $_SESSION["NIK"];
 $query = mysqli_query($conn, "SELECT * FROM user WHERE NIK = $nik");
 $user = mysqli_fetch_assoc($query);

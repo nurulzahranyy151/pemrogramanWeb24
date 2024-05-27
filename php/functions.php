@@ -37,11 +37,8 @@ function loginAdminandGov($user){
     $email = $user["email"];
     $pass = $user["password"];
     $admin = mysqli_query($conn, "SELECT * FROM admin WHERE email_admin = '$email' AND password_admin = '$pass'");
-<<<<<<< HEAD
     $gov = mysqli_query($conn, "SELECT * FROM supervisor WHERE email_supervisor= '$email' AND password_supervisor = '$pass'");
-=======
     $gov = mysqli_query($conn, "SELECT * FROM supervisor WHERE email_supervisor = '$email' AND password_supervisor= '$pass'");
->>>>>>> 9c2634f1b85684d097a3acf3bcb3e5653f418998
     if ($rowadmin = mysqli_fetch_assoc($admin)) {
         $_SESSION["id_admin"] = $rowadmin["id_admin"];
         return 1;

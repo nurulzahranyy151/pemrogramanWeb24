@@ -27,7 +27,19 @@ imageUpload.addEventListener('change', event => {
     if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
-            document.getElementById('mediaPreview').src = e.target.result;
+            const img = document.createElement('img');
+            img.src = e.target.result;
+            img.alt = 'Media Preview';
+            const close = document.createElement('bx');
+            close.classList.add('bx', 'bx-x');
+            close.style.cursor = 'pointer';
+            close.addEventListener('click', () => {
+                mediaPreview.removeChild(img);
+                mediaPreview.removeChild(close);
+                footerReport.style.display = 'none';
+            });
+            mediaPreview.appendChild(img);
+            mediaPreview.appendChild(close);
         };
         reader.readAsDataURL(file);
     }
