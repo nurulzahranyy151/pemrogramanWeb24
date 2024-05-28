@@ -135,34 +135,32 @@ if(isset($_POST["savePost"])){
         </div>
         <div class="isi-konten-dashboard">
             <div class="fyp">
-                <form action="" method="post" enctype="multipart/form-data">
-                    <div class="make-report">
-                        <div class="header-report">
-                            <div class="reporter">
-                                <img src="<?= $user["foto_profil_user"];?>" alt="Profil Picture">
-                                <h5><?= $user["nama_user"];?></h5>
+                <form action="" method="post" enctype="multipart/form-data" class="make-report">
+                
+                    <div class="header-report">
+                        <div class="reporter">
+                            <img src="<?= $user["foto_profil_user"];?>" alt="Profil Picture">
+                        </div>
+                        <div class="caption-media">
+                            <div class="caption">
+                                <textarea class="input-caption" name="caption" placeholder="Laporkan keluhan anda di sini..."></textarea>
                             </div>
-                            <div class="caption-media">
-                                <div class="caption">
-                                    <textarea class="input-caption" name="caption" placeholder="Laporkan keluhan anda di sini..."></textarea>
-                                </div>
-                                <div class="address-post">
-                                <textarea class="input-address" name="address" placeholder="Masukkan alamat postingan..."></textarea>
-                                </div>
-                                <div class="media-preview">
-                                </div>
+                            <div class="address-post">
+                            <textarea class="input-address" name="address" placeholder="Masukkan alamat postingan..."></textarea>
+                            </div>
+                            <div class="media-preview">
                             </div>
                         </div>
-                        <div class="footer-report">
-                            <div class="atribut">
-                                <i class='bx bx-image-add icon' onclick="chooseFile()"></i>
-                            </div>
-                            <div class="submit-report">
-                                <button type="submit" id="submit-report" name="submit-report">Post</button>
-                            </div>
-                        </div>
-                        <input type="file" id="imageUpload"  name="media" style="display: none;" accept="image/*" >
                     </div>
+                    <div class="footer-report">
+                        <div class="atribut">
+                            <i class='bx bx-image-add icon' onclick="chooseFile()"></i>
+                        </div>
+                        <div class="submit-report">
+                            <button type="submit" id="submit-report" name="submit-report">Post</button>
+                        </div>
+                    </div>
+                    <input type="file" id="imageUpload"  name="media" style="display: none;" accept="image/*" >
                 </form>
                 <?php 
                 $postingan = showAllpostingan();
