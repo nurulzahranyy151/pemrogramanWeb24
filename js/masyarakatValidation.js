@@ -8,17 +8,11 @@ function validateComment() {
     }
 }
 
-// Image upload
-const imageIcon = document.querySelector('.bx-image-add');
-const imageUpload = document.getElementById('imageUpload');
-const mediaPreview = document.querySelector('.media-preview');
-const footerReport = document.querySelector('.footer-report');
+function chooseFile() {
+    document.getElementById('imageUpload').click();
+}
 
-imageIcon.addEventListener('click', () => {
-    imageUpload.click();
-});
-
-imageUpload.addEventListener('change', event => {
+document.getElementById('imageUpload').addEventListener('change', event => {
     const file = event.target.files[0];
     if (file) {
         const reader = new FileReader();
@@ -30,12 +24,11 @@ imageUpload.addEventListener('change', event => {
             close.classList.add('bx', 'bx-x');
             close.style.cursor = 'pointer';
             close.addEventListener('click', () => {
-                mediaPreview.removeChild(img);
-                mediaPreview.removeChild(close);
-                footerReport.style.display = 'none';
+                document.querySelector('.media-preview').removeChild(img);
+                document.querySelector('.media-preview').removeChild(close);
             });
-            mediaPreview.appendChild(img);
-            mediaPreview.appendChild(close);
+            document.querySelector('.media-preview').appendChild(img);
+            document.querySelector('.media-preview').appendChild(close);
         };
         reader.readAsDataURL(file);
     }
@@ -53,15 +46,7 @@ function toggleSave(button) {
 
 var closeBtn = document.querySelector(".popup .close");
 closeBtn.onclick = function() {
-    var popup = document.getElementById("commentPopup");
-    popup.style.display = "none";
-}
-
-window.onclick = function(event) {
-    var popup = document.getElementById("commentPopup");
-    if (event.target == popup) {
-        popup.style.display = "none";
-    }
+    document.getElementById("commentPopup").style.display = "none";
 }
 
 function changeProfilUser(){
@@ -84,11 +69,7 @@ function showDelete(id) {
     document.getElementById('deleteId').value = id;
 }
 
-document.getElementById('closeDelete').addEventListener('click', function() {
+function closeDelete() {
     document.getElementById('deleteModal').style.display = "none";
-});
-
-document.getElementById('cancelDelete').addEventListener('click', function() {
-    document.getElementById('deleteModal').style.display = "none";
-});
+}
 

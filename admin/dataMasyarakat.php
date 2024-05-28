@@ -222,8 +222,6 @@ $adminData = adminLogin($id_admin);
             </form>
         </div>
     </div>
-
-    <script src="../js/masyarakatValidation.js"></script>
     <script src="../js/sidebar.js"></script>
     <script src="../js/modalmasyarakat.js"></script>
 

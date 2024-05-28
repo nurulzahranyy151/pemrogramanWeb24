@@ -144,7 +144,7 @@ if(isset($_POST["saveChange"])){
                                 <label for="gender">Jenis Kelamin</label>
                                 <select id="gender" name="gender" class="select-gender">
                                     <option value="Perempuan" <?= $user["gender"] == 'Perempuan' ? 'selected' : ''; ?>>Perempuan</option>
-                                    <option value="Laki-laki" <?= $user["jenis_kelamin"] == 'Laki-laki' ? 'selected' : ''; ?>>Laki-laki</option>
+                                    <option value="Laki-laki" <?= $user["gender"] == 'Laki-laki' ? 'selected' : ''; ?>>Laki-laki</option>
                                 </select>
                             </div>
                             <div class="form-group">

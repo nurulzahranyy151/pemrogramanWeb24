@@ -18,6 +18,7 @@ if(isset($_POST["submit-report"])){
 if(isset($_POST["comment-button"])){
     $showPopupcomment = true;
     $idcomment = $_POST["idpost-comment"];
+    $saveornotpopup = cekSave($idcomment, $nik) ? True : False;
     $commented = popupPost($idcomment);
     unset($_POST);
 }else{
@@ -34,11 +35,6 @@ if(isset($_POST["savePost"])){
     unset($_POST);
 }
 
-if(isset($_POST["submit-report"])){
-    uploadPostingan($_POST, $_FILES);
-}
-
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,10 +46,9 @@ if(isset($_POST["submit-report"])){
     <link rel="stylesheet" href="../css/pageMasyarakat.css">
     
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-
     <title>Dashboard</title>
 </head>
-<body>
+<body>    
     <nav class="sidebar close">
         <header>
             <div class="image-text">
@@ -144,7 +139,7 @@ if(isset($_POST["submit-report"])){
                 <p><?= $user["nama_user"];?></p>
             </div>
         </div>
-        <div class="isi-konten">
+        <div class="isi-konten-dashboard">
             <div class="fyp">
                 <form action="" method="post" enctype="multipart/form-data">
                     <div class="make-report">
@@ -166,13 +161,13 @@ if(isset($_POST["submit-report"])){
                         </div>
                         <div class="footer-report">
                             <div class="atribut">
-                                <i class='bx bx-image-add icon'></i>
+                                <i class='bx bx-image-add icon' onclick="chooseFile()"></i>
                             </div>
                             <div class="submit-report">
                                 <button type="submit" id="submit-report" name="submit-report">Post</button>
                             </div>
                         </div>
-                        <input type="file" id="imageUpload"  name="media" style="display: none;" accept="image/*">
+                        <input type="file" id="imageUpload"  name="media" style="display: none;" accept="image/*" >
                     </div>
                 </form>
                 <?php 
@@ -241,72 +236,69 @@ if(isset($_POST["submit-report"])){
                 </div>
             </div>
         </div>
+    </div>
+    
+    <div id="commentPopup" class="popup" style="display: <?php echo $showPopupcomment ? 'flex' : 'none'; ?>">
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <div class="popup-left">
+                <img src="<?= $commented["media"];?>" alt="Post Image">
+            </div>
+            <div class="popup-right">
+                <div class="post-header">
+                    <img src="<?= $commented["foto_profil_user"];?>" alt="Profile Picture" class="profile-picture-pop-up">
+                    <div class="profile-info">
+                        <h3><?= $commented["nama_user"];?></h3>
+                        <p><?= $commented["tgl_postingan"];?></p>
+                    </div>
+                </div>
+                <div class="previous-comments">
+                    <div class="comments">
+                        <?php if($commented["caption"] != ""):?>
+                        <div class="image-user-comment">
+                            <img src="<?= $commented["foto_profil_user"];?>" alt="">
+                        </div>
+                        <div class="comments-user">
+                            <h4><?= $commented["nama_user"];?></h4>
+                            <p><?= $commented["caption"];?></p>
+                        </div>
+                        <?php endif;?>
+                    </div>
+                    <div class="comments">
+                        <div class="image-user-comment">
+                            <img src="../img/coba.jpeg" alt="">
+                        </div>
+                        <div class="comments-user">
+                            <h4>Lulu</h4>
+                            <p>keren bang</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="post-actions">
+                    <div class="left-post-action">
+                        <button class="comment-button" ><label for="comment-pop">
+                        <i class='bx bx-comment'></i>
+                        </label></button>
+                    </div>
+                    <div class="right-post-action">
+                        <form action="" method="post">
+                            <input type="hidden" name="ceksave" value="<?php echo $saveornotpopup ? 'saved' : 'not';?>">
+                            <input type="hidden" name="idpost" value="<?= $idcomment;?>">
+                            <input type="hidden" name="nik" value="<?= $nik;?>">
+                            <button type="submit" name="savePost" class="<?php echo $saveornotpopup ? 'saved' : 'save-button';?>" onclick="toggleSave(this)">
+                                <i class='<?php echo $saveornotpopup ? 'bx bxs-bookmark' : 'bx bx-bookmark';?>' style=""></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                <form action="#" method="post" class="add-comment-form">
+                    <input type="text" name="comment" id="comment-pop" placeholder="Tambahkan komentar...">
+                    <button type="submit" id="submit-comment">Kirim</button>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-<div id="commentPopup" class="popup" style="display: <?php echo $showPopupcomment ? 'flex' : 'none'; ?>">
-    <?php $saveornotpopup = cekSave($idcomment, $nik) ? True : False;?>
-    <div class="popup-content">
-        <span class="close">&times;</span>
-        <div class="popup-left">
-            <img src="<?= $commented["media"];?>" alt="Post Image">
-        </div>
-        <div class="popup-right">
-            <div class="post-header">
-                <img src="<?= $commented["foto_profil_user"];?>" alt="Profile Picture" class="profile-picture-pop-up">
-                <div class="profile-info">
-                    <h3><?= $commented["nama_user"];?></h3>
-                    <p><?= $commented["tgl_postingan"];?></p>
-                </div>
-            </div>
-            <div class="previous-comments">
-                <div class="comments">
-                    <?php if($commented["caption"] != ""):?>
-                    <div class="image-user-comment">
-                        <img src="<?= $commented["foto_profil_user"];?>" alt="">
-                    </div>
-                    <div class="comments-user">
-                        <h4><?= $commented["nama_user"];?></h4>
-                        <p><?= $commented["caption"];?></p>
-                    </div>
-                    <?php endif;?>
-                </div>
-                <div class="comments">
-                    <div class="image-user-comment">
-                        <img src="../img/coba.jpeg" alt="">
-                    </div>
-                    <div class="comments-user">
-                        <h4>Lulu</h4>
-                        <p>keren bang</p>
-                    </div>
-                </div>
-            </div>
-            <div class="post-actions">
-                <div class="left-post-action">
-                    <button class="comment-button" ><label for="comment-pop">
-                    <i class='bx bx-comment'></i>
-                    </label></button>
-                </div>
-                <div class="right-post-action">
-                    <form action="../php/savePostinganHandler.php" method="post">
-                        <input type="hidden" name="ceksave" value="<?php echo $saveornotpopup ? 'saved' : 'not';?>">
-                        <input type="hidden" name="idpost" value="<?= $idcomment;?>">
-                        <input type="hidden" name="nik" value="<?= $nik;?>">
-                        <button class="<?php echo $saveornotpopup ? 'saved' : 'save-button';?>" onclick="toggleSave(this)">
-                            <i class='<?php echo $saveornotpopup ? 'bx bxs-bookmark' : 'bx bx-bookmark';?>' style=""></i>
-                        </button>
-                    </form>
-                </div>
-            </div>
-            <form action="#" method="post" class="add-comment-form">
-                <input type="text" name="comment" id="comment-pop" placeholder="Tambahkan komentar...">
-                <button type="submit" id="submit-comment">Kirim</button>
-            </form>
-        </div>
-    </div>
-</div>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../js/masyarakatValidation.js"></script>
-<script src="../js/sidebar.js"></script>
+    <script src="../js/masyarakatValidation.js"></script>
+    <script src="../js/sidebar.js"></script>
 </body>
 </html>
