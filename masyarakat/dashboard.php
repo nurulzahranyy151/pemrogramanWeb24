@@ -73,31 +73,25 @@ if(isset($_POST["savePost"])){
                     <li class="nav-link">
                         <a href="#">
                             <i class='bx bx-home-alt icon' ></i>
-                            <span class="text nav-text">Dashboard</span>
+                            <span class="text nav-text">Beranda</span>
                         </a>
                     </li>
                     <li class="nav-link">
                         <a href="saved.php">
                             <i class='bx bx-bookmark icon'></i>
-                            <span class="text nav-text">Saved</span>
+                            <span class="text nav-text">Tersimpan</span>
                         </a>
                     </li>
                     <li class="nav-link">
                         <a href="history.php">
                             <i class='bx bx-history icon'></i>
-                            <span class="text nav-text">History</span>
+                            <span class="text nav-text">Riwayat</span>
                         </a>
                     </li>
                     <li class="nav-link">
                         <a href="#">
                             <i class='bx bx-bar-chart-alt-2 icon'></i>
-                            <span class="text nav-text">Statistic</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-cog icon'></i>
-                            <span class="text nav-text">Settings</span>
+                            <span class="text nav-text">Statistik</span>
                         </a>
                     </li>
 
@@ -129,7 +123,7 @@ if(isset($_POST["savePost"])){
     <div class="konten">
         <div class="header-konten">
             <div class="page-name">
-                <h2>Dashboard</h2>
+                <h2>Beranda</h2>
             </div>
             <div class="user-login">
                 <a href="profileUser.php">
