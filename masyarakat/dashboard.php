@@ -3,25 +3,36 @@ require '../php/functions.php';
 if (!isset($_SESSION["NIK"])) {
     header("Location: ../loginMasyarakat.php");
     exit();
+}else{
+    $nik = $_SESSION["NIK"];
+    $user = userLogin($nik);
 }
 
-$conn = mysqli_connect("localhost" , "root", "", "dbrecity");
-$showPopupcomment = false;
+if(isset($_POST["submit-report"])){
+    uploadPostingan($_POST, $_FILES);
+    unset($_POST);
+    unset($_FILES);
+}
+
 
 if(isset($_POST["comment-button"])){
-    global $conn;
     $showPopupcomment = true;
     $idcomment = $_POST["idpost-comment"];
-    $query = mysqli_query($conn, "SELECT postingan.media, postingan.caption, postingan.tgl_postingan, postingan.alamat_postingan, user.nama_user, user.foto_profil_user FROM postingan JOIN user ON postingan.NIK = user.NIK WHERE postingan.id_postingan = $idcomment");
-    $commented = mysqli_fetch_assoc($query);
-    unset($_POST["idpost-comment"]);
-    unset($_POST["comment-button"]);
+    $commented = popupPost($idcomment);
+    unset($_POST);
 }else{
     $showPopupcomment = false;
 }
-$nik = $_SESSION["NIK"];
-$user = userLogin($nik);
 
+if(isset($_POST["savePost"])){
+    $idpost = $_POST["idpost"];
+    if($_POST["ceksave"] == "not"){
+        savePostingan($idpost, $nik);
+    } else {
+        unsavePostingan($idpost, $nik);
+    }
+    unset($_POST);
+}
 
 if(isset($_POST["submit-report"])){
     uploadPostingan($_POST, $_FILES);
@@ -135,7 +146,7 @@ if(isset($_POST["submit-report"])){
         </div>
         <div class="isi-konten">
             <div class="fyp">
-                <form action="../php/handlePostingan.php" method="post" enctype="multipart/form-data">
+                <form action="" method="post" enctype="multipart/form-data">
                     <div class="make-report">
                         <div class="header-report">
                             <div class="reporter">
@@ -190,11 +201,11 @@ if(isset($_POST["submit-report"])){
                                 </form>
                             </div>
                             <div class="right-post-action">
-                                <form action="../php/savePostinganHandler.php" method="post">
+                                <form action="" method="post">
                                     <input type="hidden" name="ceksave" value="<?php echo $saveornot ? 'saved' : 'not';?>">
                                     <input type="hidden" name="idpost" value="<?= $row["id_postingan"];?>">
                                     <input type="hidden" name="nik" value="<?= $nik;?>">
-                                    <button class="<?php echo $saveornot ? 'saved' : 'save-button';?>" onclick="toggleSave(this)">
+                                    <button type="submit" name="savePost" class="<?php echo $saveornot ? 'saved' : 'save-button';?>" onclick="toggleSave(this)">
                                     <i class='<?php echo $saveornot ? 'bx bxs-bookmark' : 'bx bx-bookmark';?>' style=""></i>
                                     </button>
                                 </form>

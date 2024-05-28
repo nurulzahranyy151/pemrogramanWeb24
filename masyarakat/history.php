@@ -3,22 +3,21 @@ require '../php/functions.php';
 if (!isset($_SESSION["NIK"])) {
     header("Location: ../loginMasyarakat.php");
     exit();
+}else{
+    $nik = $_SESSION["NIK"];
+    $user = userLogin($nik);
 }
-$conn = mysqli_connect("localhost" , "root", "", "dbrecity");
-$showPopupcomment = false;
+
 if(isset($_POST["comment-button"])){
     global $conn;
     $showPopupcomment = true;
     $idcomment = $_POST["idpost-comment"];
-    $query = mysqli_query($conn, "SELECT postingan.media, postingan.caption, postingan.tgl_postingan, postingan.alamat_postingan, user.nama_user, user.foto_profil_user FROM postingan JOIN user ON postingan.NIK = user.NIK WHERE postingan.id_postingan = $idcomment");
-    $commented = mysqli_fetch_assoc($query);
-    unset($_POST["idpost-comment"]);
-    unset($_POST["comment-button"]);
+    $commented = popupPost($idcomment);
+    unset($_POST);
 }else{
     $showPopupcomment = false;
 }
-$nik = $_SESSION["NIK"];
-$user = userLogin($nik);
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

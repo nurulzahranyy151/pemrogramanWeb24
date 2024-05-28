@@ -57,6 +57,18 @@ function loginAdminandGov($user){
     }
 }
 
+function adminLogin($id){
+    global $conn;
+    $result = mysqli_query($conn, "SELECT * FROM admin WHERE id_admin = $id");
+    return mysqli_fetch_assoc($result);
+}
+
+function stafLogin($id){
+    global $conn;
+    $result = mysqli_query($conn, "SELECT * FROM supervisor WHERE id_supervisor = $id");
+    return mysqli_fetch_assoc($result);
+}
+
 function findMasyarakat(){
     global $conn;
     return mysqli_query($conn, "SELECT * FROM user");
@@ -115,7 +127,13 @@ function uploadPostingan($data, $file) {
     return false;
 }
 
-function editMasyarakat($data) {
+function popupPost($idpost){
+    global $conn;
+    $query = mysqli_query($conn, "SELECT postingan.media, postingan.caption, postingan.tgl_postingan, postingan.alamat_postingan, user.nama_user, user.foto_profil_user FROM postingan JOIN user ON postingan.NIK = user.NIK WHERE postingan.id_postingan = $idpost");
+    return mysqli_fetch_assoc($query);
+}
+
+function editMasyarakat($data, $file) {
     global $conn;
     $nik = $_SESSION["NIK"];
     $name = htmlspecialchars($data["nama"]);
@@ -124,7 +142,15 @@ function editMasyarakat($data) {
     $address = htmlspecialchars($data["address"]);
     $currentAddress = htmlspecialchars($data["current-address"]);
     $email = htmlspecialchars($data["email"]);
-    $query = "UPDATE user SET nama_user = '$name', tanggal_lahir = '$dob', jenis_kelamin = '$gender', alamat_asal = '$address', alamat_sekarang = '$currentAddress', email_user = '$email' WHERE NIK = $nik";
+    if(isset($file["profile-pic"]) && $file["profile-pic"]["error"] == 0){
+        $targetDir = "../img/";
+        $targetFile = $targetDir . basename($file["profile-pic"]["name"]);
+        if(move_uploaded_file($file["profile-pic"]["tmp_name"], $targetFile)){
+            $query = "UPDATE user SET nama_user = '$name', tgl_lahir_user = '$dob', gender = '$gender', alamat_asal = '$address', alamat_sekarang = '$currentAddress', email_user = '$email', foto_profil_user = '$targetFile' WHERE NIK = $nik";
+        }
+    }else{
+        $query = "UPDATE user SET nama_user = '$name', tgl_lahir_user = '$dob', gender = '$gender', alamat_asal = '$address', alamat_sekarang = '$currentAddress', email_user = '$email' WHERE NIK = $nik";
+    }
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn);
 }
@@ -161,6 +187,10 @@ function editStaf($data, $file) {
             mysqli_query($conn, $query);
             return mysqli_affected_rows($conn);
         }
+    }else{
+        $query = "UPDATE supervisor SET nama_supervisor = '$name', email_supervisor = '$email' WHERE id_supervisor = $id";
+        mysqli_query($conn, $query);
+        return mysqli_affected_rows($conn);
     }
 }
 
@@ -189,21 +219,17 @@ function deleteMasyarakat($nik) {
     return mysqli_affected_rows($conn);
 }
 
-function savePostingan($post){
+function savePostingan($idpost, $nik) {
     global $conn;
-    $id = $post["idpost"];
-    $nik = $post["nik"];
     $tanggal = date("Y-m-d");
-    $query = "INSERT INTO saved VALUES('$id', '$nik', NOW())";
+    $query = "INSERT INTO saved VALUES('$idpost', '$nik', NOW())";
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn);
 }
 
-function unsavePostingan($post){
+function unsavePostingan($idpost, $nik){
     global $conn;
-    $id = $post["idpost"];
-    $nik = $post["nik"];
-    $query = "DELETE FROM saved WHERE id_postingan = '$id' AND NIK = '$nik'";
+    $query = "DELETE FROM saved WHERE id_postingan = '$idpost' AND NIK = '$nik'";
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn);
 }

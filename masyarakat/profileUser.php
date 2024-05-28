@@ -1,9 +1,21 @@
 <?php 
 require '../php/functions.php';
-$conn = mysqli_connect("localhost" , "root", "", "dbrecity");
-$nik = $_SESSION["NIK"];
-$query = mysqli_query($conn, "SELECT * FROM user WHERE NIK = $nik");
-$user = mysqli_fetch_assoc($query);
+if(!isset($_SESSION["NIK"])){
+    header("Location: ../loginMasyarakat.php");
+    exit;
+} else {
+    $nik = $_SESSION["NIK"];
+    $user = userLogin($nik);
+}
+
+if(isset($_POST["saveChange"])){
+    editMasyarakat($_POST, $_FILES);
+    $user = userLogin($nik);
+    unset($_POST);
+    unset($_FILES);
+}
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -38,19 +50,19 @@ $user = mysqli_fetch_assoc($query);
                 </li>
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="dashboard.php">
                             <i class='bx bx-home-alt icon' ></i>
                             <span class="text nav-text">Dashboard</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="saved.html">
+                        <a href="saved.php">
                             <i class='bx bx-bookmark icon'></i>
                             <span class="text nav-text">Saved</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="history.html">
+                        <a href="history.php">
                             <i class='bx bx-history icon'></i>
                             <span class="text nav-text">History</span>
                         </a>
@@ -101,14 +113,14 @@ $user = mysqli_fetch_assoc($query);
             <div class="user-login">
                 <a href="profileUser.html">
                     <img src="
-                    <?= $_SESSION["foto_profil"];?>" alt="Profil Picture">
+                    <?= $user["foto_profil_user"];?>" alt="Profil Picture">
                 </a>
-                <p><?= $_SESSION["nama_user"];?></p>
+                <p><?= $user["nama_user"];?></p>
             </div>
         </div>
         <div class="isi-konten">
             <div class="profile">
-                <form action="../php/handleUpdateMasyarakat.php" method="post" enctype="multipart/form-data" class="profile-form">
+                <form action="" method="post" enctype="multipart/form-data" class="profile-form">
                     <div class="profile-container">
                         <div class="profile-pic-container">
                             <img id="profile-pic" src="<?= $user['foto_profil_user'];?>" class="profile-pic">
@@ -126,12 +138,12 @@ $user = mysqli_fetch_assoc($query);
                             </div>
                             <div class="form-group">
                                 <label for="dob">Tanggal Lahir</label>
-                                <input type="date" id="dob" name="dob" value="<?= $user["tanggal_lahir"];?>">
+                                <input type="date" id="dob" name="dob" value="<?= $user["tgl_lahir_user"];?>">
                             </div>
                             <div class="form-group">
                                 <label for="gender">Jenis Kelamin</label>
                                 <select id="gender" name="gender" class="select-gender">
-                                    <option value="Perempuan" <?= $user["jenis_kelamin"] == 'Perempuan' ? 'selected' : ''; ?>>Perempuan</option>
+                                    <option value="Perempuan" <?= $user["gender"] == 'Perempuan' ? 'selected' : ''; ?>>Perempuan</option>
                                     <option value="Laki-laki" <?= $user["jenis_kelamin"] == 'Laki-laki' ? 'selected' : ''; ?>>Laki-laki</option>
                                 </select>
                             </div>
@@ -153,7 +165,7 @@ $user = mysqli_fetch_assoc($query);
                             </div>
                             <div class="form-actions">
                                 <button type="button" class="cancel-button" onclick="cancelEdit()">Batalkan</button>
-                                <button type="submit" class="save-button">Simpan</button>
+                                <button type="submit" class="save-button" name="saveChange">Simpan</button>
                             </div>
                         </div>
                     </div>

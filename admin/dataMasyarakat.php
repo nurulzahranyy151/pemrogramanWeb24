@@ -1,24 +1,28 @@
 <?php 
 require '../php/functions.php';
-$conn = mysqli_connect("localhost" , "root", "", "dbrecity");
 
-$showEditModal = false;
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['editNIK'])) {
-        $editNIK = $_POST['editNIK'];
-        $query = mysqli_query($conn, "SELECT * FROM user WHERE NIK = $editNIK");
-        $edited = mysqli_fetch_assoc($query);
-        $showEditModal = true;
-        unset($_POST['editNIK']);
-    }else{
-        $showEditModal = false;
-    }
+if (isset($_POST['editUser'])) {
+    $editNIK = $_POST['editNIK'];
+    $edited = userLogin($editNIK);
+    $showEditModal = true;
+    unset($_POST);
+}else{
+    $showEditModal = false;
 }
-$id_admin = $_SESSION["id_admin"];
-$admin = mysqli_query($conn, "SELECT * FROM admin WHERE id_admin = $id_admin");
-$adminData = mysqli_fetch_assoc($admin);
 
+if(isset($_POST['saveChange'])){
+    kelolaMasyarakat($_POST);
+    unset($_POST);
+}
+
+if(isset($_POST['deleteUser'])){
+    hapusUser($_POST['deleteNik']);
+    unset($_POST);
+}
+
+
+$id_admin = $_SESSION["id_admin"];
+$adminData = adminLogin($id_admin);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -123,7 +127,7 @@ $adminData = mysqli_fetch_assoc($admin);
                 <h3>Data Masyarakat</h3>
             </div>
             <div id="editModal" class="editModal" style="display: <?php echo $showEditModal ? 'block' : 'none'; ?>;">
-                <form action="../php/updateUserHandler.php" method="post" class="edit-masyarakat-form">
+                <form action="" method="post" class="edit-masyarakat-form">
                     <div class="edit-masyarakat-container">
                         <div class="profile-masyarakat-container">
                             <img id="profile-masyarakat" src="<?= $edited["foto_profil_user"];?>" class="profile-masyarakat">
@@ -147,7 +151,7 @@ $adminData = mysqli_fetch_assoc($admin);
                             </div>
                             <div class="form-actions-edit">
                                 <button type="button" id="cancelButton" class="cancel-button">Batalkan</button>
-                                <button type="submit" class="save-button">Simpan</button>
+                                <button type="submit" class="save-button" name="saveChange">Simpan</button>
                             </div>
                         </div>
                     </div>
@@ -185,7 +189,7 @@ $adminData = mysqli_fetch_assoc($admin);
                             <div class="button-container">
                                 <form method="post" style="display:inline;">
                                     <input type="hidden" name="editNIK" value="<?php echo $row['NIK']; ?>">
-                                    <button type="submit" class="btn edit-btn">
+                                    <button type="submit" class="btn edit-btn" name="editUser">
                                         <i class='bx bx-edit icon'></i>
                                         <span>Ubah</span>
                                     </button>
@@ -211,9 +215,9 @@ $adminData = mysqli_fetch_assoc($admin);
             <span class="close" id="closeDelete">&times;</span>
             <h2>Delete Masyarakat</h2>
             <p>Are you sure you want to delete this Masyarakat?</p>
-            <form action="../php/deleteUserHandler.php" id="deleteForm" method="post">
+            <form action="" id="deleteForm" method="post">
                 <input type="hidden" id="deleteNIK" name="deleteNik">
-                <button type="submit">Yes, Delete</button>
+                <button type="submit" name="deleteUser">Yes, Delete</button>
                 <button type="button" id="cancelDelete">Cancel</button>
             </form>
         </div>

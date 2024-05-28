@@ -3,9 +3,16 @@ require '../php/functions.php';
 if (!isset($_SESSION["NIK"])) {
     header("Location: ../loginMasyarakat.php");
     exit();
+}else{
+    $nik = $_SESSION["NIK"];
+    $user = userLogin($nik);
 }
-$nik = $_SESSION["NIK"];
-$user = userLogin($nik);
+if(isset($_POST["unsavePost"])){
+    $idpost = $_POST["idpost"];
+    unsavePostingan($idpost, $nik);
+    unset($_POST);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -98,7 +105,7 @@ $user = userLogin($nik);
                 <h2>Saved</h2>
             </div>
             <div class="user-login">
-                <a href="profileUser.html">
+                <a href="profileUser.php">
                     <img src="<?= $user["foto_profil_user"];?>" alt="Profil Picture">
                 </a>
                 <p><?= $user["nama_user"];?></p>
@@ -122,7 +129,10 @@ $user = userLogin($nik);
                         <p class="posted-by">Posted by <b><?= $post["nama_user"];?></b></p>
                     </div>
                     <div class="unsave">
-                        <button type="submit" class="unsave-button">Unsave</button>
+                        <form action="" method="post">
+                            <input type="hidden" name="idpost" value="<?= $post["id_postingan"];?>">
+                            <button type="submit" class="unsave-button" name="unsavePost">Unsave</button>
+                        </form>
                     </div>
                 </div>
             </div>

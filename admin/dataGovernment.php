@@ -1,24 +1,34 @@
 <?php 
 require '../php/functions.php';
-$conn = mysqli_connect("localhost" , "root", "", "dbrecity");
 
-$showEditModal = false;
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST['editId'])) {
-        $editId = $_POST['editId'];
-        $query = mysqli_query($conn, "SELECT * FROM supervisor WHERE id_supervisor = $editId");
-        $edited = mysqli_fetch_assoc($query);
-        $showEditModal = true;
-        unset($_POST['editId']);
-    }else{
-        $showEditModal = false;
-    }
+if (isset($_POST['edited'])) {
+    $editId = $_POST['edited'];
+    $edited = stafLogin($editId);
+    $showEditModal = true;
+    unset($_POST);
+}else{
+    $showEditModal = false;
 }
-$id_admin = $_SESSION["id_admin"];
-$admin = mysqli_query($conn, "SELECT * FROM admin WHERE id_admin = $id_admin");
-$adminData = mysqli_fetch_assoc($admin);
 
+if(isset($_POST["deleteStaf"])){
+    deleteStaf($_POST["deleteId"]);
+    unset($_POST);
+}
+
+if(isset($_POST["submitChange"])){
+    editStaf($_POST, $_FILES);
+    unset($_POST);
+    unset($_FILES);
+}
+
+if(isset($_POST["addName"])){
+    addStaf($_POST, $_FILES);
+    unset($_POST);
+    unset($_FILES);
+}
+
+$id_admin = $_SESSION["id_admin"];
+$adminData = adminLogin($id_admin);
 ?>
 
 <!DOCTYPE html>
@@ -115,7 +125,7 @@ $adminData = mysqli_fetch_assoc($admin);
                 <h3>Data Staf</h3>
             </div>
             <div id="editModal" class="editModal" style="display: <?php echo $showEditModal ? 'block' : 'none'; ?>;">
-                <form action="../php/updateStafHandler.php" method="post" enctype="multipart/form-data" class="edit-staf-form">
+                <form action="" method="post" enctype="multipart/form-data" class="edit-staf-form">
                     <div class="edit-staf-container">
                         <div class="profile-staf-container">
                             <img id="profile-staf" src="<?= $edited["foto_profil_staff"];?>" class="profile-staf">
@@ -141,7 +151,7 @@ $adminData = mysqli_fetch_assoc($admin);
                             </div>
                             <div class="form-actions-edit">
                                 <button type="button" id="cancelButton" class="cancel-button">Batalkan</button>
-                                <button type="submit" class="save-button">Simpan</button>
+                                <button type="submit" class="save-button" name="submitChange">Simpan</button>
                             </div>
                         </div>
                     </div>
@@ -182,7 +192,7 @@ $adminData = mysqli_fetch_assoc($admin);
                         <td>
                             <div class="button-container">
                                 <form method="post" style="display:inline;">
-                                    <input type="hidden" name="editId" value="<?php echo $row['id_supervisor']; ?>">
+                                    <input type="hidden" name="edited" value="<?php echo $row['id_supervisor']; ?>">
                                     <button type="submit" class="btn edit-btn">
                                         <i class='bx bx-edit icon'></i>
                                         <span>Ubah</span>
@@ -208,7 +218,7 @@ $adminData = mysqli_fetch_assoc($admin);
         <div class="addModal-content">
             <span class="close" id="closeAdd">&times;</span>
             <h2>Tambah Supervisor</h2>
-            <form action="../php/addStafHandler.php" id="addForm" method="post" enctype="multipart/form-data">
+            <form action="" id="addForm" method="post" enctype="multipart/form-data">
                 <div class="form-add-staf">
                     <div class="form-group">
                         <label for="addName">Nama:</label>
@@ -235,7 +245,7 @@ $adminData = mysqli_fetch_assoc($admin);
                             <button type="button" id="btn-add-foto-staf" onclick="addProfilStaf()">Tambah Foto</button>
                         </div>
                         <div>
-                            <button type="submit" id="btn-add-staf" onclick="addStaf()">Add Supervisor</button>
+                            <button type="submit" id="btn-add-staf" name="btn-addStaf" onclick="addStaf()">Add Supervisor</button>
                         </div>
                     </div>
                 </div>
@@ -249,9 +259,9 @@ $adminData = mysqli_fetch_assoc($admin);
             <span class="close" id="closeDelete">&times;</span>
             <h2>Delete Supervisor</h2>
             <p>Are you sure you want to delete this supervisor?</p>
-            <form action="../php/deleteStafHandler.php" id="deleteForm" method="post">
+            <form action="" id="deleteForm" method="post">
                 <input type="hidden" id="deleteId" name="deleteId">
-                <button type="submit">Yes, Delete</button>
+                <button type="submit" name="deleteStaf">Yes, Delete</button>
                 <button type="button" id="cancelDelete">Cancel</button>
             </form>
         </div>

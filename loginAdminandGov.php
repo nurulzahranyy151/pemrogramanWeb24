@@ -1,3 +1,20 @@
+<?php
+require 'php/functions.php';
+$error = false;
+if(isset($_POST['submit'])){
+    $loginResult = loginAdminandGov($_POST);
+    if ($loginResult == 1) {
+        header("Location: admin/StatisticAdmin.php");
+        exit();
+    } else if ($loginResult == 0) {
+        header("Location: government/dashboardGovernment.php");
+        exit();
+    } else {
+        $error = true;
+    }
+    unset($_POST);
+}
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -21,7 +38,7 @@
         </div>
       </div>
     <div class="signup-form">
-      <form action="php/confirmAdminandGov.php" id="form" method="POST" name="input">
+      <form action="" id="form" method="POST" name="input">
         <h1>Masuk</h1>
         <h4>Selamat Datang Kembali!</h4>
         <div class="input-control">
@@ -36,7 +53,7 @@
           <div class="error"></div>
           <div class="success"></div>
         <?php
-        if (isset($_GET['error']) && $_GET['error'] == 1) {
+        if ($error == 1) {
             echo '<div class="error-message">Kombinasi email dan password salah!</div>';
         }
         ?>
