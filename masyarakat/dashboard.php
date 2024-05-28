@@ -99,7 +99,6 @@ if(isset($_POST["submit-report"])){
                             <span class="text nav-text">Statistik</span>
                         </a>
                     </li>
-
                 </ul>
             </div>
 
@@ -120,8 +119,7 @@ if(isset($_POST["submit-report"])){
                     <div class="toggle-switch">
                         <span class="switch"></span>
                     </div>
-                </li>
-                
+                </li>      
             </div>
         </div>
     </nav>
@@ -299,8 +297,10 @@ if(isset($_POST["submit-report"])){
         </div>
     </div>
 </div>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../js/masyarakatValidation.js"></script>
 <script src="../js/sidebar.js"></script>
+
 </body>
 </html>
