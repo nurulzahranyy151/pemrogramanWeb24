@@ -44,10 +44,6 @@ if(isset($_POST["saveChange"])){
 
         <div class="menu-bar">
             <div class="menu">
-                <li class="search-box">
-                    <i class='bx bx-search icon'></i>
-                    <input type="text" placeholder="Search...">
-                </li>
                 <ul class="menu-links">
                     <li class="nav-link">
                         <a href="dashboard.php">
@@ -167,7 +163,8 @@ if(isset($_POST["saveChange"])){
         </div>
     </div>
     <script src="../js/masyarakatValidation.js"></script>
-    <script src="../js/sidebar.js"></script>
     <script src="../js/postAtribut.js"></script>
+    <script src="../js/sidebar.js"></script>
+    
 </body>
 </html>
