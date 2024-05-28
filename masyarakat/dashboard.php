@@ -166,9 +166,7 @@ if(isset($_POST["submit-report"])){
                         </div>
                         <div class="footer-report">
                             <div class="atribut">
-                                <li><i class='bx bx-image-add icon'></i></i></li>
-                                <li><i class='bx bx-smile icon'></i></li>
-                                <li><i class='bx bx-map icon'></i></li>
+                                <i class='bx bx-image-add icon'></i>
                             </div>
                             <div class="submit-report">
                                 <button type="submit" id="submit-report" name="submit-report">Post</button>

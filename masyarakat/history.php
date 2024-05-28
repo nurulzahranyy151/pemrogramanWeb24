@@ -24,6 +24,16 @@ if(isset($_POST["deletePost"])){
     unset($_POST);
 }
 
+
+if(isset($_POST["savePost"])){
+    $idpost = $_POST["idpost"];
+    if($_POST["ceksave"] == "not"){
+        savePostingan($idpost, $nik);
+    } else {
+        unsavePostingan($idpost, $nik);
+    }
+    unset($_POST);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -153,12 +163,12 @@ if(isset($_POST["deletePost"])){
                             <input type="hidden" name="idpost-comment" value="<?= $post["id_postingan"];?>">
                             <button type="submit" class="comment-button" name="comment-button"><i class='bx bx-comment'></i></button>
                         </form>
-                        <form action="../php/savePostinganHandler.php" method="post">
+                        <form action="" method="post">
                             <input type="hidden" name="ceksave" value="<?php echo $saveornot ? 'saved' : 'not';?>">
                             <input type="hidden" name="idpost" value="<?= $post["id_postingan"];?>">
                             <input type="hidden" name="nik" value="<?= $nik;?>">
-                            <button class="<?php echo $saveornot ? 'saved' : 'save-button';?>" onclick="toggleSave(this)">
-                            <i class='<?php echo $saveornot ? 'bx bxs-bookmark' : 'bx bx-bookmark';?>' style=""></i>
+                            <button type="submit" name="savePost" class="<?php echo $saveornot ? 'saved' : 'save-button';?>" onclick="toggleSave(this)">
+                                <i class='<?php echo $saveornot ? 'bx bxs-bookmark' : 'bx bx-bookmark';?>' style=""></i>
                             </button>
                         </form>
                     </div>
@@ -166,8 +176,9 @@ if(isset($_POST["deletePost"])){
                         <button><i class='bx bx-check-square icon'></i></button>
                     </div>
                     <div class="right-action">
-                        <button class="btn del-btn" onclick="showDeleteModal(<?php echo $post['id_postingan'];?>)">
+                        <button type="button" class="btn del-btn" onclick="showDeleteModal(<?php echo $post['id_postingan']; ?>)">
                             <i class='bx bx-trash icon'></i>
+                            <span>Hapus</span>
                         </button>
                     </div>
                 </div>
@@ -249,7 +260,7 @@ if(isset($_POST["deletePost"])){
             <p>Are you sure you want to delete this supervisor?</p>
             <form action="" id="deleteForm" method="post">
                 <input type="hidden" id="deleteId" name="deleteId">
-                <button type="submit" name="deleteStaf">Yes, Delete</button>
+                <button type="submit" name="deletePost">Yes, Delete</button>
                 <button type="button" id="cancelDelete">Cancel</button>
             </form>
         </div>

@@ -123,6 +123,10 @@ function uploadPostingan($data, $file) {
             mysqli_query($conn, $query);
             return mysqli_affected_rows($conn);
         }
+    }else{
+        $query = "INSERT INTO postingan VALUES('', NOW(), '$address', 0, '', '$caption', '$nik', 'ditunggu')";
+        mysqli_query($conn, $query);
+        return mysqli_affected_rows($conn);
     }
     return false;
 }

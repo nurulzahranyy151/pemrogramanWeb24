@@ -7,10 +7,6 @@ function validateComment() {
         submitBtn.style.display = 'none';
     }
 }
-document.addEventListener('DOMContentLoaded', function() {
-    validateComment();
-    document.getElementById('comment').addEventListener('input', validateComment);
-});
 
 // Image upload
 const imageIcon = document.querySelector('.bx-image-add');
@@ -83,16 +79,16 @@ document.getElementById('profile-pict-input').addEventListener('change', functio
     }
 });
 
-function showDeleteModal(id) {
+function showDelete(id) {
     document.getElementById('deleteModal').style.display = "block";
     document.getElementById('deleteId').value = id;
 }
 
 document.getElementById('closeDelete').addEventListener('click', function() {
-    deleteModal.style.display = "none";
+    document.getElementById('deleteModal').style.display = "none";
 });
 
 document.getElementById('cancelDelete').addEventListener('click', function() {
-    deleteModal.style.display = "none";
+    document.getElementById('deleteModal').style.display = "none";
 });
 
