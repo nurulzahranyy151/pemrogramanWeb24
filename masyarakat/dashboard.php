@@ -288,7 +288,6 @@ if(isset($_POST["savePost"])){
             </div>
         </div>
     </div>
-<<<<<<< HEAD
 </div>
 <div id="commentPopup" class="popup" style="display: <?php echo $showPopupcomment ? 'flex' : 'none'; ?>">
     <?php $saveornotpopup = cekSave($idcomment, $nik) ? True : False;?>
@@ -352,13 +351,7 @@ if(isset($_POST["savePost"])){
     </div>
 </div>
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="../js/masyarakatValidation.js"></script>
 <script src="../js/sidebar.js"></script>
-
-=======
-    <script src="../js/masyarakatValidation.js"></script>
-    <script src="../js/sidebar.js"></script>
->>>>>>> 4e6409568a29bca3bebc030b89bd320ce169d62a
 </body>
 </html>
