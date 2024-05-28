@@ -583,15 +583,6 @@ body.dark .add-comment-form button {
 }
 
 
-/* Post Actions */
-
-
-/* Comment Form */
-.add-comment-form {
-    display: flex;
-    padding: 20px;
-}
-
 
 /*ACCEPTED POST END*/
 
@@ -807,14 +798,28 @@ form {
     display: flex;
 }
 
+.add-comment-form{
+    align-items: center;
+}
+
 #comment, #comment-pop {
     width: 80%;
     flex: 1;
     border: none;
 }
+#comment :focus{
+    border: none;
+    outline: none;
+}
 
-#button-submit-comment {
-    width: 20%;
+#submit-comment, #submit-comment-pop {
+    background-color: #322FF1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    height: 60%;
 }
 
 .trend-content{

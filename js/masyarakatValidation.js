@@ -1,13 +1,3 @@
-function validateComment() {
-    var commentInput = document.getElementById('comment');
-    var submitBtn = document.getElementById('submit-comment');
-    if (commentInput.value.trim() !== '') {
-        submitBtn.style.display = 'block';
-    } else {
-        submitBtn.style.display = 'none';
-    }
-}
-
 function chooseFile() {
     document.getElementById('imageUpload').click();
 }
@@ -73,3 +63,10 @@ function closeDelete() {
     document.getElementById('deleteModal').style.display = "none";
 }
 
+document.querySelector('.make-report').onsubmit = function() {
+    const mediaPreview = document.querySelector('.media-preview');
+    if (!mediaPreview.querySelector('img')) {
+        e.preventDefault();
+        alert('Silakan unggah gambar sebelum membuat postingan.');
+        }
+}
