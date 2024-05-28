@@ -14,12 +14,12 @@
     align-items: center;
     justify-content: center;
     gap: 200px;
-    width: 800px; /* Set a fixed width */
-    height: 400px; /* Set a fixed height */
+    width: 800px; 
+    height: 400px; 
     margin: 0 auto;
 }
 
 #barchart {
-    width: 800px !important; /* Set a fixed width */
-    height: 400px !important; /* Set a fixed height */
+    width: 800px !important;
+    height: 400px !important; 
 }

@@ -136,11 +136,8 @@ button:hover {
   display: flex;
   flex-direction: column;
   color: #7C838A;
-<<<<<<< HEAD
-=======
   margin-top: 1rem;
   width: 100%;
->>>>>>> e393b155481ab948cf4ac649769d6cd6be6cef69
 }
 
 .input-control input {

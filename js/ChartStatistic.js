@@ -17,8 +17,8 @@ const ctx = document.getElementById('barchart').getContext('2d');
                 }]
             },
             options: {
-                responsive: false,  // Disable responsiveness
-                maintainAspectRatio: false, // Ensure the chart uses the specified dimensions
+                responsive: false,  
+                maintainAspectRatio: false, 
                 scales: {
                     y: {
                         beginAtZero: true

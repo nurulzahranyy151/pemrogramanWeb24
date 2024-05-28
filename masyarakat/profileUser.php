@@ -52,34 +52,27 @@ if(isset($_POST["saveChange"])){
                     <li class="nav-link">
                         <a href="dashboard.php">
                             <i class='bx bx-home-alt icon' ></i>
-                            <span class="text nav-text">Dashboard</span>
+                            <span class="text nav-text">Beranda</span>
                         </a>
                     </li>
                     <li class="nav-link">
                         <a href="saved.php">
                             <i class='bx bx-bookmark icon'></i>
-                            <span class="text nav-text">Saved</span>
+                            <span class="text nav-text">Tersimpan</span>
                         </a>
                     </li>
                     <li class="nav-link">
                         <a href="history.php">
                             <i class='bx bx-history icon'></i>
-                            <span class="text nav-text">History</span>
+                            <span class="text nav-text">Riwayat</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="statistic.php">
                             <i class='bx bx-pie-chart-alt icon' ></i>
-                            <span class="text nav-text">Statistic</span>
+                            <span class="text nav-text">Statistik</span>
                         </a>
                     </li>
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-cog icon'></i>
-                            <span class="text nav-text">Settings</span>
-                        </a>
-                    </li>
-
                 </ul>
             </div>
 
@@ -144,7 +137,7 @@ if(isset($_POST["saveChange"])){
                                 <label for="gender">Jenis Kelamin</label>
                                 <select id="gender" name="gender" class="select-gender">
                                     <option value="Perempuan" <?= $user["gender"] == 'Perempuan' ? 'selected' : ''; ?>>Perempuan</option>
-                                    <option value="Laki-laki" <?= $user["jenis_kelamin"] == 'Laki-laki' ? 'selected' : ''; ?>>Laki-laki</option>
+                                    <option value="Laki-laki" <?= $user["gender"] == 'Laki-laki' ? 'selected' : ''; ?>>Laki-laki</option>
                                 </select>
                             </div>
                             <div class="form-group">
