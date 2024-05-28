@@ -656,17 +656,17 @@ body.dark .home .text {
     padding-right: 50px;
 }
 
-.isi-konten{
+.isi-konten, .isi-konten-dashboard{
     padding-top: 100px;
     padding-left: 25px;
     display: flex;
 }
-.isi-save, .isi-history{
-    margin-top: 100px;
-    padding-left: 25px;
-    display: inline;
 
+.isi-konten{
+    gap: 20px;
+    flex-wrap: wrap;
 }
+
 
 .konten table {
     border-color: #ccc;
@@ -1097,15 +1097,15 @@ input[type=text], input[type=password], input[type=email], select {
     max-width: 800px;
 }
 
-.close {
-    color: #aaa;
+.closeDelete {
+    color: #888;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.closeDelete:hover,
+.closeDelete:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;

@@ -111,7 +111,7 @@ if(isset($_POST["unsavePost"])){
                 <p><?= $user["nama_user"];?></p>
             </div>
         </div>
-        <div class="isi-save">
+        <div class="isi-konten">
             <?php
             $savedPost = userSaved($nik);
             while ($post = mysqli_fetch_assoc($savedPost)):?>

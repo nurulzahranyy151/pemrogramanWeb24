@@ -1,6 +1,14 @@
 <?php 
 require '../php/functions.php';
 
+if(!isset($_SESSION["id_admin"])){
+    header("Location: ../loginAdminandGov.php");
+    exit;
+}else{
+    $id_admin = $_SESSION["id_admin"];
+    $adminData = adminLogin($id_admin);
+}
+
 if (isset($_POST['edited'])) {
     $editId = $_POST['edited'];
     $edited = stafLogin($editId);
@@ -27,8 +35,6 @@ if(isset($_POST["addName"])){
     unset($_FILES);
 }
 
-$id_admin = $_SESSION["id_admin"];
-$adminData = adminLogin($id_admin);
 ?>
 
 <!DOCTYPE html>
@@ -266,8 +272,6 @@ $adminData = adminLogin($id_admin);
             </form>
         </div>
     </div>
-
-    <script src="../js/masyarakatValidation.js"></script>
     <script src="../js/sidebar.js"></script>
     <script src="../js/modalstaf.js"></script>
 
