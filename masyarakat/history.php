@@ -18,6 +18,12 @@ if(isset($_POST["comment-button"])){
     $showPopupcomment = false;
 }
 
+if(isset($_POST["deletePost"])){
+    $idpost = $_POST["deleteId"];
+    deletePostingan($idpost);
+    unset($_POST);
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -160,7 +166,9 @@ if(isset($_POST["comment-button"])){
                         <button><i class='bx bx-check-square icon'></i></button>
                     </div>
                     <div class="right-action">
-                        <button><i class='bx bx-trash icon'></i></button>
+                        <button class="btn del-btn" onclick="showDeleteModal(<?php echo $post['id_postingan'];?>)">
+                            <i class='bx bx-trash icon'></i>
+                        </button>
                     </div>
                 </div>
                 <form action="#" method="post" class="add-comment-form">
@@ -233,6 +241,19 @@ if(isset($_POST["comment-button"])){
         </div>
     </div>
 </div>
+<!-- Delete Modal -->
+<div id="deleteModal" class="deleteModal">
+        <div class="deleteModal-content">
+            <span class="close" id="closeDelete">&times;</span>
+            <h2>Delete Supervisor</h2>
+            <p>Are you sure you want to delete this supervisor?</p>
+            <form action="" id="deleteForm" method="post">
+                <input type="hidden" id="deleteId" name="deleteId">
+                <button type="submit" name="deleteStaf">Yes, Delete</button>
+                <button type="button" id="cancelDelete">Cancel</button>
+            </form>
+        </div>
+    </div>
 <script src="../js/masyarakatValidation.js"></script>
 <script src="../js/sidebar.js"></script>
 </body>

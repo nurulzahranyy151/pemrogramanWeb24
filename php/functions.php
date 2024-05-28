@@ -254,4 +254,11 @@ function findHistPost($nik){
     return mysqli_query($conn, "SELECT postingan.*, user.nama_user, user.foto_profil_user FROM postingan JOIN user ON postingan.NIK = user.NIK WHERE postingan.NIK = $nik");
 }
 
+function deletePostingan($id){
+    global $conn;
+    $query = "DELETE FROM postingan WHERE id_postingan = $id";
+    mysqli_query($conn, $query);
+    return mysqli_affected_rows($conn);
+}
+
 ?>

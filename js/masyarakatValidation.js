@@ -83,3 +83,16 @@ document.getElementById('profile-pict-input').addEventListener('change', functio
     }
 });
 
+function showDeleteModal(id) {
+    document.getElementById('deleteModal').style.display = "block";
+    document.getElementById('deleteId').value = id;
+}
+
+document.getElementById('closeDelete').addEventListener('click', function() {
+    deleteModal.style.display = "none";
+});
+
+document.getElementById('cancelDelete').addEventListener('click', function() {
+    deleteModal.style.display = "none";
+});
+
