@@ -501,7 +501,7 @@ body.dark .add-comment-form button {
 }
 
 /* Close Button */
-.close {
+.closepop {
     color: #aaa;
     font-size: 28px;
     font-weight: bold;
@@ -511,8 +511,8 @@ body.dark .add-comment-form button {
     cursor: pointer;
 }
 
-.close:hover,
-.close:focus {
+.closepop:hover,
+.closepop:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
@@ -580,6 +580,17 @@ body.dark .add-comment-form button {
 
 .comments-user h4, .comments-user p{
     font-size: 12px;
+}
+
+.tanggal-komen, #tanggal-post{
+    font-size: 10px;
+    color: #888;
+}
+
+.comment-info, .uploader-info{
+    margin-top: 10px;
+    gap: 5px;;
+    align-items: center;
 }
 
 
@@ -799,20 +810,19 @@ form {
 }
 
 .add-comment-form{
+    padding-right: 5px;
+    gap: 5px;
     align-items: center;
+    display: flex;
+    justify-content: space-between;
 }
 
-#comment, #comment-pop {
-    width: 80%;
-    flex: 1;
-    border: none;
-}
-#comment :focus{
+.comment, .comment:focus{
     border: none;
     outline: none;
 }
 
-#submit-comment, #submit-comment-pop {
+#submitcomment, #submitcommentpop {
     background-color: #322FF1;
     color: white;
     border: none;
@@ -908,6 +918,7 @@ form {
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
 }
 
+
 .saved-media img{
     width: 200px;
     height: 200px;
@@ -920,19 +931,17 @@ form {
     display: flex;
     gap: 20px;
     align-items: center;
+    height: 80px;
 }
 
 .uploader img{
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
 }
 
 .unsave{
-    margin-left: 85%;
     margin-top: 20px;
-    bottom: 10px;
-    right: 10px;
 }
 .unsave-button{
     background: blue;
@@ -1071,7 +1080,7 @@ input[type=text], input[type=password], input[type=email], select {
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: none;
     border-radius: 4px;
     box-sizing: border-box;
 }

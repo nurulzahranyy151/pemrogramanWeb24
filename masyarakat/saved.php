@@ -7,12 +7,6 @@ if (!isset($_SESSION["NIK"])) {
     $nik = $_SESSION["NIK"];
     $user = userLogin($nik);
 }
-if(isset($_POST["unsavePost"])){
-    $idpost = $_POST["idpost"];
-    unsavePostingan($idpost, $nik);
-    unset($_POST);
-}
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -98,7 +92,6 @@ if(isset($_POST["unsavePost"])){
         </div>
     </nav>
 
-   <!--CONTENT START-->
     <div class="konten">
         <div class="header-konten">
             <div class="page-name">
@@ -112,33 +105,30 @@ if(isset($_POST["unsavePost"])){
             </div>
         </div>
         <div class="isi-konten">
-            <?php
-            $savedPost = userSaved($nik);
-            while ($post = mysqli_fetch_assoc($savedPost)):?>
-            <div class="saved-post">
-                <div class="saved-media">
-                    <img src="<?= $post["media"];?>" alt="">
-                </div>
-                <div class="saved-infomation">
-                    <div class="caption">
-                        <p><?= $post["caption"];?></p>
-                        <p class="saved-on">Image . saved on <?= $post["waktu_disimpan"];?></p>
-                    </div>
-                    <div class="uploader">
-                        <img src="<?= $post["foto_profil_user"];?>" alt="">
-                        <p class="posted-by">Posted by <b><?= $post["nama_user"];?></b></p>
-                    </div>
-                    <div class="unsave">
-                        <form action="" method="post">
-                            <input type="hidden" name="idpost" value="<?= $post["id_postingan"];?>">
-                            <button type="submit" class="unsave-button" name="unsavePost">Unsave</button>
-                        </form>
-                    </div>
-                </div>
+    <?php
+    $savedPost = userSaved($nik);
+    while ($post = mysqli_fetch_assoc($savedPost)):?>
+    <div class="saved-post" data-post-id="<?= $post['id_postingan']; ?>">
+        <div class="saved-media">
+            <img src="<?= $post["media"];?>" alt="">
+        </div>
+        <div class="saved-infomation">
+            <div class="caption">
+                <p><?= $post["caption"];?></p>
+                <p class="saved-on">Image . saved on <?= $post["waktu_disimpan"];?></p>
             </div>
-            <?php endwhile;?>
+            <div class="uploader">
+                <img src="<?= $post["foto_profil_user"];?>" alt="">
+                <p class="posted-by">Posted by <b><?= $post["nama_user"];?></b></p>
+            </div>
+            <div class="unsave">
+                <button type="submit" class="unsave-button" name="unsavePost" onclick="unsavePost(<?php echo $post['id_postingan'];?>)">Unsave</button>
+            </div>
         </div>
     </div>
+    <?php endwhile;?>
+</div>
+
 <!--CONTENT END-->
 
     <script src="../js/masyarakatValidation.js"></script>

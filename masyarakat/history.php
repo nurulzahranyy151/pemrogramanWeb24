@@ -155,7 +155,7 @@ if(isset($_POST["savePost"])){
                     </div>
                 </div>
                 <div class="post-content">
-                    <p class="<?= $post["caption"];?>">Ini caption</p>
+                    <p><?= $post["caption"];?></p>
                     <img src="<?= $post["media"];?>" alt="ini gambar">
                 </div>
                 <div class="post-actions">
@@ -194,8 +194,8 @@ if(isset($_POST["savePost"])){
     <div id="deleteModal" class="deleteModal">
         <div class="deleteModal-content">
             <span class="closeDelete" id="closeDelete" onclick="closeDelete()">&times;</span>
-            <h2>Delete Supervisor</h2>
-            <p>Are you sure you want to delete this supervisor?</p>
+            <h2>Delete Post</h2>
+            <p>Yakin ingin menghapus postingan ini?</p>
             <form action="" id="deleteForm" method="post">
                 <input type="hidden" id="deleteId" name="deleteId">
                 <button type="submit" name="deletePost">Yes, Delete</button>
