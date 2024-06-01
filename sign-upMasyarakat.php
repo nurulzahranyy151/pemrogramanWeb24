@@ -20,7 +20,7 @@ if(isset($_POST["submit"])){
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SIGN UP</title>
+    <title>Buat Akun</title>
     <link rel="stylesheet" href="css/signupStyle.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

@@ -48,31 +48,25 @@ if(isset($_POST["unsavePost"])){
                     <li class="nav-link">
                         <a href="dashboard.php">
                             <i class='bx bx-home-alt icon' ></i>
-                            <span class="text nav-text">Dashboard</span>
+                            <span class="text nav-text">Beranda</span>
                         </a>
                     </li>
                     <li class="nav-link">
                         <a href="saved.php">
                             <i class='bx bx-bookmark icon'></i>
-                            <span class="text nav-text">Saved</span>
+                            <span class="text nav-text">Tersimpan</span>
                         </a>
                     </li>
                     <li class="nav-link">
                         <a href="history.php">
                             <i class='bx bx-history icon'></i>
-                            <span class="text nav-text">History</span>
+                            <span class="text nav-text">Riwayat</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="statistic.php">
                             <i class='bx bx-pie-chart-alt icon' ></i>
-                            <span class="text nav-text">Statistic</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-cog icon'></i>
-                            <span class="text nav-text">Settings</span>
+                            <span class="text nav-text">Statistik</span>
                         </a>
                     </li>
                 </ul>
