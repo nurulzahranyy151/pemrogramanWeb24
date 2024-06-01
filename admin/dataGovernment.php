@@ -9,14 +9,6 @@ if(!isset($_SESSION["id_admin"])){
     $adminData = adminLogin($id_admin);
 }
 
-if (isset($_POST['edited'])) {
-    $editId = $_POST['edited'];
-    $edited = stafLogin($editId);
-    $showEditModal = true;
-    unset($_POST);
-}else{
-    $showEditModal = false;
-}
 
 if(isset($_POST["deleteStaf"])){
     deleteStaf($_POST["deleteId"]);
@@ -25,14 +17,12 @@ if(isset($_POST["deleteStaf"])){
 
 if(isset($_POST["submitChange"])){
     editStaf($_POST, $_FILES);
-    unset($_POST);
-    unset($_FILES);
+    header("Location: dataGovernment.php");
 }
 
 if(isset($_POST["addName"])){
     addStaf($_POST, $_FILES);
-    unset($_POST);
-    unset($_FILES);
+    header("Location: dataGovernment.php");
 }
 
 ?>
@@ -130,43 +120,13 @@ if(isset($_POST["addName"])){
             <div class="header-data">
                 <h3>Data Staf</h3>
             </div>
-            <div id="editModal" class="editModal" style="display: <?php echo $showEditModal ? 'block' : 'none'; ?>;">
-                <form action="" method="post" enctype="multipart/form-data" class="edit-staf-form">
-                    <div class="edit-staf-container">
-                        <div class="profile-staf-container">
-                            <img id="profile-staf" src="<?= $edited["foto_profil_staff"];?>" class="profile-staf">
-                            <input type="file" id="profile-staf-input" name="profile-staf" style="display: none;">
-                            <button type="button" class="edit-profil" onclick="changeProfil()"><i class='bx bx-pencil icon'></i></button>
-                        </div>                        
-                        <div class="form-container-edit">
-                            <div class="form-group-edit">
-                                <label for="editId">ID</label>
-                                <input type="text" id="editId" name="editId" value="<?= $edited["id_supervisor"];?>" readonly>
-                            </div>
-                            <div class="form-group-edit">
-                                <label for="editNama">Nama</label>
-                                <input type="text" id="editNama" name="editNama" value="<?= $edited["nama_supervisor"];?>">
-                            </div>
-                            <div class="form-group-edit">
-                                <label for="editEmail">Email</label>
-                                <input type="editEmail" id="editEmail" name="editEmail" value="<?= $edited["email_supervisor"];?>">
-                            </div>
-                            <div class="form-group-edit">
-                                <label for="editPassword">Password</label>
-                                <input type="password" id="editPassword" name="editPassword" value="<?= $edited["password_supervisor"];?>">
-                            </div>
-                            <div class="form-actions-edit">
-                                <button type="button" id="cancelButton" class="cancel-button">Batalkan</button>
-                                <button type="submit" class="save-button" name="submitChange">Simpan</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
+            <div id="editModal" class="editModal">
+                
             </div>
-            <div id="data-staf" class="isi-table" style="display: <?php echo $showEditModal ? 'none' : 'block'; ?>;">
+            <div id="data-staf" class="isi-table">
                 <div class="search-add">
                     <div class="search">
-                        <input type="text" name="search-bar" class="search-bar" placeholder="Cari Staf">
+                        <input type="text" id="search-keyword" name="search-bar" class="search-bar" placeholder="Cari Staf">
                         <button type="submit"><i class='bx bx-search icon'></i></button>
                     </div>
                     <button class="add-data" type="button" id="openAddModal">
@@ -174,47 +134,46 @@ if(isset($_POST["addName"])){
                         <i class='bx bx-plus-circle'></i>
                     </button>
                 </div>
-                <table>
-                    <tr class="head-table">
-                        <th>No</th>
-                        <th>Foto</th>
-                        <th>ID</th>
-                        <th>Nama</th>
-                        <th>Email</th>
-                        <th>Password</th>
-                        <th>Action</th>
-                    </tr>
-                    <?php 
-                    $count = 1;
-                    $result = findGov();
-                    while($row = mysqli_fetch_assoc($result)): ?>
-                    <tr class="isi-data">
-                        <td><?php echo $count; ?></td>
-                        <td><img src="<?= $row["foto_profil_staff"];?>" alt="Profil Picture" class="staf-foto"></td>
-                        <td><?php echo $row["id_supervisor"]; ?></td>
-                        <td><?php echo $row["nama_supervisor"]; ?></td>
-                        <td><?php echo $row["email_supervisor"]; ?></td>
-                        <td><?php echo $row["password_supervisor"]; ?></td>
-                        <td>
-                            <div class="button-container">
-                                <form method="post" style="display:inline;">
-                                    <input type="hidden" name="edited" value="<?php echo $row['id_supervisor']; ?>">
-                                    <button type="submit" class="btn edit-btn">
+                <div id="table-data-staf">
+                    <table>
+                        <tr class="head-table">
+                            <th>No</th>
+                            <th>Foto</th>
+                            <th>ID</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Action</th>
+                        </tr>
+                        <?php 
+                        $count = 1;
+                        $result = findGov();
+                        while($row = mysqli_fetch_assoc($result)): ?>
+                        <tr class="isi-data">
+                            <td><?php echo $count; ?></td>
+                            <td><img src="<?= $row["foto_profil_staff"];?>" alt="Profil Picture" class="staf-foto"></td>
+                            <td><?php echo $row["id_supervisor"]; ?></td>
+                            <td><?php echo $row["nama_supervisor"]; ?></td>
+                            <td><?php echo $row["email_supervisor"]; ?></td>
+                            <td><?php echo $row["password_supervisor"]; ?></td>
+                            <td>
+                                <div class="button-container">
+                                    <button type="submit" id="editstafpop" class="btn edit-btn" onclick="editStaf(<?php echo $row['id_supervisor'];?>)">
                                         <i class='bx bx-edit icon'></i>
                                         <span>Ubah</span>
                                     </button>
-                                </form>
-                                <button type="button" class="btn del-btn" onclick="showDeleteModal(<?php echo $row['id_supervisor']; ?>)">
-                                    <i class='bx bx-trash icon'></i>
-                                    <span>Hapus</span>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <?php 
-                        $count++;
-                        endwhile; ?>
-                </table>
+                                    <button type="button" class="btn del-btn" onclick="showDeleteModal(<?php echo $row['id_supervisor']; ?>)">
+                                        <i class='bx bx-trash icon'></i>
+                                        <span>Hapus</span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php 
+                            $count++;
+                            endwhile; ?>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

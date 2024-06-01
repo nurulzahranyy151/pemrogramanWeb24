@@ -1,28 +1,24 @@
 <?php 
 require '../php/functions.php';
-
-if (isset($_POST['editUser'])) {
-    $editNIK = $_POST['editNIK'];
-    $edited = userLogin($editNIK);
-    $showEditModal = true;
-    unset($_POST);
+if (!isset($_SESSION["id_admin"])) {
+    header("Location: ../loginAdmin.php");
+    exit();
 }else{
-    $showEditModal = false;
+    $id_admin = $_SESSION["id_admin"];
+    $adminData = adminLogin($id_admin);
+
 }
 
 if(isset($_POST['saveChange'])){
     kelolaMasyarakat($_POST);
-    unset($_POST);
+    header("Location: dataMasyarakat.php");
 }
 
 if(isset($_POST['deleteUser'])){
     hapusUser($_POST['deleteNik']);
-    unset($_POST);
+    header("Location: dataMasyarakat.php");
 }
 
-
-$id_admin = $_SESSION["id_admin"];
-$adminData = adminLogin($id_admin);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -126,38 +122,9 @@ $adminData = adminLogin($id_admin);
             <div class="header-data">
                 <h3>Data Masyarakat</h3>
             </div>
-            <div id="editModal" class="editModal" style="display: <?php echo $showEditModal ? 'block' : 'none'; ?>;">
-                <form action="" method="post" class="edit-masyarakat-form">
-                    <div class="edit-masyarakat-container">
-                        <div class="profile-masyarakat-container">
-                            <img id="profile-masyarakat" src="<?= $edited["foto_profil_user"];?>" class="profile-masyarakat">
-                        </div>                        
-                        <div class="form-container-edit">
-                            <div class="form-group-edit">
-                                <label for="editNik">NIK</label>
-                                <input type="text" id="editNik" name="editNik" value="<?= $edited["NIK"];?>" readonly>
-                            </div>
-                            <div class="form-group-edit">
-                                <label for="editNama">Nama</label>
-                                <input type="text" id="editNama" name="editNama" value="<?= $edited["nama_user"];?>">
-                            </div>
-                            <div class="form-group-edit">
-                                <label for="editEmail">Email</label>
-                                <input type="editEmail" id="editEmail" name="editEmail" value="<?= $edited["email_user"];?>">
-                            </div>
-                            <div class="form-group-edit">
-                                <label for="editPassword">Password</label>
-                                <input type="password" id="editPassword" name="editPassword" value="<?= $edited["password_user"];?>">
-                            </div>
-                            <div class="form-actions-edit">
-                                <button type="button" id="cancelButton" class="cancel-button">Batalkan</button>
-                                <button type="submit" class="save-button" name="saveChange">Simpan</button>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div id="data-masyarakat" class="isi-table" style="display: <?php echo $showEditModal ? 'none' : 'block'; ?>;">
+            <div id="editModal" class="editModal" style="display: none"></div>
+            
+            <div id="data-masyarakat" class="isi-table">
                 <div class="search-add">
                     <div class="search">
                         <input type="text" name="search-bar" class="search-bar" placeholder="Cari Masyarakat">
@@ -187,13 +154,10 @@ $adminData = adminLogin($id_admin);
                         <td><?= $row["password_user"];?></td>
                         <td>
                             <div class="button-container">
-                                <form method="post" style="display:inline;">
-                                    <input type="hidden" name="editNIK" value="<?php echo $row['NIK']; ?>">
-                                    <button type="submit" class="btn edit-btn" name="editUser">
-                                        <i class='bx bx-edit icon'></i>
-                                        <span>Ubah</span>
-                                    </button>
-                                </form>
+                                <button class="btn edit-btn" name="editUser" onclick="editMasyarakat(<?php echo $row['NIK'];?>)">
+                                    <i class='bx bx-edit icon'></i>
+                                    <span>Ubah</span>
+                                </button>
                                 <button type="button" class="btn del-btn" onclick="showDeleteModal(<?php echo $row['NIK'];?>)">
                                     <i class='bx bx-trash icon'></i>
                                     <span>Hapus</span>

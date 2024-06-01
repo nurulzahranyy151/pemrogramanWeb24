@@ -11,27 +11,6 @@ document.getElementById('cancelDelete').addEventListener('click', function() {
     deleteModal.style.display = "none";
 });
 
-document.getElementById('cancelButton').addEventListener('click', function() {
-    document.getElementById('editModal').style.display = "none";
-    document.getElementById('data-staf').style.display = "block";
-});
-
-
-function changeProfil() {
-    document.getElementById('profile-staf-input').click();
-}
-
-document.getElementById('profile-staf-input').addEventListener('change', event => {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            document.getElementById('profile-staf').src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-    }
-});
-
 document.getElementById('openAddModal').addEventListener('click', function() {
     document.getElementById('addModal').style.display = "block";
 });
@@ -108,3 +87,47 @@ document.getElementById('addForm').addEventListener('submit', function(event) {
         document.getElementById('addForm').submit();
     }
 });
+
+
+document.getElementById('search-keyword').addEventListener('keyup', function() {
+    const keyword = document.getElementById('search-keyword').value;
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'searchStaf.php?keyword=' + keyword, true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            document.getElementById('table-data-staf').innerHTML = xhr.responseText;
+        }
+    };
+    xhr.send();
+});
+
+function editStaf(id){
+    document.getElementById('editModal').style.display = "block";
+    document.getElementById('data-staf').style.display = "none";
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'editStaf.php?id=' + id, true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            document.getElementById('editModal').innerHTML = xhr.responseText;
+            document.getElementById('canceleditstaf').addEventListener('click', function() {
+                document.getElementById('editModal').style.display = "none";
+                document.getElementById('data-staf').style.display = "block";
+            });
+            document.getElementById('buttonchangeprofilstaf').addEventListener('click', function(event) {
+                document.getElementById('profile-staf-input').click();
+            });
+            
+            document.getElementById('profile-staf-input').addEventListener('change', event => {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById('profile-staf-change').src = e.target.result;
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+        }
+    };
+    xhr.send();
+}

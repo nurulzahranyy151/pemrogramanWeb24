@@ -282,4 +282,9 @@ function showComment($idpost){
     global $conn;
     return mysqli_query($conn, "SELECT komentar.*, user.nama_user, user.foto_profil_user FROM komentar JOIN user ON komentar.NIK = user.NIK WHERE komentar.id_postingan = $idpost");
 }
+
+function searchStaf($keyword){
+    global $conn;
+    return mysqli_query($conn, "SELECT * FROM supervisor WHERE nama_supervisor LIKE '$keyword%'");
+}
 ?>

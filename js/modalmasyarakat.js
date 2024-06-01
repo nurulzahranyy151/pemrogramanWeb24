@@ -32,3 +32,20 @@ document.getElementById('profile-masyarakat-input').addEventListener('change', e
         reader.readAsDataURL(file);
     }
 });
+
+function editMasyarakat(nik) {
+    document.getElementById('editModal').style.display = "block";
+    document.getElementById('data-masyarakat').style.display = "none";
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'editMasyarakat.php?nik=' + nik, true);
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            document.getElementById('editModal').innerHTML = xhr.responseText;
+            document.getElementById('cancelButton').addEventListener('click', function() {
+                document.getElementById('editModal').style.display = "none";
+                document.getElementById('data-masyarakat').style.display = "block";
+            });
+        }
+    };
+    xhr.send();
+}
