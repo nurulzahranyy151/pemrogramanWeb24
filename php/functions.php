@@ -133,7 +133,7 @@ function uploadPostingan($data, $file) {
 
 function popupPost($idpost){
     global $conn;
-    $query = mysqli_query($conn, "SELECT postingan.media, postingan.caption, postingan.tgl_postingan, postingan.alamat_postingan, user.nama_user, user.foto_profil_user FROM postingan JOIN user ON postingan.NIK = user.NIK WHERE postingan.id_postingan = $idpost");
+    $query = mysqli_query($conn, "SELECT postingan.*, user.nama_user, user.foto_profil_user FROM postingan JOIN user ON postingan.NIK = user.NIK WHERE postingan.id_postingan = $idpost");
     return mysqli_fetch_assoc($query);
 }
 
@@ -223,16 +223,18 @@ function deleteMasyarakat($nik) {
     return mysqli_affected_rows($conn);
 }
 
-function savePostingan($idpost, $nik) {
+function savePostingan($idpost) {
     global $conn;
+    $nik = $_SESSION["NIK"];
     $tanggal = date("Y-m-d");
     $query = "INSERT INTO saved VALUES('$idpost', '$nik', NOW())";
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn);
 }
 
-function unsavePostingan($idpost, $nik){
+function unsavePostingan($idpost){
     global $conn;
+    $nik = $_SESSION["NIK"];
     $query = "DELETE FROM saved WHERE id_postingan = '$idpost' AND NIK = '$nik'";
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn);
@@ -265,4 +267,24 @@ function deletePostingan($id){
     return mysqli_affected_rows($conn);
 }
 
+function addComment($data){
+    global $conn;
+    $idpost = htmlspecialchars($data["idpost"]);
+    $nik = $_SESSION["NIK"];
+    $comment = htmlspecialchars($data["comment"]);
+    $query = "INSERT INTO komentar VALUES('', '$comment', '$idpost', NOW(), '$nik')";
+    mysqli_query($conn, $query);
+    return mysqli_affected_rows($conn);
+}
+
+
+function showComment($idpost){
+    global $conn;
+    return mysqli_query($conn, "SELECT komentar.*, user.nama_user, user.foto_profil_user FROM komentar JOIN user ON komentar.NIK = user.NIK WHERE komentar.id_postingan = $idpost");
+}
+
+function searchStaf($keyword){
+    global $conn;
+    return mysqli_query($conn, "SELECT * FROM supervisor WHERE nama_supervisor LIKE '$keyword%'");
+}
 ?>

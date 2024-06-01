@@ -9,31 +9,15 @@ if (!isset($_SESSION["NIK"])) {
 }
 
 if(isset($_POST["submit-report"])){
-    uploadPostingan($_POST, $_FILES);
-    unset($_POST);
-    unset($_FILES);
-}
-
-
-if(isset($_POST["comment-button"])){
-    $showPopupcomment = true;
-    $idcomment = $_POST["idpost-comment"];
-    $saveornotpopup = cekSave($idcomment, $nik) ? True : False;
-    $commented = popupPost($idcomment);
-    unset($_POST);
-}else{
-    $showPopupcomment = false;
-}
-
-if(isset($_POST["savePost"])){
-    $idpost = $_POST["idpost"];
-    if($_POST["ceksave"] == "not"){
-        savePostingan($idpost, $nik);
+    if($_FILES["media"]["error"] == 4){
+        $mediacek = true;
     } else {
-        unsavePostingan($idpost, $nik);
+        $mediacek = false;
+        uploadPostingan($_POST, $_FILES);
+        header("Location: dashboard.php");
     }
-    unset($_POST);
 }
+
 
 ?>
 <!DOCTYPE html>
@@ -47,6 +31,7 @@ if(isset($_POST["savePost"])){
     
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <title>Dashboard</title>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
 <body>    
     <nav class="sidebar close">
@@ -94,6 +79,7 @@ if(isset($_POST["savePost"])){
                             <span class="text nav-text">Statistik</span>
                         </a>
                     </li>
+
                 </ul>
             </div>
 
@@ -114,7 +100,8 @@ if(isset($_POST["savePost"])){
                     <div class="toggle-switch">
                         <span class="switch"></span>
                     </div>
-                </li>      
+                </li>
+                
             </div>
         </div>
     </nav>
@@ -134,7 +121,10 @@ if(isset($_POST["savePost"])){
         <div class="isi-konten-dashboard">
             <div class="fyp">
                 <form action="" method="post" enctype="multipart/form-data" class="make-report">
+<<<<<<< HEAD
                 
+=======
+>>>>>>> fe7482ff5cb83ef1773f22882ecd7f3b7f952896
                     <div class="header-report">
                         <div class="reporter">
                             <img src="<?= $user["foto_profil_user"];?>" alt="Profil Picture">
@@ -154,6 +144,13 @@ if(isset($_POST["savePost"])){
                         <div class="atribut">
                             <i class='bx bx-image-add icon' onclick="chooseFile()"></i>
                         </div>
+<<<<<<< HEAD
+=======
+                        <?php if(isset($mediacek) && $mediacek == true){
+                            echo "<p style='color: red;, font-size: 12px;'>Gambar tidak boleh kosong</p>";
+                        }
+                        ?>
+>>>>>>> fe7482ff5cb83ef1773f22882ecd7f3b7f952896
                         <div class="submit-report">
                             <button type="submit" id="submit-report" name="submit-report">Post</button>
                         </div>
@@ -164,42 +161,34 @@ if(isset($_POST["savePost"])){
                 $postingan = showAllpostingan();
                 while ($row = mysqli_fetch_assoc($postingan)):?>
                 <?php $saveornot = cekSave($row["id_postingan"], $nik) ? True : False;?>
-                    <div class="post">
-                        <div class="post-header">
-                            <img src="<?= $row['foto_profil_user'];?>" alt="Profil Picture">
-                            <div class="post-info">
-                                <h3><?= $row['nama_user'];?></h3>
-                                <p><?= $row['tgl_postingan'];?></p>
-                            </div>
+                <div class="post">
+                    <div class="post-header">
+                        <img src="<?= $row['foto_profil_user'];?>" alt="Profil Picture">
+                        <div class="post-info">
+                            <h3><?= $row['nama_user'];?></h3>
+                            <p><?= $row['tgl_postingan'];?></p>
                         </div>
-                        <div class="post-content">
-                            <p class="caption"><?= $row['caption'];?></p>
-                            <img src="<?= $row['media'];?>" alt="Gambar postingan">
-                        </div>
-                        <div class="post-actions">
-                            <div class="left-post-action">
-                                <form action="" method="post">
-                                    <input type="hidden" name="idpost-comment" value="<?= $row["id_postingan"];?>">
-                                    <button type="submit" class="comment-button" name="comment-button"><i class='bx bx-comment'></i></button>
-                                </form>
-                            </div>
-                            <div class="right-post-action">
-                                <form action="" method="post">
-                                    <input type="hidden" name="ceksave" value="<?php echo $saveornot ? 'saved' : 'not';?>">
-                                    <input type="hidden" name="idpost" value="<?= $row["id_postingan"];?>">
-                                    <input type="hidden" name="nik" value="<?= $nik;?>">
-                                    <button type="submit" name="savePost" class="<?php echo $saveornot ? 'saved' : 'save-button';?>" onclick="toggleSave(this)">
-                                    <i class='<?php echo $saveornot ? 'bx bxs-bookmark' : 'bx bx-bookmark';?>' style=""></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </div>
-                        <form action="#" method="post" class="add-comment-form">
-                            <input type="text" name="comment" id="comment" placeholder="Tambahkan komentar..." onchange="validateComment()">
-                            <button type="submit" id="submit-comment" style="display: none;">Kirim</button>
-                        </form>
                     </div>
-                    <?php endwhile;?>
+                    <div class="post-content">
+                        <p class="caption"><?= $row['caption'];?></p>
+                        <img src="<?= $row['media'];?>" alt="Gambar postingan">
+                    </div>
+                    <div class="post-actions">
+                        <div class="left-post-action">
+                            <button type="submit" class="comment-button" name="comment-button" onclick="popupcomment(<?php echo $row['id_postingan'];?>)"><i class='bx bx-comment'></i></button>
+                        </div>
+                        <div class="right-post-action">
+                            <button data-post-id="<?php echo $row['id_postingan']; ?>" name="savePost" class="<?php echo $saveornot ? 'saved' : 'save-button'; ?>" onclick="toggleSave(this, <?php echo $row['id_postingan']; ?>)">
+                                <i class='<?php echo $saveornot ? 'bx bxs-bookmark' : 'bx bx-bookmark'; ?>'></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="add-comment-form">
+                        <input type="text" name="comment" class="comment" id="comment-<?php echo $row['id_postingan'];?>" placeholder="Tambahkan komentar...">
+                        <button type="button" id="submitcomment" name="postComment" onclick="postComment(<?php echo $row['id_postingan'];?>)">Kirim</button>
+                    </div>
+                </div>
+                <?php endwhile;?>
             </div>
             <div class="trend">
                 <div class="trend-content">
@@ -210,23 +199,22 @@ if(isset($_POST["savePost"])){
                     <hr>
                     <?php 
                     $trending = trendingpost();
-                    while ($trend = mysqli_fetch_assoc($trending)) {
-                        ?>
+                    while ($trend = mysqli_fetch_assoc($trending)):?>
                         <div class="accepted-post">
                             <a href="#">
                                 <img src="<?= $trend['media'];?>" alt="">
                             </a>
                             <div class="accepted-post-atr">
-                                <h5><?= $trend['tgl_postingan'];?>03-11-2024</h5>
-                                <p><?= $trend['alamat_postingan'];?>Jalan Prabu rangksari karang parwa abiantubuh baru</p>
+                                <h5><?= $trend['tgl_postingan'];?></h5>
+                                <p><?= $trend['alamat_postingan'];?></p>
                             </div>
                         </div>
-                        <?php
-                    }?>
+                        <?php endwhile?>
                 </div>
             </div>
         </div>
     </div>
+<<<<<<< HEAD
     
     <div id="commentPopup" class="popup" style="display: <?php echo $showPopupcomment ? 'flex' : 'none'; ?>">
         <div class="popup-content">
@@ -356,5 +344,10 @@ if(isset($_POST["savePost"])){
 <script src="../js/masyarakatValidation.js"></script>
 <script src="../js/sidebar.js"></script>
 
+=======
+    <div id="commentPopup" class="popup"></div>
+    <script src="../js/masyarakatValidation.js"></script>
+    <script src="../js/sidebar.js"></script>
+>>>>>>> fe7482ff5cb83ef1773f22882ecd7f3b7f952896
 </body>
 </html>

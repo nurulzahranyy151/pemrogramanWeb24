@@ -423,7 +423,7 @@ body.dark .switch::before {
     color: black;
 }
 
-.dark .post, .dark .make-report, .dark .trend-content, .dark .caption, .dark .footer-report, .dark .saved-post, .dark .history-post, .dark .profile {
+.dark .post, .dark .make-report, .dark .trend-content, .dark .caption, .dark .footer-report, .dark .saved-post, .dark .history-post, .dark .profile, .dark .input-address {
     background-color:  #242526;
     color: white;
 }
@@ -501,7 +501,7 @@ body.dark .add-comment-form button {
 }
 
 /* Close Button */
-.close {
+.closepop {
     color: #aaa;
     font-size: 28px;
     font-weight: bold;
@@ -511,8 +511,8 @@ body.dark .add-comment-form button {
     cursor: pointer;
 }
 
-.close:hover,
-.close:focus {
+.closepop:hover,
+.closepop:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
@@ -582,15 +582,17 @@ body.dark .add-comment-form button {
     font-size: 12px;
 }
 
-
-/* Post Actions */
-
-
-/* Comment Form */
-.add-comment-form {
-    display: flex;
-    padding: 20px;
+.tanggal-komen, #tanggal-post{
+    font-size: 10px;
+    color: #888;
 }
+
+.comment-info, .uploader-info{
+    margin-top: 10px;
+    gap: 5px;;
+    align-items: center;
+}
+
 
 
 /*ACCEPTED POST END*/
@@ -642,11 +644,12 @@ body.dark .home .text {
     padding: 15px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
     align-items: center;
-    justify-content: space-between;
 }
+
 
 .page-name{
     padding-left: 270px;
+    width: 80%;
 }
 
 .user-login{
@@ -727,6 +730,11 @@ img {
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
     padding: 20px;
 }
+.make-report{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
 .post-header {
     display: flex;
@@ -801,14 +809,27 @@ form {
     display: flex;
 }
 
-#comment, #comment-pop {
-    width: 80%;
-    flex: 1;
-    border: none;
+.add-comment-form{
+    padding-right: 5px;
+    gap: 5px;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
 }
 
-#button-submit-comment {
-    width: 20%;
+.comment, .comment:focus{
+    border: none;
+    outline: none;
+}
+
+#submitcomment, #submitcommentpop {
+    background-color: #322FF1;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+    height: 60%;
 }
 
 .trend-content{
@@ -821,7 +842,6 @@ form {
 
 .header-report, .footer-report{
     display: flex;
-    margin-bottom: 10px;
 }
 
 .caption-media{
@@ -898,6 +918,7 @@ form {
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
 }
 
+
 .saved-media img{
     width: 200px;
     height: 200px;
@@ -910,19 +931,17 @@ form {
     display: flex;
     gap: 20px;
     align-items: center;
+    height: 80px;
 }
 
 .uploader img{
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
 }
 
 .unsave{
-    margin-left: 85%;
     margin-top: 20px;
-    bottom: 10px;
-    right: 10px;
 }
 .unsave-button{
     background: blue;
@@ -1061,7 +1080,7 @@ input[type=text], input[type=password], input[type=email], select {
     padding: 12px 20px;
     margin: 8px 0;
     display: inline-block;
-    border: 1px solid #ccc;
+    border: none;
     border-radius: 4px;
     box-sizing: border-box;
 }
