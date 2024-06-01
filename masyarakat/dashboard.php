@@ -121,10 +121,6 @@ if(isset($_POST["submit-report"])){
         <div class="isi-konten-dashboard">
             <div class="fyp">
                 <form action="" method="post" enctype="multipart/form-data" class="make-report">
-<<<<<<< HEAD
-                
-=======
->>>>>>> fe7482ff5cb83ef1773f22882ecd7f3b7f952896
                     <div class="header-report">
                         <div class="reporter">
                             <img src="<?= $user["foto_profil_user"];?>" alt="Profil Picture">
@@ -144,13 +140,10 @@ if(isset($_POST["submit-report"])){
                         <div class="atribut">
                             <i class='bx bx-image-add icon' onclick="chooseFile()"></i>
                         </div>
-<<<<<<< HEAD
-=======
                         <?php if(isset($mediacek) && $mediacek == true){
                             echo "<p style='color: red;, font-size: 12px;'>Gambar tidak boleh kosong</p>";
                         }
                         ?>
->>>>>>> fe7482ff5cb83ef1773f22882ecd7f3b7f952896
                         <div class="submit-report">
                             <button type="submit" id="submit-report" name="submit-report">Post</button>
                         </div>
@@ -213,9 +206,7 @@ if(isset($_POST["submit-report"])){
                 </div>
             </div>
         </div>
-    </div>
-<<<<<<< HEAD
-    
+    </div>  
     <div id="commentPopup" class="popup" style="display: <?php echo $showPopupcomment ? 'flex' : 'none'; ?>">
         <div class="popup-content">
             <span class="close">&times;</span>
@@ -339,15 +330,9 @@ if(isset($_POST["submit-report"])){
         </div>
     </div>
 </div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="../js/masyarakatValidation.js"></script>
-<script src="../js/sidebar.js"></script>
-
-=======
     <div id="commentPopup" class="popup"></div>
     <script src="../js/masyarakatValidation.js"></script>
     <script src="../js/sidebar.js"></script>
->>>>>>> fe7482ff5cb83ef1773f22882ecd7f3b7f952896
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </body>
 </html>

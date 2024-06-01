@@ -5,6 +5,7 @@ function sign($data){
     global $conn;
     $nama = htmlspecialchars($data["nama"]);
     $nik = htmlspecialchars($data["nik"]);
+    $dob = htmlspecialchars($data["tgl_lahir_user"]);
     $email = htmlspecialchars($data["email"]);
     $password = htmlspecialchars($data["password"]);
     $cek = mysqli_query($conn, "SELECT * FROM user");
@@ -14,7 +15,7 @@ function sign($data){
         }
     }
     $query= "INSERT INTO user
-    VALUES('$nik', '$nama', '$email', '$password','','','','','','../img/default.jpeg')";
+    VALUES('$nik', '$nama', '$email', '$password','','$dob','','','','../img/default.jpeg')";
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn);
 }
