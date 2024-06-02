@@ -66,10 +66,7 @@ if(isset($_POST["savePost"])){
 
         <div class="menu-bar">
             <div class="menu">
-                <li class="search-box">
-                    <i class='bx bx-search icon'></i>
-                    <input type="text" placeholder="Search...">
-                </li>
+
                 <ul class="menu-links">
                     <li class="nav-link">
                         <a href="dashboard.php">
@@ -77,24 +74,28 @@ if(isset($_POST["savePost"])){
                             <span class="text nav-text">Beranda</span>
                         </a>
                     </li>
+
                     <li class="nav-link">
                         <a href="saved.php">
                             <i class='bx bx-bookmark icon'></i>
                             <span class="text nav-text">Tersimpan</span>
                         </a>
                     </li>
+
                     <li class="nav-link">
                         <a href="history.php">
                             <i class='bx bx-history icon'></i>
                             <span class="text nav-text">Riwayat</span>
                         </a>
                     </li>
+
                     <li class="nav-link">
                         <a href="statistic.php">
-                            <i class='bx bx-pie-chart-alt icon' ></i>
+                            <i class='bx bx-bar-chart-alt-2 icon'></i>
                             <span class="text nav-text">Statistik</span>
                         </a>
                     </li>
+
                 </ul>
             </div>
 

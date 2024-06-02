@@ -65,7 +65,7 @@ if(isset($_POST["saveChange"])){
                     </li>
                     <li class="nav-link">
                         <a href="statistic.php">
-                            <i class='bx bx-pie-chart-alt icon' ></i>
+                            <i class='bx bx-bar-chart-alt-2 icon'></i>
                             <span class="text nav-text">Statistik</span>
                         </a>
                     </li>

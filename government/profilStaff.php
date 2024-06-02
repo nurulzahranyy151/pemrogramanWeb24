@@ -44,7 +44,11 @@ if (!isset($_SESSION["id_supervisor"])) {
                     </li>
                     <li class="nav-link">
                         <a href="statistik.php">
+<<<<<<< HEAD
                             <i class='bx bx-bar-chart-alt-2 icon' ></i>
+=======
+                            <i class='bx bx-bar-chart-alt-2 icon'></i>
+>>>>>>> df55aba09102309601656452b555eb933b37e027
                             <span class="text nav-text">Statistik Laporan</span>
                         </a>
                     </li>
