@@ -5,7 +5,7 @@ function sign($data){
     global $conn;
     $nama = htmlspecialchars($data["nama"]);
     $nik = htmlspecialchars($data["nik"]);
-    $dob = htmlspecialchars($data["tgl_lahir_user"]);
+    $dob = htmlspecialchars($data["dob"]);
     $email = htmlspecialchars($data["email"]);
     $password = htmlspecialchars($data["password"]);
     $cek = mysqli_query($conn, "SELECT * FROM user");

@@ -55,7 +55,9 @@ if(isset($_POST["submit"])){
         </div>
         <div class="input-control">
           <label for="dob">Tanggal Lahir sesuai KTP</label>
-          <input type="date" id="dob" name="dob" value="<?= $user["tgl_lahir_user"];?>">
+          <input type="date" id="dob" name="dob" value="">
+          <div class="error"></div>
+          <div class="success"></div>
         </div>
         <div class="input-control">
           <label for="nama">Username </label>
