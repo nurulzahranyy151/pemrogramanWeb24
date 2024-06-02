@@ -127,11 +127,11 @@ if(isset($_POST['deleteUser'])){
             <div id="data-masyarakat" class="isi-table">
                 <div class="search-add">
                     <div class="search">
-                        <input type="text" name="search-bar" class="search-bar" placeholder="Cari Masyarakat">
-                        <button type="submit"><i class='bx bx-search icon'></i></button>
+                        <input type="text" id="search-keyword-masyarakat" name="search-bar" class="search-bar" placeholder="Cari Masyarakat">
+                        <button><i class='bx bx-search icon'></i></button>
                     </div>
                 </div>
-                <div id="table-data-masyarakat">
+                <div id="table-data-masyarakat" class="table-masyarakat">
                     <table>
                         <tr class="head-table">
                             <th>No</th>

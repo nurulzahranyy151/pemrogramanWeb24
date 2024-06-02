@@ -290,6 +290,11 @@ function searchStaf($keyword){
     return mysqli_query($conn, "SELECT * FROM supervisor WHERE nama_supervisor LIKE '$keyword%'");
 }
 
+function searchMasyarakat($keyword){
+    global $conn;
+    return mysqli_query($conn, "SELECT * FROM user WHERE nama_user LIKE '$keyword%' OR NIK LIKE '$keyword%' OR email_user LIKE '$keyword%'");
+}
+
 function findSumStatusPostingan(){
     global $conn;
     $statuses = ['diterima', 'ditolak', 'ditunggu'];
@@ -314,8 +319,6 @@ function findSumStatusPostingan(){
         'total' => $total
     );
 }
-
-// functions.php
 
 function findMonthlyStats($year) {
     global $conn;
@@ -347,5 +350,7 @@ function rejectPostingan($id){
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn);
 }
+
+
 
 ?>

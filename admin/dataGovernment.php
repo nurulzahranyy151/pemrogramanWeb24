@@ -129,7 +129,7 @@ if(isset($_POST["addName"])){
                         <i class='bx bx-plus-circle'></i>
                     </button>
                 </div>
-                <div id="table-data-staf">
+                <div id="table-data-staf" class="table-staf">
                     <table>
                         <tr class="head-table">
                             <th>No</th>
