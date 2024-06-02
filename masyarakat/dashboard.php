@@ -186,16 +186,16 @@ if(isset($_POST["submit-report"])){
                     <?php 
                     $trending = trendingpost();
                     while ($trend = mysqli_fetch_assoc($trending)):?>
-                        <div class="accepted-post">
-                            <a href="#">
-                                <img src="<?= $trend['media'];?>" alt="">
-                            </a>
-                            <div class="accepted-post-atr">
-                                <h5><?= $trend['tgl_postingan'];?></h5>
-                                <p><?= $trend['alamat_postingan'];?></p>
-                            </div>
+                    <div class="accepted-post">
+                        <a href="#">
+                            <img src="<?= $trend['media'];?>" alt="">
+                        </a>
+                        <div class="accepted-post-atr">
+                            <h5><?= $trend['tgl_postingan'];?></h5>
+                            <p><?= $trend['alamat_postingan'];?></p>
                         </div>
-                        <?php endwhile?>
+                    </div>
+                    <?php endwhile?>
                 </div>
             </div>
         </div>
@@ -309,14 +309,9 @@ if(isset($_POST["submit-report"])){
                         </label></button>
                     </div>
                     <div class="right-post-action">
-                        <form action="" method="post">
-                            <input type="hidden" name="ceksave" value="<?php echo $saveornotpopup ? 'saved' : 'not';?>">
-                            <input type="hidden" name="idpost" value="<?= $idcomment;?>">
-                            <input type="hidden" name="nik" value="<?= $nik;?>">
-                            <button type="submit" name="savePost" class="<?php echo $saveornotpopup ? 'saved' : 'save-button';?>" onclick="toggleSave(this)">
-                                <i class='<?php echo $saveornotpopup ? 'bx bxs-bookmark' : 'bx bx-bookmark';?>' style=""></i>
-                            </button>
-                        </form>
+                        <button name="savePost" class="<?php echo $saveornotpopup ? 'saved' : 'save-button';?>" onclick="toggleSave(this)">
+                            <i class='<?php echo $saveornotpopup ? 'bx bxs-bookmark' : 'bx bx-bookmark';?>' style=""></i>
+                        </button>
                     </div>
                 </div>
                 <form action="#" method="post" class="add-comment-form">

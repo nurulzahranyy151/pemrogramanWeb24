@@ -333,4 +333,19 @@ function findMonthlyStats($year) {
 
     return $monthlyStats;
 }
+
+function accPostingan($id){
+    global $conn;
+    $query = "UPDATE postingan SET status_postingan = 'diterima' WHERE id_postingan = $id";
+    mysqli_query($conn, $query);
+    return mysqli_affected_rows($conn);
+}
+
+function rejectPostingan($id){
+    global $conn;
+    $query = "UPDATE postingan SET status_postingan = 'ditolak' WHERE id_postingan = $id";
+    mysqli_query($conn, $query);
+    return mysqli_affected_rows($conn);
+}
+
 ?>

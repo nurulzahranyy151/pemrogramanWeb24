@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const inputDob = document.getElementById('dob');
         const dob = inputDob.value.split('-');
-        const tanggalLahir = validationResponse.tanggalLahir;
+        const tanggalLahir = validationResponse.tanggalLahir.toString;
         const bulanLahir = validationResponse.bulanLahir;
         const tahunLahir = validationResponse.tahunLahir;
         

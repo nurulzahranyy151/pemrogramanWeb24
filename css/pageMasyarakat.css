@@ -1130,3 +1130,23 @@ input[type=text], input[type=password], input[type=email], select {
     text-decoration: none;
     cursor: pointer;
 }
+
+@media only screen and (max-width: 768px) {
+    /* CSS code for devices with a maximum width of 768px */
+    .sidebar {
+        width: 100%;
+    }
+
+    .konten {
+        margin-left: 0;
+        width: 100%;
+    }
+
+    .header-konten {
+        margin-left: 0;
+    }
+
+    .page-name {
+        padding-left: 0;
+    }
+}
