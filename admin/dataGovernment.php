@@ -31,7 +31,7 @@ if(isset($_POST["addName"])){
     <link rel="stylesheet" href="../css/pageAdminStyle.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <title>Kelola Staff</title>
+    <title>Kelola Supervisor</title>
 </head>
 <body>
 
@@ -113,7 +113,7 @@ if(isset($_POST["addName"])){
         </div>
         <div class="isi-konten">
             <div class="header-data">
-                <h3>Data Staf</h3>
+                <h3>Data Supervisor</h3>
             </div>
             <div id="editModal" class="editModal">
                 
@@ -125,7 +125,7 @@ if(isset($_POST["addName"])){
                         <button type="submit"><i class='bx bx-search icon'></i></button>
                     </div>
                     <button class="add-data" type="button" id="openAddModal">
-                        <span>Tambah Staf</span>
+                        <span>Tambah Supervisor</span>
                         <i class='bx bx-plus-circle'></i>
                     </button>
                 </div>

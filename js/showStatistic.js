@@ -40,9 +40,9 @@ function updateChart(data) {
             datasets: [{
                 label: 'Total Reports',
                 data: Object.values(data),
-                backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                borderColor: 'rgba(54, 162, 235, 1)',
+                backgroundColor: 'rgb(24, 20, 243)',
                 borderWidth: 1
+
             }]
         },
         options: {

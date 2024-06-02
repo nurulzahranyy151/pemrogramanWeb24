@@ -151,6 +151,8 @@ body.dark {
 
 .sidebar.close {
     width: 88px;
+    border: #242526;
+    border-radius: 10px;
 }
 
 .sub-menu-wrap{
