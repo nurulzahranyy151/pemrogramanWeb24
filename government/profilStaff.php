@@ -90,7 +90,6 @@ $user = mysqli_fetch_assoc($query);
                     <div class="profile-container">
                         <div class="profile-pic-container">
                             <img src="<?= $user["foto_profil_staff"];?>" class="profile-pic">
-                            <button type="button" class="edit-button"><i class='bx bx-pencil icon'></i></button>
                         </div>
                         <div class="form-container">
                             <div class="form-group">

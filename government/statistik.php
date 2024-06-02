@@ -14,7 +14,7 @@
     <title>Statistik</title>
 </head>
 <body>
-    <nav class="sidebar close">
+<nav class="sidebar close">
         <header>
             <div class="image-text">
                 <span class="image">
@@ -27,16 +27,23 @@
             </div>
             <i class='bx bx-chevron-right toggle'></i>
         </header>
-        <div class="container">
+
         <div class="menu-bar">
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="statistik.php">
-                            <i class='bx bx-bar-chart-alt-2 icon'></i>
-                            <span class="text nav-text">Statistik</span>
+                        <a href="dashboardGovernment.php">
+                            <i class='bx bx-home-alt icon' ></i>
+                            <span class="text nav-text">Beranda</span>
                         </a>
                     </li>
+                    <li class="nav-link">
+                        <a href="statistik.php">
+                            <i class='bx bx-bar-chart-alt-2 icon'></i>
+                            <span class="text nav-text">Statistik Laporan</span>
+                        </a>
+                    </li>
+
                 </ul>
             </div>
 

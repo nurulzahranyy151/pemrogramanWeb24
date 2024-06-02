@@ -417,6 +417,11 @@ body.dark .switch::before {
     color: white;
 }
 
+.dark .header-konten .page-name{
+    background-color: #242526;
+    color: white;;
+}
+
 .post, .make-report, .trend-content, .caption, .footer-report {
     background-color: white;
     color: black;
