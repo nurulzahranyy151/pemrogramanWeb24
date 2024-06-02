@@ -1,7 +1,21 @@
+let idselected;
 function showDeleteModal(id) {
     document.getElementById('deleteModal').style.display = "block";
-    document.getElementById('deleteId').value = id;
+    idselected = id;
 }
+
+document.getElementById('deleteStaf').addEventListener('click', function(event) {
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'deleteStaf.php', true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            document.getElementById('table-data-staf').innerHTML = xhr.responseText;
+        }
+        deleteModal.style.display = "none";
+    }
+    xhr.send('id=' + idselected);
+});
 
 document.getElementById('closeDelete').addEventListener('click', function() {
     deleteModal.style.display = "none";

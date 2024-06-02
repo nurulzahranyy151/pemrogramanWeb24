@@ -10,11 +10,6 @@ if(!isset($_SESSION["id_admin"])){
 }
 
 
-if(isset($_POST["deleteStaf"])){
-    deleteStaf($_POST["deleteId"]);
-    unset($_POST);
-}
-
 if(isset($_POST["submitChange"])){
     editStaf($_POST, $_FILES);
     header("Location: dataGovernment.php");
@@ -224,11 +219,10 @@ if(isset($_POST["addName"])){
             <span class="close" id="closeDelete">&times;</span>
             <h2>Delete Supervisor</h2>
             <p>Are you sure you want to delete this supervisor?</p>
-            <form action="" id="deleteForm" method="post">
-                <input type="hidden" id="deleteId" name="deleteId">
-                <button type="submit" name="deleteStaf">Yes, Delete</button>
-                <button type="button" id="cancelDelete">Cancel</button>
-            </form>
+            <div>
+                <button type="submit" id="deleteStaf" class="delete-selected">Delete</button>
+                <button type="button" id="cancelDelete" class="cancel-delete-selected">Cancel</button>
+            </div>
         </div>
     </div>
     <script src="../js/sidebar.js"></script>

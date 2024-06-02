@@ -614,7 +614,6 @@ table td {
     display: none;
     position: fixed;
     z-index: 1;
-    padding-top: 100px;
     left: 0;
     top: 0;
     width: 100%;
@@ -624,15 +623,46 @@ table td {
     background-color: rgba(0,0,0,0.4);
 }
 
+.addModal{
+    padding-top: 100px;
+
+}
+
 /* Modal Content */
 .addModal-content, .deleteModal-content {
     background-color: #fefefe;
-    margin: auto;
     padding: 20px;
     border: 1px solid #888;
+    border-radius: 8px;
+}
+
+.addModal-content{
+    margin: auto;
     width: 80%;
     max-width: 800px;
 }
+
+.deleteModal-content{
+    margin: 15% auto;
+    width: 50%;
+}
+
+.deleteModal-content button {
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.delete-selected {
+    color: white;
+    background-color: #ff0000;
+}
+
+.cancel-delete-selected {
+    color: black;
+    background-color: #ccc;
+}
+
 .form-add-staf {
     display: flex;
     flex-direction: column;
