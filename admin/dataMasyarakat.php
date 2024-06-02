@@ -127,48 +127,50 @@ if(isset($_POST['deleteUser'])){
             <div id="data-masyarakat" class="isi-table">
                 <div class="search-add">
                     <div class="search">
-                        <input type="text" name="search-bar" class="search-bar" placeholder="Cari Masyarakat">
-                        <button type="submit"><i class='bx bx-search icon'></i></button>
+                        <input type="text" id="search-keyword-masyarakat" name="search-bar" class="search-bar" placeholder="Cari Masyarakat">
+                        <button><i class='bx bx-search icon'></i></button>
                     </div>
                 </div>
-                <table>
-                    <tr class="head-table">
-                        <th>No</th>
-                        <th>Foto</th>
-                        <th>NIK</th>
-                        <th>Nama</th>
-                        <th>Email</th>
-                        <th>Password</th>
-                        <th>Action</th>
-                    </tr>
-                    <?php 
-                    $count = 1;
-                    $result = findMasyarakat();
-                    while( $row = mysqli_fetch_assoc($result)):?>
-                    <tr class="isi-data">
-                        <td><?= $count;?></td>
-                        <td><img src="<?= $row["foto_profil_user"];?>" alt="Profil Picture" class="foto-masyarakat"></td>
-                        <td><?= $row["NIK"];?></td>
-                        <td><?= $row["nama_user"];?></td>
-                        <td><?= $row["email_user"];?></td>
-                        <td><?= $row["password_user"];?></td>
-                        <td>
-                            <div class="button-container">
-                                <button class="btn edit-btn" name="editUser" onclick="editMasyarakat(<?php echo $row['NIK'];?>)">
-                                    <i class='bx bx-edit icon'></i>
-                                    <span>Ubah</span>
-                                </button>
-                                <button type="button" class="btn del-btn" onclick="showDeleteModal(<?php echo $row['NIK'];?>)">
-                                    <i class='bx bx-trash icon'></i>
-                                    <span>Hapus</span>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <?php 
-                        $count++;
-                        endwhile;?>
-                </table>
+                <div id="table-data-masyarakat" class="table-masyarakat">
+                    <table>
+                        <tr class="head-table">
+                            <th>No</th>
+                            <th>Foto</th>
+                            <th>NIK</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Action</th>
+                        </tr>
+                        <?php 
+                        $count = 1;
+                        $result = findMasyarakat();
+                        while( $row = mysqli_fetch_assoc($result)):?>
+                        <tr class="isi-data">
+                            <td><?= $count;?></td>
+                            <td><img src="<?= $row["foto_profil_user"];?>" alt="Profil Picture" class="foto-masyarakat"></td>
+                            <td><?= $row["NIK"];?></td>
+                            <td><?= $row["nama_user"];?></td>
+                            <td><?= $row["email_user"];?></td>
+                            <td><?= $row["password_user"];?></td>
+                            <td>
+                                <div class="button-container">
+                                    <button class="btn edit-btn" name="editUser" onclick="editMasyarakat(<?php echo $row['NIK'];?>)">
+                                        <i class='bx bx-edit icon'></i>
+                                        <span>Ubah</span>
+                                    </button>
+                                    <button type="button" class="btn del-btn" onclick="showDeleteModal(<?php echo $row['NIK'];?>)">
+                                        <i class='bx bx-trash icon'></i>
+                                        <span>Hapus</span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php 
+                            $count++;
+                            endwhile;?>
+                    </table>
+                </div>  
             </div>
         </div>
     </div>
@@ -179,11 +181,10 @@ if(isset($_POST['deleteUser'])){
             <span class="close" id="closeDelete">&times;</span>
             <h2>Delete Masyarakat</h2>
             <p>Are you sure you want to delete this Masyarakat?</p>
-            <form action="" id="deleteForm" method="post">
-                <input type="hidden" id="deleteNIK" name="deleteNik">
-                <button type="submit" name="deleteUser">Yes, Delete</button>
-                <button type="button" id="cancelDelete">Cancel</button>
-            </form>
+            <div>
+                <button type="submit" id="deleteMasyarakat" class="delete-selected">Delete</button>
+                <button type="button" id="cancelDelete" class="cancel-delete-selected">Cancel</button>
+            </div>
         </div>
     </div>
     <script src="../js/sidebar.js"></script>

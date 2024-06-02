@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
       if (day < 1 || day > maxDays[month - 1]) {
         return false;
       }
-    return { valid: true, tanggalLahir: day, bulanLahir: bulanLahir, tahunLahir: tahunLahir };
+    return { valid: true, tanggalLahir: tanggalLahir, bulanLahir: bulanLahir, tahunLahir: tahunLahir };
   }
 
     const nikInput = document.getElementById('nik');
@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const inputDob = document.getElementById('dob');
         const dob = inputDob.value.split('-');
-        const tanggalLahir = validationResponse.tanggalLahir.toString;
+        const tanggalLahir = validationResponse.tanggalLahir;
         const bulanLahir = validationResponse.bulanLahir;
         const tahunLahir = validationResponse.tahunLahir;
         
