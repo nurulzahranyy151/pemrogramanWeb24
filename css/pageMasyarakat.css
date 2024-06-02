@@ -270,7 +270,7 @@ header .image-text .profession {
     transition: var(--tran-05);
 }
 
-body.dark .sidebar header .toggle {
+body.dark .sidebar .toggle {
     color: var(--text-color);
 }
 
@@ -328,7 +328,6 @@ body.dark .sidebar li a:hover .icon,
 body.dark .sidebar li a:hover .text {
     color: var(--text-color);
 }
-
 
 .sidebar .menu-bar {
     height: calc(100% - 55px);
@@ -416,6 +415,11 @@ body.dark .switch::before {
 .dark .header-konten {
     background-color:  #242526;
     color: white;
+}
+
+.dark .header-konten .page-name{
+    background-color: #242526;
+    color: white;;
 }
 
 .post, .make-report, .trend-content, .caption, .footer-report {

@@ -132,6 +132,7 @@ function uploadPostingan($data, $file) {
     return false;
 }
 
+
 function popupPost($idpost){
     global $conn;
     $query = mysqli_query($conn, "SELECT postingan.*, user.nama_user, user.foto_profil_user FROM postingan JOIN user ON postingan.NIK = user.NIK WHERE postingan.id_postingan = $idpost");

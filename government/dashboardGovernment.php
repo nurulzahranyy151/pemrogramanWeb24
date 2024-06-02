@@ -18,7 +18,6 @@ if(isset($_POST["submit-report"])){
 
 
 ?>
-<!
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,7 +27,7 @@ if(isset($_POST["submit-report"])){
     <link rel="stylesheet" href="../css/pageMasyarakat.css">
     
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-
+    <script src="../js/loginValidation.js"></script>
     <title>Beranda</title>
 </head>
 <body>
@@ -113,7 +112,7 @@ if(isset($_POST["submit-report"])){
                                     <textarea class="input-caption" name="caption" placeholder="Buat Postingan "></textarea>
                                 </div>
                                 <div class="address-post">
-                                <textarea class="input-address" name="address" placeholder="Masukkan alamat laporan..."></textarea>
+                                <textarea class="input-address" name="address" placeholder="Masukkan alamat laporan..." autocomplete = "on" ></textarea>
                                 </div>
                                 <div class="media-preview">
                                 </div>
@@ -257,7 +256,6 @@ if(isset($_POST["submit-report"])){
         </div>
     </div>
 </div>
-<script src="../js/loginValidation.js"></script>
 <script src="../js/sidebar.js"></script>
 </body>
 </html>
