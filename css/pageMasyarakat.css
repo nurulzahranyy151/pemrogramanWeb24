@@ -270,7 +270,7 @@ header .image-text .profession {
     transition: var(--tran-05);
 }
 
-body.dark .sidebar header .toggle {
+body.dark .sidebar .toggle {
     color: var(--text-color);
 }
 
@@ -328,7 +328,6 @@ body.dark .sidebar li a:hover .icon,
 body.dark .sidebar li a:hover .text {
     color: var(--text-color);
 }
-
 
 .sidebar .menu-bar {
     height: calc(100% - 55px);
