@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", function() {
       if (day < 1 || day > maxDays[month - 1]) {
         return false;
       }
-    return { valid: true, tanggalLahir: tanggalLahir, bulanLahir: bulanLahir, tahunLahir: tahunLahir };
+    return { valid: true, tanggalLahir: day, bulanLahir: bulanLahir, tahunLahir: tahunLahir };
   }
 
     const nikInput = document.getElementById('nik');

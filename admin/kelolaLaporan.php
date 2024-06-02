@@ -12,7 +12,7 @@ require '../php/functions.php';?>
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <title>Dashboard</title>
+    <title>Kelola Laporan</title>
 </head>
 <body>
     <nav class="sidebar close">
@@ -84,7 +84,7 @@ require '../php/functions.php';?>
     <div class="konten">
         <div class="header-konten">
             <div class="page-name">
-                <h2>Kelola Masyarakat</h2>
+                <h2>Kelola Laporan</h2>
             </div>
             <div class="user-login">
                 <img src="../img/coba.jpeg" alt="Profil Picture">

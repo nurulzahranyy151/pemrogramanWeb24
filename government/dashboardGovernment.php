@@ -7,8 +7,8 @@ if (!isset($_SESSION["id_supervisor"])) {
     $id_supervisor = $_SESSION["id_supervisor"];
     $supervisor = stafLogin($id_supervisor);
 }
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +16,6 @@ if (!isset($_SESSION["id_supervisor"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/pageMasyarakat.css">
-    
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <script src="../js/loginValidation.js"></script>
     <title>Beranda</title>
@@ -54,7 +53,6 @@ if (!isset($_SESSION["id_supervisor"])) {
 
                 </ul>
             </div>
-
             <div class="bottom-content">
                 <li class="">
                     <a href="../php/logout-proses-adminStaff.php">
@@ -131,30 +129,6 @@ if (!isset($_SESSION["id_supervisor"])) {
                         </form>
                     </div>
                     <?php endwhile;?>
-            </div>
-            <div class="trend">
-                <div class="trend-content">
-                    <div class="header-trend">
-                        <img src="<?= $supervisor["foto_profil_staff"];?>" alt="">
-                        <h4>Accepted Post</h4>
-                    </div>
-                    <hr>
-                    <?php 
-                    $trending = trendingpost();
-                    while ($trend = mysqli_fetch_assoc($trending)) {
-                        ?>
-                        <div class="accepted-post">
-                            <a href="#">
-                                <img src="<?= $trend['media'];?>" alt="">
-                            </a>
-                            <div class="accepted-post-atr">
-                                <h5><?= $trend['tgl_laporan'];?>03-11-2024</h5>
-                                <p><?= $trend['alamat_laporan'];?>Jalan Prabu rangksari karang parwa abiantubuh baru</p>
-                            </div>
-                        </div>
-                        <?php
-                    }?>
-                </div>
             </div>
         </div>
         </div>

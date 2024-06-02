@@ -86,11 +86,30 @@ if (!isset($_SESSION["id_supervisor"])) {
         </div>
         <div class="user-login">
             <img src="<?php echo $supervisor['foto_profil_staff'];?>" alt="Profil Picture">
+            
             <p><?php echo $supervisor["nama_supervisor"];?></p>
         </div>
     </div>
     <div class="isi-konten">
         <div class="box-container">
+        <div class="container">
+        <div class="year-selection">
+            <label for="tahun">Pilih Tahun: </label>
+            <select name="tahun" id="tahun">
+                <?php
+                $currentYear = date("Y");
+                for ($year = 2020; $year <= $currentYear; $year++) {
+                    $selected = ($year == $currentYear) ? 'selected' : '';
+                    echo "<option value='$year' $selected>$year</option>";
+                }
+                ?>
+            </select>
+        </div>
+            <div class="chart">
+                <canvas class="chart-monthly" id="monthlyChart"></canvas>
+            </div>
+        </div>
+        <div class="laporan-container">
             <div class="box box-diterima">
                 <h5>Diterima</h5>
                 <p><?php echo $sumStatus['diterima']; ?> Laporan</p>
@@ -102,7 +121,7 @@ if (!isset($_SESSION["id_supervisor"])) {
                 <p><?php echo date("d F Y"); ?></p>
             </div>
             <div class="box box-menunggu">
-                <h5>Menunggu Tindak Lanjut</h5>
+                <h5>Menunggu</h5>
                 <p><?php echo $sumStatus['ditunggu']; ?> Laporan</p>
                 <p><?php echo date("d F Y"); ?></p>
             </div>
@@ -110,25 +129,6 @@ if (!isset($_SESSION["id_supervisor"])) {
                 <h5>Total Laporan</h5>
                 <p><?php echo $sumStatus['total']; ?> Laporan</p>
                 <p><?php echo date("d F Y"); ?></p>
-            </div>
-        </div>
-
-        <div class="year-selection">
-            <label for="tahun">Pilih Tahun:</label>
-            <select name="tahun" id="tahun">
-                <?php
-                $currentYear = date("Y");
-                for ($year = 2020; $year <= $currentYear; $year++) {
-                    $selected = ($year == $currentYear) ? 'selected' : '';
-                    echo "<option value='$year' $selected>$year</option>";
-                }
-                ?>
-            </select>
-        </div>
-        
-        <div class="container">
-            <div class="chart">
-                <canvas id="monthlyChart" width="300" height="200"></canvas>
             </div>
         </div>
     </div>

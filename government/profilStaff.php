@@ -77,10 +77,9 @@ $user = mysqli_fetch_assoc($query);
             </div>
             <div class="user-login">
                 <a href="profilStaff.php">
-                    <img src="
-                    <?= $_SESSION["foto_profil_staff"];?>" alt="Profil Picture">
+                    <img src="<?= $_SESSION["foto_profil_staff"];?>" alt="Profil Picture">
                 </a>
-                <p><?= $_SESSION["nama_supervisor"];?></p>
+                <p><?=$_SESSION["nama_supervisor"];?></p>
             </div>
         </div>
 
