@@ -1,9 +1,12 @@
 <?php 
 require '../php/functions.php';
-$conn = mysqli_connect("localhost" , "root", "", "dbrecity");
-$idsup = $_SESSION["id_supervisor"];
-$query = mysqli_query($conn, "SELECT * FROM supervisor WHERE id_supervisor = $idsup");
-$user = mysqli_fetch_assoc($query);
+if (!isset($_SESSION["id_supervisor"])) {
+    header("Location: ../loginAdminandGov.php");
+    exit();
+}else{
+    $id_supervisor = $_SESSION["id_supervisor"];
+    $supervisor = stafLogin($id_supervisor);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +44,7 @@ $user = mysqli_fetch_assoc($query);
                     </li>
                     <li class="nav-link">
                         <a href="statistik.php">
-                            <i class='bx bx-pie-chart-alt icon' ></i>
+                            <i class='bx bx-bar-chart-alt-2 icon' ></i>
                             <span class="text nav-text">Statistik Laporan</span>
                         </a>
                     </li>
@@ -78,9 +81,9 @@ $user = mysqli_fetch_assoc($query);
             <div class="user-login">
                 <a href="profilStaff.php">
                     <img src="
-                    <?= $_SESSION["foto_profil_staff"];?>" alt="Profil Picture">
+                    <?= $supervisor["foto_profil_staff"];?>" alt="Profil Picture">
                 </a>
-                <p><?= $_SESSION["nama_supervisor"];?></p>
+                <p><?= $supervisor["nama_supervisor"];?></p>
             </div>
         </div>
 
@@ -89,24 +92,24 @@ $user = mysqli_fetch_assoc($query);
                 <form action="../php/functions.php" method="post" enctype="multipart/form-data" class="profile-form">
                     <div class="profile-container">
                         <div class="profile-pic-container">
-                            <img src="<?= $user["foto_profil_staff"];?>" class="profile-pic">
+                            <img src="<?= $supervisor["foto_profil_staff"];?>" class="profile-pic">
                         </div>
                         <div class="form-container">
                             <div class="form-group">
                                 <label for="nik">Staff ID</label>
-                                <input type="text" id="nik" name="nik" value="<?= $user["id_supervisor"];?>" readonly>
+                                <input type="text" id="nik" name="nik" value="<?= $supervisor["id_supervisor"];?>" readonly>
                             </div>
                             <div class="form-group">
                                 <label for="name">Nama Anda</label>
-                                <input type="text" id="name" name="name" placeholder="<?= $user["nama_supervisor"];?>"readonly>
+                                <input type="text" id="name" name="name" placeholder="<?= $supervisor["nama_supervisor"];?>"readonly>
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" id="email" name="email" placeholder="<?= $user["email_supervisor"];?>"readonly>
+                                <input type="email" id="email" name="email" placeholder="<?= $supervisor["email_supervisor"];?>"readonly>
                             </div>
                             <div class="form-group">
                                 <label for="password">Kata Sandi</label>
-                                <input type="password" id="password" name="password" placeholder="<?= $user["password_supervisor"];?>"readonly>
+                                <input type="password" id="password" name="password" placeholder="<?= $supervisor["password_supervisor"];?>"readonly>
                             </div>
                         </div>
                     </div>

@@ -51,7 +51,6 @@ if (!isset($_SESSION["id_supervisor"])) {
                             <span class="text nav-text">Statistik Laporan</span>
                         </a>
                     </li>
-
                 </ul>
             </div>
 
@@ -89,11 +88,13 @@ if (!isset($_SESSION["id_supervisor"])) {
                 <p><?= $supervisor["nama_supervisor"];?></p>
             </div>
         </div>
-        <div class="isi-konten">
+        <div id="dash-staf" class="isi-konten">
             <div class="fyp">
-                <?php 
-                $postingan = showAllpostingan();
-                while ($row = mysqli_fetch_assoc($postingan)):?>
+            <?php 
+            $postingan = showAllpostingan();
+            while ($row = mysqli_fetch_array($postingan)) {
+                if ($row['status_postingan'] === 'ditunggu') {
+                    ?>
                     <div class="post">
                         <div class="post-header">
                             <img src="<?= $row['foto_profil_user'];?>" alt="Profil Picture">
@@ -108,114 +109,32 @@ if (!isset($_SESSION["id_supervisor"])) {
                         </div>
                         <div class="post-actions">
                             <div class="left-post-action">
-                                <button class="like-button" onclick="toggleLike(this)">
-                                    <i class='bx bx-heart'></i>Beri Tanggapan
+                                <button name="accept-button" class="accept-button" onclick="toggleAcceptReject(<?php echo $row['id_postingan'];?>)">
+                                    <i class='bx bxs-check-square'></i>
                                 </button>
-                            </div>
-                            <div class="left-post-action">
-                                <button class="save-button" onclick="toggleSave(this)">
-                                    <i class='bx bx-bookmark'></i>Terima
-                            </div>
-                            <div class="right-post-action">
-                                <button class="save-button" onclick="toggleSave(this)">
-                                    <i class='bx bx-bookmark'></i>Tolak
+                                <button name="reject-button" class="reject-button" onclick="toggleAcceptReject(<?php echo $row['id_postingan'];?>, 'reject')">
+                                    <i class='bx bxs-x-square'></i>
+                                </button>
                             </div>
                             <div class="right-post-action">
                                 <button class="save-button" onclick="toggleSave(this)">
                                     <i class='bx bx-bookmark'></i>Cetak
+                                </button>
                             </div>
                         </div>
-                        <form action="#" method="post" class="add-comment-form">
-                            <input type="text" name="comment" id="comment" placeholder="Tambahkan komentar..." onchange="validateComment()">
-                            <button type="submit" id="submit-comment" style="display: none;">Kirim</button>
-                        </form>
                     </div>
-                    <?php endwhile;?>
+                    <?php
+                }
+            }
+            ?>
             </div>
-            <div class="trend">
-                <div class="trend-content">
-                    <div class="header-trend">
-                        <img src="<?= $supervisor["foto_profil_staff"];?>" alt="">
-                        <h4>Accepted Post</h4>
-                    </div>
-                    <hr>
-                    <?php 
-                    $trending = trendingpost();
-                    while ($trend = mysqli_fetch_assoc($trending)) {
-                        ?>
-                        <div class="accepted-post">
-                            <a href="#">
-                                <img src="<?= $trend['media'];?>" alt="">
-                            </a>
-                            <div class="accepted-post-atr">
-                                <h5><?= $trend['tgl_laporan'];?>03-11-2024</h5>
-                                <p><?= $trend['alamat_laporan'];?>Jalan Prabu rangksari karang parwa abiantubuh baru</p>
-                            </div>
-                        </div>
-                        <?php
-                    }?>
-                </div>
-            </div>
-        </div>
         </div>
     </div>
-</div>
-<div id="commentPopup" class="popup">
-    <div class="popup-content">
-        <span class="close">&times;</span>
-        <div class="popup-left">
-            <img src="../img/default.jpeg" alt="Post Image">
-        </div>
-        <div class="popup-right">
-            <div class="post-header">
-                <img src="../img/coba.jpeg" alt="Profile Picture" class="profile-picture-pop-up">
-                <div class="profile-info">
-                    <h3>Username</h3>
-                    <p>Posted on date</p>
-                </div>
-            </div>
-            <div class="previous-comments">
-                <div class="comments">
-                    <div class="image-user-comment">
-                        <img src="../img/coba.jpeg" alt="">
-                    </div>
-                    <div class="comments-user">
-                        <h4>Lulu</h4>
-                        <p>keren bang</p>
-                    </div>
-                </div>
-                <div class="comments">
-                    <div class="image-user-comment">
-                        <img src="../img/coba.jpeg" alt="">
-                    </div>
-                    <div class="comments-user">
-                        <h4>Lulu</h4>
-                        <p>keren bang</p>
-                    </div>
-                </div>
-            </div>
-            <div class="post-actions">
-                <div class="left-post-action">
-                    <button class="like-button" onclick="toggleLike(this)">
-                        <i class='bx bx-heart'></i>
-                    </button>
-                    <button class="comment-button" ><label for="comment-pop">
-                    <i class='bx bx-comment'></i>
-                    </label></button>
-                </div>
-                <div class="right-post-action">
-                    <button class="save-button" onclick="toggleSave(this)">
-                        <i class='bx bx-bookmark'></i>
-                    </button>
-                </div>
-            </div>
-            <form action="#" method="post" class="add-comment-form">
-                <input type="text" name="comment" id="comment-pop" placeholder="Tambahkan komentar...">
-                <button type="submit" id="submit-comment">Kirim</button>
-            </form>
-        </div>
-    </div>
-</div>
+    
+
+
+
 <script src="../js/sidebar.js"></script>
+<script src="../js/stafAction.js"></script>
 </body>
 </html>
