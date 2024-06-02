@@ -18,7 +18,6 @@ if(isset($_POST["submit-report"])){
     }
 }
 
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,13 +49,9 @@ if(isset($_POST["submit-report"])){
 
         <div class="menu-bar">
             <div class="menu">
-                <li class="search-box">
-                    <i class='bx bx-search icon'></i>
-                    <input type="text" placeholder="Search...">
-                </li>
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="dashboard.php">
                             <i class='bx bx-home-alt icon' ></i>
                             <span class="text nav-text">Beranda</span>
                         </a>
@@ -76,10 +71,9 @@ if(isset($_POST["submit-report"])){
                     <li class="nav-link">
                         <a href="#">
                             <i class='bx bx-bar-chart-alt-2 icon'></i>
-                            <span class="text nav-text">Statistik</span>
+                            <span class="text nav-text">Statistik Laporan</span>
                         </a>
                     </li>
-
                 </ul>
             </div>
 
@@ -90,7 +84,6 @@ if(isset($_POST["submit-report"])){
                         <span class="text nav-text">Logout</span>
                     </a>
                 </li>
-
                 <li class="mode">
                     <div class="sun-moon">
                         <i class='bx bx-moon icon moon'></i>
@@ -101,8 +94,8 @@ if(isset($_POST["submit-report"])){
                         <span class="switch"></span>
                     </div>
                 </li>
-                
             </div>
+
         </div>
     </nav>
     <div class="konten">
@@ -207,68 +200,6 @@ if(isset($_POST["submit-report"])){
             </div>
         </div>
     </div>  
-    <div id="commentPopup" class="popup" style="display: <?php echo $showPopupcomment ? 'flex' : 'none'; ?>">
-        <div class="popup-content">
-            <span class="close">&times;</span>
-            <div class="popup-left">
-                <img src="<?= $commented["media"];?>" alt="Post Image">
-            </div>
-            <div class="popup-right">
-                <div class="post-header">
-                    <img src="<?= $commented["foto_profil_user"];?>" alt="Profile Picture" class="profile-picture-pop-up">
-                    <div class="profile-info">
-                        <h3><?= $commented["nama_user"];?></h3>
-                        <p><?= $commented["tgl_postingan"];?></p>
-                    </div>
-                </div>
-                <div class="previous-comments">
-                    <div class="comments">
-                        <?php if($commented["caption"] != ""):?>
-                        <div class="image-user-comment">
-                            <img src="<?= $commented["foto_profil_user"];?>" alt="">
-                        </div>
-                        <div class="comments-user">
-                            <h4><?= $commented["nama_user"];?></h4>
-                            <p><?= $commented["caption"];?></p>
-                        </div>
-                        <?php endif;?>
-                    </div>
-                    <div class="comments">
-                        <div class="image-user-comment">
-                            <img src="../img/coba.jpeg" alt="">
-                        </div>
-                        <div class="comments-user">
-                            <h4>Lulu</h4>
-                            <p>keren bang</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="post-actions">
-                    <div class="left-post-action">
-                        <button class="comment-button" ><label for="comment-pop">
-                        <i class='bx bx-comment'></i>
-                        </label></button>
-                    </div>
-                    <div class="right-post-action">
-                        <form action="" method="post">
-                            <input type="hidden" name="ceksave" value="<?php echo $saveornotpopup ? 'saved' : 'not';?>">
-                            <input type="hidden" name="idpost" value="<?= $idcomment;?>">
-                            <input type="hidden" name="nik" value="<?= $nik;?>">
-                            <button type="submit" name="savePost" class="<?php echo $saveornotpopup ? 'saved' : 'save-button';?>" onclick="toggleSave(this)">
-                                <i class='<?php echo $saveornotpopup ? 'bx bxs-bookmark' : 'bx bx-bookmark';?>' style=""></i>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-                <form action="#" method="post" class="add-comment-form">
-                    <input type="text" name="comment" id="comment-pop" placeholder="Tambahkan komentar...">
-                    <button type="submit" id="submit-comment">Kirim</button>
-                </form>
-            </div>
-        </div>
-    </div>
-
-</div>
 <div id="commentPopup" class="popup" style="display: <?php echo $showPopupcomment ? 'flex' : 'none'; ?>">
     <?php $saveornotpopup = cekSave($idcomment, $nik) ? True : False;?>
     <div class="popup-content">
@@ -330,9 +261,8 @@ if(isset($_POST["submit-report"])){
         </div>
     </div>
 </div>
-    <div id="commentPopup" class="popup"></div>
     <script src="../js/masyarakatValidation.js"></script>
     <script src="../js/sidebar.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </body>
 </html>

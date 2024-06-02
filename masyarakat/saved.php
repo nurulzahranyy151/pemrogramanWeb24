@@ -34,10 +34,6 @@ if (!isset($_SESSION["NIK"])) {
         </header>
         <div class="menu-bar">
             <div class="menu">
-                <li class="search-box">
-                    <i class='bx bx-search icon'></i>
-                    <input type="text" placeholder="Search...">
-                </li>
                 <ul class="menu-links">
                     <li class="nav-link">
                         <a href="dashboard.php">
@@ -59,7 +55,7 @@ if (!isset($_SESSION["NIK"])) {
                     </li>
                     <li class="nav-link">
                         <a href="statistic.php">
-                            <i class='bx bx-pie-chart-alt icon' ></i>
+                            <i class='bx bx-bar-chart-alt-2 icon'></i>
                             <span class="text nav-text">Statistik</span>
                         </a>
                     </li>

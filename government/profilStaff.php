@@ -41,7 +41,7 @@ $user = mysqli_fetch_assoc($query);
                     </li>
                     <li class="nav-link">
                         <a href="statistik.php">
-                            <i class='bx bx-pie-chart-alt icon' ></i>
+                            <i class='bx bx-bar-chart-alt-2 icon'></i>
                             <span class="text nav-text">Statistik Laporan</span>
                         </a>
                     </li>
