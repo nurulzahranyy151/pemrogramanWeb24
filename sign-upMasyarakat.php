@@ -21,7 +21,7 @@ if(isset($_POST["submit"])){
 <html>
   <head>
     <title>Buat Akun</title>
-    <link rel="stylesheet" href="css/signupStyle.css"/>
+    <link rel="stylesheet" href="css/signupStyle1.css"/>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -43,47 +43,53 @@ if(isset($_POST["submit"])){
       <form action="" id="form" method="POST" name="input">
         <h1>Buat Akun</h1>
         <h4>Selamat Datang!</h4>
-        <div class="input-control">
-          <label for="nik">NIK</label>
-          <input id="nik" name="nik" type="text"/>
-          <div class="error">
-            <?php if(isset($error)) :?>
-                <p><?php echo $errorMessage?></p>
-            <?php endif ?>
+        <div class="input-control-container">
+          <div class="left-input">
+            <div class="input-control">
+              <label for="nik">NIK</label>
+              <input id="nik" name="nik" type="text"/>
+              <div class="error">
+                <?php if(isset($error)) :?>
+                    <p><?php echo $errorMessage?></p>
+                <?php endif ?>
+              </div>
+              <div class="success"></div>
+            </div>
+            <div class="input-control">
+              <label for="dob">Tanggal Lahir sesuai KTP</label>
+              <input type="date" id="dob" name="dob" value="">
+              <div class="error"></div>
+              <div class="success"></div>
+            </div>
+            <div class="input-control">
+              <label for="nama">Username </label>
+              <input id="nama" name="nama" type="text"/>
+              <div class="error"></div>
+              <div class="success"></div>
+            </div>
           </div>
-          <div class="success"></div>
+          <div class="right-control">
+            <div class="input-control">
+              <label for="email">Email </label>
+              <input id="email" name="email" type="email"/>
+              <div class="error"></div>
+              <div class="success"></div>
+            </div>
+            <div class="input-control">
+              <label for="password">Password </label>
+              <input id="password" name="password" type="password" />
+              <div class="error"></div>
+              <div class="success"></div>
+            </div>
+            <div class="input-control">
+              <label for="password2">Password Validation </label>
+              <input id="password2" name="password2" type="password" />
+              <div class="error"></div>
+              <div class="success"></div>
+            </div>
+          </div>
         </div>
-        <div class="input-control">
-          <label for="dob">Tanggal Lahir sesuai KTP</label>
-          <input type="date" id="dob" name="dob" value="">
-          <div class="error"></div>
-          <div class="success"></div>
-        </div>
-        <div class="input-control">
-          <label for="nama">Username </label>
-          <input id="nama" name="nama" type="text"/>
-          <div class="error"></div>
-          <div class="success"></div>
-        </div>
-        <div class="input-control">
-          <label for="email">Email </label>
-          <input id="email" name="email" type="email"/>
-          <div class="error"></div>
-          <div class="success"></div>
-        </div>
-        <div class="input-control">
-          <label for="password">Password </label>
-          <input id="password" name="password" type="password" />
-          <div class="error"></div>
-          <div class="success"></div>
-        </div>
-        <div class="input-control">
-          <label for="password2">Password Validation </label>
-          <input id="password2" name="password2" type="password" />
-          <div class="error"></div>
-          <div class="success"></div>
-        </div>
-        <button type="submit" name="submit">Buat Akun</button>
+        <button type="submit" name="submit" class="submit">Buat Akun</button>
         <div class="additional-text">
        <h4>Sudah memiliki Akun? <a href="loginMasyarakat.php">Masuk Disini</a></h4>
        </div>

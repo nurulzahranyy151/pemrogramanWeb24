@@ -94,6 +94,7 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 p{
@@ -121,7 +122,7 @@ button {
   display: block;
   padding: 0.5rem;
   margin-top: 1.5rem;
-  width: 102%;
+  width: 100px;
   background-color: #0C359E;
   border: none;
   cursor: pointer;
@@ -134,17 +135,30 @@ button:hover {
   background-color: orange;
 }
 
+.submit {
+  border-radius: 10px;
+  width: 70%;
+}
+
+.input-control-container{
+  display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 80px; 
+    grid-row-gap: 20px; 
+}
+
 .input-control {
   display: flex;
   flex-direction: column;
   color: #7C838A;
   margin-top: 1rem;
-  width: 100%;
+  width: 120%;
+  margin-left: -10px;
 }
 
 .input-control input {
   border: none;
-  border-radius: 10px;
+  border-radius: 4rem;
   padding: 0.6rem;
   font-size: 0.75rem;
   width: 100%;

@@ -126,16 +126,9 @@ if (!isset($_SESSION["id_supervisor"])) {
             }
             ?>
             </div>
-<<<<<<< HEAD
         </div>
-=======
->>>>>>> 859f916637da1fb3ffa80316ccf66e999570b4ce
         </div>
     </div>
-    
-
-
-
 <script src="../js/sidebar.js"></script>
 <script src="../js/stafAction.js"></script>
 </body>
