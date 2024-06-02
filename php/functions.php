@@ -107,7 +107,7 @@ function trendingpost(){
     global $conn;
     $currMonth = date("m");
     $currYear = date("Y");
-    return mysqli_query($conn, "SELECT postingan.media, postingan.tgl_postingan, postingan.alamat_postingan, user.nama_user FROM postingan JOIN user ON postingan.NIK = user.NIK WHERE MONTH(postingan.tgl_postingan) = $currMonth AND YEAR(postingan.tgl_postingan) = $currYear AND postingan.status_postingan = 'Accepted' ORDER BY postingan.jumlah_saved DESC LIMIT 5");
+    return mysqli_query($conn, "SELECT postingan.media, postingan.tgl_postingan, postingan.alamat_postingan, user.nama_user FROM postingan JOIN user ON postingan.NIK = user.NIK WHERE MONTH(postingan.tgl_postingan) = $currMonth AND YEAR(postingan.tgl_postingan) = $currYear AND postingan.status_postingan = 'diterima' ORDER BY postingan.jumlah_saved DESC LIMIT 5");
 }
 
 function uploadPostingan($data, $file) {
@@ -288,5 +288,49 @@ function showComment($idpost){
 function searchStaf($keyword){
     global $conn;
     return mysqli_query($conn, "SELECT * FROM supervisor WHERE nama_supervisor LIKE '$keyword%'");
+}
+
+function findSumStatusPostingan(){
+    global $conn;
+    $statuses = ['diterima', 'ditolak', 'ditunggu'];
+    $results = [];
+
+    foreach ($statuses as $status) {
+        $query = mysqli_query($conn, "SELECT COUNT(*) AS total FROM postingan WHERE status_postingan = '$status'");
+        if ($query) {
+            $row = mysqli_fetch_assoc($query);
+            $results[$status] = $row['total'];
+        } else {
+            $results[$status] = 0;
+        }
+    }
+    $query = mysqli_query($conn, "SELECT COUNT(*) AS total FROM postingan");
+    $total = ($query) ? mysqli_fetch_assoc($query)['total'] : 0;
+    
+    return array(
+        'diterima' => $results['diterima'],
+        'ditolak' => $results['ditolak'],
+        'ditunggu' => $results['ditunggu'],
+        'total' => $total
+    );
+}
+
+// functions.php
+
+function findMonthlyStats($year) {
+    global $conn;
+    $monthlyStats = array();
+
+    for ($month = 1; $month <= 12; $month++) {
+        $query = mysqli_query($conn, "SELECT COUNT(*) AS total FROM postingan WHERE YEAR(tgl_postingan) = $year AND MONTH(tgl_postingan) = $month");
+        if ($query) {
+            $row = mysqli_fetch_assoc($query);
+            $monthlyStats[$month] = $row['total'];
+        } else {
+            $monthlyStats[$month] = 0;
+        }
+    }
+
+    return $monthlyStats;
 }
 ?>
