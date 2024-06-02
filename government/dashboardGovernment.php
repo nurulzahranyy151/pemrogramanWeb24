@@ -1,21 +1,12 @@
 <?php 
 require '../php/functions.php';
 if (!isset($_SESSION["id_supervisor"])) {
-    header("Location: ../loginMasyarakat.php");
+    header("Location: ../loginAdminandGov.php");
     exit();
+}else{
+    $id_supervisor = $_SESSION["id_supervisor"];
+    $supervisor = stafLogin($id_supervisor);
 }
-$conn = mysqli_connect("localhost" , "root", "", "dbrecity");
-$idsup = $_SESSION["id_supervisor"];
-$query = mysqli_query($conn, "SELECT * FROM supervisor WHERE id_supervisor = $idsup");
-$user = mysqli_fetch_assoc($query);
-$_SESSION["nama_supervisor"] = $user["nama_supervisor"];
-$_SESSION["foto_profil_staff"] = $user["foto_profil_staff"];
-
-
-if(isset($_POST["submit-report"])){
-    uploadPostingan($_POST, $_FILES);
-}
-
 
 ?>
 <!DOCTYPE html>
@@ -93,53 +84,22 @@ if(isset($_POST["submit-report"])){
             <div class="user-login">
                 <a href="profilStaff.php">
                     <img src="
-                    <?= $_SESSION["foto_profil_staff"];?>" alt="Profil Picture">
+                    <?= $supervisor["foto_profil_staff"];?>" alt="Profil Picture">
                 </a>
-                <p><?= $_SESSION["nama_supervisor"];?></p>
+                <p><?= $supervisor["nama_supervisor"];?></p>
             </div>
         </div>
         <div class="isi-konten">
             <div class="fyp">
-                <form action="" method="post" enctype="multipart/form-data">
-                    <div class="make-report">
-                        <div class="header-report">
-                            <div class="reporter">
-                                <img src="<?= $_SESSION["foto_profil_staff"];?>" alt="Profil Picture">
-                                <h5><?= $_SESSION["nama_supervisor"];?></h5>
-                            </div>
-                            <div class="caption-media">
-                                <div class="caption">
-                                    <textarea class="input-caption" name="caption" placeholder="Buat Postingan "></textarea>
-                                </div>
-                                <div class="address-post">
-                                <textarea class="input-address" name="address" placeholder="Masukkan alamat laporan..." autocomplete = "on" ></textarea>
-                                </div>
-                                <div class="media-preview">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="footer-report">
-                            <div class="atribut">
-                                <li><i class='bx bx-image-add icon'></i></i></li>
-                                <li><i class='bx bx-smile icon'></i></li>
-                                <li><i class='bx bx-map icon'></i></li>
-                            </div>
-                            <div class="submit-report">
-                                <button type="submit" id="submit-report" name="submit-report">Post</button>
-                            </div>
-                        </div>
-                        <input type="file" id="imageUpload"  name="media" style="display: none;" accept="image/*">
-                    </div>
-                </form>
                 <?php 
                 $postingan = showAllpostingan();
                 while ($row = mysqli_fetch_assoc($postingan)):?>
                     <div class="post">
                         <div class="post-header">
-                            <img src="<?= $row['foto_profil_staff'];?>" alt="Profil Picture">
+                            <img src="<?= $row['foto_profil_user'];?>" alt="Profil Picture">
                             <div class="post-info">
-                                <h3><?= $row['nama_supervisor'];?></h3>
-                                <p><?= $row['tgl_laporan'];?></p>
+                                <h3><?= $row['nama_user'];?></h3>
+                                <p><?= $row['tgl_postingan'];?></p>
                             </div>
                         </div>
                         <div class="post-content">
@@ -175,7 +135,7 @@ if(isset($_POST["submit-report"])){
             <div class="trend">
                 <div class="trend-content">
                     <div class="header-trend">
-                        <img src="<?= $_SESSION["foto_profil_staff"];?>" alt="">
+                        <img src="<?= $supervisor["foto_profil_staff"];?>" alt="">
                         <h4>Accepted Post</h4>
                     </div>
                     <hr>
