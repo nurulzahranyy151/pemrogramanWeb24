@@ -82,7 +82,7 @@ body {
 }
 
 form {
-  background: linear-gradient(to left, #1814F3, #FCFEFF);
+  background: linear-gradient(to left, #1814F3, #6e6cec, #FCFEFF);
   width: 100%;
   margin: auto;
   padding: 3rem;
@@ -150,7 +150,7 @@ button:hover {
 .input-control {
   display: flex;
   flex-direction: column;
-  color: #7C838A;
+  color: white;
   margin-top: 1rem;
   width: 120%;
   margin-left: -25px;
