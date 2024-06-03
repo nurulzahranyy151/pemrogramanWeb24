@@ -34,8 +34,8 @@ document.addEventListener("DOMContentLoaded", function() {
       if (day < 1 || day > maxDays[month - 1]) {
         return false;
       }
-    return { valid: true, tanggalLahir: tanggalLahir, bulanLahir: bulanLahir, tahunLahir: tahunLahir };
-  }
+      return { valid: true, tanggalLahir: day, bulanLahir: bulanLahir, tahunLahir: tahunLahir };
+    }
 
     const nikInput = document.getElementById('nik');
     if (nikInput.value === '') {
@@ -54,10 +54,10 @@ document.addEventListener("DOMContentLoaded", function() {
 
         const inputDob = document.getElementById('dob');
         const dob = inputDob.value.split('-');
-        const tanggalLahir = validationResponse.tanggalLahir;
-        const bulanLahir = validationResponse.bulanLahir;
-        const tahunLahir = validationResponse.tahunLahir;
-        
+        const tanggalLahir = validationResponse.tanggalLahir.toString().padStart(2, '0');
+        const bulanLahir = validationResponse.bulanLahir.toString().padStart(2, '0');
+        const tahunLahir = validationResponse.tahunLahir.toString().padStart(2, '0');
+
         if (inputDob.value === '') {
           showError(inputDob, 'Tanggal Lahir harus diisi');
           isValid = false;
