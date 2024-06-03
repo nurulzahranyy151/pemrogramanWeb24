@@ -28,10 +28,15 @@ function fetchMonthlyStats(year) {
 function updateChart(data) {
     var ctx = document.getElementById('monthlyChart').getContext('2d');
     
-    // Hancurkan grafik sebelumnya jika ada
+    // Destroy the previous chart if it exists
     if (window.myChart instanceof Chart) {
         window.myChart.destroy();
     }
+
+    var colors = [
+        '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40',
+        '#E7E9ED', '#76FF03', '#D32F2F', '#1976D2', '#F57C00', '#388E3C'
+    ];
 
     window.myChart = new Chart(ctx, {
         type: 'bar',
@@ -40,15 +45,38 @@ function updateChart(data) {
             datasets: [{
                 label: 'Total Reports',
                 data: Object.values(data),
-                backgroundColor: 'rgb(24, 20, 243)',
-                borderWidth: 1
-
+                backgroundColor: colors,
+                borderWidth: 1,
+                borderRadius: 10 
             }]
         },
         options: {
+            plugins: {
+                legend: {
+                    display: true,
+                    labels: {
+                        color: 'black'
+                    }
+                },
+                roundedBars: true
+            },
             scales: {
                 y: {
-                    beginAtZero: true
+                    beginAtZero: true,
+                    ticks: {
+                        color: 'black'
+                    },
+                    grid: {
+                        display: false
+                    }
+                },
+                x: {
+                    ticks: {
+                        color: 'black'
+                    },
+                    grid: {
+                        display: false
+                    }
                 }
             }
         }

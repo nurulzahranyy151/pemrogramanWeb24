@@ -35,7 +35,6 @@ if (!isset($_SESSION["id_supervisor"])) {
         <i class='bx bx-chevron-right toggle'></i>
     </header>
 
-<<<<<<< HEAD
     <div class="menu-bar">
         <div class="menu">
             <ul class="menu-links">
@@ -43,30 +42,18 @@ if (!isset($_SESSION["id_supervisor"])) {
                     <a href="dashboardGovernment.php">
                         <i class='bx bx-home-alt icon' ></i>
                         <span class="text nav-text">Beranda</span>
-=======
-        <div class="menu-bar">
-            <div class="menu">
-                <ul class="menu-links">
-                    <li class="nav-link">
-                        <a href="dashboardGovernment.php">
-                            <i class='bx bx-home-alt icon' ></i>
-                            <span class="text nav-text">Beranda</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="statistik.php">
-                            <i class='bx bx-bar-chart-alt-2 icon'></i>
-                            <span class="text nav-text">Statistik Laporan</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="bottom-content">
-                <li class="">
-                    <a href="../php/logout-proses-adminStaff.php">
-                        <i class='bx bx-log-out icon' ></i>
-                        <span class="text nav-text">Logout</span>
->>>>>>> a5a014b76d3e9bc5a96222c5782ac402356e0e41
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="projectGovernment.php">
+                        <i class='bx bx-edit icon' ></i>
+                        <span class="text nav-text">Projek</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="projectDone.php">
+                        <i class='bx bx-file icon' ></i>
+                        <span class="text nav-text">Selesai</span>
                     </a>
                 </li>
                 <li class="nav-link">
@@ -84,7 +71,6 @@ if (!isset($_SESSION["id_supervisor"])) {
                     <i class='bx bx-log-out icon' ></i>
                     <span class="text nav-text">Logout</span>
                 </a>
-<<<<<<< HEAD
             </li>
 
             <li class="mode">
@@ -97,71 +83,17 @@ if (!isset($_SESSION["id_supervisor"])) {
                     <span class="switch"></span>
                 </div>
             </li>
-=======
-                <p><?= $supervisor["nama_supervisor"];?></p>
-            </div>
-        </div>
-        <div id="dash-staf" class="isi-konten">
-            <div class="fyp">
-            <?php 
-            $postingan = showAllpostingan();
-            while ($row = mysqli_fetch_array($postingan)) {
-                if ($row['status_postingan'] === 'ditunggu') {
-                    ?>
-                    <div class="post">
-                        <div class="post-header">
-                            <img src="<?= $row['foto_profil_user'];?>" alt="Profil Picture">
-                            <div class="post-info">
-                                <h3><?= $row['nama_user'];?></h3>
-                                <p><?= $row['tgl_postingan'];?></p>
-                            </div>
-                        </div>
-                        <div class="post-content">
-                            <p class="caption"><?= $row['caption'];?></p>
-                            <img src="<?= $row['media'];?>" alt="Gambar postingan">
-                        </div>
-                        <div class="post-actions">
-                            <div class="left-post-action">
-                                <button name="accept-button" class="accept-button" onclick="toggleAcceptReject(<?php echo $row['id_postingan'];?>)">
-                                    <i class='bx bxs-check-square'></i>
-                                </button>
-                                <button name="reject-button" class="reject-button" onclick="toggleAcceptReject(<?php echo $row['id_postingan'];?>, 'reject')">
-                                    <i class='bx bxs-x-square'></i>
-                                </button>
-                            </div>
-                            <div class="right-post-action">
-                                <button class="save-button" onclick="toggleSave(this)">
-                                    <i class='bx bx-bookmark'></i>Cetak
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <?php
-                }
-            }
-            ?>
-            </div>
-        </div>
-<<<<<<< HEAD
-        </div>
-    </div>
-=======
-=======
->>>>>>> 859f916637da1fb3ffa80316ccf66e999570b4ce
->>>>>>> a5a014b76d3e9bc5a96222c5782ac402356e0e41
         </div>
     </div>
 </nav>
 <div class="konten">
     <div class="header-konten">
         <div class="page-name">
-            <h2>Beranda</h2>
+            <h2>Statistik</h2>
         </div>
         <div class="user-login">
-            <a href="profilStaff.php">
-                <img src="<?= $supervisor["foto_profil_staff"];?>" alt="Profil Picture">
-            </a>
-            <p><?= $supervisor["nama_supervisor"];?></p>
+            <a href="profilStaff.php"><img src="<?php echo $supervisor['foto_profil_staff'];?>" alt="Profil Picture"></a>
+            <p><?php echo $supervisor["nama_supervisor"];?></p>
         </div>
     </div>
     <div id="dash-staf" class="isi-konten">
@@ -217,7 +149,6 @@ if (!isset($_SESSION["id_supervisor"])) {
     </div>
 </div>
 
->>>>>>> 8d6494832388aa5522c37face420a0cd7b329211
 <script src="../js/sidebar.js"></script>
 <script src="../js/stafAction.js"></script>
 </body>

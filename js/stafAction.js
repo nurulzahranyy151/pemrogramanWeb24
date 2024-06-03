@@ -1,4 +1,4 @@
-let actionId, actionCondition;
+let actionId, actionCondition, postId;
 
 function toggleAcceptReject(id, kondisi) {
     actionId = id;
@@ -22,4 +22,24 @@ function confirmAction() {
 
 function closeModal() {
     document.getElementById('confirmationModal').style.display = 'none';
+}
+
+
+function projectDone(id) {
+    postId = id;
+    document.getElementById('confirmationMessage').innerText = `Are you sure you want to mark this project as done?`;
+    document.getElementById('confirmationModal').style.display = 'block';
+}
+
+function confirmDone(){
+    const xhr = new XMLHttpRequest();
+    xhr.open('POST', 'prosesDone.php', true);
+    xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            document.getElementById('project-staf').innerHTML = xhr.responseText;
+        }
+        closeModal();
+    }
+    xhr.send('id=' + postId);
 }
