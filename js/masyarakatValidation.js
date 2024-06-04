@@ -1,22 +1,41 @@
-function updateSaveStatus(postId, isSaved) {
-    var saveButton = document.querySelector(`button[data-post-id='${postId}']`);
-    if (saveButton) {
-        if (isSaved) {
-            saveButton.classList.add('saved');
-            saveButton.classList.remove('save-button');
-            saveButton.innerHTML = "<i class='bx bxs-bookmark'></i>";
-        } else {
-            saveButton.classList.remove('saved');
-            saveButton.classList.add('save-button');
-            saveButton.innerHTML = "<i class='bx bx-bookmark'></i>";
+function toggleSave(button, postId) {
+    const isSaved = button.classList.toggle('saved');
+    const icon = button.querySelector('i');
+    icon.classList.toggle('bxs-bookmark', isSaved);
+    icon.classList.toggle('bx-bookmark', !isSaved);
+
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "saveHandler.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    const requestData = `id=${postId}&status=${isSaved}`;
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                sinkronSave(postId, isSaved);
+            } else {
+                button.classList.toggle('saved');
+                icon.classList.toggle('bxs-bookmark', !isSaved);
+                icon.classList.toggle('bx-bookmark', isSaved);
+            }
         }
+    };
+    xhr.send(requestData);
+}
+
+function sinkronSave(postId, isSaved) {
+    const mainMenuButton = document.querySelector(`button[data-post-id='${postId}']`);
+    if (mainMenuButton) {
+        const icon = mainMenuButton.querySelector('i');
+        mainMenuButton.classList.toggle('saved', isSaved);
+        icon.classList.toggle('bxs-bookmark', isSaved);
+        icon.classList.toggle('bx-bookmark', !isSaved);
     }
 }
 
 function popupcomment(id) {
     document.querySelector('.popup').style.display = "flex";
-    let idpost = id;
-    fetchPostData(idpost);
+    fetchPostData(id);
 }
 
 function fetchPostData(id) {
@@ -25,13 +44,13 @@ function fetchPostData(id) {
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onload = function () {
         if (xhr.status === 200) {
-            console.log(id);
             document.getElementById('commentPopup').innerHTML = xhr.responseText;
             document.querySelector('.popup .closepop').addEventListener('click', function () {
                 document.querySelector('.popup').style.display = "none";
-                var postId = document.querySelector('.popup-content').dataset.postId;
-                var isSaved = document.querySelector('.popup-content .save-button') === null;
-                updateSaveStatus(postId, isSaved);
+                const popupButton = document.querySelector('.popup-content button[data-post-id]');
+                const postId = popupButton.getAttribute('data-post-id');
+                const isSaved = popupButton.classList.contains('saved');
+                sinkronSave(postId, isSaved);
             });
             document.getElementById('submitcommentpop').addEventListener('click', function () {
                 postCommentPopup(id);
@@ -45,7 +64,7 @@ function chooseFile() {
     document.getElementById('imageUpload').click();
 }
 
-document.getElementById('imageUpload').addEventListener('change', event => {
+document.getElementById('imageUpload').addEventListener('change', function(event) {
     const file = event.target.files[0];
     if (file) {
         const reader = new FileReader();
@@ -53,7 +72,7 @@ document.getElementById('imageUpload').addEventListener('change', event => {
             const img = document.createElement('img');
             img.src = e.target.result;
             img.alt = 'Media Preview';
-            const close = document.createElement('bx');
+            const close = document.createElement('i');
             close.classList.add('bx', 'bx-x');
             close.style.cursor = 'pointer';
             close.addEventListener('click', () => {
@@ -66,71 +85,6 @@ document.getElementById('imageUpload').addEventListener('change', event => {
         reader.readAsDataURL(file);
     }
 });
-
-function toggleSave(button, id) {
-    const icon = button.querySelector('i');
-    button.classList.toggle('saved');
-    const xhr = new XMLHttpRequest();
-    xhr.open("POST", "saveHandler.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-    let status = button.classList.contains('saved');
-    let requestData = "status=" + encodeURIComponent(status) + "&id=" + encodeURIComponent(id);
-
-    xhr.onreadystatechange = function () {
-        if (xhr.readyState === XMLHttpRequest.DONE) {
-            if (xhr.status !== 200) {
-                console.error("Failed to save data.");
-                button.classList.toggle
-                icon.classList.toggle('bxs-bookmark');
-                icon.classList.toggle('bx-bookmark');
-            }else{
-                console.log("Post saved successfully.");
-            }
-        }
-    };
-
-    if (status) {
-        icon.classList.replace('bx-bookmark', 'bxs-bookmark');
-    } else {
-        icon.classList.replace('bxs-bookmark', 'bx-bookmark');
-    }
-
-    xhr.send(requestData);
-}
-
-
-function changeProfilUser(){
-    document.getElementById('profile-pict-input').click();
-}
-
-document.getElementById('profile-pict-input').addEventListener('change', function(event) {
-    const file = event.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            document.getElementById('profile-pict').src = e.target.result;
-        };
-        reader.readAsDataURL(file);
-    }
-});
-
-function showDelete(id) {
-    document.getElementById('deleteModal').style.display = "block";
-    document.getElementById('deleteId').value = id;
-}
-
-function closeDelete() {
-    document.getElementById('deleteModal').style.display = "none";
-}
-
-document.querySelector('.make-report').onsubmit = function() {
-    const mediaPreview = document.querySelector('.media-preview');
-    if (!mediaPreview.querySelector('img')) {
-        e.preventDefault();
-        alert('Silakan unggah gambar sebelum membuat postingan.');
-        }
-}
 
 function postComment(postId) {
     const commentInputId = 'comment-' + postId;
@@ -147,14 +101,13 @@ function postComment(postId) {
     xhr.open("POST", "commentHandler.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    let requestData = "idpost=" + encodeURIComponent(postId) + "&comment=" + encodeURIComponent(commentText);
+    let requestData = `idpost=${postId}&comment=${commentText}`;
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
-                console.log(postId);
                 console.log("Comment posted successfully.");
-                commentInput.value = ""; 
+                commentInput.value = "";
                 commentInput.placeholder = "Tambahkan komentar...";
             } else {
                 console.error("Failed to post comment.");
@@ -180,14 +133,13 @@ function postCommentPopup(postId) {
     xhr.open("POST", "commentHandler.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    let requestData = "idpost=" + encodeURIComponent(postId) + "&comment=" + encodeURIComponent(commentText);
+    let requestData = `idpost=${postId}&comment=${commentText}`;
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
-                console.log(postId);
                 console.log("Comment posted successfully.");
-                commentInput.value = ""; 
+                commentInput.value = "";
                 commentInput.placeholder = "Tambahkan komentar...";
                 fetchPostData(postId);
             } else {
@@ -204,8 +156,7 @@ function unsavePost(id) {
     xhr.open("POST", "saveHandler.php", true);
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-
-    let requestData = "id=" + encodeURIComponent(id) + "&status=false";
+    const requestData = `id=${id}&status=false`;
 
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
@@ -220,6 +171,14 @@ function unsavePost(id) {
     xhr.send(requestData);
 }
 
-function cancelEdit(){
+function cancelEdit() {
     history.back();
 }
+
+document.querySelector('.make-report').onsubmit = function(event) {
+    const mediaPreview = document.querySelector('.media-preview');
+    if (!mediaPreview.querySelector('img')) {
+        event.preventDefault();
+        alert('Silakan unggah gambar sebelum membuat postingan.');
+    }
+};

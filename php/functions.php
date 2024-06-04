@@ -231,6 +231,7 @@ function savePostingan($idpost) {
     $tanggal = date("Y-m-d");
     $query = "INSERT INTO saved VALUES('$idpost', '$nik', NOW())";
     mysqli_query($conn, $query);
+    mysqli_query($conn, "UPDATE postingan SET jumlah_saved = jumlah_saved + 1 WHERE id_postingan = $idpost");
     return mysqli_affected_rows($conn);
 }
 
@@ -239,6 +240,7 @@ function unsavePostingan($idpost){
     $nik = $_SESSION["NIK"];
     $query = "DELETE FROM saved WHERE id_postingan = '$idpost' AND NIK = '$nik'";
     mysqli_query($conn, $query);
+    mysqli_query($conn, "UPDATE postingan SET jumlah_saved = jumlah_saved - 1 WHERE id_postingan = $idpost");
     return mysqli_affected_rows($conn);
 }
 

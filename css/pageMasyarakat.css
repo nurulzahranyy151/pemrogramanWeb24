@@ -527,7 +527,7 @@ body.dark .add-comment-form button {
     justify-content: center;
 }
 
-.popup-left img {
+.popup-left img, .post-content img , .saved-media img{
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -773,7 +773,6 @@ img {
 .post-content img{
     border-radius: 5px;
     height: 350px;
-    object-fit: fill;
 }
 
 .post-content p {

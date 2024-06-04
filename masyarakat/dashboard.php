@@ -69,7 +69,7 @@ if(isset($_POST["submit-report"])){
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="statistic.php">
                             <i class='bx bx-bar-chart-alt-2 icon'></i>
                             <span class="text nav-text">Statistik Laporan</span>
                         </a>

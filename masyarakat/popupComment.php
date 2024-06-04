@@ -56,8 +56,8 @@ $saveornotpopup = cekSave($idcomment, $nik) ? True : False;
                 </label></button>
             </div>
             <div class="right-post-action">
-                <button class="<?php echo $saveornotpopup ? 'saved' : 'save-button';?>" onclick="toggleSave(this, <?php echo $idcomment;?>, <?php echo $nik;?>)">
-                    <i class='<?php echo $saveornotpopup ? 'bx bxs-bookmark' : 'bx bx-bookmark';?>' style=""></i>
+                <button data-post-id="<?php echo $post['id_postingan']; ?>" name="savePost" class="<?php echo $saveornotpopup ? 'saved' : 'save-button'; ?>" onclick="toggleSave(this, <?php echo $post['id_postingan']; ?>)">
+                    <i class='<?php echo $saveornotpopup ? 'bx bxs-bookmark' : 'bx bx-bookmark'; ?>'></i>
                 </button>
             </div>
         </div>

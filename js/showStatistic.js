@@ -21,7 +21,7 @@ function fetchMonthlyStats(year) {
             }
         }
     };
-    xhr.open("GET", "findStatisticData.php?year=" + year, true);
+    xhr.open("GET", "../php/findStatisticData.php?year=" + year, true);
     xhr.send();
 }
 

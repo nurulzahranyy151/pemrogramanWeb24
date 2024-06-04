@@ -1,11 +1,11 @@
 <?php 
 require '../php/functions.php';
-if (!isset($_SESSION["id_supervisor"])) {
+if (!isset($_SESSION["NIK"])) {
     header("Location: ../loginAdminandGov.php");
     exit();
 } else {
-    $id_supervisor = $_SESSION["id_supervisor"];
-    $supervisor = stafLogin($id_supervisor);
+    $nik = $_SESSION["NIK"];
+    $user = userLogin($nik);
     $currentYear = date("Y");
     $sumStatus = findSumStatusPostingan();
 }
@@ -26,79 +26,83 @@ if (!isset($_SESSION["id_supervisor"])) {
 </head>
 <body>
 <nav class="sidebar close">
-    <header>
-        <div class="image-text">
-            <span class="image">
-                <img src="../img/recity.png" alt="logo recity">
-            </span>
-            <div class="text logo-text">
-                <span class="name">Recity</span>
-                <span class="profession">Resolver City</span>
+        <header>
+            <div class="image-text">
+                <span class="image">
+                    <img src="../img/recity.png" alt="logo recity">
+                </span>
+                <div class="text logo-text">
+                    <span class="name">Recity</span>
+                    <span class="profession">Resolver City</span>
+                </div>
             </div>
-        </div>
-        <i class='bx bx-chevron-right toggle'></i>
-    </header>
+            <i class='bx bx-chevron-right toggle'></i>
+        </header>
 
-    <div class="menu-bar">
-        <div class="menu">
-            <ul class="menu-links">
-                <li class="nav-link">
-                    <a href="dashboardGovernment.php">
-                        <i class='bx bx-home-alt icon' ></i>
-                        <span class="text nav-text">Beranda</span>
+        <div class="menu-bar">
+            <div class="menu">
+                <ul class="menu-links">
+                    <li class="nav-link">
+                        <a href="dashboard.php">
+                            <i class='bx bx-home-alt icon' ></i>
+                            <span class="text nav-text">Beranda</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="saved.php">
+                            <i class='bx bx-bookmark icon'></i>
+                            <span class="text nav-text">Tersimpan</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="history.php">
+                            <i class='bx bx-history icon'></i>
+                            <span class="text nav-text">Riwayat</span>
+                        </a>
+                    </li>
+                    <li class="nav-link">
+                        <a href="statistic.php">
+                            <i class='bx bx-bar-chart-alt-2 icon'></i>
+                            <span class="text nav-text">Statistik Laporan</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="bottom-content">
+                <li class="">
+                    <a href="../php/logout-proses.php">
+                        <i class='bx bx-log-out icon' ></i>
+                        <span class="text nav-text">Logout</span>
                     </a>
                 </li>
-                <li class="nav-link">
-                    <a href="statistik.php">
-                        <i class='bx bx-bar-chart-alt-2 icon'></i>
-                        <span class="text nav-text">Statistik Laporan</span>
-                    </a>
+                <li class="mode">
+                    <div class="sun-moon">
+                        <i class='bx bx-moon icon moon'></i>
+                        <i class='bx bx-sun icon sun'></i>
+                    </div>
+                    <span class="mode-text text">Dark mode</span>
+                    <div class="toggle-switch">
+                        <span class="switch"></span>
+                    </div>
                 </li>
-            </ul>
-        </div>
+            </div>
 
-        <div class="bottom-content">
-            <li class="">
-                <a href="../php/logout-proses-adminStaff.php">
-                    <i class='bx bx-log-out icon' ></i>
-                    <span class="text nav-text">Logout</span>
-                </a>
-            </li>
-
-            <li class="mode">
-                <div class="sun-moon">
-                    <i class='bx bx-moon icon moon'></i>
-                    <i class='bx bx-sun icon sun'></i>
-                </div>
-                <span class="mode-text text">Dark mode</span>
-                <div class="toggle-switch">
-                    <span class="switch"></span>
-                </div>
-            </li>
         </div>
-    </div>
-</nav>
-
-<div class="konten">
-    <div class="header-konten">
-        <div class="page-name">
-            <h2>Statistik</h2>
-        </div>
-        <div class="user-login">
-<<<<<<< HEAD
-            <img src="<?php echo $supervisor['foto_profil_staff'];?>" alt="Profil Picture">
-            
-            <p><?php echo $supervisor["nama_supervisor"];?></p>
-        </div>
-=======
-                <a href="profilStaff.php">
+    </nav>
+    <div class="konten">
+        <div class="header-konten">
+            <div class="page-name">
+                <h2>Statistik Laporan</h2>
+            </div>
+            <div class="user-login">
+                <a href="profileUser.php">
                     <img src="
-                    <?= $supervisor["foto_profil_staff"];?>" alt="Profil Picture">
+                    <?= $user["foto_profil_user"];?>" alt="Profil Picture">
                 </a>
-                <p><?= $supervisor["nama_supervisor"];?></p>
+                <p><?= $user["nama_user"];?></p>
             </div>
->>>>>>> 859f916637da1fb3ffa80316ccf66e999570b4ce
-    </div>
+        </div>
     <div class="isi-konten">
         <div class="box-container">
         <div class="container">
