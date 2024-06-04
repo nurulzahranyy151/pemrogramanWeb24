@@ -892,7 +892,8 @@ function Image($file, $x=null, $y=null, $w=0, $h=0, $type='', $link='')
 		$this->images[$file] = $info;
 	}
 	else
-		$info = $this->images[$file];
+		$info = $this->
+	images[$file];
 
 	// Automatic width and height calculation if needed
 	if($w==0 && $h==0)

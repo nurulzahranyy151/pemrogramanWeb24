@@ -1,6 +1,6 @@
 <?php
-include 'php/functions.php';
-require 'pdf/fpdf/fpdf.php';
+require '../php/functions.php';
+require '../pdf/fpdf/fpdf.php';
 
 $conn = mysqli_connect("localhost", "root", "", "dbrecity");
 
@@ -54,11 +54,18 @@ if (isset($_GET['id_postingan'])) {
     $pdf->Ln();
     $pdf->Cell(40, 10, 'Caption: ' . $postingan['caption']);
     $pdf->Ln();
-    //$pdf->Cell(40, 10, 'Gambar: ');
-   // $pdf->Image($postingan['media'], 50, $pdf->GetY(), 100, 0, 'jpg');
-    //$pdf->Ln();
+    $pdf->Cell(40, 10, 'Gambar: ');
+    $media = $postingan['media'];
+    $mediaArray = explode(",", $media);
+    foreach ($mediaArray as $img) {
+        if (strpos($img, '.png') !== false || strpos($img, '.jpg') !== false || strpos($img, '.jpeg') !== false || strpos($img, '.gif') !== false || strpos($img, '.JPEG') !== false) {
+            $pdf->Image($img, 50, $pdf->GetY(), 100, 0);
+            $pdf->Ln();
+        }
+    }
+    $pdf->Ln();
 
-    $pdf->Output('D', 'Laporan.pdf');
+    $pdf->Output('D', 'Laporan_' . $postingan['id_postingan'] . 'by' . $postingan['nama_pelapor'] . '.pdf');
 } else {
     echo "Postingan Tidak Ditemukan";
 }
