@@ -128,10 +128,14 @@ if (!isset($_SESSION["id_supervisor"])) {
                                 <i class='bx bx-bookmark'></i>Simpan
                             </button>
 
-                            <button class="save-button" onclick="window.location.href='cetakLaporan.php?id_postingan=<?php echo $row['id_postingan']; ?>'">
-                                <i class='bx bx-printer'></i>Cetak
-                            </button>
+                            <button class="save-button" onclick="window.location.href='../cetakLaporan.php?id_postingan=<?php echo $row['id_postingan']; ?>'">
+    <<i class='bx bx-printer'></i>Cetak
+</button>
                         </div>
+                    </div>
+                <div class="add-comment-form">
+                        <input type="text" name="comment" class="comment" id="comment-<?php echo $row['id_postingan'];?>" placeholder="Tambahkan komentar...">
+                        <button type="button" id="submitcomment" name="postComment" onclick="postComment(<?php echo $row['id_postingan'];?>)">Kirim</button>
                     </div>
                 </div>
                 <?php
