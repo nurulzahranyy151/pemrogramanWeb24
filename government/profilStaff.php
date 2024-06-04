@@ -48,24 +48,6 @@ if (!isset($_SESSION["id_supervisor"])) {
                         <span class="text nav-text">Projek</span>
                     </a>
                 </li>
-<<<<<<< HEAD
-            </div>
-        </div>
-    </nav>
-
-    <div class="konten">
-        <div class="header-konten">
-            <div class="page-name">
-                <h2>Profil</h2>
-            </div>
-            <div class="user-login">
-                <a href="profilStaff.php">
-                    <img src="
-                    <?= $supervisor["foto_profil_staff"];?>" alt="Profil Picture">
-                </a>
-                <p><?= $supervisor["nama_supervisor"];?></p>
-            </div>
-=======
                 <li class="nav-link">
                     <a href="projectDone.php">
                         <i class='bx bx-file icon' ></i>
@@ -79,7 +61,6 @@ if (!isset($_SESSION["id_supervisor"])) {
                     </a>
                 </li>
             </ul>
->>>>>>> e0ec1aa77a2c81a93a07d8581987c2c38613c1d8
         </div>
 
         <div class="bottom-content">

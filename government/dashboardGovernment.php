@@ -34,10 +34,6 @@ if (!isset($_SESSION["id_supervisor"])) {
         </div>
         <i class='bx bx-chevron-right toggle'></i>
     </header>
-<<<<<<< HEAD
-=======
-
->>>>>>> e0ec1aa77a2c81a93a07d8581987c2c38613c1d8
     <div class="menu-bar">
         <div class="menu">
             <ul class="menu-links">
@@ -45,31 +41,6 @@ if (!isset($_SESSION["id_supervisor"])) {
                     <a href="dashboardGovernment.php">
                         <i class='bx bx-home-alt icon' ></i>
                         <span class="text nav-text">Beranda</span>
-<<<<<<< HEAD
-        <div class="menu-bar">
-            <div class="menu">
-                <ul class="menu-links">
-                    <li class="nav-link">
-                        <a href="dashboardGovernment.php">
-                            <i class='bx bx-home-alt icon' ></i>
-                            <span class="text nav-text">Beranda</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="statistik.php">
-                            <i class='bx bx-bar-chart-alt-2 icon'></i>
-                            <span class="text nav-text">Statistik Laporan</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="bottom-content">
-                <li class="">
-                    <a href="../php/logout-proses-adminStaff.php">
-                        <i class='bx bx-log-out icon' ></i>
-                        <span class="text nav-text">Logout</span>
-
-=======
                     </a>
                 </li>
                 <li class="nav-link">
@@ -82,7 +53,6 @@ if (!isset($_SESSION["id_supervisor"])) {
                     <a href="projectDone.php">
                         <i class='bx bx-file icon' ></i>
                         <span class="text nav-text">Selesai</span>
->>>>>>> e0ec1aa77a2c81a93a07d8581987c2c38613c1d8
                     </a>
                 </li>
                 <li class="nav-link">
@@ -112,56 +82,6 @@ if (!isset($_SESSION["id_supervisor"])) {
                     <span class="switch"></span>
                 </div>
             </li>
-<<<<<<< HEAD
-                <p><?= $supervisor["nama_supervisor"];?></p>
-            </div>
-        </div>
-        <div id="dash-staf" class="isi-konten">
-            <div class="fyp">
-            <?php 
-            $postingan = showAllpostingan();
-            while ($row = mysqli_fetch_array($postingan)) {
-                if ($row['status_postingan'] === 'ditunggu') {
-                    ?>
-                    <div class="post">
-                        <div class="post-header">
-                            <img src="<?= $row['foto_profil_user'];?>" alt="Profil Picture">
-                            <div class="post-info">
-                                <h3><?= $row['nama_user'];?></h3>
-                                <p><?= $row['tgl_postingan'];?></p>
-                            </div>
-                        </div>
-                        <div class="post-content">
-                            <p class="caption"><?= $row['caption'];?></p>
-                            <img src="<?= $row['media'];?>" alt="Gambar postingan">
-                        </div>
-                        <div class="post-actions">
-                            <div class="left-post-action">
-                                <button name="accept-button" class="accept-button" onclick="toggleAcceptReject(<?php echo $row['id_postingan'];?>)">
-                                    <i class='bx bxs-check-square'></i>
-                                </button>
-                                <button name="reject-button" class="reject-button" onclick="toggleAcceptReject(<?php echo $row['id_postingan'];?>, 'reject')">
-                                    <i class='bx bxs-x-square'></i>
-                                </button>
-                            </div>
-                            <div class="right-post-action">
-                                <button class="save-button" onclick="toggleSave(this)">
-                                    <i class='bx bx-bookmark'></i>Cetak
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    <?php
-                }
-            }
-            ?>
-            </div>
-        </div>
-
-        </div>
-    </div>
-=======
->>>>>>> e0ec1aa77a2c81a93a07d8581987c2c38613c1d8
         </div>
     </div>
 </nav>
@@ -205,8 +125,12 @@ if (!isset($_SESSION["id_supervisor"])) {
                         </div>
                         <div class="right-post-action">
                             <button class="save-button" onclick="toggleSave(this)">
-                                <i class='bx bx-bookmark'></i>Cetak
+                                <i class='bx bx-bookmark'></i>Simpan
                             </button>
+
+                            <button class="save-button" onclick="window.location.href='../cetakLaporan.php?id_postingan=<?php echo $row['id_postingan']; ?>'">
+    <<i class='bx bx-printer'></i>Cetak
+</button>
                         </div>
                     </div>
                 </div>
