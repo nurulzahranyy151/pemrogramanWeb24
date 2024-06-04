@@ -83,9 +83,9 @@ body {
 
 form {
   background: linear-gradient(to left, #1814F3, #FCFEFF);
-  width: 100%;
+  width:100%;
   margin: auto;
-  padding: 3rem;
+  padding: 4rem;
   border-radius: 10px;
   font-size: 13px;
   font-weight: 500;

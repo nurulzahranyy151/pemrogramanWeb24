@@ -1,4 +1,15 @@
-<?php session_start() ?>
+<?php 
+require '../php/functions.php';
+if (!isset($_SESSION["id_supervisor"])) {
+    header("Location: ../loginAdminandGov.php");
+    exit();
+} else {
+    $id_supervisor = $_SESSION["id_supervisor"];
+    $supervisor = stafLogin($id_supervisor);
+    $currentYear = date("Y");
+    $sumStatus = findSumStatusPostingan();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,59 +92,62 @@
     </nav>
 
     <div class="konten">
-        <div class="header-konten">
-            <div class="page-name">
-                <h2>Statistik</h2>
+    <div class="header-konten">
+        <div class="page-name">
+            <h2>Statistik</h2>
+        </div>
+        <div class="user-login">
+                <a href="profilStaff.php">
+                    <img src="
+                    <?= $supervisor["foto_profil_staff"];?>" alt="Profil Picture">
+                </a>
+                <p><?= $supervisor["nama_supervisor"];?></p>
             </div>
-            <div class="user-login">
-                <img src="../img/coba.jpeg" alt="Profil Picture">
-                <p><?php echo $_SESSION["nama_admin"];?></p>
+    </div>
+    <div class="isi-konten">
+        <div class="box-container">
+        <div class="container">
+        <div class="year-selection">
+            <label for="tahun">Pilih Tahun: </label>
+            <select name="tahun" id="tahun">
+                <?php
+                $currentYear = date("Y");
+                for ($year = 2020; $year <= $currentYear; $year++) {
+                    $selected = ($year == $currentYear) ? 'selected' : '';
+                    echo "<option value='$year' $selected>$year</option>";
+                }
+                ?>
+            </select>
+        </div>
+            <div class="chart">
+                <canvas class="chart-monthly" id="monthlyChart"></canvas>
             </div>
         </div>
-        <div class="isi-konten">
-            <div class="box-container">
-                <div class="box box-diterima">
-                    <h5>Diterima</h5>
-                    <p>200 Laporan</p>
-                    <p>01 Mei 2024</p>
-                </div>
-                <div class="box box-ditolak">
-                    <h5>Ditolak</h5>
-                    <p href="#">155 Laporan</p>
-                    <p>01 Mei 2024</p>
-                </div>
-                <div class="box box-menunggu">
-                    <h5>Menunggu Tindak Lanjut</h5>
-                    <p >90 Laporan</p>
-                    <p>01 Mei 2024</p>
-                </div>
-                <div class="box box-total">
-                    <h5>Total Laporan</h5>
-                    <p>445 Laporan</p>
-                    <p>01 Mei 2024</p>
-                </div>
+        <div class="laporan-container">
+            <div class="box box-diterima">
+                <h5>Diterima</h5>
+                <p><?php echo $sumStatus['diterima']; ?> Laporan</p>
+                <p><?php echo date("d F Y"); ?></p>
             </div>
-            <!-- Form untuk memilih tahun -->
-            <form method="GET" action="">
-                <label for="tahun">Pilih Tahun:</label>
-                <select name="tahun" id="tahun">
-                    <?php
-                    $currentYear = date("Y");
-                    for ($year = 2020; $year <= $currentYear; $year++) {
-                        echo "<option value='$year'" . ($tahunDipilih == $year ? ' selected' : '') . ">$year</option>";
-                    }
-                    ?>
-                </select>
-                <button type="submit">Tampilkan</button>
-            </form>
-                <div class="chart">
-                    <canvas id="barchart" width="300" height="300"></canvas>
-                </div>
+            <div class="box box-ditolak">
+                <h5>Ditolak</h5>
+                <p><?php echo $sumStatus['ditolak']; ?> Laporan</p>
+                <p><?php echo date("d F Y"); ?></p>
+            </div>
+            <div class="box box-menunggu">
+                <h5>Menunggu</h5>
+                <p><?php echo $sumStatus['ditunggu']; ?> Laporan</p>
+                <p><?php echo date("d F Y"); ?></p>
+            </div>
+            <div class="box box-total">
+                <h5>Total Laporan</h5>
+                <p><?php echo $sumStatus['total']; ?> Laporan</p>
+                <p><?php echo date("d F Y"); ?></p>
             </div>
         </div>
     </div>
-    <script src="../js/masyarakatValidation.js"></script>
-    <script src="../js/sidebar.js"></script>
-    <script src="../js/Chartstatistic.js"></script>
+</div>
+<script src="../js/sidebar.js"></script>
+<script src="../js/showStatistic.js"></script>
 </body>
 </html>

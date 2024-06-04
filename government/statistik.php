@@ -85,19 +85,12 @@ if (!isset($_SESSION["id_supervisor"])) {
             <h2>Statistik</h2>
         </div>
         <div class="user-login">
-<<<<<<< HEAD
-            <img src="<?php echo $supervisor['foto_profil_staff'];?>" alt="Profil Picture">
-            
-            <p><?php echo $supervisor["nama_supervisor"];?></p>
-        </div>
-=======
                 <a href="profilStaff.php">
                     <img src="
                     <?= $supervisor["foto_profil_staff"];?>" alt="Profil Picture">
                 </a>
                 <p><?= $supervisor["nama_supervisor"];?></p>
             </div>
->>>>>>> 859f916637da1fb3ffa80316ccf66e999570b4ce
     </div>
     <div class="isi-konten">
         <div class="box-container">

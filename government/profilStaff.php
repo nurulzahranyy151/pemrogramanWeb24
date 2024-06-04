@@ -80,16 +80,10 @@ if (!isset($_SESSION["id_supervisor"])) {
             </div>
             <div class="user-login">
                 <a href="profilStaff.php">
-<<<<<<< HEAD
-                    <img src="<?= $_SESSION["foto_profil_staff"];?>" alt="Profil Picture">
-                </a>
-                <p><?=$_SESSION["nama_supervisor"];?></p>
-=======
                     <img src="
                     <?= $supervisor["foto_profil_staff"];?>" alt="Profil Picture">
                 </a>
                 <p><?= $supervisor["nama_supervisor"];?></p>
->>>>>>> 859f916637da1fb3ffa80316ccf66e999570b4ce
             </div>
         </div>
 

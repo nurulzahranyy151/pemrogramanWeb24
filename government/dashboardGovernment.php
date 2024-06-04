@@ -34,8 +34,6 @@ if (!isset($_SESSION["id_supervisor"])) {
         </div>
         <i class='bx bx-chevron-right toggle'></i>
     </header>
-
-<<<<<<< HEAD
     <div class="menu-bar">
         <div class="menu">
             <ul class="menu-links">
@@ -43,7 +41,6 @@ if (!isset($_SESSION["id_supervisor"])) {
                     <a href="dashboardGovernment.php">
                         <i class='bx bx-home-alt icon' ></i>
                         <span class="text nav-text">Beranda</span>
-=======
         <div class="menu-bar">
             <div class="menu">
                 <ul class="menu-links">
@@ -66,7 +63,7 @@ if (!isset($_SESSION["id_supervisor"])) {
                     <a href="../php/logout-proses-adminStaff.php">
                         <i class='bx bx-log-out icon' ></i>
                         <span class="text nav-text">Logout</span>
->>>>>>> a5a014b76d3e9bc5a96222c5782ac402356e0e41
+
                     </a>
                 </li>
                 <li class="nav-link">
@@ -84,7 +81,6 @@ if (!isset($_SESSION["id_supervisor"])) {
                     <i class='bx bx-log-out icon' ></i>
                     <span class="text nav-text">Logout</span>
                 </a>
-<<<<<<< HEAD
             </li>
 
             <li class="mode">
@@ -97,7 +93,6 @@ if (!isset($_SESSION["id_supervisor"])) {
                     <span class="switch"></span>
                 </div>
             </li>
-=======
                 <p><?= $supervisor["nama_supervisor"];?></p>
             </div>
         </div>
@@ -142,13 +137,9 @@ if (!isset($_SESSION["id_supervisor"])) {
             ?>
             </div>
         </div>
-<<<<<<< HEAD
+
         </div>
     </div>
-=======
-=======
->>>>>>> 859f916637da1fb3ffa80316ccf66e999570b4ce
->>>>>>> a5a014b76d3e9bc5a96222c5782ac402356e0e41
         </div>
     </div>
 </nav>
@@ -217,7 +208,6 @@ if (!isset($_SESSION["id_supervisor"])) {
     </div>
 </div>
 
->>>>>>> 8d6494832388aa5522c37face420a0cd7b329211
 <script src="../js/sidebar.js"></script>
 <script src="../js/stafAction.js"></script>
 </body>

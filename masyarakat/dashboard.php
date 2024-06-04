@@ -186,24 +186,23 @@ if(isset($_POST["submit-report"])){
                     <?php 
                     $trending = trendingpost();
                     while ($trend = mysqli_fetch_assoc($trending)):?>
-                    <div class="accepted-post">
-                        <a href="#">
-                            <img src="<?= $trend['media'];?>" alt="">
-                        </a>
-                        <div class="accepted-post-atr">
-                            <h5><?= $trend['tgl_postingan'];?></h5>
-                            <p><?= $trend['alamat_postingan'];?></p>
+                        <div class="accepted-post">
+                            <a href="#">
+                                <img src="<?= $trend['media'];?>" alt="">
+                            </a>
+                            <div class="accepted-post-atr">
+                                <h5><?= $trend['tgl_postingan'];?></h5>
+                                <p><?= $trend['alamat_postingan'];?></p>
+                            </div>
                         </div>
-                    </div>
-                    <?php endwhile?>
+                        <?php endwhile?>
                 </div>
             </div>
         </div>
     </div>  
-
     <div id="commentPopup" class="popup"></div>
     <script src="../js/masyarakatValidation.js"></script>
     <script src="../js/sidebar.js"></script>
->
+
 </body>
 </html>
