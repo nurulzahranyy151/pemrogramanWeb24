@@ -19,56 +19,36 @@ if (!isset($_SESSION["id_supervisor"])) {
     <title>Profile Anda</title>
 </head>
 <body>
-    <nav class="sidebar close">
-        <header>
-            <div class="image-text">
-                <span class="image">
-                    <img src="../img/recity.png" alt="logo recity">
-                </span>
-                <div class="text logo-text">
-                    <span class="name">Recity</span>
-                    <span class="profession">Resolver City</span>
-                </div>
+<nav class="sidebar close">
+    <header>
+        <div class="image-text">
+            <span class="image">
+                <img src="../img/recity.png" alt="logo recity">
+            </span>
+            <div class="text logo-text">
+                <span class="name">Recity</span>
+                <span class="profession">Resolver City</span>
             </div>
-            <i class='bx bx-chevron-right toggle'></i>
-        </header>
+        </div>
+        <i class='bx bx-chevron-right toggle'></i>
+    </header>
 
-        <div class="menu-bar">
-            <div class="menu">
-                <ul class="menu-links">
-                    <li class="nav-link">
-                        <a href="dashboardGovernment.php">
-                            <i class='bx bx-home-alt icon' ></i>
-                            <span class="text nav-text">Beranda</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="statistik.php">
-                            <i class='bx bx-bar-chart-alt-2 icon' ></i>
-                            <span class="text nav-text">Statistik Laporan</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="bottom-content">
-                <li class="">
-                    <a href="../php/logout-proses-adminStaff.php">
-                        <i class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">Logout</span>
+    <div class="menu-bar">
+        <div class="menu">
+            <ul class="menu-links">
+                <li class="nav-link">
+                    <a href="dashboardGovernment.php">
+                        <i class='bx bx-home-alt icon' ></i>
+                        <span class="text nav-text">Beranda</span>
                     </a>
                 </li>
-
-                <li class="mode">
-                    <div class="sun-moon">
-                        <i class='bx bx-moon icon moon'></i>
-                        <i class='bx bx-sun icon sun'></i>
-                    </div>
-                    <span class="mode-text text">Dark mode</span>
-                    <div class="toggle-switch">
-                        <span class="switch"></span>
-                    </div>
+                <li class="nav-link">
+                    <a href="projectGovernment.php">
+                        <i class='bx bx-edit icon' ></i>
+                        <span class="text nav-text">Projek</span>
+                    </a>
                 </li>
+<<<<<<< HEAD
             </div>
         </div>
     </nav>
@@ -85,8 +65,54 @@ if (!isset($_SESSION["id_supervisor"])) {
                 </a>
                 <p><?= $supervisor["nama_supervisor"];?></p>
             </div>
+=======
+                <li class="nav-link">
+                    <a href="projectDone.php">
+                        <i class='bx bx-file icon' ></i>
+                        <span class="text nav-text">Selesai</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="statistik.php">
+                        <i class='bx bx-bar-chart-alt-2 icon'></i>
+                        <span class="text nav-text">Statistik Laporan</span>
+                    </a>
+                </li>
+            </ul>
+>>>>>>> e0ec1aa77a2c81a93a07d8581987c2c38613c1d8
         </div>
 
+        <div class="bottom-content">
+            <li class="">
+                <a href="../php/logout-proses-adminStaff.php">
+                    <i class='bx bx-log-out icon' ></i>
+                    <span class="text nav-text">Logout</span>
+                </a>
+            </li>
+
+            <li class="mode">
+                <div class="sun-moon">
+                    <i class='bx bx-moon icon moon'></i>
+                    <i class='bx bx-sun icon sun'></i>
+                </div>
+                <span class="mode-text text">Dark mode</span>
+                <div class="toggle-switch">
+                    <span class="switch"></span>
+                </div>
+            </li>
+        </div>
+    </div>
+</nav>
+<div class="konten">
+    <div class="header-konten">
+        <div class="page-name">
+            <h2>Statistik</h2>
+        </div>
+        <div class="user-login">
+            <a href="profilStaff.php"><img src="<?php echo $supervisor['foto_profil_staff'];?>" alt="Profil Picture"></a>
+            <p><?php echo $supervisor["nama_supervisor"];?></p>
+        </div>
+    </div>
         <div class="isi-konten">
             <div class="profile">
                 <form action="../php/functions.php" method="post" enctype="multipart/form-data" class="profile-form">

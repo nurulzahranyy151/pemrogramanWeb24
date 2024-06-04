@@ -95,29 +95,29 @@ if (!isset($_SESSION["NIK"])) {
             </div>
         </div>
         <div class="isi-konten">
-    <?php
-    $savedPost = userSaved($nik);
-    while ($post = mysqli_fetch_assoc($savedPost)):?>
-    <div class="saved-post" data-post-id="<?= $post['id_postingan']; ?>">
-        <div class="saved-media">
-            <img src="<?= $post["media"];?>" alt="">
+        <?php
+        $savedPost = userSaved($nik);
+        while ($post = mysqli_fetch_assoc($savedPost)):?>
+        <div class="saved-post" data-post-id="<?= $post['id_postingan']; ?>">
+            <div class="saved-media">
+                <img src="<?= $post["media"];?>" alt="">
+            </div>
+            <div class="saved-infomation">
+                <div class="caption">
+                    <p><?= $post["caption"];?></p>
+                    <p class="saved-on">Image . saved on <?= $post["waktu_disimpan"];?></p>
+                </div>
+                <div class="uploader">
+                    <img src="<?= $post["foto_profil_user"];?>" alt="">
+                    <p class="posted-by">Posted by <b><?= $post["nama_user"];?></b></p>
+                </div>
+                <div class="unsave">
+                    <button type="submit" class="unsave-button" name="unsavePost" onclick="unsavePost(<?php echo $post['id_postingan'];?>)">Unsave</button>
+                </div>
+            </div>
         </div>
-        <div class="saved-infomation">
-            <div class="caption">
-                <p><?= $post["caption"];?></p>
-                <p class="saved-on">Image . saved on <?= $post["waktu_disimpan"];?></p>
-            </div>
-            <div class="uploader">
-                <img src="<?= $post["foto_profil_user"];?>" alt="">
-                <p class="posted-by">Posted by <b><?= $post["nama_user"];?></b></p>
-            </div>
-            <div class="unsave">
-                <button type="submit" class="unsave-button" name="unsavePost" onclick="unsavePost(<?php echo $post['id_postingan'];?>)">Unsave</button>
-            </div>
-        </div>
+        <?php endwhile;?>
     </div>
-    <?php endwhile;?>
-</div>
 
 <!--CONTENT END-->
 

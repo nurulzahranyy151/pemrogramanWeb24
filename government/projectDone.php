@@ -3,27 +3,22 @@ require '../php/functions.php';
 if (!isset($_SESSION["id_supervisor"])) {
     header("Location: ../loginAdminandGov.php");
     exit();
-} else {
+}else{
     $id_supervisor = $_SESSION["id_supervisor"];
     $supervisor = stafLogin($id_supervisor);
-    $currentYear = date("Y");
-    $sumStatus = findSumStatusPostingan();
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/pageAdminStyle.css">
-    <link rel="stylesheet" href="../css/statistikStyle.css">
-    
+    <link rel="stylesheet" href="../css/pageMasyarakat.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-rounded-bar@2.0.0"></script> 
-
-    <title>Statistik</title>
+    <script src="../js/loginValidation.js"></script>
+    <title>Projek</title>
 </head>
 <body>
 <nav class="sidebar close">
@@ -51,8 +46,14 @@ if (!isset($_SESSION["id_supervisor"])) {
                 </li>
                 <li class="nav-link">
                     <a href="projectGovernment.php">
-                        <i class='bx bx-task icon' ></i>
+                        <i class='bx bx-edit icon' ></i>
                         <span class="text nav-text">Projek</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="projectDone.php">
+                        <i class='bx bx-file icon' ></i>
+                        <span class="text nav-text">Selesai</span>
                     </a>
                 </li>
                 <li class="nav-link">
@@ -88,66 +89,46 @@ if (!isset($_SESSION["id_supervisor"])) {
 <div class="konten">
     <div class="header-konten">
         <div class="page-name">
-            <h2>Statistik</h2>
+            <h2>Selesai</h2>
         </div>
         <div class="user-login">
-<<<<<<< HEAD
-                <a href="profilStaff.php">
-                    <img src="
-                    <?= $supervisor["foto_profil_staff"];?>" alt="Profil Picture">
-                </a>
-                <p><?= $supervisor["nama_supervisor"];?></p>
-            </div>
-=======
             <a href="profilStaff.php"><img src="<?php echo $supervisor['foto_profil_staff'];?>" alt="Profil Picture"></a>
             <p><?php echo $supervisor["nama_supervisor"];?></p>
         </div>
->>>>>>> e0ec1aa77a2c81a93a07d8581987c2c38613c1d8
     </div>
-    <div class="isi-konten">
-        <div class="box-container">
-            <div class="container">
-                <div class="year-selection">
-                    <label for="tahun">Pilih Tahun: </label>
-                    <select name="tahun" id="tahun">
-                        <?php
-                        $currentYear = date("Y");
-                        for ($year = 2020; $year <= $currentYear; $year++) {
-                            $selected = ($year == $currentYear) ? 'selected' : '';
-                            echo "<option value='$year' $selected>$year</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
-                <div class="chart">
-                    <canvas class="chart-monthly" id="monthlyChart"></canvas>
-                </div>
+    <div id="project-staf" class="isi-konten">
+    <?php
+    $accPost = showProjectDone();
+    while ($post = mysqli_fetch_assoc($accPost)):?>
+    <div class="saved-post" data-post-id="<?= $post['id_postingan']; ?>">
+        <div class="saved-media">
+            <img src="<?= $post["media"];?>" alt="">
+        </div>
+        <div class="saved-infomation">
+            <div class="caption">
+                <p><?= $post["caption"];?></p>
+                <p class="saved-on">Image . accept on <?= $post["waktu_terima"];?></p>
             </div>
-        <div class="laporan-container">
-            <div class="box box-diterima">
-                <h5>Diterima</h5>
-                <p><?php echo $sumStatus['diterima']; ?> Laporan</p>
-                <p><?php echo date("d F Y"); ?></p>
-            </div>
-            <div class="box box-ditolak">
-                <h5>Ditolak</h5>
-                <p><?php echo $sumStatus['ditolak']; ?> Laporan</p>
-                <p><?php echo date("d F Y"); ?></p>
-            </div>
-            <div class="box box-menunggu">
-                <h5>Menunggu</h5>
-                <p><?php echo $sumStatus['ditunggu']; ?> Laporan</p>
-                <p><?php echo date("d F Y"); ?></p>
-            </div>
-            <div class="box box-total">
-                <h5>Total Laporan</h5>
-                <p><?php echo $sumStatus['total']; ?> Laporan</p>
-                <p><?php echo date("d F Y"); ?></p>
+            <div class="uploader">
+                <img src="<?= $post["foto_profil_user"];?>" alt="">
+                <p class="posted-by">Posted by <b><?= $post["nama_user"];?></b></p>
             </div>
         </div>
     </div>
+    <?php endwhile;?>
 </div>
+
+<!-- Modal for Confirmation -->
+<div id="confirmationModal" class="modal">
+    <div class="modal-content">
+        <span class="close-button" onclick="closeModal()">&times;</span>
+        <p id="confirmationMessage"></p>
+        <button id="confirmButton" onclick="confirmDone()" class="confirmAction">Confirm</button>
+        <button onclick="closeModal()" class="cancelAction">Cancel</button>
+    </div>
+</div>
+
 <script src="../js/sidebar.js"></script>
-<script src="../js/showStatistic.js"></script>
+<script src="../js/stafAction.js"></script>
 </body>
 </html>

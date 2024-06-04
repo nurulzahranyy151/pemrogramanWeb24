@@ -341,6 +341,8 @@ function accPostingan($id){
     global $conn;
     $query = "UPDATE postingan SET status_postingan = 'diterima' WHERE id_postingan = $id";
     mysqli_query($conn, $query);
+    $idStaff = $_SESSION["id_supervisor"];
+    mysqli_query($conn, "INSERT INTO terima_postingan VALUES($idStaff, $id, NOW(), 'proses')");
     return mysqli_affected_rows($conn);
 }
 
@@ -351,6 +353,21 @@ function rejectPostingan($id){
     return mysqli_affected_rows($conn);
 }
 
+function showProject(){
+    global $conn;
+    return mysqli_query($conn, "SELECT postingan.*, user.nama_user, user.foto_profil_user, terima_postingan.waktu_terima FROM postingan JOIN user ON postingan.NIK = user.NIK JOIN terima_postingan ON postingan.id_postingan = terima_postingan.id_postingan WHERE postingan.status_postingan = 'diterima' AND terima_postingan.status_projek = 'proses'");
+}
 
+function projectDone($id){
+    global $conn;
+    $query = "UPDATE terima_postingan SET status_projek = 'selesai' WHERE id_postingan = $id";
+    mysqli_query($conn, $query);
+    return mysqli_affected_rows($conn);
+}
+
+function showProjectDone(){
+    global $conn;
+    return mysqli_query($conn, "SELECT postingan.*, user.nama_user, user.foto_profil_user, terima_postingan.waktu_terima FROM postingan JOIN user ON postingan.NIK = user.NIK JOIN terima_postingan ON postingan.id_postingan = terima_postingan.id_postingan WHERE postingan.status_postingan = 'diterima' AND terima_postingan.status_projek = 'selesai'");
+}
 
 ?>

@@ -34,6 +34,10 @@ if (!isset($_SESSION["id_supervisor"])) {
         </div>
         <i class='bx bx-chevron-right toggle'></i>
     </header>
+<<<<<<< HEAD
+=======
+
+>>>>>>> e0ec1aa77a2c81a93a07d8581987c2c38613c1d8
     <div class="menu-bar">
         <div class="menu">
             <ul class="menu-links">
@@ -41,6 +45,7 @@ if (!isset($_SESSION["id_supervisor"])) {
                     <a href="dashboardGovernment.php">
                         <i class='bx bx-home-alt icon' ></i>
                         <span class="text nav-text">Beranda</span>
+<<<<<<< HEAD
         <div class="menu-bar">
             <div class="menu">
                 <ul class="menu-links">
@@ -64,6 +69,20 @@ if (!isset($_SESSION["id_supervisor"])) {
                         <i class='bx bx-log-out icon' ></i>
                         <span class="text nav-text">Logout</span>
 
+=======
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="projectGovernment.php">
+                        <i class='bx bx-edit icon' ></i>
+                        <span class="text nav-text">Projek</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="projectDone.php">
+                        <i class='bx bx-file icon' ></i>
+                        <span class="text nav-text">Selesai</span>
+>>>>>>> e0ec1aa77a2c81a93a07d8581987c2c38613c1d8
                     </a>
                 </li>
                 <li class="nav-link">
@@ -93,6 +112,7 @@ if (!isset($_SESSION["id_supervisor"])) {
                     <span class="switch"></span>
                 </div>
             </li>
+<<<<<<< HEAD
                 <p><?= $supervisor["nama_supervisor"];?></p>
             </div>
         </div>
@@ -140,19 +160,19 @@ if (!isset($_SESSION["id_supervisor"])) {
 
         </div>
     </div>
+=======
+>>>>>>> e0ec1aa77a2c81a93a07d8581987c2c38613c1d8
         </div>
     </div>
 </nav>
 <div class="konten">
     <div class="header-konten">
         <div class="page-name">
-            <h2>Beranda</h2>
+            <h2>Statistik</h2>
         </div>
         <div class="user-login">
-            <a href="profilStaff.php">
-                <img src="<?= $supervisor["foto_profil_staff"];?>" alt="Profil Picture">
-            </a>
-            <p><?= $supervisor["nama_supervisor"];?></p>
+            <a href="profilStaff.php"><img src="<?php echo $supervisor['foto_profil_staff'];?>" alt="Profil Picture"></a>
+            <p><?php echo $supervisor["nama_supervisor"];?></p>
         </div>
     </div>
     <div id="dash-staf" class="isi-konten">
