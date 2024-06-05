@@ -22,7 +22,7 @@ if (!isset($_SESSION["id_supervisor"])) {
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <title>Statistik</title>
+    <title>Statistik Laporan</title>
 </head>
 <body>
     <nav class="sidebar close">
@@ -38,7 +38,6 @@ if (!isset($_SESSION["id_supervisor"])) {
             </div>
             <i class='bx bx-chevron-right toggle'></i>
         </header>
-        <div class="container">
         <div class="menu-bar">
             <div class="menu">
                 <ul class="menu-links">
@@ -87,14 +86,14 @@ if (!isset($_SESSION["id_supervisor"])) {
                         <span class="switch"></span>
                     </div>
                 </li>
-            </div>
+    
         </div>
     </nav>
 
     <div class="konten">
     <div class="header-konten">
         <div class="page-name">
-            <h2>Statistik</h2>
+            <h2>Statistik Laporan</h2>
         </div>
         <div class="user-login">
                 <a href="profilStaff.php">
@@ -108,7 +107,7 @@ if (!isset($_SESSION["id_supervisor"])) {
         <div class="box-container">
         <div class="container">
         <div class="year-selection">
-            <label for="tahun">Pilih Tahun: </label>
+            <label for="tahun" class="pilihTahun">Pilih Tahun: </label>
             <select name="tahun" id="tahun">
                 <?php
                 $currentYear = date("Y");

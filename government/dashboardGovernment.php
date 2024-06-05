@@ -88,7 +88,7 @@ if (!isset($_SESSION["id_supervisor"])) {
 <div class="konten">
     <div class="header-konten">
         <div class="page-name">
-            <h2>Statistik</h2>
+            <h2>Beranda</h2>
         </div>
         <div class="user-login">
             <a href="profilStaff.php"><img src="<?php echo $supervisor['foto_profil_staff'];?>" alt="Profil Picture"></a>
@@ -118,9 +118,6 @@ if (!isset($_SESSION["id_supervisor"])) {
                         <div class="left-post-action">
                             <button name="accept-button" class="accept-button" onclick="toggleAcceptReject(<?php echo $row['id_postingan'];?>, 'accept')">
                                 <i class='bx bxs-check-square'></i>
-                            </button>
-                            <button name="reject-button" class="reject-button" onclick="toggleAcceptReject(<?php echo $row['id_postingan'];?>, 'reject')">
-                                <i class='bx bxs-x-square'></i>
                             </button>
                         </div>
                         <div class="right-post-action">

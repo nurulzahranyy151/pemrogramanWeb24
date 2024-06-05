@@ -965,6 +965,14 @@ h5{
     padding: 20px;
 }
 
+.pilihTahun {
+    color: black;
+}
+
+.dark .pilihTahun{
+    color: white;
+}
+
 /*TAMBAH DATA STAFF START*/
 /*DATA STATISTIK START*/
 
