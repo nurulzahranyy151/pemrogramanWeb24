@@ -54,7 +54,7 @@ if(isset($_POST['deleteUser'])){
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="StatisticAdmin.php">
                             <i class='bx bx-bar-chart-alt-2 icon'></i>
                             <span class="text nav-text">Statistik Laporan</span>
                         </a>
@@ -72,13 +72,7 @@ if(isset($_POST['deleteUser'])){
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-image icon'></i>
-                            <span class="text nav-text">Kelola Laporan</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="#">
+                        <a href="kelolaLaporan.php">
                             <i class='bx bx-error icon'></i>
                             <span class="text nav-text">Kelola Report</span>
                         </a>

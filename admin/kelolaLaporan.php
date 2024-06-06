@@ -1,5 +1,20 @@
 <?php 
-require '../php/functions.php';?>
+require '../php/functions.php';
+if (!isset($_SESSION["id_admin"])) {
+    header("Location: ../loginAdmin.php");
+    exit();
+}else{
+    $id_admin = $_SESSION["id_admin"];
+    $adminData = adminLogin($id_admin);
+
+}
+
+if(isset($_POST['deleteUser'])){
+    hapusUser($_POST['deleteNik']);
+    header("Location: dataMasyarakat.php");
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,9 +27,10 @@ require '../php/functions.php';?>
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <title>Kelola Laporan</title>
+    <title>Dashboard</title>
 </head>
 <body>
+
     <nav class="sidebar close">
         <header>
             <div class="image-text">
@@ -52,8 +68,8 @@ require '../php/functions.php';?>
                     </li>
                     <li class="nav-link">
                         <a href="kelolaLaporan.php">
-                            <i class='bx bx-image icon'></i>
-                            <span class="text nav-text">Kelola Laporan</span>
+                            <i class='bx bx-error icon'></i>
+                            <span class="text nav-text">Kelola Report</span>
                         </a>
                     </li>
                 </ul>
@@ -61,7 +77,7 @@ require '../php/functions.php';?>
 
             <div class="bottom-content">
                 <li class="">
-                    <a href="../loginAdminandGov.php">
+                    <a href="../php/logout-proses.php">
                         <i class='bx bx-log-out icon'></i>
                         <span class="text nav-text">Logout</span>
                     </a>
@@ -88,61 +104,78 @@ require '../php/functions.php';?>
             </div>
             <div class="user-login">
                 <img src="../img/coba.jpeg" alt="Profil Picture">
-                <p><?php echo $_SESSION["nama_admin"];?></p>
+                <p><?php echo $adminData["nama_admin"];?></p>
             </div>
         </div>
         <div class="isi-konten">
             <div class="header-data">
-                <h3>Data Laporan</h3>
+                <h3>Data Laporan Postingan</h3>
             </div>
-            <div class="isi-table">
-                <div class="search">
-                    <input type="text" name="search-bar" class="search-bar" placeholder="Cari Masyarakat">
-                    <button type="submit"><i class='bx bx-search icon'></i></button>
+            <div id="data-masyarakat" class="isi-table">
+                <div class="search-add">
+                    <div class="search">
+                        <input type="text" id="search-keyword-masyarakat" name="search-bar" class="search-bar" placeholder="Cari Masyarakat">
+                        <button><i class='bx bx-search icon'></i></button>
+                    </div>
                 </div>
-                <table>
-                    <tr class="head-table">
-                        <th>ID Laporan</th>
-                        <th>NIK</th>
-                        <th>Nama</th>
-                        <th>Email</th>
-                        <th>Password</th>
-                        <th>Action</th>
-                    </tr>
-                    <?php 
-                    $count = 1;
-                    $result = findMasyarakat();
-                    while( $row = mysqli_fetch_assoc($result)):?>
-                    <tr class="isi-data">
-                        <td><?=$count?></td>
-                        <td><?= $row["NIK"];?></td>
-                        <td><?= $row["nama_user"];?></td>
-                        <td><?= $row["email_user"];?></td>
-                        <td><?= $row["password_user"];?></td>
-                        <td>
-                            <div class="button-container">
-                                <button class="btn edit-btn">
-                                    <i class='bx bx-edit icon'></i>
-                                    <span>Nonaktifkan</span>
-                                </button>
-                                <button class="btn del-btn">
-                                    <i class='bx bx-trash icon'></i>
-                                    <span>Hapus Akun</span>
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
-                    <?php 
-                        $count++;
-                        endwhile;
-                    ?>
-                </table>
+                <div id="table-data-masyarakat" class="table-masyarakat">
+                    <table>
+                        <tr class="head-table">
+                            <th>No</th>
+                            <th>Foto</th>
+                            <th>NIK</th>
+                            <th>Nama</th>
+                            <th>Email</th>
+                            <th>Password</th>
+                            <th>Action</th>
+                        </tr>
+                        <?php 
+                        $count = 1;
+                        $result = findMasyarakat();
+                        while( $row = mysqli_fetch_assoc($result)):?>
+                        <tr class="isi-data">
+                            <td><?= $count;?></td>
+                            <td><img src="<?= $row["foto_profil_user"];?>" alt="Profil Picture" class="foto-masyarakat"></td>
+                            <td><?= $row["NIK"];?></td>
+                            <td><?= $row["nama_user"];?></td>
+                            <td><?= $row["email_user"];?></td>
+                            <td><?= $row["password_user"];?></td>
+                            <td>
+                                <div class="button-container">
+                                    <button class="btn edit-btn" name="editUser" onclick="editMasyarakat(<?php echo $row['NIK'];?>)">
+                                        <i class='bx bx-edit icon'></i>
+                                        <span>Mute</span>
+                                    </button>
+                                    <button type="button" class="btn del-btn" onclick="showDeleteModal(<?php echo $row['NIK'];?>)">
+                                        <i class='bx bx-trash icon'></i>
+                                        <span>Hapus</span>
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php 
+                            $count++;
+                            endwhile;?>
+                    </table>
+                </div>  
             </div>
         </div>
     </div>
 
-    <script src="../js/masyarakatValidation.js"></script>
+    <!-- Delete Modal -->
+    <div id="deleteModal" class="deleteModal">
+        <div class="deleteModal-content">
+            <span class="close" id="closeDelete">&times;</span>
+            <h2>Delete Masyarakat</h2>
+            <p>Are you sure you want to delete this Masyarakat?</p>
+            <div>
+                <button type="submit" id="deleteMasyarakat" class="delete-selected">Delete</button>
+                <button type="button" id="cancelDelete" class="cancel-delete-selected">Cancel</button>
+            </div>
+        </div>
+    </div>
     <script src="../js/sidebar.js"></script>
-    <script src="../js/statistik.js"></script>
+    <script src="../js/modalmasyarakat.js"></script>
+
 </body>
 </html>
