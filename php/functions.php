@@ -85,6 +85,16 @@ function findGov(){
     return mysqli_query($conn, "SELECT * FROM supervisor");
 }
 
+function paginationGov($start, $perpage){
+    global $conn;
+    return mysqli_query($conn, "SELECT * FROM supervisor LIMIT $start, $perpage");
+}
+
+function paginationSearchGov($keyword, $start, $perpage){
+    global $conn;
+    return mysqli_query($conn, "SELECT * FROM supervisor WHERE nama_supervisor LIKE '$keyword%' LIMIT $start, $perpage");
+}
+
 function hapusUser($nik){
     global $conn;
     mysqli_query($conn, "DELETE FROM user WHERE NIK = '$nik'");

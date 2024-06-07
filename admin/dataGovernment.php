@@ -20,6 +20,17 @@ if(isset($_POST["addName"])){
     header("Location: dataGovernment.php");
 }
 
+$stafs = findGov();
+$perpage = 5;
+$dataStaf = [];
+while($row = mysqli_fetch_assoc($stafs)){
+    $dataStaf[] = $row;
+}
+$jumlahStaf = count($dataStaf);
+$jumlahPage = ceil($jumlahStaf/$perpage);
+$activePage = (isset($_GET["page"])) ? $_GET["page"] : 1;
+$startPage = ($perpage * $activePage) - $perpage;
+
 ?>
 
 <!DOCTYPE html>
@@ -72,7 +83,7 @@ if(isset($_POST["addName"])){
                     </li>
                     <li class="nav-link">
                         <a href="kelolaLaporan.php">
-                            <i class='bx bx-image icon'></i>
+                            <i class='bx bx-error icon'></i>
                             <span class="text nav-text">Kelola Laporan</span>
                         </a>
                     </li>
@@ -141,8 +152,8 @@ if(isset($_POST["addName"])){
                             <th>Action</th>
                         </tr>
                         <?php 
-                        $count = 1;
-                        $result = findGov();
+                        $count = $startPage + 1;
+                        $result = paginationGov($startPage, $perpage);
                         while($row = mysqli_fetch_assoc($result)): ?>
                         <tr class="isi-data">
                             <td><?php echo $count; ?></td>
@@ -168,6 +179,25 @@ if(isset($_POST["addName"])){
                             $count++;
                             endwhile; ?>
                     </table>
+                    <div class="pagination">
+                        <ul>
+                            <?php if($activePage > 1): ?>
+                                <li><a href="?page=1"><<</a></li>
+                                <li><a href="?page=<?php echo $activePage - 1; ?>"><</a></li>
+                            <?php endif; ?>
+                            <?php for($i = 1; $i <= $jumlahPage; $i++): ?>
+                                <?php if($i == $activePage): ?>
+                                    <li><a href="?page=<?php echo $i; ?>" class="active"><?php echo $i; ?></a></li>
+                                <?php else: ?>
+                                    <li><a href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                                <?php endif; ?>
+                            <?php endfor; ?>
+                            <?php if($activePage < $jumlahPage): ?>
+                                <li><a href="?page=<?php echo $activePage + 1; ?>">></a></li>
+                                <li><a href="?page=<?php echo $jumlahPage; ?>">>></a></li>
+                            <?php endif; ?>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
