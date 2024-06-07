@@ -19,6 +19,20 @@ if(isset($_POST['deleteUser'])){
     header("Location: dataMasyarakat.php");
 }
 
+if (isset ($_POST["findMasyarakat"])){
+    $user = findMasyarakat($_POST["keyword"]);
+}
+
+$searchUser = findMasyarakat();
+$user = [];
+$SumDataEachPage =  5;
+$SumData = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM user"));
+$SumPage = ceil($SumData/$SumDataEachPage);
+$activePage = (isset($_GET["halaman"])) ?  $_GET["halaman"] : 1;
+$DataUserStart = ($SumDataEachPage * $activePage) - $SumDataEachPage;
+while($row = mysqli_fetch_assoc($searchUser)){
+    $user[] = $row;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,7 +46,7 @@ if(isset($_POST['deleteUser'])){
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <title>Dashboard</title>
+    <title>Kelola Masyarakat</title>
 </head>
 <body>
 
@@ -144,8 +158,9 @@ if(isset($_POST['deleteUser'])){
                         </tr>
                         <?php 
                         $count = 1;
-                        $result = findMasyarakat();
-                        while( $row = mysqli_fetch_assoc($result)):?>
+                        $result = paginationMasyarakat($DataUserStart, $SumDataEachPage);
+                        while ($row = mysqli_fetch_assoc($result)):
+                        ?>
                         <tr class="isi-data">
                             <td><?= $count;?></td>
                             <td><img src="<?= $row["foto_profil_user"];?>" alt="Profil Picture" class="foto-masyarakat"></td>
@@ -170,6 +185,26 @@ if(isset($_POST['deleteUser'])){
                             $count++;
                             endwhile;?>
                     </table>
+                    <br>
+                    <!--Pagination START-->
+                    <div class="pagination">
+                              <?php if($activePage > 1) : ?>
+                        <a href="?halaman=<?= $activePage - 1; ?>">&laquo;</a>
+                    <?php endif; ?>
+
+                    <?php for ($i = 1; $i <= $SumPage; $i++) : ?>
+                        <?php if($i == $activePage): ?>
+                            <a href="?halaman=<?= $i + $DataUserStart; ?>"><?= $i; ?></a>
+                        <?php else : ?>
+                            <a href="?halaman=<?= $i + $DataUserStart ?>"><?= $i; ?></a>
+                        <?php endif; ?>
+                    <?php endfor; ?>
+
+                    <?php if($activePage < $SumPage) : ?>
+                        <a href="?halaman=<?= $activePage + 1; ?>">&raquo;</a>
+                    <?php endif; ?>
+                    </div>
+                    </br>
                 </div>  
             </div>
         </div>

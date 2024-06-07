@@ -1,14 +1,15 @@
 <?php 
 require '../php/functions.php';
-if (!isset($_SESSION["id_supervisor"])) {
+if(!isset($_SESSION["id_admin"])){
     header("Location: ../loginAdminandGov.php");
-    exit();
-} else {
-    $id_supervisor = $_SESSION["id_supervisor"];
-    $supervisor = stafLogin($id_supervisor);
+    exit;
+}else{
+    $id_admin = $_SESSION["id_admin"];
+    $adminData = adminLogin($id_admin);
     $currentYear = date("Y");
     $sumStatus = findSumStatusPostingan();
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,12 +57,12 @@ if (!isset($_SESSION["id_supervisor"])) {
                     <li class="nav-link">
                         <a href="dataGovernment.php">
                             <i class='bx bx-user-circle icon'></i>
-                            <span class="text nav-text">Kelola Supervisor</span>
+                            <span class="text nav-text">Kelola adminD$adminData</span>
                         </a>
                     </li>
                     <li class="nav-link">
                         <a href="#">
-                            <i class='bx bx-image icon'></i>
+                            <i class='bx bx-error icon'></i>
                             <span class="text nav-text">Kelola Laporan</span>
                         </a>
                     </li>
@@ -97,10 +98,9 @@ if (!isset($_SESSION["id_supervisor"])) {
         </div>
         <div class="user-login">
                 <a href="profilStaff.php">
-                    <img src="
-                    <?= $supervisor["foto_profil_staff"];?>" alt="Profil Picture">
+                    <img src="" alt="Profil Picture">
                 </a>
-                <p><?= $supervisor["nama_supervisor"];?></p>
+                <p><?= $adminData["nama_admin"];?></p>
             </div>
     </div>
     <div class="isi-konten">

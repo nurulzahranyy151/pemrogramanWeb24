@@ -138,6 +138,7 @@ body.dark {
 /*===NAV  EXTRA FOR PROFILE=== end ===*/
 
 /* ===== Sidebar-Menu START===== */
+
 .sidebar {
     position: fixed;
     top: 0;
@@ -148,6 +149,7 @@ body.dark {
     background: var(--sidebar-color);
     transition: var(--tran-05);
     z-index: 100;  
+   
 }
 
 .sidebar.close {
@@ -406,6 +408,10 @@ body.dark .mode .sun-moon i.moon {
 body.dark .switch::before {
     left: 20px;
 }
+
+.header-konten {
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
 /*ADVANCE DARKMODE FOR DASHBOARD CONTENT START*/
 
 .header-konten {
@@ -452,6 +458,7 @@ body.dark .add-comment-form button {
     color: white;
 }
 
+
 /*ADVANCE DARKMODE FOR DASHBOARD CONTENT END*/
 /*ACCEPTED POST START*/
 .header-trend, .accepted-post{
@@ -459,6 +466,11 @@ body.dark .add-comment-form button {
     align-items: center;
     gap: 10px;
     padding: 5px;
+}
+
+.dark .trend-content {
+    background-color:#242526;
+    color: white;
 }
 .header-trend, .accepted-post, hr{
     margin-bottom: 5px;
@@ -742,6 +754,13 @@ img {
     align-items: center;
     gap: 10px;
 }
+
+
+.dark .post-header{
+    background-color: #242526;
+    color: white;
+}
+
 
 .post-header img, .reporter img, .user-login img, .header-trend img , .image-user-comment img, .profile-picture-pop-up{
     width: 50px;

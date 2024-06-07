@@ -154,7 +154,7 @@ if(isset($_POST["saveChange"])){
                             </div>
                             <div class="form-actions">
                                 <button type="button" class="cancel-button" onclick="cancelEdit()">Batalkan</button>
-                                <button type="submit" class="save-button" name="saveChange">Simpan</button>
+                                <button type="submit" class="save-button" name="saveChange" onclick="saveProfile()">Simpan</button>
                             </div>
                         </div>
                     </div>

@@ -175,6 +175,12 @@ function cancelEdit() {
     history.back();
 }
 
+function saveProfile() {
+    setTimeout(() => {
+        alert("Data berhasil disimpan!");
+    }, 1000);
+}
+
 document.querySelector('.make-report').onsubmit = function(event) {
     const mediaPreview = document.querySelector('.media-preview');
     if (!mediaPreview.querySelector('img')) {

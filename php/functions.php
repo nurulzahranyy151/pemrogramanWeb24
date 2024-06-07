@@ -75,6 +75,11 @@ function findMasyarakat(){
     return mysqli_query($conn, "SELECT * FROM user");
 }
 
+function paginationMasyarakat($DataUserStart, $SumDataEachPage){
+    global $conn;
+    return mysqli_query($conn, "SELECT * FROM user LIMIT $DataUserStart, $SumDataEachPage");
+}
+
 function findGov(){
     global $conn;
     return mysqli_query($conn, "SELECT * FROM supervisor");
@@ -100,7 +105,7 @@ function hapuspostingan($id){
 
 function showAllpostingan(){
     global $conn;
-    return mysqli_query($conn, "SELECT postingan.*, user.nama_user, user.foto_profil_user FROM postingan JOIN user ON postingan.NIK = user.NIK;");
+    return mysqli_query($conn, "SELECT postingan.*, user.nama_user, user.foto_profil_user FROM postingan JOIN user ON postingan.NIK = user.NIK ORDER BY postingan.tgl_postingan DESC");
 }
 
 function trendingpost(){

@@ -253,7 +253,7 @@ if(isset($_POST["savePost"])){
                 </div>
                 <form action="#" method="post" class="add-comment-form">
                     <input type="text" name="comment" id="comment-pop" placeholder="Tambahkan komentar...">
-                    <button type="submit" id="submit-comment">Kirim</button>
+                    <button type="submit" id="submit-comment"><i class='bx bx-send'></i></button>
                 </form>
             </div>
         </div>

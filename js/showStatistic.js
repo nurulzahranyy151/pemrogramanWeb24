@@ -34,14 +34,14 @@ function updateChart(data) {
     }
 
     var colors = [
-        '#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#FF9F40',
+        '#322FF1', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF', '#322FF1',
         '#E7E9ED', '#76FF03', '#D32F2F', '#1976D2', '#F57C00', '#388E3C'
     ];
 
     window.myChart = new Chart(ctx, {
         type: 'bar',
         data: {
-            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'],
             datasets: [{
                 label: 'Total Reports',
                 data: Object.values(data),

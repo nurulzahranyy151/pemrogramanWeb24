@@ -46,8 +46,9 @@ if(isset($_POST["submit-report"])){
             </div>
             <i class='bx bx-chevron-right toggle'></i>
         </header>
-
+        
         <div class="menu-bar">
+        <div class= "container-menu-bar">
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link">
@@ -75,6 +76,7 @@ if(isset($_POST["submit-report"])){
                         </a>
                     </li>
                 </ul>
+            </div>
             </div>
 
             <div class="bottom-content">
@@ -144,8 +146,8 @@ if(isset($_POST["submit-report"])){
                     <input type="file" id="imageUpload"  name="media" style="display: none;" accept="image/*" >
                 </form>
                 <?php 
-                $postingan = showAllpostingan();
-                while ($row = mysqli_fetch_assoc($postingan)):?>
+               $postingan = showAllpostingan();
+               while ($row = mysqli_fetch_assoc($postingan)):?>
                 <?php $saveornot = cekSave($row["id_postingan"], $nik) ? True : False;?>
                 <div class="post">
                     <div class="post-header">
