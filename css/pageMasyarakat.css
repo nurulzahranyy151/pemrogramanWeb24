@@ -1111,11 +1111,10 @@ input[type=text], input[type=password], input[type=email], select {
     border-radius: 10px;
 }
 /*===PROFILE USER END===*/
-.deleteModal {
+.addModal, .deleteModal {
     display: none;
     position: fixed;
     z-index: 1;
-    padding-top: 100px;
     left: 0;
     top: 0;
     width: 100%;
@@ -1125,30 +1124,52 @@ input[type=text], input[type=password], input[type=email], select {
     background-color: rgba(0,0,0,0.4);
 }
 
+.addModal{
+    padding-top: 100px;
+
+}
+
 /* Modal Content */
 .deleteModal-content {
     background-color: #fefefe;
-    margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
-    max-width: 800px;
+    border-radius: 8px;
 }
 
-.closeDelete {
-    color: #888;
+.deleteModal-content{
+    margin: 15% auto;
+    width: 50%;
+}
+
+.deleteModal-content button {
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+.delete-selected {
+    color: white;
+    background-color: #ff0000;
+}
+
+.cancel-delete-selected {
+    color: black;
+    background-color: #ccc;
+}
+.close {
+    color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
 
-.closeDelete:hover,
-.closeDelete:focus {
+.close:hover,
+.close:focus {
     color: black;
     text-decoration: none;
     cursor: pointer;
 }
-
 @media only screen and (max-width: 768px) {
     /* CSS code for devices with a maximum width of 768px */
     .sidebar {

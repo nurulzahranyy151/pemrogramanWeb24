@@ -8,33 +8,6 @@ if (!isset($_SESSION["NIK"])) {
     $user = userLogin($nik);
 }
 
-if(isset($_POST["comment-button"])){
-    global $conn;
-    $showPopupcomment = true;
-    $idcomment = $_POST["idpost-comment"];
-    $saveornotpopup = cekSave($idcomment, $nik) ? True : False;
-    $commented = popupPost($idcomment);
-    unset($_POST);
-}else{
-    $showPopupcomment = false;
-}
-
-if(isset($_POST["deletePost"])){
-    $idpost = $_POST["deleteId"];
-    deletePostingan($idpost);
-    unset($_POST);
-}
-
-
-if(isset($_POST["savePost"])){
-    $idpost = $_POST["idpost"];
-    if($_POST["ceksave"] == "not"){
-        savePostingan($idpost, $nik);
-    } else {
-        unsavePostingan($idpost, $nik);
-    }
-    unset($_POST);
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -135,130 +108,58 @@ if(isset($_POST["savePost"])){
                 <p><?= $user["nama_user"];?></p>
             </div>
         </div>
-        <div class="isi-konten">
+        <div class="isi-konten" id="hist-post">
             <?php
             $histPost = findHistpost($nik);
             while ($post = mysqli_fetch_assoc($histPost)):?>
             <?php $saveornot = cekSave($post["id_postingan"], $nik) ? True : False;?>
             <div class="history-post">
                 <div class="post-header">
-                    <img src="<?= $user["foto_profil_user"];?>" alt="Profil Picture">
+                    <img src="<?= $post['foto_profil_user'];?>" alt="Profil Picture">
                     <div class="post-info">
-                        <h3><?= $user["nama_user"];?></h3>
-                        <p><?= $post["tgl_postingan"];?></p>
+                        <h3><?= $post['nama_user'];?></h3>
+                        <p><?= $post['tgl_postingan'];?></p>
                     </div>
                 </div>
                 <div class="post-content">
-                    <p><?= $post["caption"];?></p>
-                    <img src="<?= $post["media"];?>" alt="ini gambar">
+                    <p class="caption"><?= $post['caption'];?></p>
+                    <img src="<?= $post['media'];?>" alt="Gambar postingan">
                 </div>
                 <div class="post-actions">
-                    <div class="left-actions">
-                        <form action="" method="post">
-                            <input type="hidden" name="idpost-comment" value="<?= $post["id_postingan"];?>">
-                            <button type="submit" class="comment-button" name="comment-button"><i class='bx bx-comment'></i></button>
-                        </form>
-                        <form action="" method="post">
-                            <input type="hidden" name="ceksave" value="<?php echo $saveornot ? 'saved' : 'not';?>">
-                            <input type="hidden" name="idpost" value="<?= $post["id_postingan"];?>">
-                            <input type="hidden" name="nik" value="<?= $nik;?>">
-                            <button type="submit" name="savePost" class="<?php echo $saveornot ? 'saved' : 'save-button';?>" onclick="toggleSave(this)">
-                                <i class='<?php echo $saveornot ? 'bx bxs-bookmark' : 'bx bx-bookmark';?>' style=""></i>
-                            </button>
-                        </form>
+                    <div class="left-post-action">
+                        <button type="submit" class="comment-button" name="comment-button" onclick="popupcomment(<?php echo $post['id_postingan'];?>)"><i class='bx bx-comment'></i></button>
+                        <button data-post-id="<?php echo $post['id_postingan']; ?>" name="savePost" class="<?php echo $saveornot ? 'saved' : 'save-button'; ?>" onclick="toggleSave(this, <?php echo $post['id_postingan']; ?>)">
+                            <i class='<?php echo $saveornot ? 'bx bxs-bookmark' : 'bx bx-bookmark'; ?>'></i>
+                        </button>
                     </div>
-                    <div class="center-action">
-                        <button><i class='bx bx-check-square icon'></i></button>
-                    </div>
-                    <div class="right-action">
-                        <button type="button" class="btn del-btn" onclick="showDelete(<?php echo $post['id_postingan'];?>)">
+                    <div class="right-post-action">
+                        <button type="button" class="btn del-btn" onclick="showDeleteModal(<?php echo $post['id_postingan'];?>)">
                             <i class='bx bx-trash icon'></i>
                         </button>
                     </div>
                 </div>
-                <form action="#" method="post" class="add-comment-form">
-                    <input type="text" name="comment" id="comment" placeholder="Tambahkan komentar...">
-                    <button type="submit" id="submit-comment" style="display: none;">Kirim</button>
-                </form>
-            </div>
+                <div class="add-comment-form">
+                    <input type="text" name="comment" class="comment" id="comment-<?php echo $post['id_postingan'];?>" placeholder="Tambahkan komentar...">
+                    <button type="button" id="submitcomment" name="postComment" onclick="postComment(<?php echo $post['id_postingan'];?>)">Kirim</button>
+                </div>
             <?php endwhile?>
         </div>
     </div>
 
     <div id="deleteModal" class="deleteModal">
         <div class="deleteModal-content">
-            <span class="closeDelete" id="closeDelete" onclick="closeDelete()">&times;</span>
-            <h2>Delete Post</h2>
-            <p>Yakin ingin menghapus postingan ini?</p>
-            <form action="" id="deleteForm" method="post">
-                <input type="hidden" id="deleteId" name="deleteId">
-                <button type="submit" name="deletePost">Yes, Delete</button>
-                <button type="button" id="cancelDelete" onclick="closeDelete()">Cancel</button>
-            </form>
-        </div>
-    </div>
-
-    <div id="commentPopup" class="popup" style="display: <?php echo $showPopupcomment ? 'flex' : 'none'; ?>">
-        <div class="popup-content">
-            <span class="close">&times;</span>
-            <div class="popup-left">
-                <img src="<?= $commented["media"];?>" alt="Post Image">
-            </div>
-            <div class="popup-right">
-                <div class="post-header">
-                    <img src="<?= $commented["foto_profil_user"];?>" alt="Profile Picture" class="profile-picture-pop-up">
-                    <div class="profile-info">
-                        <h3><?= $commented["nama_user"];?></h3>
-                        <p><?= $commented["tgl_postingan"];?></p>
-                    </div>
-                </div>
-                <div class="previous-comments">
-                    <div class="comments">
-                        <?php if($commented["caption"] != ""):?>
-                        <div class="image-user-comment">
-                            <img src="<?= $commented["foto_profil_user"];?>" alt="">
-                        </div>
-                        <div class="comments-user">
-                            <h4><?= $commented["nama_user"];?></h4>
-                            <p><?= $commented["caption"];?></p>
-                        </div>
-                        <?php endif;?>
-                    </div>
-                    <div class="comments">
-                        <div class="image-user-comment">
-                            <img src="../img/coba.jpeg" alt="">
-                        </div>
-                        <div class="comments-user">
-                            <h4>Lulu</h4>
-                            <p>keren bang</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="post-actions">
-                    <div class="left-post-action">
-                        <button class="comment-button" ><label for="comment-pop">
-                        <i class='bx bx-comment'></i>
-                        </label></button>
-                    </div>
-                    <div class="right-post-action">
-                        <form action="" method="post">
-                            <input type="hidden" name="ceksave" value="<?php echo $saveornotpopup ? 'saved' : 'not';?>">
-                            <input type="hidden" name="idpost" value="<?= $idcomment;?>">
-                            <input type="hidden" name="nik" value="<?= $nik;?>">
-                            <button type="submit" name="savePost" class="<?php echo $saveornot ? 'saved' : 'save-button';?>" onclick="toggleSave(this)">
-                                <i class='<?php echo $saveornot ? 'bx bxs-bookmark' : 'bx bx-bookmark';?>' style=""></i>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-                <form action="#" method="post" class="add-comment-form">
-                    <input type="text" name="comment" id="comment-pop" placeholder="Tambahkan komentar...">
-                    <button type="submit" id="submit-comment"><i class='bx bx-send'></i></button>
-                </form>
+            <span class="close" id="closeDelete">&times;</span>
+            <h2>Delete Masyarakat</h2>
+            <p>Are you sure you want to delete this Masyarakat?</p>
+            <div>
+                <button type="submit" id="deletePost" class="delete-selected">Delete</button>
+                <button type="button" id="cancelDelete" class="cancel-delete-selected">Cancel</button>
             </div>
         </div>
     </div>
+    <div id="commentPopup" class="popup"></div>
     <script src="../js/masyarakatValidation.js"></script>
     <script src="../js/sidebar.js"></script>
+    <script src="../js/deletePost.js"></script>
 </body>
 </html>
