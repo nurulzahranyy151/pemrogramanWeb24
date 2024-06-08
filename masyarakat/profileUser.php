@@ -100,7 +100,7 @@ if(isset($_POST["saveChange"])){
                 <h2>Profil</h2>
             </div>
             <div class="user-login">
-                <a href="profileUser.html">
+                <a href="profileUser.php">
                     <img src="
                     <?= $user["foto_profil_user"];?>" alt="Profil Picture">
                 </a>

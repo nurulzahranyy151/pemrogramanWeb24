@@ -92,9 +92,9 @@ $startPage = ($perpage * $activePage) - $perpage;
 
             <div class="bottom-content">
                 <li class="">
-                    <a href="../loginAdminandGov.php">
+                    <a href="../php/logout-proses-adminStaff.php">
                         <i class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">Logout</span>
+                        <span class="text nav-text">Keluar</span>
                     </a>
                 </li>
 
@@ -118,7 +118,6 @@ $startPage = ($perpage * $activePage) - $perpage;
                 <h2>Kelola Supervisor</h2>
             </div>
             <div class="user-login">
-                <img src="../img/coba.jpeg" alt="Profil Picture">
                 <p><?php echo $adminData["nama_admin"];?></p>
             </div>
         </div>

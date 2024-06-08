@@ -148,6 +148,11 @@ body.dark {
     background: var(--sidebar-color);
     transition: var(--tran-05);
     z-index: 100;  
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dark .sidebar{
+    box-shadow: 0 4px 2px -2px gray;
 }
 
 .sidebar.close {
@@ -261,7 +266,7 @@ body.dark .sidebar header .toggle {
 }
 
 .dark .laporan-container {
-    background-color: #242526;
+    background-color: #18191a;
     color: white;
 }
 
@@ -454,6 +459,7 @@ body.dark .home .text {
     align-items: center;
     justify-content: space-between;
     color: #242526;
+
 }
 
 .page-name{
@@ -694,6 +700,10 @@ table td {
     border-radius: 5px;
     padding: 5px 10px;
     cursor: pointer;
+}
+
+.dark .deleteModal-content{
+    color: white;
 }
 .delete-selected {
     color: white;
@@ -984,7 +994,6 @@ h5{
     border-radius: 8px;
     background-color: #ffffff;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-
 }
 
 .chart {
@@ -1000,12 +1009,8 @@ h5{
     padding: 20px;
 }
 
-.pilihTahun {
-    color: black;
-}
-
 .dark .pilihTahun{
-    color: white;
+    color: black;
 }
 
 /*TAMBAH DATA STAFF START*/

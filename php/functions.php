@@ -394,4 +394,33 @@ function selectPost($id){
     return mysqli_fetch_assoc($result);
 }
 
+function laporkanUser($nik) {
+    global $conn;
+    $query = "SELECT * FROM user WHERE NIK = $nik";
+    $result = mysqli_query($conn, $query);
+    return mysqli_fetch_assoc($result);
+  }
+  
+  function popupLaporkan($nik) {
+    global $conn;
+    $query = "SELECT postingan.caption, postingan.media, user.nama_user, user.foto_profil_user FROM postingan JOIN user ON postingan.NIK = user.NIK WHERE postingan.NIK = $nik";
+    $result = mysqli_query($conn, $query);
+    return mysqli_fetch_assoc($result);
+  }
+  
+  function senyapkanAkun($nik) {
+    global $conn;
+    $query = "UPDATE user SET status_akun = 'enyap' WHERE NIK = $nik";
+    mysqli_query($conn, $query);
+    return mysqli_affected_rows($conn);
+  }
+  
+  function blokirAkun($nik) {
+    global $conn;
+    $query = "UPDATE user SET status_akun = 'blokir' WHERE NIK = $id_nik";
+    mysqli_query($conn, $query);
+    return mysqli_affected_rows($conn);
+  }
+  
+
 ?>
