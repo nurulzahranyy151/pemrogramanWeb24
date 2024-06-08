@@ -399,6 +399,7 @@ function findReported(){
     return mysqli_query($conn, "SELECT user.*, postingan.caption, postingan.media FROM user JOIN postingan ON user.NIK = postingan.NIK");
 }
 
+
 function laporkanUser($nik) {
     global $conn;
     $query = "SELECT * FROM user WHERE NIK = $nik";

@@ -13,7 +13,16 @@ if(isset($_POST['deleteUser'])){
     hapusUser($_POST['deleteNik']);
     header("Location: dataMasyarakat.php");
 }
-
+//$searchReport = findReported();
+//$report = [];
+//$SumDataEachPage =  5;
+//$SumData = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM report"));
+//$SumPage = ceil($SumData/$SumDataEachPage);
+//$activePage = (isset($_GET["halaman"])) ?  $_GET["halaman"] : 1;
+//$DataReportStart = ($SumDataEachPage * $activePage) - $SumDataEachPage;
+//while($row = mysqli_fetch_assoc($searchReport)){
+//    $report[] = $row;
+//}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -113,7 +122,7 @@ if(isset($_POST['deleteUser'])){
             <div id="data-masyarakat" class="isi-table">
                 <div class="search-add">
                     <div class="search">
-                        <input type="text" id="search-keyword-masyarakat" name="search-bar" class="search-bar" placeholder="Cari Masyarakat">
+                        <input type="text" id="search-keyword-masyarakat" name="search-bar" class="search-bar" placeholder="Cari Laporan">
                         <button><i class='bx bx-search icon'></i></button>
                     </div>
                 </div>
