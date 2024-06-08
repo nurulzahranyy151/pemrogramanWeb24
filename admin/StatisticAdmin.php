@@ -57,7 +57,7 @@ if(!isset($_SESSION["id_admin"])){
                     <li class="nav-link">
                         <a href="dataGovernment.php">
                             <i class='bx bx-user-circle icon'></i>
-                            <span class="text nav-text">Kelola adminD$adminData</span>
+                            <span class="text nav-text">Kelola Supervisor</span>
                         </a>
                     </li>
                     <li class="nav-link">
@@ -126,11 +126,6 @@ if(!isset($_SESSION["id_admin"])){
             <div class="box box-diterima">
                 <h5>Diterima</h5>
                 <p><?php echo $sumStatus['diterima']; ?> Laporan</p>
-                <p><?php echo date("d F Y"); ?></p>
-            </div>
-            <div class="box box-ditolak">
-                <h5>Ditolak</h5>
-                <p><?php echo $sumStatus['ditolak']; ?> Laporan</p>
                 <p><?php echo date("d F Y"); ?></p>
             </div>
             <div class="box box-menunggu">
