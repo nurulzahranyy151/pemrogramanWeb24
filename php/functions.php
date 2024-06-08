@@ -410,14 +410,14 @@ function laporkanUser($nik) {
   
   function senyapkanAkun($nik) {
     global $conn;
-    $query = "UPDATE user SET status_akun = 'enyap' WHERE NIK = $nik";
+    $query = "UPDATE user SET status = 'enyap' WHERE NIK = $nik";
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn);
   }
   
   function blokirAkun($nik) {
     global $conn;
-    $query = "UPDATE user SET status_akun = 'blokir' WHERE NIK = $id_nik";
+    $query = "UPDATE user SET status = 'blokir' WHERE NIK = $nik";
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn);
   }
