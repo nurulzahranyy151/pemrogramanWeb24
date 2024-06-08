@@ -124,13 +124,15 @@ if(isset($_POST['deleteUser'])){
                             <th>Foto</th>
                             <th>NIK</th>
                             <th>Nama</th>
+                            <th>Caption</th>
+                            <th>media</th>
                             <th>Email</th>
                             <th>Password</th>
                             <th>Action</th>
                         </tr>
                         <?php 
                         $count = 1;
-                        $result = findMasyarakat();
+                        $result = findReported();
                         while( $row = mysqli_fetch_assoc($result)):?>
                         <tr class="isi-data">
                             <td><?= $count;?></td>
@@ -138,7 +140,7 @@ if(isset($_POST['deleteUser'])){
                             <td><?= $row["NIK"];?></td>
                             <td><?= $row["nama_user"];?></td>
                             <td><?= $row["caption"];?></td>
-                            <td><?= $row["media"];?></td>
+                            <td><img src="<?= $row["media"];?>" alt="Media" class="Media-User"></td>
                             <td><?= $row["email_user"];?></td>
                             <td><?= $row["password_user"];?></td>
                             <td>
