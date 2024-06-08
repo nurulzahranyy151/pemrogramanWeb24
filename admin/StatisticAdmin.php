@@ -43,7 +43,7 @@ if(!isset($_SESSION["id_admin"])){
             <div class="menu">
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="StatisticAdmin.php">
                             <i class='bx bx-bar-chart-alt-2 icon'></i>
                             <span class="text nav-text">Statistik Laporan</span>
                         </a>
@@ -57,11 +57,11 @@ if(!isset($_SESSION["id_admin"])){
                     <li class="nav-link">
                         <a href="dataGovernment.php">
                             <i class='bx bx-user-circle icon'></i>
-                            <span class="text nav-text">Kelola adminD$adminData</span>
+                            <span class="text nav-text">Kelola Supervisor</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="kelolaLaporan.php">
                             <i class='bx bx-error icon'></i>
                             <span class="text nav-text">Kelola Laporan</span>
                         </a>
@@ -71,7 +71,7 @@ if(!isset($_SESSION["id_admin"])){
 
             <div class="bottom-content">
                 <li class="">
-                    <a href="#">
+                    <a href="../php/logout-proses-adminStaff.php">
                         <i class='bx bx-log-out icon'></i>
                         <span class="text nav-text">Logout</span>
                     </a>
@@ -97,9 +97,6 @@ if(!isset($_SESSION["id_admin"])){
             <h2>Statistik Laporan</h2>
         </div>
         <div class="user-login">
-                <a href="profilStaff.php">
-                    <img src="" alt="Profil Picture">
-                </a>
                 <p><?= $adminData["nama_admin"];?></p>
             </div>
     </div>
@@ -126,11 +123,6 @@ if(!isset($_SESSION["id_admin"])){
             <div class="box box-diterima">
                 <h5>Diterima</h5>
                 <p><?php echo $sumStatus['diterima']; ?> Laporan</p>
-                <p><?php echo date("d F Y"); ?></p>
-            </div>
-            <div class="box box-ditolak">
-                <h5>Ditolak</h5>
-                <p><?php echo $sumStatus['ditolak']; ?> Laporan</p>
                 <p><?php echo date("d F Y"); ?></p>
             </div>
             <div class="box box-menunggu">

@@ -122,7 +122,6 @@ while($row = mysqli_fetch_assoc($searchUser)){
                 <h2>Kelola Masyarakat</h2>
             </div>
             <div class="user-login">
-                <img src="../img/coba.jpeg" alt="Profil Picture">
                 <p><?php echo $adminData["nama_admin"];?></p>
             </div>
         </div>
@@ -151,7 +150,7 @@ while($row = mysqli_fetch_assoc($searchUser)){
                             <th>Action</th>
                         </tr>
                         <?php 
-                        $count = 1;
+                        $count = $DataUserStart + 1;
                         $result = paginationMasyarakat($DataUserStart, $SumDataEachPage);
                         while ($row = mysqli_fetch_assoc($result)):
                         ?>

@@ -148,6 +148,11 @@ body.dark {
     background: var(--sidebar-color);
     transition: var(--tran-05);
     z-index: 100;  
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dark .sidebar{
+    box-shadow: 0 4px 2px -2px gray;
 }
 
 .sidebar.close {
@@ -261,7 +266,7 @@ body.dark .sidebar header .toggle {
 }
 
 .dark .laporan-container {
-    background-color: #242526;
+    background-color: #18191a;
     color: white;
 }
 
@@ -454,6 +459,7 @@ body.dark .home .text {
     align-items: center;
     justify-content: space-between;
     color: #242526;
+
 }
 
 .page-name{
@@ -488,6 +494,11 @@ img {
     background-color: #1814F3;
 }
 
+.dark .header-data{
+    color: white;
+    background-color: #242526;
+}
+
 .header-data,
 .table-masyarakat, .table-staf {
     border-radius: 8px;
@@ -499,6 +510,14 @@ img {
 
 .table-masyarakat, .table-staf {
     background-color: white;
+    border-spacing: 0;
+    width: 100%; 
+    overflow-x: auto;
+}
+
+.dark .table-masyarakat, .dark .table-staf {
+    background-color: #242526;
+    color: white;
     border-spacing: 0;
     width: 100%; 
     overflow-x: auto;
@@ -517,6 +536,10 @@ table td {
 
 .head-table {
     color: #1814F3;
+}
+
+.dark .head-table{
+    color: white;
 }
 
 .button-container {
@@ -654,7 +677,7 @@ table td {
 
 /* Modal Content */
 .addModal-content, .deleteModal-content {
-    background-color: #fefefe;
+    background: linear-gradient(to left, #354259, #53688C, #718EBF);
     padding: 20px;
     border: 1px solid #888;
     border-radius: 8px;
@@ -664,6 +687,7 @@ table td {
     margin: auto;
     width: 80%;
     max-width: 800px;
+    color: white;
 }
 
 .deleteModal-content{
@@ -676,6 +700,10 @@ table td {
     border-radius: 5px;
     padding: 5px 10px;
     cursor: pointer;
+}
+
+.dark .deleteModal-content{
+    color: white;
 }
 .delete-selected {
     color: white;
@@ -690,6 +718,7 @@ table td {
 .form-add-staf {
     display: flex;
     flex-direction: column;
+  
 }
 
 .form-group {
@@ -699,7 +728,6 @@ table td {
 .form-group label {
     display: block;
     margin-bottom: 5px;
-    font-weight: bold;
 }
 
 .form-group input {
@@ -720,6 +748,14 @@ table td {
     display: flex;
     justify-content: flex-end;
     gap: 20px;
+}
+
+/*Modal Content Dark*/
+.dark .addModal-content, .deleteModal-content {
+    background: linear-gradient(to right, #3b424e, #535f72, #677a9b);
+    padding: 20px;
+    border: 1px solid #888;
+    border-radius: 8px;
 }
 
 .foto-staf-preview {
@@ -749,8 +785,8 @@ table td {
 }
 
 .add-staf-btn button{
-    background-color: #4CAF50;
-    color: white;
+    background-color: #f1f6ff;
+    color: #242526;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;
@@ -758,6 +794,19 @@ table td {
     font-size: 16px;
     align-items: center;
 }
+
+.addModal-content h2{
+    text-align: center;
+}
+
+#btn-add-foto-staf:hover, #btn-add-staf:hover,
+#btn-add-foto-staf:focus,  #btn-add-staf:focus{
+    background-color: #1814F3;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 
 /* Close Button */
 .close {
@@ -910,19 +959,15 @@ h5{
 }
 
 .box-diterima {
-    color: blue;
-}
-
-.box-ditolak {
-    color: red;
+    color: green;
 }
 
 .box-menunggu {
-    color: teal;
+    color: orange;
 }
 
 .box-total {
-    color: green;
+    color: blue;
 }
 .laporan-container {
     display: flex;
@@ -949,7 +994,6 @@ h5{
     border-radius: 8px;
     background-color: #ffffff;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
-
 }
 
 .chart {
@@ -965,12 +1009,8 @@ h5{
     padding: 20px;
 }
 
-.pilihTahun {
-    color: black;
-}
-
 .dark .pilihTahun{
-    color: white;
+    color: black;
 }
 
 /*TAMBAH DATA STAFF START*/

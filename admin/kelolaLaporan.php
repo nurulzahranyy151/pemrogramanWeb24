@@ -27,7 +27,7 @@ if(isset($_POST['deleteUser'])){
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    <title>Dashboard</title>
+    <title>Kelola Laporan</title>
 </head>
 <body>
 
@@ -69,7 +69,7 @@ if(isset($_POST['deleteUser'])){
                     <li class="nav-link">
                         <a href="kelolaLaporan.php">
                             <i class='bx bx-error icon'></i>
-                            <span class="text nav-text">Kelola Report</span>
+                            <span class="text nav-text">Kelola Laporan</span>
                         </a>
                     </li>
                 </ul>
@@ -103,7 +103,6 @@ if(isset($_POST['deleteUser'])){
                 <h2>Kelola Laporan</h2>
             </div>
             <div class="user-login">
-                <img src="../img/coba.jpeg" alt="Profil Picture">
                 <p><?php echo $adminData["nama_admin"];?></p>
             </div>
         </div>
@@ -138,6 +137,8 @@ if(isset($_POST['deleteUser'])){
                             <td><img src="<?= $row["foto_profil_user"];?>" alt="Profil Picture" class="foto-masyarakat"></td>
                             <td><?= $row["NIK"];?></td>
                             <td><?= $row["nama_user"];?></td>
+                            <td><?= $row["caption"];?></td>
+                            <td><?= $row["media"];?></td>
                             <td><?= $row["email_user"];?></td>
                             <td><?= $row["password_user"];?></td>
                             <td>
@@ -166,8 +167,8 @@ if(isset($_POST['deleteUser'])){
     <div id="deleteModal" class="deleteModal">
         <div class="deleteModal-content">
             <span class="close" id="closeDelete">&times;</span>
-            <h2>Delete Masyarakat</h2>
-            <p>Are you sure you want to delete this Masyarakat?</p>
+            <h2>Hapus Report</h2>
+            <p>Apakah Anda yakin ingin menghapus User ini?</p>
             <div>
                 <button type="submit" id="deleteMasyarakat" class="delete-selected">Delete</button>
                 <button type="button" id="cancelDelete" class="cancel-delete-selected">Cancel</button>

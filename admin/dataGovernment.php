@@ -92,9 +92,9 @@ $startPage = ($perpage * $activePage) - $perpage;
 
             <div class="bottom-content">
                 <li class="">
-                    <a href="../loginAdminandGov.php">
+                    <a href="../php/logout-proses-adminStaff.php">
                         <i class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">Logout</span>
+                        <span class="text nav-text">Keluar</span>
                     </a>
                 </li>
 
@@ -118,7 +118,6 @@ $startPage = ($perpage * $activePage) - $perpage;
                 <h2>Kelola Supervisor</h2>
             </div>
             <div class="user-login">
-                <img src="../img/coba.jpeg" alt="Profil Picture">
                 <p><?php echo $adminData["nama_admin"];?></p>
             </div>
         </div>
@@ -212,17 +211,17 @@ $startPage = ($perpage * $activePage) - $perpage;
                 <div class="form-add-staf">
                     <div class="form-group">
                         <label for="addName">Nama:</label>
-                        <input type="text" id="addName" name="addName">
+                        <input type="text" id="addName" name="addName" placeholder="Masukkan Nama Supervisor">
                         <p id="msg-error-name"  class="error-message"></p>
                     </div>
                     <div class="form-group">
                         <label for="addEmail">Email:</label>
-                        <input type="text" id="addEmail" name="addEmail">
+                        <input type="text" id="addEmail" name="addEmail" placeholder="Masukkan Email Supervisor">
                         <p id="msg-error-email"  class="error-message"></p>
                     </div>
                     <div class="form-group">
                         <label for="addPassword">Password:</label>
-                        <input type="password" id="addPassword" name="addPassword">
+                        <input type="password" id="addPassword" name="addPassword" placeholder="Masukkan Password Supervisor">
                         <p id="msg-error-pass"  class="error-message"></p>
                     </div>
                     <div class="foto-staf-preview">
@@ -232,10 +231,10 @@ $startPage = ($perpage * $activePage) - $perpage;
                     <div class="add-staf-btn">
                         <div>
                             <input type="file" id="addFoto" name="addFoto" style="display: none;" accept="image/*">
-                            <button type="button" id="btn-add-foto-staf" onclick="addProfilStaf()">Tambah Foto</button>
+                            <button type="button" id="btn-add-foto-staf" onclick="addProfilStaf()">Tambahkan Gambar</button>
                         </div>
                         <div>
-                            <button type="submit" id="btn-add-staf" name="btn-addStaf" onclick="addStaf()">Add Supervisor</button>
+                            <button type="submit" id="btn-add-staf" name="btn-addStaf" onclick="addStaf()">Simpan</button>
                         </div>
                     </div>
                 </div>
@@ -248,7 +247,7 @@ $startPage = ($perpage * $activePage) - $perpage;
         <div class="deleteModal-content">
             <span class="close" id="closeDelete">&times;</span>
             <h2>Delete Supervisor</h2>
-            <p>Are you sure you want to delete this supervisor?</p>
+            <p>Apakah Anda yakin ingin menghapus data ini?</p>
             <div>
                 <button type="submit" id="deleteStaf" class="delete-selected">Delete</button>
                 <button type="button" id="cancelDelete" class="cancel-delete-selected">Cancel</button>

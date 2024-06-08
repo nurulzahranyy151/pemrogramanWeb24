@@ -29,7 +29,7 @@ if(isset($_POST["submit-report"])){
     <link rel="stylesheet" href="../css/pageMasyarakat.css">
     
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <title>Dashboard</title>
+    <title>Beranda</title>
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 </head>
 <body>    
@@ -41,7 +41,7 @@ if(isset($_POST["submit-report"])){
                 </span>
                 <div class="text logo-text">
                     <span class="name">Recity</span>
-                    <span class="profession">Resolver City</span>
+                    <span class="profession">Resolve City</span>
                 </div>
             </div>
             <i class='bx bx-chevron-right toggle'></i>

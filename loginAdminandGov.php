@@ -43,13 +43,13 @@ if(isset($_POST['submit'])){
         <h4>Selamat Datang Kembali!</h4>
         <div class="input-control">
           <label for="email">Email </label>
-          <input id="email" name="email" type="email" />
+          <input id="email" name="email" type="email" placeholder = "Masukkan Email Anda"/>
           <div class="error"></div>
           <div class="success"></div>
         </div>
         <div class="input-control">
           <label for="password">Password </label>
-          <input id="password" name="password" type="password" />
+          <input id="password" name="password" type="password" placeholder ="Masukkan Password Anda"/>
           <div class="error"></div>
           <div class="success"></div>
         <?php

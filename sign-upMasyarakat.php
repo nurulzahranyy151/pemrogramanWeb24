@@ -47,7 +47,7 @@ if(isset($_POST["submit"])){
           <div class="left-input">
             <div class="input-control">
               <label for="nik">NIK</label>
-              <input id="nik" name="nik" type="text"/>
+              <input id="nik" name="nik" type="text" placeholder = "Masukkan NIK"/>
               <div class="error">
                 <?php if(isset($error)) :?>
                     <p><?php echo $errorMessage?></p>
@@ -63,7 +63,7 @@ if(isset($_POST["submit"])){
             </div>
             <div class="input-control">
               <label for="nama">Username </label>
-              <input id="nama" name="nama" type="text"/>
+              <input id="nama" name="nama" type="text" placeholder="Masukkan Username"/>
               <div class="error"></div>
               <div class="success"></div>
             </div>
@@ -71,19 +71,19 @@ if(isset($_POST["submit"])){
           <div class="right-control">
             <div class="input-control">
               <label for="email">Email </label>
-              <input id="email" name="email" type="email"/>
+              <input id="email" name="email" type="email" placeholder="Masukkan Email"/>
               <div class="error"></div>
               <div class="success"></div>
             </div>
             <div class="input-control">
               <label for="password">Password </label>
-              <input id="password" name="password" type="password" />
+              <input id="password" name="password" type="password" placeholder="Masukkan Password"/>
               <div class="error"></div>
               <div class="success"></div>
             </div>
             <div class="input-control">
               <label for="password2">Password Validation </label>
-              <input id="password2" name="password2" type="password" />
+              <input id="password2" name="password2" type="password" placeholder="Masukkan Password"/>
               <div class="error"></div>
               <div class="success"></div>
             </div>

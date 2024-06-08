@@ -17,7 +17,6 @@ if (!isset($_SESSION["NIK"])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/pageAdminStyle.css">
-    <link rel="stylesheet" href="../css/statistikStyle.css">
     
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -126,11 +125,6 @@ if (!isset($_SESSION["NIK"])) {
             <div class="box box-diterima">
                 <h5>Diterima</h5>
                 <p><?php echo $sumStatus['diterima']; ?> Laporan</p>
-                <p><?php echo date("d F Y"); ?></p>
-            </div>
-            <div class="box box-ditolak">
-                <h5>Ditolak</h5>
-                <p><?php echo $sumStatus['ditolak']; ?> Laporan</p>
                 <p><?php echo date("d F Y"); ?></p>
             </div>
             <div class="box box-menunggu">
