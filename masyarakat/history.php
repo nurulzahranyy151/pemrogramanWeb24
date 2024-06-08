@@ -149,8 +149,9 @@ if (!isset($_SESSION["NIK"])) {
     <div id="deleteModal" class="deleteModal">
         <div class="deleteModal-content">
             <span class="close" id="closeDelete">&times;</span>
-            <h2>Delete Masyarakat</h2>
-            <p>Are you sure you want to delete this Masyarakat?</p>
+            <h2>Hapus Postingan</h2>
+            <p>Apakah Anda yakin ingin mengapus postingan ini?</p>
+            <br></br>
             <div>
                 <button type="submit" id="deletePost" class="delete-selected">Delete</button>
                 <button type="button" id="cancelDelete" class="cancel-delete-selected">Cancel</button>

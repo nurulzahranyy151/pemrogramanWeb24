@@ -1155,10 +1155,15 @@ input[type=text], input[type=password], input[type=email], select {
 
 /* Modal Content */
 .deleteModal-content {
-    background-color: #fefefe;
+    background: linear-gradient(to left, #53688C, #718EBF, #cbd0d7);
     padding: 20px;
     border: 1px solid #888;
     border-radius: 8px;
+}
+
+.dark .deleteModal-content{
+    background: linear-gradient(to left, #3e4045, #666e7a, #697382);
+    color: white;
 }
 
 .deleteModal-content{
