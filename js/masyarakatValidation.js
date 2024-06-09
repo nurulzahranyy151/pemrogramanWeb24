@@ -189,9 +189,12 @@ document.querySelector('.make-report').onsubmit = function(event) {
     }
 };
 
+let idReport;
+
 function showReportOptions(postId) {
     var modal = document.getElementById('reportModal');
     modal.style.display = "block";
+    idReport = postId;
 }
 
 function closeReportOptions() {
@@ -204,15 +207,15 @@ function reportPost() {
     var formData = new FormData(reportForm);
     var selectedCategory = formData.get('report_category');
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "reportPostHandler.php", true);
+    xhr.open("GET", "reportPostHandler.php?id=" + idReport +"&category=" + selectedCategory, true);
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
-                console.log(selectedCategory);
+                reportForm.innerHTML = xhr.responseText;
             } else {
                 console.error("Failed to submit report.");
             }
         }
     };
-    xhr.send(selectedCategory);
+    xhr.send();
 }

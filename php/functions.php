@@ -434,5 +434,10 @@ function laporkanUser($nik) {
     return mysqli_affected_rows($conn);
   }
   
-
+  function reportPost($id, $category) {
+    global $conn;
+    $query = "INSERT INTO report VALUES($id, '$category', NOW())";
+    mysqli_query($conn, $query);
+    return mysqli_affected_rows($conn);
+  }
 ?>
