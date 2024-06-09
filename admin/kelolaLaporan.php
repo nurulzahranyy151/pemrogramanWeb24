@@ -130,8 +130,14 @@ if(isset($_POST['deleteUser'])){
                     <table>
                         <tr class="head-table">
                             <th>No</th>
+<<<<<<< HEAD
                             <th>Postingan</th>
                             <th>NIK</th>
+=======
+                            <th>NIK</th>
+                            <th>Caption</th>
+                            <th>Media</th>
+>>>>>>> 1f64c3edbe2cc6ca38e89bd9ba582bebc72e0ff0
                             <th>Kategori</th>
                             <th>Action</th>
                         </tr>
@@ -141,12 +147,24 @@ if(isset($_POST['deleteUser'])){
                         while( $row = mysqli_fetch_assoc($result)):?>
                         <tr class="isi-data">
                             <td><?= $count;?></td>
+<<<<<<< HEAD
                             <td><img src="<?= $row['media'];?>" alt="Profil Picture" class="media-report" onclick="showPopupReport(<?= $row['id_postingan'];?>)"></td>
                             <td><?= $row['NIK'];?></td>
                             <td><?= $row['kategori'];?></td>
                             <td>
                                 <div class="button-container">
                                     <button type="button" class="btn del-btn" onclick="showDelete(<?= $row['id_postingan'];?>)">
+=======
+                            <td><?= $row["NIK"];?></td>
+                            <td id="caption-reported"><?= $row["caption"];?></td>
+                            <td id = "media-reported">
+                                <img src="<?= $row["media"];?>" alt="Media">
+                            </td>
+                            <td><?= $row["kategori"];?></td>
+                            <td>    
+                                <div class="button-container">
+                                    <button type="button" class="btn del-btn" onclick="showDeleteModal(<?php echo $row['NIK'];?>)">
+>>>>>>> 1f64c3edbe2cc6ca38e89bd9ba582bebc72e0ff0
                                         <i class='bx bx-trash icon'></i>
                                         <span>Hapus</span>
                                     </button>
@@ -174,9 +192,14 @@ if(isset($_POST['deleteUser'])){
             </div>
         </div>
     </div>
+<<<<<<< HEAD
 
     <div id="popup-report" class="popup-report"></div>
     <script src="../js/sidebar.js"></script>
     <script src="../js/kelolaLaporan.js"></script>
+=======
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/modalmasyarakat.js"></script>
+>>>>>>> 1f64c3edbe2cc6ca38e89bd9ba582bebc72e0ff0
 </body>
 </html>

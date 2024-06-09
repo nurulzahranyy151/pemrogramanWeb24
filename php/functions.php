@@ -399,6 +399,7 @@ function selectPost($id){
     $result = mysqli_query($conn, $query);
     return mysqli_fetch_assoc($result);
 }
+<<<<<<< HEAD
 
 function findReported(){
     global $conn;
@@ -429,9 +430,18 @@ JOIN postingan p on p.id_postingan = r.id_postingan");
   }
   
   function reportPost($id, $category) {
+=======
+function reportPost($id, $category) {
+>>>>>>> 1f64c3edbe2cc6ca38e89bd9ba582bebc72e0ff0
     global $conn;
     $query = "INSERT INTO report VALUES($id, '$category', NOW())";
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn);
   }
+function findReported(){
+    global $conn;
+    return mysqli_query($conn, "SELECT r.id_postingan, r.kategori, p.id_postingan, p.media, p.caption, p.NIK
+    FROM report r 
+    JOIN postingan p on p.id_postingan = r.id_postingan GROUP BY r.waktu_report ASC");
+}
 ?>

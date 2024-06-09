@@ -1,8 +1,14 @@
+<<<<<<< HEAD
 let idreported;
 function showDelete(idpost){
     document.getElementById('deleteModal').style.display = 'block';
     idreported = idpost;
 }
+=======
+var caption = document.getElementById("caption-reported");
+var media = document.getElementById("media-reported");
+var tableKelolaReport = document.getElementById("table-kelola-report");
+>>>>>>> 1f64c3edbe2cc6ca38e89bd9ba582bebc72e0ff0
 
 function closeDelete(){
     document.getElementById('deleteModal').style.display = 'none';
@@ -41,5 +47,27 @@ function showPopupReport(idpost){
             }
         }
     }
+<<<<<<< HEAD
     xhr.send();
 }
+=======
+    xhr.open('GET', '../admin/captionLaporan.php?caption=' + caption.value, true);
+    xhr.send();
+
+
+
+});
+
+
+tombolMedia.addEventListener('click', function(){
+    var xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState==4 && xhr.status==200){
+            
+        }
+    }
+    xhr.open('GET', '../admin/captionLaporan.php?media=' + media.value, true);
+    xhr.send();
+
+});
+>>>>>>> 1f64c3edbe2cc6ca38e89bd9ba582bebc72e0ff0
