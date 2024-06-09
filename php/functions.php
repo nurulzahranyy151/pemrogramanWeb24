@@ -14,8 +14,14 @@ function sign($data){
             return 0;
         }
     }
+    $day = substr($nik, 6, 2);
+    if ($day > 40) {
+        $gender = "Perempuan";
+    } else {
+        $gender = "Laki-laki";
+    }
     $query= "INSERT INTO user
-    VALUES('$nik', '$nama', '$email', '$password','','$dob','','','','../img/default.jpeg')";
+    VALUES('$nik', '$nama', '$email', '$password','$gender','$dob','','','','../img/default.jpeg')";
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn);
 }

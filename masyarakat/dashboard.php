@@ -169,6 +169,7 @@ if(isset($_POST["submit-report"])){
                             <button data-post-id="<?php echo $row['id_postingan']; ?>" name="savePost" class="<?php echo $saveornot ? 'saved' : 'save-button'; ?>" onclick="toggleSave(this, <?php echo $row['id_postingan']; ?>)">
                                 <i class='<?php echo $saveornot ? 'bx bxs-bookmark' : 'bx bx-bookmark'; ?>'></i>
                             </button>
+                            <button class="report-button" onclick="showReportOptions(<?php echo $row['id_postingan']; ?>)"><i class='bx bx-flag'></i></button>
                         </div>
                     </div>
                     <div class="add-comment-form">
@@ -203,6 +204,27 @@ if(isset($_POST["submit-report"])){
         </div>
     </div>  
     <div id="commentPopup" class="popup"></div>
+    <div id="reportModal" class="report-modal">
+        <div class="report-modal-content">
+            <span class="close" onclick="closeReportOptions()">&times;</span>
+            <h3>Pilih Kategori Report</h3>
+            <form class="kategori-report" method="post" id="report-form">
+                <label class="report-option">
+                    <input type="radio" name="report_category" value="Konten Seksual"> Konten Seksual
+                </label><br>
+                <label class="report-option">
+                    <input type="radio" name="report_category" value="Konten Kekerasan"> Konten Kekerasan
+                </label><br>
+                <label class="report-option">
+                    <input type="radio" name="report_category" value="Konten Pelecehan"> Konten Pelecehan
+                </label><br>
+                <label class="report-option">
+                    <input type="radio" name="report_category" value="Konten Palsu"> Konten Palsu
+                </label><br>
+                <button type="button" class="btn-report-post" onclick="reportPost()">Report</button>
+            </form>
+        </div>
+    </div>
     <script src="../js/masyarakatValidation.js"></script>
     <script src="../js/sidebar.js"></script>
 

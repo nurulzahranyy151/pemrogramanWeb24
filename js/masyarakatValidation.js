@@ -188,3 +188,31 @@ document.querySelector('.make-report').onsubmit = function(event) {
         alert('Silakan unggah gambar sebelum membuat postingan.');
     }
 };
+
+function showReportOptions(postId) {
+    var modal = document.getElementById('reportModal');
+    modal.style.display = "block";
+}
+
+function closeReportOptions() {
+    var modal = document.getElementById('reportModal');
+    modal.style.display = "none";
+}
+
+function reportPost() {
+    var reportForm = document.getElementById('report-form');
+    var formData = new FormData(reportForm);
+    var selectedCategory = formData.get('report_category');
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "reportPostHandler.php", true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                console.log(selectedCategory);
+            } else {
+                console.error("Failed to submit report.");
+            }
+        }
+    };
+    xhr.send(selectedCategory);
+}
