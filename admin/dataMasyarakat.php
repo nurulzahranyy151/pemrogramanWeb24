@@ -145,6 +145,7 @@ while($row = mysqli_fetch_assoc($searchUser)){
                             <th>Password</th>
                             <th>Action</th>
                         </tr>
+                    
                         <?php 
                         $count = $DataUserStart + 1;
                         $result = paginationMasyarakat($DataUserStart, $SumDataEachPage);
