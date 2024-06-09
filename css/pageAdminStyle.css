@@ -559,6 +559,9 @@ table td {
     cursor: pointer;
     border-radius: 5px;
 }
+.dark .del-btn, .dark .edit-btn{
+    background-color: #242526;
+}
 
 .btn span,
 .btn i {

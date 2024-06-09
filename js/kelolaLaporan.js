@@ -1,7 +1,5 @@
 var caption = document.getElementById("caption-reported");
 var media = document.getElementById("media-reported");
-var tombolCaption = document.getElementById("cari-caption");
-var tombolMedia = document.getElementById("cari-media");
 var tableKelolaReport = document.getElementById("table-kelola-report");
 
 tombolCaption.addEventListener('click', function(){
@@ -12,7 +10,7 @@ tombolCaption.addEventListener('click', function(){
             
         }
     }
-    xhr.open('GET', '../admin/captionLaporan.php?tombolCaption=' + tombolCaption.value, true);
+    xhr.open('GET', '../admin/captionLaporan.php?caption=' + caption.value, true);
     xhr.send();
 
 
@@ -27,7 +25,7 @@ tombolMedia.addEventListener('click', function(){
             
         }
     }
-
-    xhr.open('GET', '')
+    xhr.open('GET', '../admin/captionLaporan.php?media=' + media.value, true);
+    xhr.send();
 
 });

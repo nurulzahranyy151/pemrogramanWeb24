@@ -399,39 +399,16 @@ function selectPost($id){
     $result = mysqli_query($conn, $query);
     return mysqli_fetch_assoc($result);
 }
-
-function findReported(){
-    global $conn;
-    return mysqli_query($conn, "SELECT r.id_postingan, r.kategori, r.waktu_report, p.id_postingan, p.media, p.caption
-FROM report r 
-JOIN postingan p on p.id_postingan = r.id_postingan");
-}
-
-  function popupLaporkan($nik) {
-    global $conn;
-    $query = "SELECT postingan.caption, postingan.media, user.nama_user, user.foto_profil_user FROM postingan JOIN user ON postingan.NIK = user.NIK WHERE postingan.NIK = $nik";
-    $result = mysqli_query($conn, $query);
-    return mysqli_fetch_assoc($result);
-  }
-  
-  function senyapkanAkun($nik) {
-    global $conn;
-    $query = "UPDATE user SET status = 'enyap' WHERE NIK = $nik";
-    mysqli_query($conn, $query);
-    return mysqli_affected_rows($conn);
-  }
-  
-  function blokirAkun($nik) {
-    global $conn;
-    $query = "UPDATE user SET status = 'blokir' WHERE NIK = $nik";
-    mysqli_query($conn, $query);
-    return mysqli_affected_rows($conn);
-  }
-  
-  function reportPost($id, $category) {
+function reportPost($id, $category) {
     global $conn;
     $query = "INSERT INTO report VALUES($id, '$category', NOW())";
     mysqli_query($conn, $query);
     return mysqli_affected_rows($conn);
   }
+function findReported(){
+    global $conn;
+    return mysqli_query($conn, "SELECT r.id_postingan, r.kategori, p.id_postingan, p.media, p.caption, p.NIK
+    FROM report r 
+    JOIN postingan p on p.id_postingan = r.id_postingan GROUP BY r.waktu_report ASC");
+}
 ?>
