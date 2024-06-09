@@ -148,7 +148,7 @@ if(isset($_POST["submit-report"])){
                 <?php 
                $postingan = showAllpostingan();
                while ($row = mysqli_fetch_assoc($postingan)):?>
-                <?php $saveornot = cekSave($row["id_postingan"], $nik) ? True : False;?>
+                <?php $saveornot = cekSave($row["NIK"], $nik);?>
                 <div class="post">
                     <div class="post-header">
                         <img src="<?= $row['foto_profil_user'];?>" alt="Profil Picture">

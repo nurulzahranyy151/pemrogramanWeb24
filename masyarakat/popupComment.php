@@ -4,7 +4,7 @@ require '../php/functions.php';
 $idcomment = $_POST['id'];
 $nik = $_SESSION['NIK'];
 $post = popupPost($idcomment);
-$saveornotpopup = cekSave($idcomment, $nik) ? True : False;
+$saveornotpopup = cekSave($post['NIK'], $nik);
 ?>
 <div class="popup-content">
     <span class="closepop">&times;</span>
@@ -25,33 +25,34 @@ $saveornotpopup = cekSave($idcomment, $nik) ? True : False;
                     <img src="<?= $post['foto_profil_user'];?>" alt="">
                 </div>
                 <div class="uploader-info">
-                    <div class="comments-user">
-                        <h4><?= $post['nama_user'];?></h4>
-                        <p><?= $post['caption'];?></p>
-                    </div>
+                    <p class="isi-komentar"><b><?= $post['nama_user'];?></b> <?= $post['caption'];?></p>
                     <p class="tanggal-komen"><?= $post['tgl_postingan'];?></p>
                 </div>
             </div>
             <?php
             $comments = showComment($idcomment);
             while ($comment = mysqli_fetch_assoc($comments)):?>
+            <?php $mycomment = cekMycomment($comment['NIK'],$nik)?>
             <div class="comments">
                 <div class="image-user-comment">
                     <img src="<?= $comment['foto_profil_user'];?>" alt="">
                 </div>
                 <div class="comment-info">
-                    <div class="comments-user">
-                        <h4><?= $comment['nama_user'];?></h4>
-                        <p><?= $comment['isi_komentar'];?></p>
+                    <p class="isi-komentar"><b><?= $comment['nama_user'];?></b> <?= $comment['isi_komentar'];?></p>
+                    <div class="info-komentar">
+                        <p class="tanggal-komen"><?= $comment['waktu_komentar'];?></p>
+                        <?php if($mycomment):?>
+                            <i class='bx bx-trash' onclick="deleteComment(<?php echo $comment['id_komentar'];?>, <?php echo $idcomment;?>)"></i>
+                        <?php endif;?>
                     </div>
-                    <p class="tanggal-komen"><?= $comment['waktu_komentar'];?></p>
+                    
                 </div>
             </div>
             <?php endwhile;?>
         </div>
         <div class="post-actions">
             <div class="left-post-action">
-                <button class="comment-button" ><label for="comment-pop">
+                <button class="comment-button" ><label for="comment">
                 <i class='bx bx-comment'></i>
                 </label></button>
             </div>

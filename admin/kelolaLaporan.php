@@ -127,44 +127,30 @@ if(isset($_POST['deleteUser'])){
                     </div>
                 </div>
                 <div id="table-kelola-report" class="table-kelola-report">
+                    <?php 
+                    $result = findReported();
+                    if(mysqli_num_rows($result) > 0) {
+                    ?>
                     <table>
                         <tr class="head-table">
                             <th>No</th>
-<<<<<<< HEAD
                             <th>Postingan</th>
                             <th>NIK</th>
-=======
-                            <th>NIK</th>
-                            <th>Caption</th>
-                            <th>Media</th>
->>>>>>> 1f64c3edbe2cc6ca38e89bd9ba582bebc72e0ff0
                             <th>Kategori</th>
                             <th>Action</th>
                         </tr>
                         <?php 
                         $count = 1;
-                        $result = findReported();
-                        while( $row = mysqli_fetch_assoc($result)):?>
+                        while($row = mysqli_fetch_assoc($result)) :
+                        ?>
                         <tr class="isi-data">
                             <td><?= $count;?></td>
-<<<<<<< HEAD
                             <td><img src="<?= $row['media'];?>" alt="Profil Picture" class="media-report" onclick="showPopupReport(<?= $row['id_postingan'];?>)"></td>
                             <td><?= $row['NIK'];?></td>
-                            <td><?= $row['kategori'];?></td>
-                            <td>
-                                <div class="button-container">
-                                    <button type="button" class="btn del-btn" onclick="showDelete(<?= $row['id_postingan'];?>)">
-=======
-                            <td><?= $row["NIK"];?></td>
-                            <td id="caption-reported"><?= $row["caption"];?></td>
-                            <td id = "media-reported">
-                                <img src="<?= $row["media"];?>" alt="Media">
-                            </td>
                             <td><?= $row["kategori"];?></td>
                             <td>    
                                 <div class="button-container">
-                                    <button type="button" class="btn del-btn" onclick="showDeleteModal(<?php echo $row['NIK'];?>)">
->>>>>>> 1f64c3edbe2cc6ca38e89bd9ba582bebc72e0ff0
+                                    <button type="button" class="btn del-btn" onclick="showDelete(<?php echo $row['id_postingan'];?>)">
                                         <i class='bx bx-trash icon'></i>
                                         <span>Hapus</span>
                                     </button>
@@ -173,9 +159,15 @@ if(isset($_POST['deleteUser'])){
                         </tr>
                         <?php 
                             $count++;
-                            endwhile;?>
+                        endwhile;
+                        ?>
                     </table>
-                </div>  
+                    <?php 
+                    } else {
+                        echo "<p>Tidak ada laporan.</p>";
+                    }
+                    ?>
+                </div>
             </div>
         </div>
     </div>
@@ -192,14 +184,9 @@ if(isset($_POST['deleteUser'])){
             </div>
         </div>
     </div>
-<<<<<<< HEAD
 
     <div id="popup-report" class="popup-report"></div>
     <script src="../js/sidebar.js"></script>
     <script src="../js/kelolaLaporan.js"></script>
-=======
-    <script src="../js/sidebar.js"></script>
-    <script src="../js/modalmasyarakat.js"></script>
->>>>>>> 1f64c3edbe2cc6ca38e89bd9ba582bebc72e0ff0
 </body>
 </html>

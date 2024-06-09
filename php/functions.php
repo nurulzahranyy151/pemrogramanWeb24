@@ -128,7 +128,7 @@ function trendingpost(){
     global $conn;
     $currMonth = date("m");
     $currYear = date("Y");
-    return mysqli_query($conn, "SELECT postingan.media, postingan.tgl_postingan, postingan.alamat_postingan, user.nama_user FROM postingan JOIN user ON postingan.NIK = user.NIK WHERE MONTH(postingan.tgl_postingan) = $currMonth AND YEAR(postingan.tgl_postingan) = $currYear AND postingan.status_postingan = 'diterima' ORDER BY postingan.jumlah_saved DESC LIMIT 5");
+    return mysqli_query($conn, "SELECT postingan.media, postingan.tgl_postingan, postingan.alamat_postingan, user.nama_user FROM postingan JOIN user ON postingan.NIK = user.NIK WHERE MONTH(postingan.tgl_postingan) = $currMonth AND YEAR(postingan.tgl_postingan) = $currYear AND postingan.status_postingan = 'diterima'");
 }
 
 function uploadPostingan($data, $file) {
@@ -141,12 +141,12 @@ function uploadPostingan($data, $file) {
         $targetDir = "../postingan/";
         $targetFile = $targetDir . basename($file["media"]["name"]);
         if (move_uploaded_file($file["media"]["tmp_name"], $targetFile)) {
-            $query = "INSERT INTO postingan VALUES('', NOW(), '$address', 0, '$targetFile', '$caption', '$nik', 'ditunggu')";
+            $query = "INSERT INTO postingan VALUES('', NOW(), '$address', '$targetFile', '$caption', '$nik', 'ditunggu')";
             mysqli_query($conn, $query);
             return mysqli_affected_rows($conn);
         }
     }else{
-        $query = "INSERT INTO postingan VALUES('', NOW(), '$address', 0, '', '$caption', '$nik', 'ditunggu')";
+        $query = "INSERT INTO postingan VALUES('', NOW(), '$address', '', '$caption', '$nik', 'ditunggu')";
         mysqli_query($conn, $query);
         return mysqli_affected_rows($conn);
     }
@@ -252,7 +252,6 @@ function savePostingan($idpost) {
     $tanggal = date("Y-m-d");
     $query = "INSERT INTO saved VALUES('$idpost', '$nik', NOW())";
     mysqli_query($conn, $query);
-    mysqli_query($conn, "UPDATE postingan SET jumlah_saved = jumlah_saved + 1 WHERE id_postingan = $idpost");
     return mysqli_affected_rows($conn);
 }
 
@@ -261,19 +260,17 @@ function unsavePostingan($idpost){
     $nik = $_SESSION["NIK"];
     $query = "DELETE FROM saved WHERE id_postingan = '$idpost' AND NIK = '$nik'";
     mysqli_query($conn, $query);
-    mysqli_query($conn, "UPDATE postingan SET jumlah_saved = jumlah_saved - 1 WHERE id_postingan = $idpost");
     return mysqli_affected_rows($conn);
 }
 
-function cekSave($idpost, $nik){
-    global $conn;
-    $query = mysqli_query($conn, "SELECT * FROM saved WHERE NIK = $nik AND id_postingan = $idpost");
-    if(mysqli_num_rows($query) > 0){
-        return true;
-    }else{
-        return false;
-    }
+function cekSave($postNIK, $currentNik) {
+    return $postNIK === $currentNik;
 }
+
+function cekMycomment($commentNik, $currentNik) {
+    return $commentNik === $currentNik;
+}
+
 
 function userSaved($nik){
     global $conn;
