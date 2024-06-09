@@ -402,17 +402,11 @@ function selectPost($id){
 
 function findReported(){
     global $conn;
-    return mysqli_query($conn, "SELECT user.*, postingan.caption, postingan.media FROM user JOIN postingan ON user.NIK = postingan.NIK");
+    return mysqli_query($conn, "SELECT r.id_postingan, r.kategori, r.waktu_report, p.id_postingan, p.media, p.caption
+FROM report r 
+JOIN postingan p on p.id_postingan = r.id_postingan");
 }
 
-
-function laporkanUser($nik) {
-    global $conn;
-    $query = "SELECT * FROM user WHERE NIK = $nik";
-    $result = mysqli_query($conn, $query);
-    return mysqli_fetch_assoc($result);
-  }
-  
   function popupLaporkan($nik) {
     global $conn;
     $query = "SELECT postingan.caption, postingan.media, user.nama_user, user.foto_profil_user FROM postingan JOIN user ON postingan.NIK = user.NIK WHERE postingan.NIK = $nik";

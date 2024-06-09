@@ -15,7 +15,6 @@ if (isset($_GET['id_postingan'])) {
 
     $postingan = selectPost($no_postingan);
 
-    // Create PDF
     $pdf = new FPDF();
     $pdf->AddPage();
     $pdf->SetFont('Arial', 'B', 16);

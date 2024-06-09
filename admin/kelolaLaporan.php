@@ -126,7 +126,7 @@ if(isset($_POST['deleteUser'])){
                         <button><i class='bx bx-search icon'></i></button>
                     </div>
                 </div>
-                <div id="table-data-masyarakat" class="table-masyarakat">
+                <div id="table-kelola-report" class="table-kelola-report">
                     <table>
                         <tr class="head-table">
                             <th>No</th>
@@ -148,8 +148,8 @@ if(isset($_POST['deleteUser'])){
                             <td><img src="<?= $row["foto_profil_user"];?>" alt="Profil Picture" class="foto-masyarakat"></td>
                             <td><?= $row["NIK"];?></td>
                             <td><?= $row["nama_user"];?></td>
-                            <td><?= $row["caption"];?></td>
-                            <td><img src="<?= $row["media"];?>" alt="Media" class="Media-User"></td>
+                            <td id="caption-reported"><button id="cari-caption">Lihat</button></td>
+                            <td id = "media-reported"><button id="cari-media">Lihat</button></td>
                             <td><?= $row["email_user"];?></td>
                             <td><?= $row["password_user"];?></td>
                             <td>
@@ -187,7 +187,7 @@ if(isset($_POST['deleteUser'])){
         </div>
     </div>
     <script src="../js/sidebar.js"></script>
-    <script src="../js/modalmasyarakat.js"></script>
+    <script src="../js/kelolaLaporan.js"></script>
 
 </body>
 </html>
