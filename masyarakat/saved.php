@@ -16,7 +16,7 @@ if (!isset($_SESSION["NIK"])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/pageMasyarakat.css">
     <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-    <title>Saved</title>
+    <title>Tersimpan</title>
 </head>
 <body>
     <nav class="sidebar close">
@@ -85,7 +85,7 @@ if (!isset($_SESSION["NIK"])) {
     <div class="konten">
         <div class="header-konten">
             <div class="page-name">
-                <h2>Saved</h2>
+                <h2>Tersimpan</h2>
             </div>
             <div class="user-login">
                 <a href="profileUser.php">
@@ -105,14 +105,14 @@ if (!isset($_SESSION["NIK"])) {
             <div class="saved-infomation">
                 <div class="caption">
                     <p><?= $post["caption"];?></p>
-                    <p class="saved-on">Image . saved on <?= $post["waktu_disimpan"];?></p>
+                    <p class="saved-on">Gambar . Disimpan tanggal <?= $post["waktu_disimpan"];?></p>
                 </div>
                 <div class="uploader">
                     <img src="<?= $post["foto_profil_user"];?>" alt="">
-                    <p class="posted-by">Posted by <b><?= $post["nama_user"];?></b></p>
+                    <p class="posted-by">Diunggah oleh <b><?= $post["nama_user"];?></b></p>
                 </div>
                 <div class="unsave">
-                    <button type="submit" class="unsave-button" name="unsavePost" onclick="unsavePost(<?php echo $post['id_postingan'];?>)">Unsave</button>
+                    <button type="submit" class="unsave-button" name="unsavePost" onclick="unsavePost(<?php echo $post['id_postingan'];?>)">Batal Simpan</button>
                 </div>
             </div>
         </div>

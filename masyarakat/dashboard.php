@@ -183,7 +183,7 @@ if(isset($_POST["submit-report"])){
                 <div class="trend-content">
                     <div class="header-trend">
                         <img src="<?= $user["foto_profil_user"];?>" alt="">
-                        <h4>Accepted Post</h4>
+                        <h4>Laporan Diterima</h4>
                     </div>
                     <hr>
                     <?php 

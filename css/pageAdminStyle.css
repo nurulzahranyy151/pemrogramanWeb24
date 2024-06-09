@@ -843,6 +843,15 @@ table td {
     flex-direction: column;
 }
 
+.dark .editModal{
+    color: white;
+    background-color: #242526;
+}
+.dark .edit-masyarakat-form{
+    color: white;
+    background-color: #242526;
+}
+
 .edit-staf-container, .edit-masyarakat-container  {
     display: flex;
 }
