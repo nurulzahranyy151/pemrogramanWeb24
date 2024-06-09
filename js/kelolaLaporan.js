@@ -1,33 +1,45 @@
-var caption = document.getElementById("caption-reported");
-var media = document.getElementById("media-reported");
-var tombolCaption = document.getElementById("cari-caption");
-var tombolMedia = document.getElementById("cari-media");
-var tableKelolaReport = document.getElementById("table-kelola-report");
+let idreported;
+function showDelete(idpost){
+    document.getElementById('deleteModal').style.display = 'block';
+    idreported = idpost;
+}
 
-tombolCaption.addEventListener('click', function(){
+function closeDelete(){
+    document.getElementById('deleteModal').style.display = 'none';
+}
+
+function deletePost(){
     var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function(){
-        if(xhr.readyState==4 && xhr.status==200){
-            caption.innerHTML = xhr.responseText;
-            
+    xhr.open("POST", "deleteReportedPost.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function (){
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            if(xhr.status === 200){
+                console.log("Post deleted successfully.");
+                closeDelete();
+            } else {
+                console.error("Failed to delete post.");
+            }
         }
     }
-    xhr.open('GET', '../admin/captionLaporan.php?tombolCaption=' + tombolCaption.value, true);
+    xhr.send("idpost="+idreported);
+}
+
+function showPopupReport(idpost){
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", "popupReportedPost.php?idpost="+idpost, true);
+    xhr.onreadystatechange = function(){
+        if(xhr.readyState === XMLHttpRequest.DONE){
+            if(xhr.status === 200){
+                document.getElementById('popup-report').innerHTML = xhr.responseText;
+                document.getElementById('popup-report').style.display = 'flex';
+                document.querySelector('.closepop').addEventListener('click', function(){
+                    document.getElementById('popup-report').style.display = 'none';
+                });
+            } else {
+                console.error("Failed to load popup.");
+            }
+        }
+    }
     xhr.send();
-
-
-
-});
-
-
-tombolMedia.addEventListener('click', function(){
-    var xhr = new XMLHttpRequest();
-    xhr.onreadystatechange = function(){
-        if(xhr.readyState==4 && xhr.status==200){
-            
-        }
-    }
-
-    xhr.open('GET', '')
-
-});
+}

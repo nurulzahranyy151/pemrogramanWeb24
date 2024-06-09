@@ -130,13 +130,9 @@ if(isset($_POST['deleteUser'])){
                     <table>
                         <tr class="head-table">
                             <th>No</th>
-                            <th>Foto</th>
+                            <th>Postingan</th>
                             <th>NIK</th>
-                            <th>Nama</th>
-                            <th>Caption</th>
-                            <th>media</th>
-                            <th>Email</th>
-                            <th>Password</th>
+                            <th>Kategori</th>
                             <th>Action</th>
                         </tr>
                         <?php 
@@ -145,20 +141,12 @@ if(isset($_POST['deleteUser'])){
                         while( $row = mysqli_fetch_assoc($result)):?>
                         <tr class="isi-data">
                             <td><?= $count;?></td>
-                            <td><img src="<?= $row["foto_profil_user"];?>" alt="Profil Picture" class="foto-masyarakat"></td>
-                            <td><?= $row["NIK"];?></td>
-                            <td><?= $row["nama_user"];?></td>
-                            <td id="caption-reported"><button id="cari-caption">Lihat</button></td>
-                            <td id = "media-reported"><button id="cari-media">Lihat</button></td>
-                            <td><?= $row["email_user"];?></td>
-                            <td><?= $row["password_user"];?></td>
+                            <td><img src="<?= $row['media'];?>" alt="Profil Picture" class="media-report" onclick="showPopupReport(<?= $row['id_postingan'];?>)"></td>
+                            <td><?= $row['NIK'];?></td>
+                            <td><?= $row['kategori'];?></td>
                             <td>
                                 <div class="button-container">
-                                    <button class="btn edit-btn" name="editUser" onclick="editMasyarakat(<?php echo $row['NIK'];?>)">
-                                        <i class='bx bx-edit icon'></i>
-                                        <span>Mute</span>
-                                    </button>
-                                    <button type="button" class="btn del-btn" onclick="showDeleteModal(<?php echo $row['NIK'];?>)">
+                                    <button type="button" class="btn del-btn" onclick="showDelete(<?= $row['id_postingan'];?>)">
                                         <i class='bx bx-trash icon'></i>
                                         <span>Hapus</span>
                                     </button>
@@ -177,21 +165,18 @@ if(isset($_POST['deleteUser'])){
     <!-- Delete Modal -->
     <div id="deleteModal" class="deleteModal">
         <div class="deleteModal-content">
-            <span class="close" id="closeDelete">&times;</span>
-            <h2>Hapus Report</h2>
-            <p>Apakah Anda yakin ingin menghapus User ini?</p>
+            <span class="close" id="closeDelete" onclick="closeDelete()">&times;</span>
+            <h2>Hapus Postingan</h2>
+            <p>Apakah Anda yakin ingin menghapus Postingan yang dilaporkan?</p>
             <div>
-                <button type="submit" id="deleteMasyarakat" class="delete-selected">Delete</button>
-                <button type="button" id="cancelDelete" class="cancel-delete-selected">Cancel</button>
+                <button type="submit" id="deletePost" class="delete-selected" onclick="deletePost()">Delete</button>
+                <button type="button" id="cancelDelete" class="cancel-delete-selected" onclick="closeDelete()">Cancel</button>
             </div>
         </div>
     </div>
-    <script src="../js/sidebar.js"></script>
-<<<<<<< HEAD
-    <script src="../js/kelolaLaporan.js"></script>
 
-=======
-    <script src="../js/modalmasyarakat.js"></script>
->>>>>>> e69298cad7f0f22d0d93343b2fe17d817a871f85
+    <div id="popup-report" class="popup-report"></div>
+    <script src="../js/sidebar.js"></script>
+    <script src="../js/kelolaLaporan.js"></script>
 </body>
 </html>

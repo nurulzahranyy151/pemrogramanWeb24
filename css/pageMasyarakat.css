@@ -557,7 +557,6 @@ body.dark .add-comment-form button {
     object-fit: contain;
 }
 
-/* Right Section */
 .popup-right {
     flex: 1;
     display: flex;
@@ -566,16 +565,13 @@ body.dark .add-comment-form button {
     overflow-y: auto;
 }
 
-/* Post Header */
 .post-header , .previous-comments {
     display: flex;
     align-items: center;
     gap: 10px;
     padding: 20px;
     border-bottom: 1px solid #ddd;
-   
 }
-
 
 
 .profile-info h3 {

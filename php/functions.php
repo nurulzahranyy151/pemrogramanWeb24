@@ -402,7 +402,7 @@ function selectPost($id){
 
 function findReported(){
     global $conn;
-    return mysqli_query($conn, "SELECT r.id_postingan, r.kategori, r.waktu_report, p.id_postingan, p.media, p.caption
+    return mysqli_query($conn, "SELECT r.id_postingan, r.kategori, p.media, p.NIK
 FROM report r 
 JOIN postingan p on p.id_postingan = r.id_postingan");
 }
