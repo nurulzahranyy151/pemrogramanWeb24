@@ -19,10 +19,6 @@ if(isset($_POST['deleteUser'])){
     header("Location: dataMasyarakat.php");
 }
 
-if (isset ($_POST["findMasyarakat"])){
-    $user = findMasyarakat($_POST["keyword"]);
-}
-
 $searchUser = findMasyarakat();
 $user = [];
 $SumDataEachPage =  5;
@@ -181,23 +177,25 @@ while($row = mysqli_fetch_assoc($searchUser)){
                     <br>
                     <!--Pagination START-->
                     <div class="pagination">
-                              <?php if($activePage > 1) : ?>
-                        <a href="?halaman=<?= $activePage - 1; ?>">&laquo;</a>
-                    <?php endif; ?>
-
-                    <?php for ($i = 1; $i <= $SumPage; $i++) : ?>
-                        <?php if($i == $activePage): ?>
-                            <a href="?halaman=<?= $i + $DataUserStart; ?>"><?= $i; ?></a>
-                        <?php else : ?>
-                            <a href="?halaman=<?= $i + $DataUserStart ?>"><?= $i; ?></a>
-                        <?php endif; ?>
-                    <?php endfor; ?>
-
-                    <?php if($activePage < $SumPage) : ?>
-                        <a href="?halaman=<?= $activePage + 1; ?>">&raquo;</a>
-                    <?php endif; ?>
+                        <ul>
+                            <?php if($activePage > 1): ?>
+                                <li><a href="?page=1"><<</a></li>
+                                <li><a href="?page=<?php echo $activePage - 1; ?>"><</a></li>
+                            <?php endif; ?>
+                            <?php for($i = 1; $i <= $SumPage; $i++): ?>
+                                <?php if($i == $activePage): ?>
+                                    <li><a href="?page=<?php echo $i; ?>" class="active"><?php echo $i; ?></a></li>
+                                <?php else: ?>
+                                    <li><a href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                                <?php endif; ?>
+                            <?php endfor; ?>
+                            <?php if($activePage < $SumPage): ?>
+                                <li><a href="?page=<?php echo $activePage + 1; ?>">></a></li>
+                                <li><a href="?page=<?php echo $SumPage; ?>">>></a></li>
+                            <?php endif; ?>
+                        </ul>
                     </div>
-                    </br>
+                    <!--Pagination END-->
                 </div>  
             </div>
         </div>
