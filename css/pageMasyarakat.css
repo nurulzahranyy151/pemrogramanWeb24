@@ -596,13 +596,7 @@ body.dark .add-comment-form button {
     gap: 10px;
 }
 
-.comments-user{
-    display: flex;
-    gap: 5px;
-    align-items: center;
-}
-
-.comments-user h4, .comments-user p{
+.isi-komentar{
     font-size: 12px;
 }
 
@@ -616,6 +610,16 @@ body.dark .add-comment-form button {
     gap: 5px;;
     align-items: center;
 }
+
+.info-komentar{
+    display: flex;
+    gap: 5px;
+}
+.info-komentar i{
+    font-size: 12px;
+}
+
+.action
 
 
 /*ACCEPTED POST END*/

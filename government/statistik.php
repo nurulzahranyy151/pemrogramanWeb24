@@ -41,7 +41,7 @@ if (!isset($_SESSION["id_supervisor"])) {
     </header>
 
     <div class="menu-bar">
-        <div class="menu">
+    <div class="menu">
             <ul class="menu-links">
                 <li class="nav-link">
                     <a href="dashboardGovernment.php">
@@ -51,8 +51,14 @@ if (!isset($_SESSION["id_supervisor"])) {
                 </li>
                 <li class="nav-link">
                     <a href="projectGovernment.php">
-                        <i class='bx bx-task icon' ></i>
+                        <i class='bx bx-edit icon' ></i>
                         <span class="text nav-text">Projek</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="projectDone.php">
+                        <i class='bx bx-file icon' ></i>
+                        <span class="text nav-text">Selesai</span>
                     </a>
                 </li>
                 <li class="nav-link">

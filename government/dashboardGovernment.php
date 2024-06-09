@@ -121,10 +121,6 @@ if (!isset($_SESSION["id_supervisor"])) {
                             </button>
                         </div>
                         <div class="right-post-action">
-                            <button class="save-button" onclick="toggleSave(this)">
-                                <i class='bx bx-bookmark'></i>Simpan
-                            </button>
-
                             <button class="save-button" onclick="window.location.href='cetakLaporan.php?id_postingan=<?php echo $row['id_postingan']; ?>'">
                                 <i class='bx bx-printer'></i>Cetak
                             </button>

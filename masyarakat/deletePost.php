@@ -9,7 +9,7 @@ if (!isset($_SESSION["NIK"])) {
         deletePostingan($_POST["id"]);
     $histPost = findHistpost($nik);
     while ($post = mysqli_fetch_assoc($histPost)):?>
-    <?php $saveornot = cekSave($post["id_postingan"], $nik) ? True : False;?>
+    <?php $saveornot = cekSave($post["NIK"], $nik);?>
     <div class="history-post">
         <div class="post-header">
             <img src="<?= $post['foto_profil_user'];?>" alt="Profil Picture">
