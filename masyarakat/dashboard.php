@@ -210,16 +210,16 @@ if(isset($_POST["submit-report"])){
             <h3>Pilih Kategori Report</h3>
             <form class="kategori-report" method="post" id="report-form">
                 <label class="report-option">
-                    <input type="radio" name="report_category" value="Konten Seksual"> Konten Seksual
+                    <input type="radio" name="report_category" value="seksual"> Konten Seksual
                 </label><br>
                 <label class="report-option">
-                    <input type="radio" name="report_category" value="Konten Kekerasan"> Konten Kekerasan
+                    <input type="radio" name="report_category" value="kekerasan"> Konten Kekerasan
                 </label><br>
                 <label class="report-option">
-                    <input type="radio" name="report_category" value="Konten Pelecehan"> Konten Pelecehan
+                    <input type="radio" name="report_category" value="pelecehan"> Konten Pelecehan
                 </label><br>
                 <label class="report-option">
-                    <input type="radio" name="report_category" value="Konten Palsu"> Konten Palsu
+                    <input type="radio" name="report_category" value="pemalsuan"> Konten Palsu
                 </label><br>
                 <button type="button" class="btn-report-post" onclick="reportPost()">Report</button>
             </form>

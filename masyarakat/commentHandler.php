@@ -1,6 +1,7 @@
 <?php
 require '../php/functions.php';
-
-if(isset($_POST)){
-    addComment($_POST);
+if(isset($_SESSION['NIK'])){
+    if(isset($_POST)){
+        addComment($_POST);
+    }
 }

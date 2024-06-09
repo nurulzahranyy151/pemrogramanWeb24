@@ -187,7 +187,11 @@ if(isset($_POST['deleteUser'])){
         </div>
     </div>
     <script src="../js/sidebar.js"></script>
+<<<<<<< HEAD
     <script src="../js/kelolaLaporan.js"></script>
 
+=======
+    <script src="../js/modalmasyarakat.js"></script>
+>>>>>>> e69298cad7f0f22d0d93343b2fe17d817a871f85
 </body>
 </html>
