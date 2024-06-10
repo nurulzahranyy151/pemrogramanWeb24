@@ -146,6 +146,7 @@ while($row = mysqli_fetch_assoc($searchUser)){
                             <th>Password</th>
                             <th>Action</th>
                         </tr>
+                    
                         <?php 
                         $count = $DataUserStart + 1;
                         $result = paginationMasyarakat($DataUserStart, $SumDataEachPage);
@@ -206,8 +207,8 @@ while($row = mysqli_fetch_assoc($searchUser)){
     <div id="deleteModal" class="deleteModal">
         <div class="deleteModal-content">
             <span class="close" id="closeDelete">&times;</span>
-            <h2>Delete Masyarakat</h2>
-            <p>Are you sure you want to delete this Masyarakat?</p>
+            <h2>Hapus Masyarakat</h2>
+            <p>Apakah Anda yakin ingin menghapus data ini?</p>
             <div>
                 <button type="submit" id="deleteMasyarakat" class="delete-selected">Delete</button>
                 <button type="button" id="cancelDelete" class="cancel-delete-selected">Cancel</button>

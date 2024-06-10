@@ -126,11 +126,6 @@ if (!isset($_SESSION["id_supervisor"])) {
                 <p><?php echo $sumStatus['diterima']; ?> Laporan</p>
                 <p><?php echo date("d F Y"); ?></p>
             </div>
-            <div class="box box-ditolak">
-                <h5>Ditolak</h5>
-                <p><?php echo $sumStatus['ditolak']; ?> Laporan</p>
-                <p><?php echo date("d F Y"); ?></p>
-            </div>
             <div class="box box-menunggu">
                 <h5>Menunggu</h5>
                 <p><?php echo $sumStatus['ditunggu']; ?> Laporan</p>
