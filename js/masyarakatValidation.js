@@ -190,11 +190,6 @@ function cancelEdit() {
     history.back();
 }
 
-function saveProfile() {
-    setTimeout(() => {
-        alert("Data berhasil disimpan!");
-    }, 1000);
-}
 
 document.querySelector('.make-report').onsubmit = function(event) {
     const mediaPreview = document.querySelector('.media-preview');
@@ -226,11 +221,26 @@ function reportPost() {
     xhr.onreadystatechange = function () {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
-                reportForm.innerHTML = xhr.responseText;
+                closeReportOptions();
             } else {
                 console.error("Failed to submit report.");
             }
         }
     };
     xhr.send();
+}
+
+function changeProfilUser() {
+    document.getElementById('profile-pic-input').click();
+}
+
+function previewProfilePicture(event) {
+    const input = event.target;
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('profile-pic').src = e.target.result;
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
 }

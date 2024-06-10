@@ -112,7 +112,7 @@ if (!isset($_SESSION["NIK"])) {
             <?php
             $histPost = findHistpost($nik);
             while ($post = mysqli_fetch_assoc($histPost)):?>
-            <?php $saveornot = cekSave($post["NIK"], $nik);?>
+            <?php $saveornot = cekSave($post['id_postingan']);?>
             <div class="history-post">
                 <div class="post-header">
                     <img src="<?= $post['foto_profil_user'];?>" alt="Profil Picture">
@@ -142,6 +142,8 @@ if (!isset($_SESSION["NIK"])) {
                     <input type="text" name="comment" class="comment" id="comment-<?php echo $post['id_postingan'];?>" placeholder="Tambahkan komentar...">
                     <button type="button" id="submitcomment" name="postComment" onclick="postComment(<?php echo $post['id_postingan'];?>)">Kirim</button>
                 </div>
+            </div>
+            
             <?php endwhile?>
         </div>
     </div>

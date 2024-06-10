@@ -1,5 +1,9 @@
 <?php
 require '../php/functions.php';
+if(!isset($_SESSION["id_admin"])){
+    header("Location: ../loginAdmin.php");
+    exit();
+}
 
 $keyword = $_GET["keyword"];
 $staf = searchStaf($keyword);

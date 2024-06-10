@@ -1,7 +1,11 @@
 <?php
 require '../php/functions.php';
+if(!isset($_SESSION["id_admin"])){
+    header("Location: ../loginAdmin.php");
+    exit();
+}
 
-if(isset($_SESSION["id_admin"]) && isset($_POST['idpost'])){
+if(isset($_POST['idpost'])){
     $deleted = deletePostingan($_POST['idpost']);
 
     if($deleted) {

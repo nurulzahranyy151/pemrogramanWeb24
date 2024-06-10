@@ -1,5 +1,9 @@
 <?php
 require '../php/functions.php';
+if(!isset($_SESSION["id_admin"])){
+    header("Location: ../loginAdmin.php");
+    exit();
+}
 $id = $_GET["id"];
 $edited = stafLogin($id);
 ?>

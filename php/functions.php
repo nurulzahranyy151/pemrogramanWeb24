@@ -101,6 +101,18 @@ function paginationSearchGov($keyword, $start, $perpage){
     return mysqli_query($conn, "SELECT * FROM supervisor WHERE nama_supervisor LIKE '$keyword%' LIMIT $start, $perpage");
 }
 
+function paginationSearchMasyarakat($keyword, $start, $perpage){
+    global $conn;
+    return mysqli_query($conn, "SELECT * FROM user WHERE nama_user LIKE '$keyword%' OR NIK LIKE '$keyword%' OR email_user LIKE '$keyword%' LIMIT $start, $perpage");
+}
+
+function paginationReport($start, $perpage){
+    global $conn;
+    return mysqli_query($conn, "SELECT r.id_postingan, r.kategori, p.media, p.NIK
+    FROM report r 
+    JOIN postingan p on p.id_postingan = r.id_postingan LIMIT $start, $perpage");
+}
+
 function hapusUser($nik){
     global $conn;
     mysqli_query($conn, "DELETE FROM user WHERE NIK = '$nik'");
@@ -128,7 +140,7 @@ function trendingpost(){
     global $conn;
     $currMonth = date("m");
     $currYear = date("Y");
-    return mysqli_query($conn, "SELECT postingan.media, postingan.tgl_postingan, postingan.alamat_postingan, user.nama_user FROM postingan JOIN user ON postingan.NIK = user.NIK WHERE MONTH(postingan.tgl_postingan) = $currMonth AND YEAR(postingan.tgl_postingan) = $currYear AND postingan.status_postingan = 'diterima'");
+    return mysqli_query($conn, "SELECT postingan.*, user.nama_user FROM postingan JOIN user ON postingan.NIK = user.NIK WHERE MONTH(postingan.tgl_postingan) = $currMonth AND YEAR(postingan.tgl_postingan) = $currYear AND postingan.status_postingan = 'diterima'");
 }
 
 function uploadPostingan($data, $file) {
@@ -201,6 +213,12 @@ function addStaf($data, $file) {
     return mysqli_affected_rows($conn);
 }
 
+function kelolaStaf($id){
+    global $conn;
+    $id_admin = $_SESSION["id_admin"];
+    mysqli_query($conn, "INSERT INTO kelola_supervisor VALUES($id, NOW(), $id_admin)");
+}
+
 function editStaf($data, $file) {
     global $conn;
     $id = htmlspecialchars($data["editId"]);
@@ -211,12 +229,13 @@ function editStaf($data, $file) {
         $targetFile = $targetDir . basename($file["profile-staf"]["name"]);
         if(move_uploaded_file($file["profile-staf"]["tmp_name"], $targetFile)){
             $query = "UPDATE supervisor SET nama_supervisor = '$name', email_supervisor = '$email', foto_profil_staff = '$targetFile' WHERE id_supervisor = $id";
-            mysqli_query($conn, $query);
+            kelolaStaf($id);
             return mysqli_affected_rows($conn);
         }
     }else{
         $query = "UPDATE supervisor SET nama_supervisor = '$name', email_supervisor = '$email' WHERE id_supervisor = $id";
         mysqli_query($conn, $query);
+        kelolaStaf($id);
         return mysqli_affected_rows($conn);
     }
 }
@@ -225,8 +244,10 @@ function deleteStaf($id) {
     global $conn;
     $query = "DELETE FROM supervisor WHERE id_supervisor = $id";
     mysqli_query($conn, $query);
+    kelolaStaf($id);
     return mysqli_affected_rows($conn);
 }
+
 
 function kelolaMasyarakat($data) {
     global $conn;
@@ -236,6 +257,8 @@ function kelolaMasyarakat($data) {
     $password = htmlspecialchars($data["editPassword"]);
     $query = "UPDATE user SET email_user = '$email', password_user = '$password', nama_user = '$username' WHERE NIK = $nik";
     mysqli_query($conn, $query);
+    $id_admin = $_SESSION["id_admin"];
+    mysqli_query($conn, "INSERT INTO kelola_user VALUES($id_admin, $nik, NOW())");
     return mysqli_affected_rows($conn);
 }
 
@@ -263,8 +286,15 @@ function unsavePostingan($idpost){
     return mysqli_affected_rows($conn);
 }
 
-function cekSave($postNIK, $currentNik) {
-    return $postNIK === $currentNik;
+function cekSave($idpost){
+    global $conn;
+    $nik = $_SESSION["NIK"];
+    $query = mysqli_query($conn, "SELECT * FROM saved WHERE id_postingan = $idpost AND NIK = $nik");
+    if(mysqli_num_rows($query) > 0){
+        return true;
+    }else{
+        return false;
+    }
 }
 
 function cekMycomment($commentNik, $currentNik) {

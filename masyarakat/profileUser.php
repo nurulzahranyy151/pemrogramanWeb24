@@ -10,9 +10,7 @@ if(!isset($_SESSION["NIK"])){
 
 if(isset($_POST["saveChange"])){
     editMasyarakat($_POST, $_FILES);
-    $user = userLogin($nik);
-    unset($_POST);
-    unset($_FILES);
+    header("Location: profileUser.php");
 }
 
 
@@ -113,7 +111,8 @@ if(isset($_POST["saveChange"])){
                     <div class="profile-container">
                         <div class="profile-pic-container">
                             <img id="profile-pic" src="<?= $user['foto_profil_user'];?>" class="profile-pic">
-                            <input type="file" id="profile-pic-input" name="profile-pic"  style="display: none;">
+                            <input type="file" id="profile-pic-input" name="profile-pic" style="display: none;" onchange="previewProfilePicture(event)">
+
                             <button type="button"  class="edit-button" onclick="changeProfilUser()"><i class='bx bx-pencil icon'></i></button>
                         </div>
                         <div class="form-container">
@@ -154,7 +153,7 @@ if(isset($_POST["saveChange"])){
                             </div>
                             <div class="form-actions">
                                 <button type="button" class="cancel-button" onclick="cancelEdit()">Batalkan</button>
-                                <button type="submit" class="save-button" name="saveChange" onclick="saveProfile()">Simpan</button>
+                                <button type="submit" class="save-button" name="saveChange">Simpan</button>
                             </div>
                         </div>
                     </div>
@@ -163,7 +162,6 @@ if(isset($_POST["saveChange"])){
         </div>
     </div>
     <script src="../js/masyarakatValidation.js"></script>
-    <script src="../js/postAtribut.js"></script>
     <script src="../js/sidebar.js"></script>
     
 </body>

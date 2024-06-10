@@ -148,7 +148,7 @@ if(isset($_POST["submit-report"])){
                 <?php 
                $postingan = showAllpostingan();
                while ($row = mysqli_fetch_assoc($postingan)):?>
-                <?php $saveornot = cekSave($row["NIK"], $nik);?>
+                <?php $saveornot = cekSave($row['id_postingan']);?>
                 <div class="post">
                     <div class="post-header">
                         <img src="<?= $row['foto_profil_user'];?>" alt="Profil Picture">
@@ -191,7 +191,7 @@ if(isset($_POST["submit-report"])){
                     while ($trend = mysqli_fetch_assoc($trending)):?>
                         <div class="accepted-post">
                             <a href="#">
-                                <img src="<?= $trend['media'];?>" alt="">
+                                <img src="<?= $trend['media'];?>" alt="" onclick="popupcomment(<?php echo $trend['id_postingan'];?>)">
                             </a>
                             <div class="accepted-post-atr">
                                 <h5><?= $trend['tgl_postingan'];?></h5>

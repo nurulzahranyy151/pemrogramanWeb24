@@ -13,16 +13,16 @@ if(isset($_POST['deleteUser'])){
     hapusUser($_POST['deleteNik']);
     header("Location: dataMasyarakat.php");
 }
-//$searchReport = findReported();
-//$report = [];
-//$SumDataEachPage =  5;
-//$SumData = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM report"));
-//$SumPage = ceil($SumData/$SumDataEachPage);
-//$activePage = (isset($_GET["halaman"])) ?  $_GET["halaman"] : 1;
-//$DataReportStart = ($SumDataEachPage * $activePage) - $SumDataEachPage;
-//while($row = mysqli_fetch_assoc($searchReport)){
-//    $report[] = $row;
-//}
+$reports = findReported();
+$perpage = 5;
+$dataReport = [];
+while($row = mysqli_fetch_assoc($reports)){
+    $dataReport[] = $row;
+}
+$sumReport = count($dataReport);
+$sumPage = ceil($sumReport/$perpage);
+$activePage = (isset($_GET["page"])) ?  $_GET["page"] : 1;
+$startPage = ($perpage * $activePage) - $perpage;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -128,8 +128,7 @@ if(isset($_POST['deleteUser'])){
                 </div>
                 <div id="table-kelola-report" class="table-kelola-report">
                     <?php 
-                    $result = findReported();
-                    if(mysqli_num_rows($result) > 0) {
+                    if(mysqli_num_rows($reports) > 0) {
                     ?>
                     <table>
                         <tr class="head-table">
@@ -140,9 +139,9 @@ if(isset($_POST['deleteUser'])){
                             <th>Action</th>
                         </tr>
                         <?php 
-                        $count = 1;
-                        while($row = mysqli_fetch_assoc($result)) :
-                        ?>
+                        $count = $startPage + 1;
+                        $result = paginationReport($startPage, $perpage);
+                        while($row = mysqli_fetch_assoc($result)): ?>
                         <tr class="isi-data">
                             <td><?= $count;?></td>
                             <td><img src="<?= $row['media'];?>" alt="Profil Picture" class="media-report" onclick="showPopupReport(<?= $row['id_postingan'];?>)"></td>
@@ -162,6 +161,25 @@ if(isset($_POST['deleteUser'])){
                         endwhile;
                         ?>
                     </table>
+                    <div class="pagination">
+                        <ul>
+                            <?php if($activePage > 1): ?>
+                                <li><a href="?page=1"><<</a></li>
+                                <li><a href="?page=<?php echo $activePage - 1; ?>"><</a></li>
+                            <?php endif; ?>
+                            <?php for($i = 1; $i <= $sumPage; $i++): ?>
+                                <?php if($i == $activePage): ?>
+                                    <li><a href="?page=<?php echo $i; ?>" class="active"><?php echo $i; ?></a></li>
+                                <?php else: ?>
+                                    <li><a href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                                <?php endif; ?>
+                            <?php endfor; ?>
+                            <?php if($activePage < $sumPage): ?>
+                                <li><a href="?page=<?php echo $activePage + 1; ?>">></a></li>
+                                <li><a href="?page=<?php echo $sumPage; ?>">>></a></li>
+                            <?php endif; ?>
+                        </ul>
+                    </div>
                     <?php 
                     } else {
                         echo "<p>Tidak ada laporan.</p>";

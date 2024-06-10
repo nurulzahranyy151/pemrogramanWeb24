@@ -10,6 +10,7 @@ if (!isset($_SESSION["id_admin"])) {
 }
 
 if(isset($_POST['saveChange'])){
+    
     kelolaMasyarakat($_POST);
     header("Location: dataMasyarakat.php");
 }

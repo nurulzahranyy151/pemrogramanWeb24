@@ -1,5 +1,9 @@
 <?php
 require '../php/functions.php';
+if(!isset($_SESSION["id_supervisor"])){
+    header("Location: ../loginAdminandGov.php");
+    exit();
+}
 $id = $_POST['id'];
 $kondisi = $_POST['kondisi'];
 if ($kondisi === 'accept') {

@@ -887,6 +887,10 @@ form {
     display: flex;
 }
 
+.footer-report i{
+    color: blue;
+}
+
 .caption-media{
     align-items: center;
     width: 80%;
