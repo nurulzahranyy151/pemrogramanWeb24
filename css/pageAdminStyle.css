@@ -511,7 +511,7 @@ img {
     overflow-x: auto;
 }
 
-.dark .table-masyarakat, .dark .table-staf, .dark .table-kelola-report, .dark{
+.dark .table-masyarakat, .dark .table-staf, .dark .table-kelola-report{
     background-color: #242526;
     color: white;
     border-spacing: 0;
