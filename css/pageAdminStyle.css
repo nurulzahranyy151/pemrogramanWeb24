@@ -265,10 +265,6 @@ body.dark .sidebar header .toggle {
     color: white;
 }
 
-.dark .laporan-container {
-    background-color: #18191a;
-    color: white;
-}
 
 .sidebar.close .toggle {
     transform: translateY(-50%) rotate(0deg);
@@ -500,7 +496,7 @@ img {
 }
 
 .header-data,
-.table-masyarakat, .table-staf {
+.table-masyarakat, .table-staf, .table-kelola-report {
     border-radius: 8px;
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
     padding: 20px;
@@ -508,19 +504,23 @@ img {
     width: 100%;
 }
 
-.table-masyarakat, .table-staf {
+.table-masyarakat, .table-staf, .table-kelola-report {
     background-color: white;
     border-spacing: 0;
     width: 100%; 
     overflow-x: auto;
 }
 
-.dark .table-masyarakat, .dark .table-staf {
+.dark .table-masyarakat, .dark .table-staf, .dark .table-kelola-report, .dark{
     background-color: #242526;
     color: white;
     border-spacing: 0;
     width: 100%; 
     overflow-x: auto;
+}
+
+.table-kelola-report .isi-data img{
+    width: 75px;;
 }
 
 table{

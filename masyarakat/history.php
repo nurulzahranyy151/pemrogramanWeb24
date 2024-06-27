@@ -118,7 +118,7 @@ if (!isset($_SESSION["NIK"])) {
                     <img src="<?= $post['foto_profil_user'];?>" alt="Profil Picture">
                     <div class="post-info">
                         <h3><?= $post['nama_user'];?></h3>
-                        <p><?= $post['tgl_postingan'];?></p>
+                        <p><?= $post['alamat_postingan'];?>  • <?= $post['tgl_postingan'];?></p>
                     </div>
                 </div>
                 <div class="post-content">

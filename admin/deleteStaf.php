@@ -6,6 +6,16 @@ if(!isset($_SESSION["id_admin"])){
 }
 $id = $_POST['id'];
 deleteStaf($id);
+$perpage = 5;
+$stafs = findGov();
+$dataStaf = [];
+while ($row = mysqli_fetch_assoc($stafs)) {
+    $dataStaf[] = $row;
+}
+$jumlahStaf = count($dataStaf);
+$jumlahPage = ceil($jumlahStaf / $perpage);
+$activePage = isset($_GET["page"]) ? $_GET["page"] : 1;
+$startPage = ($perpage * $activePage) - $perpage;
 ?>
 
 <table>
@@ -19,8 +29,8 @@ deleteStaf($id);
         <th>Action</th>
     </tr>
     <?php 
-    $count = 1;
-    $result = findGov();
+    $count = $startPage + 1;
+    $result = paginationGov($startPage, $perpage);
     while($row = mysqli_fetch_assoc($result)): ?>
     <tr class="isi-data">
         <td><?php echo $count; ?></td>
@@ -46,3 +56,22 @@ deleteStaf($id);
         $count++;
         endwhile; ?>
 </table>
+<div class="pagination">
+                        <ul>
+                            <?php if($activePage > 1): ?>
+                                <li><a href="?page=1"><<</a></li>
+                                <li><a href="?page=<?php echo $activePage - 1; ?>"><</a></li>
+                            <?php endif; ?>
+                            <?php for($i = 1; $i <= $jumlahPage; $i++): ?>
+                                <?php if($i == $activePage): ?>
+                                    <li><a href="?page=<?php echo $i; ?>" class="active"><?php echo $i; ?></a></li>
+                                <?php else: ?>
+                                    <li><a href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                                <?php endif; ?>
+                            <?php endfor; ?>
+                            <?php if($activePage < $jumlahPage): ?>
+                                <li><a href="?page=<?php echo $activePage + 1; ?>">></a></li>
+                                <li><a href="?page=<?php echo $jumlahPage; ?>">>></a></li>
+                            <?php endif; ?>
+                        </ul>
+                    </div>

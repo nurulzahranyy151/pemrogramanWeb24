@@ -120,12 +120,6 @@ $startPage = ($perpage * $activePage) - $perpage;
                 <h3>Data Laporan Postingan</h3>
             </div>
             <div id="data-masyarakat" class="isi-table">
-                <div class="search-add">
-                    <div class="search">
-                        <input type="text" id="search-keyword-masyarakat" name="search-bar" class="search-bar" placeholder="Cari Laporan">
-                        <button><i class='bx bx-search icon'></i></button>
-                    </div>
-                </div>
                 <div id="table-kelola-report" class="table-kelola-report">
                     <?php 
                     if(mysqli_num_rows($reports) > 0) {

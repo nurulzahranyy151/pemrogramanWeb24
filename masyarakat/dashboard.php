@@ -154,7 +154,7 @@ if(isset($_POST["submit-report"])){
                         <img src="<?= $row['foto_profil_user'];?>" alt="Profil Picture">
                         <div class="post-info">
                             <h3><?= $row['nama_user'];?></h3>
-                            <p><?= $row['tgl_postingan'];?></p>
+                            <p><?= $row['alamat_postingan'];?>  • <?= $row['tgl_postingan'];?></p>
                         </div>
                     </div>
                     <div class="post-content">

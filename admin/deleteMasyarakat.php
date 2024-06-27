@@ -6,6 +6,16 @@ if(!isset($_SESSION["id_admin"])){
 }
 $id = $_POST['id'];
 deleteMasyarakat($id);
+$searchUser = findMasyarakat();
+$user = [];
+$SumDataEachPage =  5;
+$SumData = mysqli_num_rows(mysqli_query($conn, "SELECT * FROM user"));
+$SumPage = ceil($SumData/$SumDataEachPage);
+$activePage = (isset($_GET["halaman"])) ?  $_GET["halaman"] : 1;
+$DataUserStart = ($SumDataEachPage * $activePage) - $SumDataEachPage;
+while($row = mysqli_fetch_assoc($searchUser)){
+    $user[] = $row;
+}
 ?>
 <table>
     <tr class="head-table">
@@ -18,9 +28,10 @@ deleteMasyarakat($id);
         <th>Action</th>
     </tr>
     <?php 
-    $count = 1;
-    $result = findMasyarakat();
-    while( $row = mysqli_fetch_assoc($result)):?>
+    $count = $DataUserStart + 1;
+    $result = paginationMasyarakat($DataUserStart, $SumDataEachPage);
+    while ($row = mysqli_fetch_assoc($result)):
+    ?>
     <tr class="isi-data">
         <td><?= $count;?></td>
         <td><img src="<?= $row["foto_profil_user"];?>" alt="Profil Picture" class="foto-masyarakat"></td>
@@ -45,3 +56,22 @@ deleteMasyarakat($id);
         $count++;
         endwhile;?>
     </table>
+    <div class="pagination">
+                        <ul>
+                            <?php if($activePage > 1): ?>
+                                <li><a href="?page=1"><<</a></li>
+                                <li><a href="?page=<?php echo $activePage - 1; ?>"><</a></li>
+                            <?php endif; ?>
+                            <?php for($i = 1; $i <= $SumPage; $i++): ?>
+                                <?php if($i == $activePage): ?>
+                                    <li><a href="?page=<?php echo $i; ?>" class="active"><?php echo $i; ?></a></li>
+                                <?php else: ?>
+                                    <li><a href="?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+                                <?php endif; ?>
+                            <?php endfor; ?>
+                            <?php if($activePage < $SumPage): ?>
+                                <li><a href="?page=<?php echo $activePage + 1; ?>">></a></li>
+                                <li><a href="?page=<?php echo $SumPage; ?>">>></a></li>
+                            <?php endif; ?>
+                        </ul>
+                    </div>
