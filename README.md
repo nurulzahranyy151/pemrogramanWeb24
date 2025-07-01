@@ -1,6 +1,13 @@
 # RECITY (RESOLVE CITY)
-
 *Empowering Web Innovators to Shape the Future*
+By:
+F1D022150	Nurul Qalbi Zahrani
+F1D022102	Yusril Ibtida Ramdhani
+F1D022085	Nurul Fatimah
+F1D022146	Muhammad Rizki Assamsuli
+F1D022090	Ridho Adhimam Putra 
+F1D022100	Wahyu Septian Wibowo
+
 
 ![last commit](https://img.shields.io/badge/last%20commit-june%202024-brightgreen)
 ![PHP](https://img.shields.io/badge/php-5.4%2B-blue)
